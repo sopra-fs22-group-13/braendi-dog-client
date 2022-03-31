@@ -6,8 +6,11 @@
   }
 
   &.title {
-    font-weight: bold;
-    color: $background;
+    font-weight: 400;
+    color: $textDark;
     text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 2px solid $buttonColorDark ;
+    width: 6.5em;
   }
 }

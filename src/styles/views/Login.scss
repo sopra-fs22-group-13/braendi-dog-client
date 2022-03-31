@@ -4,50 +4,81 @@
   &.container {
     margin-top: 2em;
     min-height: 300px;
-    /* we include the center mixin defined in _theme.scss and save three duplicate lines :) */
+    color: $textDark;
     @include center;
-    flex-direction: column;
   }
-  &.form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 60%;
-    max-width: 30em;
-    height: 20em;
+  &.formRegister {
+    float: right;
     font-size: 16px;
-    font-weight: 300;
-    padding-left: 37px;
-    padding-right: 37px;
-    border-radius: 0.75em;
-    background-color: $background;
+    width: 17em;
+    flex-direction: column;
+    padding-left: 2.5em;
+    padding-right: 2.5em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    border-radius: $borderRadius;
+    border: 5px solid $buttonColorLight;
     transition: opacity 0.5s ease, transform 0.5s ease;
-    box-shadow: $dropShadow;
+  }
+
+  &.formLogin {
+    float: left;
+    font-size: 16px;
+    width: 17em;
+    flex-direction: column;
+    padding-left: 2.5em;
+    padding-right: 2.5em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    border-radius: $borderRadius;
+    border: 5px solid $buttonColorLight;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  &.title{
+    font-size: 36px;
+    text-align: center;
+    padding-bottom: 1.2em;
+    flex-direction: column;
+    display: flex;
+    border-bottom: 2px solid $buttonColorDark ;
+    height: 1em;
   }
   &.field {
-    display: flex;
     flex-direction: column;
-    justify-content: center;
+    display: flex;
+    padding-top: 1em;
+
   }
+
   &.input {
     height: 35px;
     padding-left: 15px;
     margin-left: -4px;
     border: none;
-    border-radius: 0.75em;
+    border-radius: $borderRadius;
     margin-bottom: 20px;
-    background: transparentize(white, 0.85);
-    color: $textColor;
+    color: $textClear;
+    background-color: $buttonColorLight;
   }
   &.label {
-    color: $textColor;
+    color: $textDark;
     margin-bottom: 10px;
-    text-transform: lowercase;
     font-weight: 300;
   }
   &.button-container {
     display: flex;
     justify-content: center;
     margin-top: 2em;
+  }
+
+  &.linevertical  {
+    border-left: 2px solid $darkLine  ;
+    height: 22em;
+    padding-right: 37px;
+  }
+
+  &.space{
+    padding-right: 37px;
   }
 }

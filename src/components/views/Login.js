@@ -21,7 +21,7 @@ const FormField = props => {
       </label>
       <input
         className="login input"
-        placeholder="enter here.."
+        placeholder= {props.text}
         value={props.value}
         onChange={e => props.onChange(e.target.value)}
       />
@@ -59,31 +59,69 @@ const Login = props => {
   };
 
   return (
+
     <BaseContainer>
       <div className="login container">
-        <div className="login form">
+         <div className="login formLogin">
+            <div className="login title">
+                Login
+            </div>
           <FormField
-            label="Username"
+            label="Name:"
+            text = "Login Name"
             value={username}
             onChange={un => setUsername(un)}
           />
           <FormField
-            label="Name"
+            label="Password:"
+            text = "Login Password"
             value={name}
+            width="50%"
             onChange={n => setName(n)}
           />
           <div className="login button-container">
             <Button
               disabled={!username || !name}
-              width="100%"
+              width="60%"
               onClick={() => doLogin()}
             >
               Login
             </Button>
           </div>
         </div>
+
+        <div className="login space"></div>
+        <div className="login linevertical"> </div>
+
+        <div className="login formRegister">
+           <div className="login title">
+             Register
+           </div>
+          <FormField
+            label="Name:"
+            text = "Register Password"
+            value={username}
+            onChange={un => setUsername(un)}
+          />
+          <FormField
+            label="Password:"
+            text = "Register Password"
+            value={name}
+            onChange={n => setName(n)}
+          />
+          <div className="login button-container">
+            <Button
+              disabled={!username || !name}
+              width="60%"
+              onClick={() => doLogin()}
+            >
+              Register
+            </Button>
+          </div>
+        </div>
       </div>
     </BaseContainer>
+
   );
 };
 

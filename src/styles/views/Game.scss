@@ -15,7 +15,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: $dropShadow;
+
   }
   &.user-list {
     list-style: none;
@@ -48,7 +48,7 @@
   }
   &.username {
     font-weight: 500;
-    color: $accent;
+    color: $buttonColorLight;
   }
   &.id {
     margin-left: auto;

@@ -1,5 +1,5 @@
 /*
-Parses and evaluates the WebSocket updates. Handle updates in the respective functions.
+Parses and evaluates the WebSocket updates. Handle updates by listening to the respective events on the document.
 */
 
 export const parseUpdate = (rawUpdate) => {
@@ -30,32 +30,44 @@ export const parseUpdate = (rawUpdate) => {
     }
 }
 
+
 function updateBoard(extrainfo)
 {
-    console.log("boardUpdate", extrainfo);
+    const event = new CustomEvent('boardUpdate', { detail: extrainfo});
+    document.dispatchEvent(event);
 }
 
 function updateCard(extrainfo)
 {
     console.log("cardUpdate", extrainfo);
+    const event = new CustomEvent('cardUpdate', { detail: extrainfo});
+    document.dispatchEvent(event);
 }
 
 function updateTurn(extrainfo)
 {
     console.log("turnUpdate", extrainfo);
+    const event = new CustomEvent('turnUpdate', { detail: extrainfo});
+    document.dispatchEvent(event);
 }
 
 function updateStart(extrainfo)
 {
     console.log("startUpdate", extrainfo);
+    const event = new CustomEvent('startUpdate', { detail: extrainfo});
+    document.dispatchEvent(event);
 }
 
 function updateWin(extrainfo)
 {
     console.log("winUpdate", extrainfo);
+    const event = new CustomEvent('winUpdate', { detail: extrainfo});
+    document.dispatchEvent(event);
 }
 
 function updateLobby(extrainfo)
 {
     console.log("lobbyUpdate", extrainfo);
+    const event = new CustomEvent('lobbyUpdate', { detail: extrainfo});
+    document.dispatchEvent(event);
 }

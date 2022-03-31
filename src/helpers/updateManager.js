@@ -8,7 +8,6 @@ import * as StompJs from '@stomp/stompjs';
 import * as SockJS from 'sockjs-client';
 
 let socket = null;
-
 let onMessage = function (message)
 {
     if(message.body)
@@ -20,8 +19,20 @@ let onMessage = function (message)
     }
 }
 
+export const disconnect = () =>
+{
+    socket.disconnect();
+    socket = null;
+}
+
 export const connectToPersonalUpdate = () =>
 {
+    if(socket != null)
+    {
+        console.log("already connected to a websocket. call disconnect() first.");
+        return;
+    }
+
     console.log("connecting WebSocket...");
 
     if(localStorage.getItem("token1") == null)

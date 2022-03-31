@@ -36,52 +36,79 @@ FormField.propTypes = {
 };
 
 const Login = props => {
+  var password;
+  var username;
   const history = useHistory();
-  const [name, setName] = useState(null);
-  const [username, setUsername] = useState(null);
+  const [loginPassword, setLoginPassword] = useState(null);
+  const [loginUsername, setLoginUsername] = useState(null);
+  const [registerPassword, setRegisterPassword] = useState(null);
+  const [registerUsername, setRegisterUsername] = useState(null);
 
   const doLogin = async () => {
-    try {
-      const requestBody = JSON.stringify({username, name});
-      const response = await api.post('/users', requestBody);
+      try {
+          password= loginPassword;
+          username = loginUsername;
+          const requestBody = JSON.stringify({username, password});
+          const response = await api.post('/login/users', requestBody);
 
-      // Get the returned user and update a new object.
-      const user = new User(response.data);
+          // Get the returned user and update a new object.
+          const user = new User(response.data);
 
-      // Store the token into the local storage.
-      localStorage.setItem('token', user.token);
+          // Store the token into the local storage.
+          localStorage.setItem('token', user.token);
 
-      // Login successfully worked --> navigate to the route /game in the GameRouter
-      history.push(`/game`);
-    } catch (error) {
-      alert(`Something went wrong during the login: \n${handleError(error)}`);
-    }
+          // Login successfully worked --> navigate to the route /game in the GameRouter
+          history.push(`/game`);
+      } catch (error) {
+          alert(`Something went wrong during the login: \n${handleError(error)}`);
+      }
+  };
+
+  const doRegister = async () => {
+      try {
+          password= registerPassword;
+          username = registerUsername;
+          const requestBody = JSON.stringify({username, password});
+          const response = await api.post('/login', requestBody);
+
+          // Get the returned user and update a new object.
+          const user = new User(response.data);
+
+          // Store the token into the local storage.
+          localStorage.setItem('token', user.token);
+
+          // Login successfully worked --> navigate to the route /game in the GameRouter
+          history.push(`/game`);
+      } catch (error) {
+          alert(`Something went wrong during the login: \n${handleError(error)}`);
+      }
   };
 
   return (
 
     <BaseContainer>
       <div className="login container">
-         <div className="login formLogin">
+
+          <div className="login formLogin">
             <div className="login title">
                 Login
             </div>
           <FormField
             label="Name:"
             text = "Login Name"
-            value={username}
-            onChange={un => setUsername(un)}
+            value={loginUsername}
+            onChange={un => setLoginUsername(un)}
           />
           <FormField
             label="Password:"
             text = "Login Password"
-            value={name}
+            value={loginPassword}
             width="50%"
-            onChange={n => setName(n)}
+            onChange={n => setLoginPassword(n)}
           />
           <div className="login button-container">
             <Button
-              disabled={!username || !name}
+              disabled={!loginUsername || !loginPassword}
               width="60%"
               onClick={() => doLogin()}
             >
@@ -92,28 +119,27 @@ const Login = props => {
 
         <div className="login space"></div>
         <div className="login linevertical"> </div>
-
-        <div className="login formRegister">
+          <div className="login formRegister">
            <div className="login title">
              Register
            </div>
           <FormField
             label="Name:"
             text = "Register Password"
-            value={username}
-            onChange={un => setUsername(un)}
+            value={registerUsername}
+            onChange={un => setRegisterUsername(un)}
           />
           <FormField
             label="Password:"
             text = "Register Password"
-            value={name}
-            onChange={n => setName(n)}
+            value={registerPassword}
+            onChange={n => setRegisterPassword(n)}
           />
           <div className="login button-container">
             <Button
-              disabled={!username || !name}
+              disabled={!registerUsername || !registerPassword}
               width="60%"
-              onClick={() => doLogin()}
+              onClick={() => doRegister()}
             >
               Register
             </Button>

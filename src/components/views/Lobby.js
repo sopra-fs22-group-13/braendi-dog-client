@@ -3,8 +3,8 @@ import {api, handleError} from 'helpers/api';
 import User from 'models/User';
 import {useHistory} from 'react-router-dom';
 import {Button} from 'components/ui/Button';
-import 'styles/views/Login.scss';
-import BaseContainer from "components/ui/BaseContainer";
+import 'styles/ui/Lobby.scss';
+import SideBarContainer from "components/ui/SideBarContainer";
 import PropTypes from "prop-types";
 
 /*
@@ -13,7 +13,7 @@ however be sure not to clutter your files with an endless amount!
 As a rule of thumb, use one file per component and only add small,
 specific components that belong to the main one in the same file.
  */
-const FormField = props => {
+const SideBarField = props => {
   return (
     <div className="login field">
       <label className="login label">
@@ -29,7 +29,7 @@ const FormField = props => {
   );
 };
 
-FormField.propTypes = {
+SideBarField.propTypes = {
   label: PropTypes.string,
   value: PropTypes.string,
   onChange: PropTypes.func
@@ -59,31 +59,25 @@ const Login = props => {
   };
 
   return (
-    <BaseContainer>
-      <div className="login container">
-        <div className="login form">
-          <FormField
-            label="Username"
-            value={username}
-            onChange={un => setUsername(un)}
-          />
-          <FormField
-            label="Name"
-            value={name}
-            onChange={n => setName(n)}
-          />
-          <div className="login button-container">
-            <Button
-              disabled={!username || !name}
-              width="100%"
-              onClick={() => doLogin()}
-            >
-              Login
-            </Button>
-          </div>
+    <SideBarContainer className="side-bar-container">
+      <div className="side-bar container">
+        <div>
+          <Button
+            className="side-bar button"
+            width="100%"
+            //onClick={history.push(`/menu`)}
+          >
+            Start
+          </Button>
+          <Button
+            className="side-bar button"
+            width="100%"
+           >
+            Create Game
+          </Button>
         </div>
       </div>
-    </BaseContainer>
+    </SideBarContainer>
   );
 };
 

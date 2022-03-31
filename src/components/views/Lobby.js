@@ -1,10 +1,13 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {api, handleError} from 'helpers/api';
 import User from 'models/User';
 import {useHistory} from 'react-router-dom';
 import {Button} from 'components/ui/Button';
 import 'styles/ui/Lobby.scss';
+import BaseContainer from "components/ui/BaseContainer";
 import SideBarContainer from "components/ui/SideBarContainer";
+import { DogPawLogo } from "components/ui/DogPawLogo";
+import { LogoutButton } from "components/ui/LogoutButton";
 import PropTypes from "prop-types";
 
 /*
@@ -37,47 +40,61 @@ SideBarField.propTypes = {
 
 const Login = props => {
   const history = useHistory();
-  const [name, setName] = useState(null);
-  const [username, setUsername] = useState(null);
-
-  const doLogin = async () => {
-    try {
-      const requestBody = JSON.stringify({username, name});
-      const response = await api.post('/users', requestBody);
-
-      // Get the returned user and update a new object.
-      const user = new User(response.data);
-
-      // Store the token into the local storage.
-      localStorage.setItem('token', user.token);
-
-      // Login successfully worked --> navigate to the route /game in the GameRouter
-      history.push(`/game`);
-    } catch (error) {
-      alert(`Something went wrong during the login: \n${handleError(error)}`);
-    }
-  };
 
   return (
-    <SideBarContainer className="side-bar-container">
-      <div className="side-bar container">
-        <div>
-          <Button
-            className="side-bar button"
-            width="100%"
-            //onClick={history.push(`/menu`)}
-          >
-            Start
-          </Button>
-          <Button
-            className="side-bar button"
-            width="100%"
-           >
-            Create Game
-          </Button>
+    <BaseContainer>
+        <SideBarContainer className="side-bar-container">
+          <div className="side-bar container">
+            <div>
+              <h1> Dog </h1>
+              <Button
+                className="side-bar button"
+                width="100%"
+                onClick={() =>history.push(`/menu`)}
+              >
+                Start
+              </Button>
+              <Button
+                className="side-bar button active"
+                width="100%"
+              >
+                Create Game
+              </Button>
+            </div>
+            <div>
+              <Button
+                className="side-bar button"
+                width="100%"
+              >
+                Profile
+              </Button>
+              <LogoutButton width="40px" height="40px"/>
+            </div>
+          </div>
+        </SideBarContainer>
+        <div className="lobby container">
+          <div className="lobby circle-container">
+              <div className="lobby circle">
+              <DogPawLogo width="70px" height="70px"/>
+              </div>
+              <div className="lobby circle">
+              <DogPawLogo width="70px" height="70px"/>
+              </div>
+          </div>
+          <div className="lobby circle-container">
+              <div className="lobby circle">
+              <DogPawLogo width="70px" height="70px"/>
+              </div>
+              <div className="lobby circle">
+              <DogPawLogo width="70px" height="70px"/>
+              </div>
+          </div>
         </div>
-      </div>
-    </SideBarContainer>
+        <div className="search container">
+            <div className="search searchbox">
+            </div>
+        </div>
+    </BaseContainer>
   );
 };
 

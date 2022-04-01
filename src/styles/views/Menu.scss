@@ -1,0 +1,114 @@
+@import 'styles/theme';
+
+.menu {
+  &.container {
+    margin-top: 2em;
+    min-height: 300px;
+    color: $textDark;
+    @include center;
+
+  }
+
+  &.userInfo {
+    align-items: center;
+    float: left;
+    width: 17em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    border-radius: $borderRadius;
+    border: 5px solid $buttonColorLight;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  &.fotoContainer{
+
+    padding-left: 6.5em;
+
+  }
+  &.foto{
+
+    background-color: $buttonColorLight;
+    border-radius: 50%;
+    width: 4em;
+    height: 4em;
+
+  }
+
+  &.infoContainer {
+    font-size: 16px;
+    text-align: center;
+  }
+  &.nickName{
+    padding-top: 1em;
+    font-size: 24px;
+  }
+
+  &.singleInfo{
+    padding: 1em;
+  }
+
+  &.button-container {
+    margin-top: 2em;
+    text-align: center;
+  }
+
+  &.spaceUp{
+    padding-bottom: 10px;
+  }
+
+  &.linevertical  {
+    border-left: 2px solid $darkLine  ;
+    height: 22em;
+    padding-right: 37px;
+  }
+
+  &.spaceRight{
+    padding-right: 37px;
+  }
+
+
+  &.invites {
+    align-items: center;
+    float: right;
+    width: 17em;
+    height: 22em;
+
+  }
+  &.titleInvites{
+    text-align: center;
+    font-size: 24px;
+  }
+
+  &.singleInvites{
+    background-color: $buttonColorDark;
+    color: $textClear;
+    border-radius: 7px;
+    font-size: 24px;
+    padding-left: 10px;
+    padding-right: 20px;
+    display: flex;
+    padding-top: 0.7em;
+    padding-bottom: 0.7em;
+  }
+
+  &.inviteButton {
+    font-size: 18px;
+    margin-left: auto;
+    width: 3.5em;
+    height: 30px;
+    text-align: center;
+    border-radius: 2px;
+    color: $textDark;
+    background-color: $buttonColorLight;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+
+  }
+
+  &.createGame {
+    border-top: 2px solid $darkLine  ;
+    height: 22em;
+    padding-right: 37px;
+  }
+
+}

@@ -3,7 +3,7 @@ import {api, handleError} from 'helpers/api';
 import User from 'models/User';
 import {useHistory} from 'react-router-dom';
 import {Button} from 'components/ui/Button';
-import 'styles/views/Login.scss';
+import 'styles/views/RegistrationLogin.scss';
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
 
@@ -35,7 +35,7 @@ FormField.propTypes = {
   onChange: PropTypes.func
 };
 
-const Login = props => {
+const RegistrationLogin = props => {
   var password;
   var username;
   const history = useHistory();
@@ -57,8 +57,8 @@ const Login = props => {
           // Store the token into the local storage.
           localStorage.setItem('token', user.token);
 
-          // Login successfully worked --> navigate to the route /game in the GameRouter
-          history.push(`/game`);
+          // RegistrationLogin successfully worked --> navigate to the route /game in the GameRouter
+          history.push(`/menu`);
       } catch (error) {
           alert(`Something went wrong during the login: \n${handleError(error)}`);
       }
@@ -77,12 +77,13 @@ const Login = props => {
           // Store the token into the local storage.
           localStorage.setItem('token', user.token);
 
-          // Login successfully worked --> navigate to the route /game in the GameRouter
-          history.push(`/game`);
+          // RegistrationLogin successfully worked --> navigate to the route /game in the GameRouter
+          history.push(`/menu`);
       } catch (error) {
           alert(`Something went wrong during the login: \n${handleError(error)}`);
       }
   };
+
 
   return (
 
@@ -155,4 +156,4 @@ const Login = props => {
  * You can get access to the history object's properties via the withRouter.
  * withRouter will pass updated match, location, and history props to the wrapped component whenever it renders.
  */
-export default Login;
+export default RegistrationLogin;

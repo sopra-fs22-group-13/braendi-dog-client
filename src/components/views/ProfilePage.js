@@ -3,7 +3,7 @@ import {api, handleError} from 'helpers/api';
 import User from 'models/User';
 import {useHistory} from 'react-router-dom';
 import {Button} from 'components/ui/Button';
-import 'styles/views/Login.scss';
+import 'styles/views/RegistrationLogin.scss';
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
 
@@ -51,7 +51,7 @@ const Login = props => {
       // Store the token into the local storage.
       localStorage.setItem('token', user.token);
 
-      // Login successfully worked --> navigate to the route /game in the GameRouter
+      // RegistrationLogin successfully worked --> navigate to the route /game in the GameRouter
       history.push(`/game`);
     } catch (error) {
       alert(`Something went wrong during the login: \n${handleError(error)}`);

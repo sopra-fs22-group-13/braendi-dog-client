@@ -38,7 +38,6 @@ export function connectToPersonalUpdate()
     if(localStorage.getItem("token1") == null)
     {
         localStorage.setItem("token1", "123");
-        alert("failed");
         return;
     }
 

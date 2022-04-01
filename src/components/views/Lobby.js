@@ -12,6 +12,9 @@ import { LogoutButton } from "components/ui/LogoutButton";
 import { SearchIcon } from "components/ui/SearchIcon";
 import PropTypes from "prop-types";
 
+import { startListening } from 'components/voice/voiceChat';
+import { connectToPersonalUpdate } from 'helpers/updateManager';
+
 /*
 It is possible to add multiple components inside a single file,
 however be sure not to clutter your files with an endless amount!
@@ -93,6 +96,13 @@ if(users){
 
 if(members){
 }
+
+
+  //test voiceChat here, as there is not game yet.
+  useEffect(() => {
+    connectToPersonalUpdate();
+    startListening();
+  }, []);
 
 
   return (

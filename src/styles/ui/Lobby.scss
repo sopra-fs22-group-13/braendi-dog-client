@@ -10,6 +10,11 @@
     justify-content: space-between;
 }
 .lobby{
+    & h1{
+        color: black;
+        font-size: 48px;
+        flex-basis: 100%;
+    }
     &.container{
         display: flex;
         justify-content: center;
@@ -18,22 +23,36 @@
         margin-top: auto;
         margin-bottom: auto;
     }
+    &.member-container{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        flex-basis: 50%;
+        height: 40vh;
+        align-items: center;
+    }
     &.circle-container{
         display: flex;
-        justify-content: space-between;
-        width: 500px;
-        height: 350px;
+        justify-content: center;
         align-items: center;
     }
     &.circle {
       display: flex;
       justify-content: center;
-      align-items:center;
+      align-items: center;
       width: 175px;
       height: 175px;
       background-color: #A4CDFD;
       border-radius: 50%;
     }
+    &.member{
+        display: flex;
+        justify-content: center;
+        font-size: 20px;
+        margin-top: 20px;
+    }
+    display: flex;
+    justify-content: center;
     width: 40%;
 }
 .side-bar {
@@ -71,9 +90,45 @@
         padding-right: 60px;
     }
     &.searchbox{
-        height: 80%;
+        height: 85%;
         background-color: $buttonColorLight;
         margin-top: auto;
         margin-bottom: auto;
     }
+    &.searchbar{
+        display: flex;
+        justify-content: center;
+        margin-top: 40px;
+    }
+    &.input {
+        height: 35px;
+        width: 80%;
+        padding-left: 15px;
+        margin-left: -4px;
+        border: none;
+        border-radius: $borderRadius;
+        margin-bottom: 20px;
+        color: black;
+        background-color: $background;
+    }
+    &.placeholder{
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+}
+.player {
+  &.container {
+    margin: 0.5em 0;
+    width: 20em;
+    padding: 10px;
+    border-radius: $borderRadius;
+    display: flex;
+    align-items: center;
+    background: lighten($background, 5);
+  }
+  &.name {
+    font-weight: 300;
+    margin-left: 5px;
+  }
 }

@@ -33,9 +33,11 @@ const AppRouter = () => {
         <Route exact path="/">
           <Redirect to="/game"/>
         </Route>
-        <GameGuard>
-          <Menu/>
-        </GameGuard>
+        <Route exact path="/menu">
+          <GameGuard>
+            <Menu/>
+          </GameGuard>
+        </Route>
         <Route exact path="/lobby">
           <Lobby/>
         </Route>

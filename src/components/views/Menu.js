@@ -7,6 +7,7 @@ import 'styles/views/Menu.scss';
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
 
+
 /*
 It is possible to add multiple components inside a single file,
 however be sure not to clutter your files with an endless amount!
@@ -42,7 +43,7 @@ const Menu = props => {
   return (
 
       <BaseContainer>
-        <div className="menu container">
+        <div SideBarContainer className="menu container">
            <div className="menu userInfo">
                <div className="menu fotoContainer" >
                    <div className="menu foto">

@@ -1,5 +1,14 @@
 @import 'styles/theme';
 
+.base-container{
+  margin-left: 0;
+  padding-left: 0px;
+  margin-right: 0;
+  padding-right: 0px;
+  display: flex;
+  justify-content: space-between;
+}
+
 .menu {
   &.container {
     margin-top: 2em;

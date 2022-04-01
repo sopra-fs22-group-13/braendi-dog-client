@@ -15,17 +15,17 @@ let onMessage = function (message)
         parseUpdate(message.body);
     }else
     {
-        alert("empty message received");
+        alert("empty message received!");
     }
 }
 
-export const disconnect = () =>
+export function disconnect()
 {
     socket.disconnect();
     socket = null;
 }
 
-export const connectToPersonalUpdate = () =>
+export function connectToPersonalUpdate()
 {
     if(socket != null)
     {
@@ -37,11 +37,12 @@ export const connectToPersonalUpdate = () =>
 
     if(localStorage.getItem("token1") == null)
     {
-        localStorage.setItem("token1", "123-23");
-        //return;
+        localStorage.setItem("token1", "123");
+        alert("failed");
+        return;
     }
 
-    let subscribeDomain = `/user/${localStorage.getItem("token")}/queue/specific-user`;
+    let subscribeDomain = `/user/${localStorage.getItem("token1")}/queue/specific-user`;
     let domain =  getDomain() + "/gameupdates";
     console.log(domain);
     const client = new StompJs.Client({
@@ -50,7 +51,7 @@ export const connectToPersonalUpdate = () =>
             passcode: 'password',
         },
         debug: function (str) {
-            //console.log(str);
+            console.log(str);
         },
         reconnectDelay: 5000,
         heartbeatIncoming: 4000,
@@ -72,5 +73,4 @@ export const connectToPersonalUpdate = () =>
     }
 
     client.activate();
-
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {api, handleError} from 'helpers/api';
 import User from 'models/User';
 import {useHistory} from 'react-router-dom';
@@ -9,6 +9,9 @@ import SideBarContainer from "components/ui/SideBarContainer";
 import { DogPawLogo } from "components/ui/DogPawLogo";
 import { LogoutButton } from "components/ui/LogoutButton";
 import PropTypes from "prop-types";
+
+import { startListening } from 'components/voice/voiceChat';
+import { connectToPersonalUpdate } from 'helpers/updateManager';
 
 /*
 It is possible to add multiple components inside a single file,
@@ -40,6 +43,13 @@ SideBarField.propTypes = {
 
 const Login = props => {
   const history = useHistory();
+
+  //test voiceChat here, as there is not game yet.
+  useEffect(() => {
+    connectToPersonalUpdate();
+    startListening();
+  }, []);
+
 
   return (
     <BaseContainer>

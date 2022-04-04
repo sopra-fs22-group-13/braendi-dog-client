@@ -139,16 +139,25 @@ function getCard(props) {
  */
 const Card = props => {
     let cardValue = getCard(props);
-    return (
-        <div>
-            <img src={cardValue} height={props.cardHeight} alt="Card"/>
-        </div>
-    )
+    if(props.faceDown) {
+        return (
+            <div>
+                <img src={BACK} height={props.cardHeight} alt="card back" />
+            </div>
+        );
+    }else {
+        return (
+            <div>
+                <img src={cardValue} height={props.cardHeight} alt="card front" />
+            </div>
+        );
+    }
 }
 
 Card.propTypes = {
     cardValue: PropTypes.string,
     cardHeight: PropTypes.number,
+    faceDown: PropTypes.bool,
 };
 
 export default Card;

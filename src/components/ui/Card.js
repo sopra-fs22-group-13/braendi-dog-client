@@ -71,7 +71,6 @@ import SK from './images/KS.svg';
 import SA from './images/AS.svg';
 
 
-
 // get card from cardValue
 function getCard(props) {
     let cardValue = props.cardValue;

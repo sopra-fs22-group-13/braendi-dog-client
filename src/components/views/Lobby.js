@@ -7,9 +7,8 @@ import {Button} from 'components/ui/Button';
 import 'styles/ui/Lobby.scss';
 import BaseContainer from "components/ui/BaseContainer";
 import SideBarContainer from "components/ui/SideBarContainer";
-import { DogPawLogo } from "components/ui/DogPawLogo";
-import { LogoutButton } from "components/ui/LogoutButton";
-import { SearchIcon } from "components/ui/SearchIcon";
+import PetsIcon from '@mui/icons-material/Pets';
+import LogoutIcon from '@mui/icons-material/Logout';
 import PropTypes from "prop-types";
 
 import { startListening } from 'components/voice/voiceChat';
@@ -84,6 +83,12 @@ async function fetchDataSearch() {
         alert("Something went wrong while fetching the users! See the console for details.");
       }
     }
+
+const logout = () => {
+    localStorage.removeItem('token');
+    history.push('/login');
+}
+
 let contentSearch = <text className="search placeholder"> No users found </text>;
 
 if(users){
@@ -132,39 +137,45 @@ if(members){
               >
                 Profile
               </Button>
-              <LogoutButton width="40px" height="40px"/>
+              <div className="side-bar logout"
+                onClick={() => logout()}>
+                <LogoutIcon />
+              </div>
             </div>
           </div>
         </SideBarContainer>
+
         <div className="lobby container">
-        <h1 className="lobby"> LOBBY </h1>
+          <h1 className="lobby"> LOBBY </h1>
           <div className="lobby member-container">
               <div className="lobby circle">
-                <DogPawLogo width="70px" height="70px"/>
+                <PetsIcon />
               </div>
               <div className="lobby member">Dog1</div>
           </div>
           <div className="lobby member-container">
               <div className="lobby circle">
-                <DogPawLogo width="70px" height="70px"/>
+                <PetsIcon />
               </div>
               <div className="lobby member">Dog2</div>
           </div>
           <div className="lobby member-container">
               <div className="lobby circle">
-                <DogPawLogo width="70px" height="70px"/>
+                <PetsIcon />
               </div>
               <div className="lobby member">Dog3</div>
           </div>
           <div className="lobby member-container">
               <div className="lobby circle">
-                <DogPawLogo width="70px" height="70px"/>
+                <PetsIcon />
               </div>
               <div className="lobby member">Dog4</div>
           </div>
           <div className="lobby button">
+            <text> 2/4 </text>
           </div>
         </div>
+
         <div className="search container">
             <div className="search searchbox">
                 <div className="search searchbar">

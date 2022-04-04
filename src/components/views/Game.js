@@ -7,17 +7,6 @@ import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
 import "styles/views/Game.scss";
 
-const Player = ({user}) => (
-  <div className="player container">
-    <div className="player username">{user.username}</div>
-    <div className="player name">{user.password}</div>
-    <div className="player id">id: {user.id}</div>
-  </div>
-);
-
-Player.propTypes = {
-  user: PropTypes.object
-};
 
 const Game = () => {
   // use react-router-dom's hook to access the history
@@ -73,32 +62,22 @@ const Game = () => {
   }, []);
 
   let content = <Spinner/>;
+  let id;
 
-  if (users) {
-    content = (
-      <div className="game">
-        <ul className="game user-list">
-          {users.map(user => (
-            <Player user={user} key={user.id}/>
-          ))}
-        </ul>
-        <Button
-          width="100%"
-          onClick={() => logout()}
-        >
-          Logout
-        </Button>
-      </div>
-    );
+  switch(id){
+    case 1:
+        break; // perspective 1 etc
+    case 2:
+        break;
+    case 3:
+        break;
+    case 4:
+        break;
   }
 
   return (
     <BaseContainer className="game container">
-      <h2>Happy Coding!</h2>
-      <p className="game paragraph">
-        Get all users from secure endpoint:
-      </p>
-      {content}
+    {content}
     </BaseContainer>
   );
 }

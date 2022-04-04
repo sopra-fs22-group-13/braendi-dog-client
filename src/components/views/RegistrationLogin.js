@@ -6,6 +6,7 @@ import {Button} from 'components/ui/Button';
 import 'styles/views/RegistrationLogin.scss';
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
+import Header from "components/views/Header";
 
 /*
 It is possible to add multiple components inside a single file,
@@ -15,12 +16,12 @@ specific components that belong to the main one in the same file.
  */
 const FormField = props => {
   return (
-    <div className="login field">
-      <label className="login label">
+    <div className="content field">
+      <label className="content label">
         {props.label}
       </label>
       <input
-        className="login input"
+        className="content input"
         placeholder= {props.text}
         value={props.value}
         onChange={e => props.onChange(e.target.value)}
@@ -86,69 +87,68 @@ const RegistrationLogin = props => {
 
 
   return (
-
-    <BaseContainer>
-      <div className="login container">
-
-          <div className="login formLogin">
-            <div className="login title">
-                Login
-            </div>
-          <FormField
-            label="Name:"
-            text = "Login Name"
-            value={loginUsername}
-            onChange={un => setLoginUsername(un)}
-          />
-          <FormField
-            label="Password:"
-            text = "Login Password"
-            value={loginPassword}
-            width="50%"
-            onChange={n => setLoginPassword(n)}
-          />
-          <div className="login button-container">
-            <Button
-              disabled={!loginUsername || !loginPassword}
-              width="60%"
-              onClick={() => doLogin()}
-            >
-              Login
-            </Button>
-          </div>
-        </div>
-
-        <div className="login space"></div>
-        <div className="login linevertical"> </div>
-          <div className="login formRegister">
-           <div className="login title">
-             Register
-           </div>
-          <FormField
-            label="Name:"
-            text = "Register Password"
-            value={registerUsername}
-            onChange={un => setRegisterUsername(un)}
-          />
-          <FormField
-            label="Password:"
-            text = "Register Password"
-            value={registerPassword}
-            onChange={n => setRegisterPassword(n)}
-          />
-          <div className="login button-container">
-            <Button
-              disabled={!registerUsername || !registerPassword}
-              width="60%"
-              onClick={() => doRegister()}
-            >
-              Register
-            </Button>
-          </div>
-        </div>
+      <div>
+          <Header height="100"/>
+          <BaseContainer>
+              <div className="registrationLogin containerRegistrationLogin">
+                  <div className="login formLogin">
+                      <div className="content title">
+                          Login
+                      </div>
+                      <FormField
+                          label="Name:"
+                          value={loginUsername}
+                          onChange={un => setLoginUsername(un)}
+                          text = "Login Name"
+                      />
+                      <FormField
+                          label="Password:"
+                          text = "Login Password"
+                          value={loginPassword}
+                          width="50%"
+                          onChange={n => setLoginPassword(n)}
+                          />
+                      <div className="content button-container">
+                          <Button
+                              disabled={!loginUsername || !loginPassword}
+                              width="60%"
+                              onClick={() => doLogin()}
+                          >
+                              Login
+                          </Button>
+                      </div>
+                  </div>
+                  <div className="content lineverticalright"> </div>
+                  <div className="content lineverticalleft"> </div>
+                  <div className="registration formRegister">
+                      <div className="content title">
+                          Register
+                      </div>
+                      <FormField
+                          label="Name:"
+                          text = "Register Password"
+                          value={registerUsername}
+                          onChange={un => setRegisterUsername(un)}
+                      />
+                      <FormField
+                          label="Password:"
+                          text = "Register Password"
+                          value={registerPassword}
+                          onChange={n => setRegisterPassword(n)}
+                      />
+                      <div className="content button-container">
+                          <Button
+                              disabled={!registerUsername || !registerPassword}
+                              width="60%"
+                              onClick={() => doRegister()}
+                          >
+                              Register
+                          </Button>
+                      </div>
+                  </div>
+              </div>
+          </BaseContainer>
       </div>
-    </BaseContainer>
-
   );
 };
 

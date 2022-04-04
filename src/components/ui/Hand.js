@@ -18,6 +18,8 @@ const Hand = props => {
     );
 }
 
+// parse card array
+
 Hand.propTypes = {
     playerCards: PropTypes.array,
 };

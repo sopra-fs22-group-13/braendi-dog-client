@@ -143,12 +143,14 @@ const Card = props => {
         return (
             <div>
                 <img src={BACK} height={props.cardHeight} alt="card back" />
+                onClick={props.handleClick}
             </div>
         );
     }else {
         return (
             <div>
                 <img src={cardValue} height={props.cardHeight} alt="card front" />
+                onClick={props.handleClick}
             </div>
         );
     }

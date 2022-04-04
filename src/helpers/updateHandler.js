@@ -32,6 +32,9 @@ export function parseUpdate(rawUpdate)
 }
 
 
+//each function here dispatches the associated event.
+//yes this could be done in one function, but is split for now if we need event specific logic.
+
 function updateBoard(extrainfo)
 {
     alert("update!");

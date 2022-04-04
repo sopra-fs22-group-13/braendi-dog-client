@@ -6,6 +6,7 @@ import {Button} from 'components/ui/Button';
 import 'styles/views/Menu.scss';
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
+import Header from "components/views/Header";
 
 
 /*
@@ -14,93 +15,90 @@ however be sure not to clutter your files with an endless amount!
 As a rule of thumb, use one file per component and only add small,
 specific components that belong to the main one in the same file.
  */
-const FormField = props => {
-  return (
-    <div className="login field">
-      <label className="login label">
-        {props.label}
-      </label>
-      <input
-        className="login input"
-        placeholder="enter here.."
-        value={props.value}
-        onChange={e => props.onChange(e.target.value)}
-      />
+
+
+const Invite = ({invite}) => (
+    <div className="invites singleInvites">
+        <div>
+            {invite}
+        </div>
+        <div> {invite.name} </div>
+        <div className="invites inviteButton" > Join </div>
     </div>
-  );
+);
+
+Invite.propTypes = {
+    invite: PropTypes.object
 };
 
-FormField.propTypes = {
-  label: PropTypes.string,
-  value: PropTypes.string,
-  onChange: PropTypes.func
-};
+
 
 const Menu = props => {
-  const history = useHistory();
+    const history = useHistory();
+    const invites = ["dog1", "dog2"];
 
+    //needs to recive all invites with token
 
   return (
+      <div>
+          <Header height="100"/>
+          <BaseContainer>
+              <div className="menuContainer">
+                  <div className="info userInfo">
 
-      <BaseContainer>
-        <div SideBarContainer className="menu container">
-           <div className="menu userInfo">
-               <div className="menu fotoContainer" >
-                   <div className="menu foto">
-                   foto
-                   </div>
-               </div>
-              <div className="menu infoContainer">
-                  <div className="menu nickName">
-                      NickName
+                          <div className="info foto">
+                          </div>
+                      <div className="info infoContainer">
+                          <div className="info nickName">
+                              NickName
+                          </div>
+                          <div className="info singleInfo">
+                              Name:
+                          </div>
+                          <div className="info singleInfo">
+                              Birthday:
+                          </div>
+                          <div className="info singleInfo">
+                              Wins:
+                          </div>
+                          <div className="info singleInfo">
+                              More Stats:
+                          </div>
+                      </div>
+
+                      <div className="info button-container">
+                          <Button width="60%" >
+                              Edit
+                          </Button>
+                          <div className="info spaceUp"> </div>
+                          <Button width="60%">
+                              Logout
+                          </Button>
+                      </div>
                   </div>
-                 <div className="menu singleInfo">
-                    Name:
-                 </div>
-                 <div className="menu singleInfo">
-                     Birthday:
-                 </div>
-                 <div className="menu singleInfo">
-                    Wins:
-                 </div>
-                 <div className="menu singleInfo">
-                    More Stats:
-                 </div>
-              </div>
+                  <div className="line lineverticalright"> </div>
+                  <div className="line lineverticalleft"> </div>
 
-              <div className="menu button-container">
-                <Button width="60%" >
-                  Edit
-                </Button>
-                <div className="menu spaceUp"> </div>
-                <Button width="60%">
-                   Logout
-                </Button>
-              </div>
-          </div>
-          <div className="menu spaceRight"></div>
-          <div className="menu linevertical"> </div>
-          <div className="menu invites">
-              <div className="menu titleInvites">
-                  Invites
-              </div>
-              <div className="menu spaceUp"></div>
-              <div className="menu singleInvites">
-                  <div>
-                      Dog1
-                  </div>
+                  <div className="invites container">
 
-                  <div className="menu inviteButton" >
-                       Join
+                      <div className="invites titleInvites">Invites</div>
+                      <ul className="invites inviteslist">
+                          {invites.map(invite => (
+                              <Invite invite={invite} />
+                          ))}
+                      </ul>
+
+                      <div className="invites createGame">
+
+                          <Button width="60%">
+                              Create Game
+                          </Button>
+
+                      </div>
                   </div>
               </div>
-              <div className="menu createGame">
-
-              </div>
-          </div>
-        </div>
-      </BaseContainer>
-
+          </BaseContainer>
+      </div>
   );
 };
 

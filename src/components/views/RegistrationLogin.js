@@ -7,6 +7,7 @@ import 'styles/views/RegistrationLogin.scss';
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
 import Header from "components/views/Header";
+import {red} from "@mui/material/colors";
 
 /*
 It is possible to add multiple components inside a single file,
@@ -45,8 +46,12 @@ const RegistrationLogin = props => {
   const [registerPassword, setRegisterPassword] = useState(null);
   const [registerUsername, setRegisterUsername] = useState(null);
 
+  const [errorRegister, setErrorRegister] = useState(null);
+  const [errorLogin,setErrorLogin] = useState(null)
+
   const doLogin = async () => {
       try {
+
           password= loginPassword;
           username = loginUsername;
           const requestBody = JSON.stringify({username, password});
@@ -61,7 +66,11 @@ const RegistrationLogin = props => {
           // RegistrationLogin successfully worked --> navigate to the route /game in the GameRouter
           history.push(`/menu`);
       } catch (error) {
-          alert(`Something went wrong during the login: \n${handleError(error)}`);
+          setErrorLogin(
+              <div className="errors">
+                  Sorry your login didn't work
+              </div>
+          )
       }
   };
 
@@ -81,7 +90,11 @@ const RegistrationLogin = props => {
           // RegistrationLogin successfully worked --> navigate to the route /game in the GameRouter
           history.push(`/menu`);
       } catch (error) {
-          alert(`Something went wrong during the login: \n${handleError(error)}`);
+          setErrorRegister(
+              <div className="errors">
+                  Sorry your Register didn't work
+              </div>
+          )
       }
   };
 
@@ -117,6 +130,7 @@ const RegistrationLogin = props => {
                               Login
                           </Button>
                       </div>
+                      {errorLogin}
                   </div>
                   <div className="content lineverticalright"> </div>
                   <div className="content lineverticalleft"> </div>
@@ -145,6 +159,7 @@ const RegistrationLogin = props => {
                               Register
                           </Button>
                       </div>
+                      {errorRegister}
                   </div>
               </div>
           </BaseContainer>

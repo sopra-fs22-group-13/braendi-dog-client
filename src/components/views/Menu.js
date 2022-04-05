@@ -39,6 +39,11 @@ const Menu = props => {
 
     //needs to recive all invites with token
 
+    const logout = () => {
+        localStorage.removeItem('token');
+        history.push('/login');
+    }
+
   return (
       <div>
           <Header height="100"/>
@@ -71,7 +76,8 @@ const Menu = props => {
                               Edit
                           </Button>
                           <div className="info spaceUp"> </div>
-                          <Button width="60%">
+                          <Button width="60%"  onClick={() => logout()}
+                          >
                               Logout
                           </Button>
                       </div>

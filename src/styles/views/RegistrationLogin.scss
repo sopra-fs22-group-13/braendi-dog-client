@@ -100,3 +100,18 @@
     padding-right: 37px;
   }
 }
+.errors{
+  margin-top: 1em;
+  padding: 6px;
+  font-weight: 700;
+  font-size: 13px;
+  text-align: center;
+  height: 45px;
+  border: none;
+  border-radius: $borderRadius;
+  cursor: pointer;
+  opacity: 1;
+  color: $textClear;
+  background-color: #ff4444;
+  transition: all 0.3s ease;
+}

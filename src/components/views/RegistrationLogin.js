@@ -92,7 +92,7 @@ const RegistrationLogin = props => {
       } catch (error) {
           setErrorRegister(
               <div className="errors">
-                  Sorry your Register didn't work
+                  Sorry your registration didn't work
               </div>
           )
       }

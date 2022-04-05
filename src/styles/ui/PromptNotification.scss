@@ -1,0 +1,18 @@
+@import 'styles/theme';
+
+.notification{
+    display: flex;
+    justify-content: center;
+    height: 100px;
+    width: 300px;
+    align-items: center;
+    background-color: #ECF4FE;
+
+    &.label{
+        font-size: 20px;
+        color: black;
+        border-radius: $borderRadius;
+        border-style: solid;
+        border-color: $buttonColorDark;
+    }
+}

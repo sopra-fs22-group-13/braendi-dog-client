@@ -31,6 +31,26 @@ Player.propTypes = {
   user: PropTypes.object
 };
 
+const LobbyButton = (props) => (
+    <div className="lobby button">
+            <text> members.length/4 </text>
+    </div>
+);
+
+const Member = ({member}) => {
+    return(
+    <div className="lobby member-container">
+      <div className="lobby circle">
+        <PetsIcon />
+      </div>
+      <label className="lobby member"> {member.username} </label>
+    </div>
+    );
+};
+
+Member.propTypes = {
+  member: PropTypes.object
+};
 
 const Lobby = props => {
   const history = useHistory();
@@ -89,19 +109,49 @@ const logout = () => {
     history.push('/login');
 }
 
+const startGame= async () => {
+    await api.post('/game', 'insertCorrectLobbyID');
+    history.push('/game');
+}
+
 let contentSearch = <text className="search placeholder"> No users found </text>;
 
 if(users){
-    <ul className="game user-list">
-      {users.map(user => (
-        <Player user={user} key={user.id}/>
-      ))}
-    </ul>
+    contentSearch =(
+        <ul className="game user-list">
+          {users.map(user => (
+            <Player user={user} key={user.id}/>
+          ))}
+        </ul>
+    );
 }
+let contentLobby;
 
 if(members){
+    contentLobby = (
+    <div>
+        {members.map(member => (
+        <Member member={member} key={member.id}/>
+        ))}
+    </div>
+    );
 }
 
+
+let lobbyButton =
+    <div className="lobby button">
+         2/4
+    </div>
+/*
+if(members.length === 4){
+    lobbyButton = (
+        <div className="lobby start"
+             onClick={() => startGame()}>
+             Start
+        </div>
+    );
+}
+*/
 
   //test voiceChat here, as there is not game yet.
   useEffect(() => {
@@ -171,8 +221,8 @@ if(members){
               </div>
               <div className="lobby member">Dog4</div>
           </div>
-          <div className="lobby button">
-            <text> 2/4 </text>
+          <div>
+          {lobbyButton}
           </div>
         </div>
 

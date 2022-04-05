@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from "prop-types";
+import 'styles/ui/Hand.scss';
+import Card from './Card';
 
 /**
  * Hand component to contain the cards of the player
@@ -9,14 +11,17 @@ import PropTypes from "prop-types";
 const Hand = props => {
     let playerCards = props.playerCards;
     return(
-        <div>
-            
+        <div className='bottom-hand'>
+            {playerCards.map((card, index) => {
+            })}
         </div>
     );
 }
 
-Hand.PropTypes = {
+// parse card array
+
+Hand.propTypes = {
     playerCards: PropTypes.array,
-}
+};
 
 export default Hand;

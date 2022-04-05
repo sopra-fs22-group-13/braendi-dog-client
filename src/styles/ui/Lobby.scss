@@ -17,7 +17,6 @@
         margin-top: 15px;
         margin-bottom: 15px;
     }
-    & text{ font-size: 24px;}
     &.container{
         display: flex;
         justify-content: center;
@@ -62,12 +61,23 @@
         margin-top: 20px;
     }
     &.button{
-    height: 70px;
-    width: 280px;
-    background-image: url('/LobbyButton.svg');
-    background-size: contain;
-    margin-top: 20px;
-    align-items: center;
+        height: 70px;
+        width: 280px;
+        background-image: url('/LobbyButton.svg');
+        background-size: contain;
+        margin-top: 20px;
+        align-items: center;
+        font-size: 24px;
+    }
+    &.start{
+        height: 70px;
+        width: 280px;
+        background-image: url('/LobbyButtonGreen.svg');
+        background-size: contain;
+        margin-top: 20px;
+        align-items: center;
+        cursor: pointer;
+        font-size: 24px;
     }
     display: flex;
     justify-content: center;

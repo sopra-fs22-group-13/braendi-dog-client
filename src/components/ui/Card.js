@@ -132,7 +132,7 @@ function getCard(props) {
     }
 }
 
-// card component that conditionally renders the card based on the card value
+
 /**
  * takes cardValue as a prop and renders the card based on the cardValue
  * and the cardHeight
@@ -155,6 +155,9 @@ const Card = props => {
         );
     }
 }
+
+// implement animation to handle card flipping
+
 
 Card.propTypes = {
     cardValue: PropTypes.string,

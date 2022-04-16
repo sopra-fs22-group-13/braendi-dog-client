@@ -1,0 +1,22 @@
+@import 'styles/theme';
+
+.marbles{
+    overflow: hidden;
+
+&.flex{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+&.container{
+    position: relative;
+    height: 100%;
+}
+&.marble{
+    /* the marble is now absolute TO THE PARENT ELEMENT, so calcualte top and left accordingly */
+    position: absolute;
+    height: 3%;
+    width: 3%;
+}
+}

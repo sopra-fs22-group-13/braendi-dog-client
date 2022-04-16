@@ -8,6 +8,7 @@ import BaseContainer from 'components/ui/BaseContainer';
 import PropTypes from "prop-types";
 import "styles/views/Game.scss";
 import HandsWrapper from 'components/ui/HandsWrapper';
+import Marbles from 'components/views/Marbles';
 
 
 const Game = () => {
@@ -62,39 +63,15 @@ let lobbyId;
   let background = <Spinner/>;
   let userColor = "RED";
 
-//if(data.colorMapping(localStorage.getItem(userId))){
-  switch(userColor){
-    case "BLUE":
-        background =(
-            <img src={process.env.PUBLIC_URL + '/resources/blue_4k_b_compressed.jpg'} className="board bg-img"/>
-        );
-        break;
-    case "GREEN":
-        background =(
-            <img src={process.env.PUBLIC_URL + '/resources/blue_4k_g_compressed.jpg'} className="board bg-img"/>
-        );
-        break;
-    case "RED":
-        background =(
-            <img src={process.env.PUBLIC_URL + '/resources/blue_4k_r_compressed.jpg'} className="board bg-img"/>
-        );
-        break;
-    case "YELLOW":
-        background =(
-           <img src={process.env.PUBLIC_URL + '/resources/blue_4k_y_compressed.jpg'} className="board bg-img"/>
-        );
-        break;
-  }
-//};
-
   return (
     <BaseContainer className="game">
-        <div className="board flex">
-            <div className="board container">
-                {background}
-                <HandsWrapper></HandsWrapper>
-            </div>
+    <div className="board flex">
+        <div className="board container">
+            <Board/>
+            <HandsWrapper></HandsWrapper>
+            <Marbles/>
         </div>
+    </div>
     </BaseContainer>
   );
 }

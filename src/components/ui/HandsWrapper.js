@@ -42,7 +42,7 @@ const HandsWrapper = props =>
 
         //fakeInfo
         let info = new Object();
-        info.visibleCards = ["2S", "4S", "5S"];
+        info.visibleCards = ["2S", "4S", "5S", "4D" ,"JD", "AD"];
         info.hiddenCardCount = [6,3,4];
         setHandInfo(info)
 

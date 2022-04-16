@@ -11,7 +11,7 @@ import { getMarbleLocation } from 'helpers/getMarbleLocation';
 
 const Marble = props => (
     <img src={process.env.PUBLIC_URL + props.marbleColor}
-    style={{left: props.coordsLeft - 1.5 + '%', top: props.coordsTop - 1.5 + '%'}}
+    style={{left: props.coordsLeft - 1.5 + '%', top: props.coordsTop - 2 + '%'}}
     className="marbles marble"/>
 );
 

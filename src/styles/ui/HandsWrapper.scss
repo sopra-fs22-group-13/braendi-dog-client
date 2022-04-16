@@ -1,4 +1,47 @@
 .handwrapper-container{
-    width: 1000px;
-    height: 1000px;
+    position:absolute;
+    height: 100%;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+
+    &> div:first-of-type{
+        //place at the bottom
+        position: absolute;
+        top: calc(100% - 15%);
+        left: calc(50% - 40%);
+        width: 80%;
+        height: 15%;
+        background-color: rgba(0, 0, 255, 0.527);
+    }
+    &> div:nth-of-type(2){
+        //place left
+        position: absolute;
+        top: calc(50% - 5%);
+        left: calc(0% - 25% + 5%);
+        width: 50%;
+        height: 10%;
+        background-color: rgba(0, 0, 255, 0.527);
+        transform: rotate(90deg);
+    }
+    &> div:nth-of-type(3){
+        //place at top
+        position: absolute;
+        top: calc(0%);
+        left: calc(50% - 25%);
+        width: 50%;
+        height: 10%;
+        background-color: rgba(0, 0, 255, 0.527);
+        transform: rotate(180deg);
+    }
+    &> div:nth-of-type(4){
+        //place right
+        position: absolute;
+        top: calc(50% - 5%);
+        left: calc(100% - 25% - 5%);
+        width: 50%;
+        height: 10%;
+        background-color: rgba(0, 0, 255, 0.527);
+        transform: rotate(270deg);
+    }
 }

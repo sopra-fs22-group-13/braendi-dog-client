@@ -7,6 +7,7 @@ import {useHistory} from 'react-router-dom';
 import BaseContainer from 'components/ui/BaseContainer';
 import PropTypes from "prop-types";
 import "styles/views/Game.scss";
+import HandsWrapper from 'components/ui/HandsWrapper';
 
 
 const Game = () => {
@@ -91,6 +92,7 @@ let lobbyId;
         <div className="board flex">
             <div className="board container">
                 {background}
+                <HandsWrapper></HandsWrapper>
             </div>
         </div>
     </BaseContainer>

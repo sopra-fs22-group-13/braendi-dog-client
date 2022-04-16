@@ -22,12 +22,17 @@ const HandsWrapper = props =>
 
     //hand update listener
     useEffect(() => {
+        //initial request
+        const response = api.get(`/game/players/${localStorage.getItem("token")}`);
+        setHandInfo(response.data);
+
         //only add the listener on initial render, otherwise we have multiple
         document.addEventListener("cardUpdate", event => {
             const response = api.get(`/game/players/${localStorage.getItem("token")}`);
             setHandInfo(response.data);
         });
 
+        //fakeInfo
         let info = new Object();
         info.visibleCards = ["2S", "4S", "5S"];
         info.hiddenCardCount = [3, 4, 5];
@@ -40,13 +45,15 @@ const HandsWrapper = props =>
         return (
             <div className='handwrapper-container'>
                 <Hand playerCards={handInfo.visibleCards} ></Hand>
+                <Hand playerCards={handInfo.visibleCards} ></Hand>
+                <Hand playerCards={handInfo.visibleCards} ></Hand>
+                <Hand playerCards={handInfo.visibleCards} ></Hand>
             </div>
         );
     }
 
     return(
         <div>
-            HandInfo was null
         </div>
     );
 

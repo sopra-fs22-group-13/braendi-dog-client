@@ -1,0 +1,28 @@
+@import 'styles/theme';
+
+.board{
+    overflow: hidden;
+
+&.flex{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+&.container{
+    position: relative;
+    height: 100%;
+}
+&.bg-img{
+    /* Make sure the bg comes first and is relative, so the container knows its size */
+    position:relative;
+    height: 100vh;
+    width: auto
+}
+&.marble{
+    /* the marble is now absolute TO THE PARENT ELEMENT, so calcualte top and left accordingly */
+    position: absolute;
+    height: 3%;
+    width: 3%;
+}
+}

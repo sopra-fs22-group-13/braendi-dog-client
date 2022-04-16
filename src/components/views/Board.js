@@ -15,6 +15,26 @@ const Board = props => {
   const [users, setUsers] = useState(null);
 
 useEffect(() => {
+
+    //get the data
+    //initial request
+    const response = api.get(`/game/board/${localStorage.getItem("gametoken")}`, {
+        headers: {
+            'Authorization': "Basic " + localStorage.getItem("token")
+            }
+        });
+        setData(response.data);
+
+    //only add the listener on initial render, otherwise we have multiple
+    document.addEventListener("boardUpdate", event => {
+        const response = api.get(`/game/board/${localStorage.getItem("gametoken")}`, {
+            headers: {
+                'Authorization': "Basic " + localStorage.getItem("token")
+            }
+        });
+        setData(response.data);
+    });
+
     let fakeData = new Object();
     fakeData.board = ["NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN"];
     fakeData.redGoal = ["NONE", "NONE", "NONE", "RED"];

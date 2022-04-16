@@ -23,12 +23,20 @@ const HandsWrapper = props =>
     //hand update listener
     useEffect(() => {
         //initial request
-        const response = api.get(`/game/players/${localStorage.getItem("token")}`);
+        const response = api.get(`/game/players/${localStorage.getItem("token")}`, {
+            headers: {
+                'Authorization': "Basic " + localStorage.getItem("token")
+                }
+            });
         setHandInfo(response.data);
 
         //only add the listener on initial render, otherwise we have multiple
         document.addEventListener("cardUpdate", event => {
-            const response = api.get(`/game/players/${localStorage.getItem("token")}`);
+            const response = api.get(`/game/players/${localStorage.getItem("token")}`, {
+                headers: {
+                    'Authorization': "Basic " + localStorage.getItem("token")
+                }
+            });
             setHandInfo(response.data);
         });
 

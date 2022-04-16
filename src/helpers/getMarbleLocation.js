@@ -160,7 +160,7 @@ export function getMarbleLocation(where, idx)
     {
         if(idx >= 0 && idx < 4)
         {
-            return dataList[-idx + 80 + 4]; //from the other side
+            return dataList[idx + 80]; //from the other side
         }else
         {
             return null;
@@ -170,7 +170,7 @@ export function getMarbleLocation(where, idx)
     {
         if(idx >= 0 && idx < 4)
         {
-            return dataList[-idx + 84 + 4];
+            return dataList[idx + 84];
         }else
         {
             return null;
@@ -180,7 +180,7 @@ export function getMarbleLocation(where, idx)
     {
         if(idx >= 0 && idx < 4)
         {
-            return dataList[-idx + 88 + 4];
+            return dataList[idx + 88];
         }else
         {
             return null;
@@ -190,7 +190,7 @@ export function getMarbleLocation(where, idx)
     {
         if(idx >= 0 && idx < 4)
         {
-            return dataList[-idx + 92 + 4];
+            return dataList[idx + 92];
         }else
         {
             return null;

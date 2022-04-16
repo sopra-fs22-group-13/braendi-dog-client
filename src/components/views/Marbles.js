@@ -77,7 +77,7 @@ useEffect(() => {
     case "RED":
       arr=[];
       for(let idx = 0; idx < counts; idx++){
-            let coords = getMarbleLocation('bl_base', idx); //problem with br_base -> undefined
+            let coords = getMarbleLocation('br_base', idx); //problem with br_base -> undefined
             arr.push(<Marble marbleColor='/resources/marble_r_light.png' coordsLeft={coords.left} coordsTop={coords.top} />)
       }
       return (<div>{arr.map(marble=>marble)}</div>);

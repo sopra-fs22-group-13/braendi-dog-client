@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import 'styles/ui/Card.scss';
 
 /**
  * very brute forced solution to the problem of passing the card value
@@ -141,16 +142,14 @@ const Card = props => {
     let cardValue = getCard(props);
     if(props.faceDown) {
         return (
-            <div>
-                <img src={BACK} height={props.cardHeight} alt="card back" />
-                onClick={props.handleClick}
+            <div className="card">
+                <img src={BACK} alt="card back" />
             </div>
         );
     }else {
         return (
-            <div>
-                <img src={cardValue} height={props.cardHeight} alt="card front" />
-                onClick={props.handleClick}
+            <div className="card">
+                <img src={cardValue} alt="card front" />
             </div>
         );
     }

@@ -11,8 +11,11 @@ import Card from './Card';
 const Hand = props => {
     let playerCards = props.playerCards;
     return(
-        <div className='bottom-hand'>
+        <div className='hand'>
             {playerCards.map((card, index) => {
+                return(
+                    <Card {...card} key={index}/>
+                )
             })}
         </div>
     );

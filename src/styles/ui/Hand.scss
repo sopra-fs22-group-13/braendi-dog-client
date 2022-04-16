@@ -5,56 +5,9 @@
  bottom center of the board as a row
  cards not rotated
  */
-.bottom-hand {
-    margin-left: auto;
-    padding-left: 15px;
-    margin-right: auto;
-    padding-right: 15px;
-    max-width: 100%;
-    position: bottom;
-}
-
-/**
- * left hand controlled by opponent
- left center of the board as a column
- cards rotated clockwise by 90deg
-*/
-.left-hand {
-    margin-left: auto;
-    padding-left: 15px;
-    margin-right: auto;
-    padding-right: 15px;
-    max-width: 25%;
-    position: left;
-    transform: rotate(90deg);
-}
-
-/**
- * right hand controlled by opponent
- right center of the board as a column
- cards rotated clockwise by 270deg
-*/
-.right-hand {
-    margin-left: auto;
-    padding-left: 15px;
-    margin-right: auto;
-    padding-right: 15px;
-    max-width: 25%;
-    position: right;
-    transform: rotate(270deg);
-}
-
-/**
- * right hand controlled by opponent
- right center of the board as a row
- cards rotated clockwise by 180deg
-*/
-.top-hand {
-    margin-left: auto;
-    padding-left: 15px;
-    margin-right: auto;
-    padding-right: 15px;
-    max-width: 50%;
-    position: top;
-    transform: rotate(270deg);
+.hand{
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    justify-content: space-evenly;
 }

@@ -1,0 +1,66 @@
+@import 'styles/theme';
+
+@keyframes grow {
+    0% {
+        transform: scaleY(0);
+    }
+    100% {
+        transform: scaleY(1);
+    }
+}
+@keyframes shrink {
+    0% {
+        transform: scaleY(1);
+    }
+    100% {
+        transform: scaleY(0);
+    }
+}
+
+.error-display{
+    position: absolute;
+    width: 95vw;
+    height: auto;
+    left: 2.5vw;
+    top: 0px;
+    
+    & > div{
+        //the actual error
+        animation: 0.3s ease-in 0s 1 grow, 0.3s ease-out 100s 1 shrink;
+        transform-origin: center;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        border-radius: 5vw;
+        border-color: $darkLine;
+        border-width: 1%;
+        border-style: solid;
+
+        background-color: tomato;
+
+        margin-bottom: 1vh;
+
+        width: 100%;
+        overflow: hidden;
+        color: $textClear;
+        text-align: center;
+        font-size: 3vh;
+        font-style: normal;
+
+        & > .error-indicator{
+            height: 3vh;
+            margin-top: 1vh;
+            margin-bottom: 1vh;
+            margin-right: 2vw;
+            font-style: italic;
+
+            & > svg{
+                height: 3vh;
+                margin-left: 0.5vw;
+                margin-right: 0.5vw;
+            }
+        }
+    }
+}

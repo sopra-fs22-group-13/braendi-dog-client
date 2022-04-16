@@ -1,5 +1,21 @@
 .card{
-    display: flex;
-    flex:1 ;
-    justify-content: space-evenly;
+    width: 16%;
+    height: auto;
+    padding: 0%;
+    text-align: center;
+    position: relative;
+
+    & > img{
+        width: 150%;
+        height: auto;
+        position: absolute;
+        left: -25%;
+    }
 }
+
+//old:
+// .card{
+//     display: flex; (this does nothing)
+//     flex:1 ;
+//     justify-content: space-evenly; (this does nothing)
+// }

@@ -42,40 +42,35 @@ const HandsWrapper = props =>
 
         //fakeInfo
         let info = new Object();
-        info = [
-            {
-                cardValue: "Joker",
-                faceDown: false,
-            },
-            {
-                cardValue: "2C",
-                faceDown: false,
-            },
-            {
-                cardValue: "3C",
-                faceDown: true,
-            },
-            {
-                cardValue: "4C",
-                faceDown: false,
-            },
-            {
-                cardValue: "5S",
-                faceDown: false,
-            }
-        ];
+        info.visibleCards = ["2S", "4S", "5S"];
+        info.hiddenCardCount = [6,3,4];
         setHandInfo(info)
 
     }, []);
 
     if(handInfo != null)
     {
+        //format info
+        let formattedMe = [];
+        handInfo.visibleCards.forEach(cardstring => {
+            formattedMe.push({cardValue: cardstring, faceDown: false});
+        });
+        //other
+        let formattedRest = [];
+        handInfo.hiddenCardCount.forEach(count => {
+            let arr = [];
+            for (let index = 0; index < count; index++) {
+                arr.push({cardValue: "2S", faceDown: true});
+            }
+            formattedRest.push(arr);
+        });
+
         return (
             <div className='handwrapper-container'>
-                <Hand playerCards={handInfo} ></Hand>
-                <Hand playerCards={handInfo} ></Hand>
-                <Hand playerCards={handInfo} ></Hand>
-                <Hand playerCards={handInfo} ></Hand>
+                <Hand playerCards={formattedMe} ></Hand>
+                <Hand playerCards={formattedRest[0]} ></Hand>
+                <Hand playerCards={formattedRest[1]} ></Hand>
+                <Hand playerCards={formattedRest[2]} ></Hand>
             </div>
         );
     }

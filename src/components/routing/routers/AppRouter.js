@@ -4,6 +4,8 @@ import GameRouter from "components/routing/routers/GameRouter";
 import {LoginGuard} from "components/routing/routeProtectors/LoginGuard";
 import Login from "components/views/RegistrationLogin";
 import Lobby from "components/views/Lobby";
+import Game from "components/views/Game";
+import Board from "components/views/Board";
 import RegistrationLogin from "components/views/RegistrationLogin";
 import Menu from "../../views/Menu";
 
@@ -20,10 +22,8 @@ const AppRouter = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/game">
-          <GameGuard>
-            <GameRouter base="/game"/>
-          </GameGuard>
+        <Route exact path="/game">
+            <Game/>
         </Route>
         <Route exact path="/login">
           <LoginGuard>
@@ -31,7 +31,7 @@ const AppRouter = () => {
           </LoginGuard>
         </Route>
         <Route exact path="/">
-          <Redirect to="/game"/>
+          <Redirect to="/menu"/>
         </Route>
         <Route exact path="/menu">
           <GameGuard>

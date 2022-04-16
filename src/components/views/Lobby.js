@@ -59,23 +59,13 @@ const Lobby = props => {
   const [users, setUsers] = useState(null);
   const [members, setMembers] = useState(null);
 /*
-
+// fetches all members in the lobby
 useEffect(() => {
-    // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
     async function fetchDataLobby() {
       try {
         const response = await api.get('/menu/lobby/');
         setMembers(response.data);
 
-        // This is just some data for you to see what is available.
-        // Feel free to remove it.
-        console.log('request to:', response.request.responseURL);
-        console.log('status code:', response.status);
-        console.log('status text:', response.statusText);
-        console.log('requested data:', response.data);
-
-        // See here to get more data.
-        console.log(response);
       } catch (error) {
         console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
         console.error("Details:", error);
@@ -87,6 +77,7 @@ useEffect(() => {
   }, []);
 */
 
+// fetches all currently logged in users
 async function fetchDataSearch() {
       try {
         const response = await api.get('/menu/users');

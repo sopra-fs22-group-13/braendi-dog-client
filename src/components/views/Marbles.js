@@ -5,14 +5,23 @@ import {Button} from 'components/ui/Button';
 import {useHistory} from 'react-router-dom';
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
-import "styles/views/Board.scss";
+import "styles/views/Marbles.scss";
 
 import { getMarbleLocation } from 'helpers/getMarbleLocation';
 
+const Marble = props => (
+    <img src={process.env.PUBLIC_URL + props.marbleColor}
+    style={{left: props.coordsLeft - 1.5 + '%', top: props.coordsTop - 1.5 + '%'}}
+    className="marbles marble"/>
+);
 
-const Board = props => {
+Marble.propTypes = {
+  coordsLeft: PropTypes.number,
+  coordsTop: PropTypes.number
+};
+
+const Marbles = props => {
   const [data, setData] = useState(null);
-  const [users, setUsers] = useState(null);
 
 useEffect(() => {
 
@@ -51,38 +60,59 @@ useEffect(() => {
 }, []);
 
 
-  let background = <Spinner/>;
-  let userColor = "BLUE";
+  let background;
+  let blueBaseMarbles, redBaseMarbles, yellowBaseMarbles, greenBaseMarbles;
 
-  switch(userColor){
+  const createMarbles = (counts, marbleColor) => {
+
+  switch(marbleColor){
     case "BLUE":
-        background =(
-            <img src={process.env.PUBLIC_URL + '/resources/blue_4k_b_compressed.jpg'} className="board bg-img"/>
-        );
-        break;
-    case "GREEN":
-        background =(
-            <img src={process.env.PUBLIC_URL + '/resources/blue_4k_g_compressed.jpg'} className="board bg-img"/>
-        );
-        break;
+      let arr=[];
+      for(let idx = 0; idx < counts; idx++){
+            let coords = getMarbleLocation('bl_base', idx);
+            arr.push(<Marble marbleColor='/resources/marble_b_light.png' coordsLeft={coords.left} coordsTop={coords.top} />)
+      }
+      return (<div>{arr.map(marble=>marble)}</div>);
+
     case "RED":
-        background =(
-            <img src={process.env.PUBLIC_URL + '/resources/blue_4k_r_compressed.jpg'} className="board bg-img"/>
-        );
-        break;
+      arr=[];
+      for(let idx = 0; idx < counts; idx++){
+            let coords = getMarbleLocation('bl_base', idx); //problem with br_base -> undefined
+            arr.push(<Marble marbleColor='/resources/marble_r_light.png' coordsLeft={coords.left} coordsTop={coords.top} />)
+      }
+      return (<div>{arr.map(marble=>marble)}</div>);
+
     case "YELLOW":
-        background =(
-           <img src={process.env.PUBLIC_URL + '/resources/blue_4k_y_compressed.jpg'} className="board bg-img"/>
-        );
-        break;
+      arr=[];
+      for(let idx = 0; idx < counts; idx++){
+            let coords = getMarbleLocation('tr_base', idx);
+            arr.push(<Marble marbleColor='/resources/marble_y_light.png' coordsLeft={coords.left} coordsTop={coords.top} />)
+      }
+      return (<div>{arr.map(marble=>marble)}</div>);
+
+    case "GREEN":
+      arr=[];
+      for(let idx = 0; idx < counts; idx++){
+            let coords = getMarbleLocation('tl_base', idx);
+            arr.push(<Marble marbleColor='/resources/marble_g_light.png' coordsLeft={coords.left} coordsTop={coords.top} />)
+      }
+      return (<div>{arr.map(marble=>marble)}</div>);
   }
+}
+  blueBaseMarbles = (createMarbles(3, "BLUE"));
+  redBaseMarbles = (createMarbles(2, "RED"));
+  yellowBaseMarbles = (createMarbles(1, "YELLOW"));
+  greenBaseMarbles = (createMarbles(1, "GREEN"));
 
 
   return (
     <BaseContainer>
-        {background}
+        {blueBaseMarbles}
+        {redBaseMarbles}
+        {yellowBaseMarbles}
+        {greenBaseMarbles}
     </BaseContainer>
   );
 }
 
-export default Board;
+export default Marbles;

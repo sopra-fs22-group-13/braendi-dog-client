@@ -49,7 +49,7 @@ useEffect(() => {
     fakeData.redGoal = ["NONE", "NONE", "NONE", "RED"];
     fakeData.greenGoal = ["NONE", "NONE", "GREEN", "GREEN"];
     fakeData.blueGoal = ["NONE", "NONE", "NONE", "BLUE"];
-    fakeData.yellowGoal = ["NONE", "NONE", "NONE", "NONE"];
+    fakeData.yellowGoal = ["NONE", "YELLOW", "NONE", "NONE"];
     fakeData.redBase = 2;
     fakeData.greenBase = 1;
     fakeData.blueBase = 3;
@@ -59,6 +59,8 @@ useEffect(() => {
     setData(fakeData);
 }, []);
 
+console.log(data.blueBase);
+// TODO: make it perspective adjustable = get colorMapping and adjust idx x * 16 -> red x=1, yellow x=2, green x=3 (blue x=0)
 
   let background;
   let blueBaseMarbles, redBaseMarbles, yellowBaseMarbles, greenBaseMarbles, blueGoalMarbles, redGoalMarbles, yellowGoalMarbles, greenGoalMarbles, boardMarbles;
@@ -163,15 +165,15 @@ const createGoalMarbles = (arr) => {
   }
   return (<div>{resArr.map(marble=>marble)}</div>);
 }
-  blueBaseMarbles = (createBaseMarbles(3, "BLUE-BASE")); //replace int with data.blueBase etc.
-  redBaseMarbles = (createBaseMarbles(2, "RED-BASE"));
-  yellowBaseMarbles = (createBaseMarbles(1, "YELLOW-BASE"));
-  greenBaseMarbles = (createBaseMarbles(1, "GREEN-BASE"));
-  boardMarbles = (createBoardMarbles(["NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN"]))
-  blueGoalMarbles = (createGoalMarbles(["NONE", "NONE", "NONE", "BLUE"]));
-  redGoalMarbles = (createGoalMarbles(["NONE", "RED", "NONE", "RED"]));
-  yellowGoalMarbles = (createGoalMarbles(["YELLOW", "NONE", "NONE", "NONE"]));
-  greenGoalMarbles = (createGoalMarbles(["NONE", "NONE", "GREEN", "GREEN"]));
+  blueBaseMarbles = (createBaseMarbles(data.blueBase, "BLUE-BASE"));
+  redBaseMarbles = (createBaseMarbles(data.redBase, "RED-BASE"));
+  yellowBaseMarbles = (createBaseMarbles(data.yellowBase, "YELLOW-BASE"));
+  greenBaseMarbles = (createBaseMarbles(data.greenBase, "GREEN-BASE"));
+  boardMarbles = (createBoardMarbles(data.board));
+  blueGoalMarbles = (createGoalMarbles(data.blueGoal));
+  redGoalMarbles = (createGoalMarbles(data.redGoal));
+  yellowGoalMarbles = (createGoalMarbles(data.yellowGoal));
+  greenGoalMarbles = (createGoalMarbles(data.greenGoal));
 
   return (
     <BaseContainer>

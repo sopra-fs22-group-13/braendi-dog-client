@@ -61,12 +61,12 @@ useEffect(() => {
 
 
   let background;
-  let blueBaseMarbles, redBaseMarbles, yellowBaseMarbles, greenBaseMarbles;
+  let blueBaseMarbles, redBaseMarbles, yellowBaseMarbles, greenBaseMarbles, blueGoalMarbles, redGoalMarbles, yellowGoalMarbles, greenGoalMarbles, boardMarbles;
 
-  const createMarbles = (counts, marbleColor) => {
+  const createBaseMarbles = (counts, marbleColor) => {
 
   switch(marbleColor){
-    case "BLUE":
+    case "BLUE-BASE":
       let arr=[];
       for(let idx = 0; idx < counts; idx++){
             let coords = getMarbleLocation('bl_base', idx);
@@ -74,15 +74,15 @@ useEffect(() => {
       }
       return (<div>{arr.map(marble=>marble)}</div>);
 
-    case "RED":
+    case "RED-BASE":
       arr=[];
       for(let idx = 0; idx < counts; idx++){
-            let coords = getMarbleLocation('br_base', idx); //problem with br_base -> undefined
+            let coords = getMarbleLocation('br_base', idx);
             arr.push(<Marble marbleColor='/resources/marble_r_light.png' coordsLeft={coords.left} coordsTop={coords.top} />)
       }
       return (<div>{arr.map(marble=>marble)}</div>);
 
-    case "YELLOW":
+    case "YELLOW-BASE":
       arr=[];
       for(let idx = 0; idx < counts; idx++){
             let coords = getMarbleLocation('tr_base', idx);
@@ -90,7 +90,7 @@ useEffect(() => {
       }
       return (<div>{arr.map(marble=>marble)}</div>);
 
-    case "GREEN":
+    case "GREEN-BASE":
       arr=[];
       for(let idx = 0; idx < counts; idx++){
             let coords = getMarbleLocation('tl_base', idx);
@@ -99,11 +99,79 @@ useEffect(() => {
       return (<div>{arr.map(marble=>marble)}</div>);
   }
 }
-  blueBaseMarbles = (createMarbles(3, "BLUE"));
-  redBaseMarbles = (createMarbles(2, "RED"));
-  yellowBaseMarbles = (createMarbles(1, "YELLOW"));
-  greenBaseMarbles = (createMarbles(1, "GREEN"));
 
+const createBoardMarbles = (arr) => {
+  let resArr=[];
+  for(let idx = 0; idx < arr.length; idx++){
+      let marbleColor = arr[idx];
+      let coords;
+      switch(marbleColor){
+        case "NONE":
+          break;
+        case "BLUE":
+          coords = getMarbleLocation('main_circle', idx);
+          resArr.push(<Marble marbleColor='/resources/marble_b_light.png' coordsLeft={coords.left} coordsTop={coords.top} />)
+          break;
+
+        case "RED":
+          coords = getMarbleLocation('main_circle', idx);
+          resArr.push(<Marble marbleColor='/resources/marble_r_light.png' coordsLeft={coords.left} coordsTop={coords.top} />)
+          break;
+
+        case "YELLOW":
+          coords = getMarbleLocation('main_circle', idx);
+          resArr.push(<Marble marbleColor='/resources/marble_y_light.png' coordsLeft={coords.left} coordsTop={coords.top} />)
+          break;
+
+        case "GREEN":
+         coords = getMarbleLocation('main_circle', idx);
+         resArr.push(<Marble marbleColor='/resources/marble_g_light.png' coordsLeft={coords.left} coordsTop={coords.top} />)
+         break;
+      }
+  }
+  return (<div>{resArr.map(marble=>marble)}</div>);
+}
+
+const createGoalMarbles = (arr) => {
+  let resArr=[];
+  for(let idx = 0; idx < 4; idx++){
+      let marbleColor = arr[idx];
+      let coords;
+      switch(marbleColor){
+        case "NONE":
+          break;
+        case "BLUE":
+          coords = getMarbleLocation('bl_goal', idx);
+          resArr.push(<Marble marbleColor='/resources/marble_b_light.png' coordsLeft={coords.left} coordsTop={coords.top} />)
+          break;
+
+        case "RED":
+          coords = getMarbleLocation('br_goal', idx);
+          resArr.push(<Marble marbleColor='/resources/marble_r_light.png' coordsLeft={coords.left} coordsTop={coords.top} />)
+          break;
+
+        case "YELLOW":
+          coords = getMarbleLocation('tr_goal', idx);
+          resArr.push(<Marble marbleColor='/resources/marble_y_light.png' coordsLeft={coords.left} coordsTop={coords.top} />)
+          break;
+
+        case "GREEN":
+         coords = getMarbleLocation('tl_goal', idx);
+         resArr.push(<Marble marbleColor='/resources/marble_g_light.png' coordsLeft={coords.left} coordsTop={coords.top} />)
+         break;
+      }
+  }
+  return (<div>{resArr.map(marble=>marble)}</div>);
+}
+  blueBaseMarbles = (createBaseMarbles(3, "BLUE-BASE")); //replace int with data.blueBase etc.
+  redBaseMarbles = (createBaseMarbles(2, "RED-BASE"));
+  yellowBaseMarbles = (createBaseMarbles(1, "YELLOW-BASE"));
+  greenBaseMarbles = (createBaseMarbles(1, "GREEN-BASE"));
+  boardMarbles = (createBoardMarbles(["NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN"]))
+  blueGoalMarbles = (createGoalMarbles(["NONE", "NONE", "NONE", "BLUE"]));
+  redGoalMarbles = (createGoalMarbles(["NONE", "RED", "NONE", "RED"]));
+  yellowGoalMarbles = (createGoalMarbles(["YELLOW", "NONE", "NONE", "NONE"]));
+  greenGoalMarbles = (createGoalMarbles(["NONE", "NONE", "GREEN", "GREEN"]));
 
   return (
     <BaseContainer>
@@ -111,6 +179,11 @@ useEffect(() => {
         {redBaseMarbles}
         {yellowBaseMarbles}
         {greenBaseMarbles}
+        {boardMarbles}
+        {blueGoalMarbles}
+        {redGoalMarbles}
+        {yellowGoalMarbles}
+        {greenGoalMarbles}
     </BaseContainer>
   );
 }

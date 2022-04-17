@@ -4,14 +4,39 @@
     padding: 0%;
     text-align: center;
     position: relative;
+    transition: 0.2s;
+    top: 0%;
 
     & > img{
         width: 150%;
         height: auto;
         position: absolute;
         left: -25%;
+        
+    }
+
+    &:hover{
+        width: 20%;
+        margin-left: 5%;
+        margin-right: 5%;
+        top: -30%;
+    }
+
+    &.selected{
+        width: 20%;
+        margin-left: 5%;
+        margin-right: 5%;
+        top: -30%;
+
+        & > img{
+            border-radius: 4%;
+            border-color: tomato;
+            border-width: 3%;
+            border-style: solid;
+        }
     }
 }
+
 
 //old:
 // .card{

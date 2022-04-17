@@ -59,11 +59,7 @@ useEffect(() => {
     setData(fakeData);
 }, []);
 
-console.log(data.blueBase);
 // TODO: make it perspective adjustable = get colorMapping and adjust idx x * 16 -> red x=1, yellow x=2, green x=3 (blue x=0)
-
-  let background;
-  let blueBaseMarbles, redBaseMarbles, yellowBaseMarbles, greenBaseMarbles, blueGoalMarbles, redGoalMarbles, yellowGoalMarbles, greenGoalMarbles, boardMarbles;
 
   const createBaseMarbles = (counts, marbleColor) => {
 
@@ -165,15 +161,23 @@ const createGoalMarbles = (arr) => {
   }
   return (<div>{resArr.map(marble=>marble)}</div>);
 }
-  blueBaseMarbles = (createBaseMarbles(data.blueBase, "BLUE-BASE"));
-  redBaseMarbles = (createBaseMarbles(data.redBase, "RED-BASE"));
-  yellowBaseMarbles = (createBaseMarbles(data.yellowBase, "YELLOW-BASE"));
-  greenBaseMarbles = (createBaseMarbles(data.greenBase, "GREEN-BASE"));
-  boardMarbles = (createBoardMarbles(data.board));
-  blueGoalMarbles = (createGoalMarbles(data.blueGoal));
-  redGoalMarbles = (createGoalMarbles(data.redGoal));
-  yellowGoalMarbles = (createGoalMarbles(data.yellowGoal));
-  greenGoalMarbles = (createGoalMarbles(data.greenGoal));
+
+  let blueBaseMarbles, redBaseMarbles, yellowBaseMarbles, greenBaseMarbles, blueGoalMarbles, redGoalMarbles, yellowGoalMarbles, greenGoalMarbles, boardMarbles;
+
+
+  if(data != null)
+  {
+    blueBaseMarbles = (createBaseMarbles(data.blueBase, "BLUE-BASE"));
+    redBaseMarbles = (createBaseMarbles(data.redBase, "RED-BASE"));
+    yellowBaseMarbles = (createBaseMarbles(data.yellowBase, "YELLOW-BASE"));
+    greenBaseMarbles = (createBaseMarbles(data.greenBase, "GREEN-BASE"));
+    boardMarbles = (createBoardMarbles(data.board));
+    blueGoalMarbles = (createGoalMarbles(data.blueGoal));
+    redGoalMarbles = (createGoalMarbles(data.redGoal));
+    yellowGoalMarbles = (createGoalMarbles(data.yellowGoal));
+    greenGoalMarbles = (createGoalMarbles(data.greenGoal));
+  }
+
 
   return (
     <BaseContainer>

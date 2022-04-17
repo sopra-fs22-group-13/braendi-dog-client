@@ -8,10 +8,10 @@
     &> div:first-of-type{
         //place at the bottom
         position: absolute;
-        top: calc(100% - 15%);
-        left: calc(50% - 40%);
-        width: 80%;
-        height: 15%;
+        top: calc(100% - 10%);
+        left: calc(50% - 25%);
+        width: 50%;
+        height: 10%;
     }
     &> div:nth-of-type(2){
         //place left

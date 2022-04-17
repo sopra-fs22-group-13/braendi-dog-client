@@ -149,7 +149,7 @@ const Card = props => {
     }else {
         return (
             <div className="card">
-                <img src={cardValue} alt="card front" style={{top: Math.random() * 10 + "%"}} />
+                <img src={cardValue} alt="card front" style={{top: Math.random() * 0 + "%"}} />
             </div>
         );
     }

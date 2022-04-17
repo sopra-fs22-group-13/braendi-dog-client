@@ -78,8 +78,7 @@ const ErrorDisplay = props => {
 
 export function addError(text, time = 10000)
 {
-    let r = (Math.random() + 1).toString(36).substring(7);
-    const event = new CustomEvent('errorUpdate', { detail: {text: text + r, time: time}});
+    const event = new CustomEvent('errorUpdate', { detail: {text: text, time: time}});
     document.dispatchEvent(event);
 }
 

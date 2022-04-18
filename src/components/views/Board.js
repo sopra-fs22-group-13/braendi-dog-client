@@ -52,8 +52,12 @@ useEffect(() => {
 
 
   let background = <Spinner/>;
-  let userColor = "RED";
+  let userColor = "YELLOW";
 
+  //implementation for when localStorage has playerColor stored -> TODO registration/ login
+  //if(data != null){userColor = data.colorMapping[localStorage.getItem('playerColor')]};
+
+// sets background based on playerColor
   switch(userColor){
     case "BLUE":
         background =(

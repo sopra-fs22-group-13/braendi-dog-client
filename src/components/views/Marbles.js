@@ -9,6 +9,10 @@ import "styles/views/Marbles.scss";
 
 import { getMarbleLocation } from 'helpers/getMarbleLocation';
 
+/* Marble component
+    * @param {'img_path'} marbleColor
+    * @param {number} coordsLeft, coordsTop
+*/
 const Marble = props => (
     <img src={process.env.PUBLIC_URL + props.marbleColor}
     style={{left: props.coordsLeft - 1.5 + '%', top: props.coordsTop - 2 + '%'}}
@@ -20,12 +24,13 @@ Marble.propTypes = {
   coordsTop: PropTypes.number
 };
 
+//Marbles component (layer of all marbles)
 const Marbles = props => {
   const [data, setData] = useState(null);
 
 useEffect(() => {
 
-    //get the data
+    //get the data for marble layout
     //initial request
     const response = api.get(`/game/board/${localStorage.getItem("gametoken")}`, {
         headers: {
@@ -44,8 +49,9 @@ useEffect(() => {
         setData(response.data);
     });
 
+    //mock data
     let fakeData = new Object();
-    fakeData.board = ["BLUE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "YELLOW", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "RED", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE"];
+    fakeData.board = ["RED", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "BLUE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "YELLOW", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE"];
     fakeData.redGoal = ["NONE", "NONE", "NONE", "RED"];
     fakeData.greenGoal = ["NONE", "NONE", "GREEN", "GREEN"];
     fakeData.blueGoal = ["NONE", "NONE", "NONE", "BLUE"];
@@ -59,11 +65,14 @@ useEffect(() => {
     setData(fakeData);
 }, []);
 
-// TODO: make it perspective adjustable = get colorMapping and adjust idx x * 16 -> red x=1, yellow x=2, green x=3 (blue x=0)
+//variables to adapt to player (color) perspective
+let boardIdx, blueB, blueG, redB, redG, yellowB, yellowG, greenB, greenG;
+let playerColor = "YELLOW";
 
-let board, blueB, blueG, redB, redG, yellowB, yellowG, greenB, greenG;
-let playerColor = "RED";
+//implementation for when localStorage has playerColor stored -> TODO registration/ login
+//if(data != null){playerColor = data.colorMapping[localStorage.getItem('playerColor')]};
 
+//set perspective variables, ['where', 'img_path'] and the {int} board offset
 switch(playerColor){
     case "BLUE":
         blueB = ['bl_base', '/resources/marble_b_light.png'];
@@ -74,6 +83,7 @@ switch(playerColor){
         yellowG = ['tr_goal', '/resources/marble_y_light.png'];
         greenB = ['tl_base', '/resources/marble_g_light.png'];
         greenG = ['tl_goal', '/resources/marble_g_light.png'];
+        boardIdx = 16;
         break;
 
     case "RED":
@@ -85,6 +95,7 @@ switch(playerColor){
         yellowG = ['br_goal', '/resources/marble_y_light.png'];
         greenB = ['tr_base', '/resources/marble_g_light.png'];
         greenG = ['tr_goal', '/resources/marble_g_light.png'];
+        boardIdx = 0;
         break;
 
     case "YELLOW":
@@ -96,6 +107,7 @@ switch(playerColor){
         yellowG = ['bl_goal', '/resources/marble_y_light.png'];
         greenB = ['br_base', '/resources/marble_g_light.png'];
         greenG = ['br_goal', '/resources/marble_g_light.png'];
+        boardIdx = 48;
         break;
 
     case "GREEN":
@@ -107,67 +119,86 @@ switch(playerColor){
         yellowG = ['tl_goal', '/resources/marble_y_light.png'];
         greenB = ['bl_base', '/resources/marble_g_light.png'];
         greenG = ['bl_goal', '/resources/marble_g_light.png'];
+        boardIdx = 32;
         break;
 }
 
-
-  const createBaseMarbles = (counts, marbleColor) => {
+/*
+    * Creates all Base Marbles
+    * @param {int} counts -> nr of marbles in base
+    * @param {array['where', 'img_path]} marbleData -> marble characteristics = perspective variables
+*/
+  const createBaseMarbles = (counts, marbleData) => {
       let arr=[];
       for(let idx = 0; idx < counts; idx++){
-            let coords = getMarbleLocation(marbleColor[0], idx);
-            arr.push(<Marble marbleColor={marbleColor[1]} coordsLeft={coords.left} coordsTop={coords.top} />)
+            let coords = getMarbleLocation(marbleData[0], idx);
+            arr.push(<Marble marbleColor={marbleData[1]} coordsLeft={coords.left} coordsTop={coords.top} />)
       }
       return (<div>{arr.map(marble=>marble)}</div>);
 }
 
-const createBoardMarbles = (arr) => {
+/*
+    * Creates all Board Marbles
+    * @param {array[data.board]} arr
+*/
+  const createBoardMarbles = (arr) => {
   let resArr=[];
-  for(let idx = 0; idx < arr.length; idx++){
-      let marbleColor = arr[idx];
+  let counter = 0;
+  while(counter < 64){
+      if (boardIdx == 64){boardIdx = 0;}
+      let marbleColor = arr[boardIdx]; //get arr at idx 16
       let coords;
       switch(marbleColor){
         case "NONE":
           break;
         case "BLUE":
-          coords = getMarbleLocation('main_circle', idx);
+          coords = getMarbleLocation('main_circle', counter);
           resArr.push(<Marble marbleColor='/resources/marble_b_light.png' coordsLeft={coords.left} coordsTop={coords.top} />)
           break;
 
         case "RED":
-          coords = getMarbleLocation('main_circle', idx);
+          coords = getMarbleLocation('main_circle', counter);
           resArr.push(<Marble marbleColor='/resources/marble_r_light.png' coordsLeft={coords.left} coordsTop={coords.top} />)
           break;
 
         case "YELLOW":
-          coords = getMarbleLocation('main_circle', idx);
+          coords = getMarbleLocation('main_circle', counter);
           resArr.push(<Marble marbleColor='/resources/marble_y_light.png' coordsLeft={coords.left} coordsTop={coords.top} />)
           break;
 
         case "GREEN":
-         coords = getMarbleLocation('main_circle', idx);
+         coords = getMarbleLocation('main_circle', counter);
          resArr.push(<Marble marbleColor='/resources/marble_g_light.png' coordsLeft={coords.left} coordsTop={coords.top} />)
          break;
       }
+      boardIdx++;
+      counter++;
   }
   return (<div>{resArr.map(marble=>marble)}</div>);
 }
 
-const createGoalMarbles = (arr, col) => {
+/*
+    * Creates all Goal Marbles
+    * @param {array[data.board]} arr -> goal layout
+    * @param {arr['where', 'img_path]} marbleData -> marble characteristics = perspective variables
+*/
+  const createGoalMarbles = (arr, marbleData) => {
   let resArr=[];
   for(let idx = 0; idx < 4; idx++){
       let marbleColor = arr[idx];
       let coords;
       if(marbleColor != "NONE"){
-          coords = getMarbleLocation(col[0], idx);
-          resArr.push(<Marble marbleColor={col[1]} coordsLeft={coords.left} coordsTop={coords.top} />);
+          coords = getMarbleLocation(marbleData[0], idx);
+          resArr.push(<Marble marbleColor={marbleData[1]} coordsLeft={coords.left} coordsTop={coords.top} />);
       }
   }
   return (<div>{resArr.map(marble=>marble)}</div>);
 }
 
+  // placeholder/ storage for all Marbles
   let blueBaseMarbles, redBaseMarbles, yellowBaseMarbles, greenBaseMarbles, blueGoalMarbles, redGoalMarbles, yellowGoalMarbles, greenGoalMarbles, boardMarbles;
 
-
+  //calls all creation methods and stores marbles
   if(data != null)
   {
     console.log(data.blueGoal);

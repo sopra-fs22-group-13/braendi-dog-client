@@ -51,7 +51,7 @@ useEffect(() => {
 
     //mock data
     let fakeData = new Object();
-    fakeData.board = ["RED", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "BLUE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "YELLOW", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE"];
+    fakeData.board = ["RED", "NONE", "NONE", "NONE", "NONE", "NONE", "RED", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "BLUE", "NONE", "NONE", "BLUE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "YELLOW", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "YELLOW", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE"];
     fakeData.redGoal = ["NONE", "NONE", "NONE", "RED"];
     fakeData.greenGoal = ["NONE", "NONE", "GREEN", "GREEN"];
     fakeData.blueGoal = ["NONE", "NONE", "NONE", "BLUE"];
@@ -67,13 +67,14 @@ useEffect(() => {
 
 //variables to adapt to player (color) perspective
 let boardIdx, blueB, blueG, redB, redG, yellowB, yellowG, greenB, greenG;
-let playerColor = "YELLOW";
+let userColor;
 
-//implementation for when localStorage has playerColor stored -> TODO registration/ login
-//if(data != null){playerColor = data.colorMapping[localStorage.getItem('playerColor')]};
+//implementation for when localStorage has userColor stored: userColor = data.colorMapping[localStorage.getItem('userColor')]} -> TODO registration/ login
+  if (data != null){userColor = data.colorMapping[12];}
+
 
 //set perspective variables, ['where', 'img_path'] and the {int} board offset
-switch(playerColor){
+switch(userColor){
     case "BLUE":
         blueB = ['bl_base', '/resources/marble_b_light.png'];
         blueG = ['bl_goal', '/resources/marble_b_light.png'];

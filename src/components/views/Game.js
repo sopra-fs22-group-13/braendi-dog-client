@@ -16,22 +16,6 @@ const Game = () => {
   const [data, setData] = useState(null);
   const [users, setUsers] = useState(null);
 
-useEffect(() => {
-    let fakeData = new Object();
-    fakeData.board = ["NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN"];
-    fakeData.redGoal = ["NONE", "NONE", "NONE", "RED"];
-    fakeData.greenGoal = ["NONE", "NONE", "GREEN", "GREEN"];
-    fakeData.blueGoal = ["NONE", "NONE", "NONE", "BLUE"];
-    fakeData.yellowGoal = ["NONE", "NONE", "NONE", "NONE"];
-    fakeData.redBase = 2;
-    fakeData.greenBase = 1;
-    fakeData.blueBase = 3;
-    fakeData.yellowBase = 3;
-    fakeData.lastPlayedCard = "2S";
-    fakeData.colorMapping = {128: "RED", 12: "BLUE", 124: "YELLOW", 38: "GREEN"};
-    setData(fakeData);
-}, []);
-
 
   const logout = () => {
     localStorage.removeItem('token');

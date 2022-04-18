@@ -36,26 +36,16 @@ useEffect(() => {
     });
 
     let fakeData = new Object();
-    fakeData.board = ["NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN"];
-    fakeData.redGoal = ["NONE", "NONE", "NONE", "RED"];
-    fakeData.greenGoal = ["NONE", "NONE", "GREEN", "GREEN"];
-    fakeData.blueGoal = ["NONE", "NONE", "NONE", "BLUE"];
-    fakeData.yellowGoal = ["NONE", "NONE", "NONE", "NONE"];
-    fakeData.redBase = 2;
-    fakeData.greenBase = 1;
-    fakeData.blueBase = 3;
-    fakeData.yellowBase = 3;
-    fakeData.lastPlayedCard = "2S";
     fakeData.colorMapping = {128: "RED", 12: "BLUE", 124: "YELLOW", 38: "GREEN"};
     setData(fakeData);
 }, []);
 
 
   let background = <Spinner/>;
-  let userColor = "YELLOW";
+  let userColor;
+  //implementation for when localStorage has playerColor stored: userColor = data.colorMapping[localStorage.getItem('playerColor')]} -> TODO registration/ login
+  if (data != null){userColor = data.colorMapping[12];}
 
-  //implementation for when localStorage has playerColor stored -> TODO registration/ login
-  //if(data != null){userColor = data.colorMapping[localStorage.getItem('playerColor')]};
 
 // sets background based on playerColor
   switch(userColor){

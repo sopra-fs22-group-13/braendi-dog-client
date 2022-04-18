@@ -45,7 +45,7 @@ useEffect(() => {
     });
 
     let fakeData = new Object();
-    fakeData.board = ["NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "YELLOW", "RED", "NONE", "NONE", "NONE", "GREEN"];
+    fakeData.board = ["BLUE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "YELLOW", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "RED", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE"];
     fakeData.redGoal = ["NONE", "NONE", "NONE", "RED"];
     fakeData.greenGoal = ["NONE", "NONE", "GREEN", "GREEN"];
     fakeData.blueGoal = ["NONE", "NONE", "NONE", "BLUE"];
@@ -61,41 +61,63 @@ useEffect(() => {
 
 // TODO: make it perspective adjustable = get colorMapping and adjust idx x * 16 -> red x=1, yellow x=2, green x=3 (blue x=0)
 
-  const createBaseMarbles = (counts, marbleColor) => {
+let board, blueB, blueG, redB, redG, yellowB, yellowG, greenB, greenG;
+let playerColor = "RED";
 
-  switch(marbleColor){
-    case "BLUE-BASE":
+switch(playerColor){
+    case "BLUE":
+        blueB = ['bl_base', '/resources/marble_b_light.png'];
+        blueG = ['bl_goal', '/resources/marble_b_light.png'];
+        redB = ['br_base', '/resources/marble_r_light.png'];
+        redG = ['br_goal', '/resources/marble_r_light.png'];
+        yellowB = ['tr_base', '/resources/marble_y_light.png'];
+        yellowG = ['tr_goal', '/resources/marble_y_light.png'];
+        greenB = ['tl_base', '/resources/marble_g_light.png'];
+        greenG = ['tl_goal', '/resources/marble_g_light.png'];
+        break;
+
+    case "RED":
+        blueB = ['tl_base', '/resources/marble_b_light.png'];
+        blueG = ['tl_goal', '/resources/marble_b_light.png'];
+        redB = ['bl_base', '/resources/marble_r_light.png'];
+        redG = ['bl_goal', '/resources/marble_r_light.png'];
+        yellowB = ['br_base', '/resources/marble_y_light.png'];
+        yellowG = ['br_goal', '/resources/marble_y_light.png'];
+        greenB = ['tr_base', '/resources/marble_g_light.png'];
+        greenG = ['tr_goal', '/resources/marble_g_light.png'];
+        break;
+
+    case "YELLOW":
+        blueB = ['tr_base', '/resources/marble_b_light.png'];
+        blueG = ['tr_goal', '/resources/marble_b_light.png'];
+        redB = ['tl_base', '/resources/marble_r_light.png'];
+        redG = ['tl_goal', '/resources/marble_r_light.png'];
+        yellowB = ['bl_base', '/resources/marble_y_light.png'];
+        yellowG = ['bl_goal', '/resources/marble_y_light.png'];
+        greenB = ['br_base', '/resources/marble_g_light.png'];
+        greenG = ['br_goal', '/resources/marble_g_light.png'];
+        break;
+
+    case "GREEN":
+        blueB = ['br_base', '/resources/marble_b_light.png'];
+        blueG = ['br_goal', '/resources/marble_b_light.png'];
+        redB = ['tr_base', '/resources/marble_r_light.png'];
+        redG = ['tr_goal', '/resources/marble_r_light.png'];
+        yellowB = ['tl_base', '/resources/marble_y_light.png'];
+        yellowG = ['tl_goal', '/resources/marble_y_light.png'];
+        greenB = ['bl_base', '/resources/marble_g_light.png'];
+        greenG = ['bl_goal', '/resources/marble_g_light.png'];
+        break;
+}
+
+
+  const createBaseMarbles = (counts, marbleColor) => {
       let arr=[];
       for(let idx = 0; idx < counts; idx++){
-            let coords = getMarbleLocation('bl_base', idx);
-            arr.push(<Marble marbleColor='/resources/marble_b_light.png' coordsLeft={coords.left} coordsTop={coords.top} />)
+            let coords = getMarbleLocation(marbleColor[0], idx);
+            arr.push(<Marble marbleColor={marbleColor[1]} coordsLeft={coords.left} coordsTop={coords.top} />)
       }
       return (<div>{arr.map(marble=>marble)}</div>);
-
-    case "RED-BASE":
-      arr=[];
-      for(let idx = 0; idx < counts; idx++){
-            let coords = getMarbleLocation('br_base', idx);
-            arr.push(<Marble marbleColor='/resources/marble_r_light.png' coordsLeft={coords.left} coordsTop={coords.top} />)
-      }
-      return (<div>{arr.map(marble=>marble)}</div>);
-
-    case "YELLOW-BASE":
-      arr=[];
-      for(let idx = 0; idx < counts; idx++){
-            let coords = getMarbleLocation('tr_base', idx);
-            arr.push(<Marble marbleColor='/resources/marble_y_light.png' coordsLeft={coords.left} coordsTop={coords.top} />)
-      }
-      return (<div>{arr.map(marble=>marble)}</div>);
-
-    case "GREEN-BASE":
-      arr=[];
-      for(let idx = 0; idx < counts; idx++){
-            let coords = getMarbleLocation('tl_base', idx);
-            arr.push(<Marble marbleColor='/resources/marble_g_light.png' coordsLeft={coords.left} coordsTop={coords.top} />)
-      }
-      return (<div>{arr.map(marble=>marble)}</div>);
-  }
 }
 
 const createBoardMarbles = (arr) => {
@@ -130,33 +152,14 @@ const createBoardMarbles = (arr) => {
   return (<div>{resArr.map(marble=>marble)}</div>);
 }
 
-const createGoalMarbles = (arr) => {
+const createGoalMarbles = (arr, col) => {
   let resArr=[];
   for(let idx = 0; idx < 4; idx++){
       let marbleColor = arr[idx];
       let coords;
-      switch(marbleColor){
-        case "NONE":
-          break;
-        case "BLUE":
-          coords = getMarbleLocation('bl_goal', idx);
-          resArr.push(<Marble marbleColor='/resources/marble_b_light.png' coordsLeft={coords.left} coordsTop={coords.top} />)
-          break;
-
-        case "RED":
-          coords = getMarbleLocation('br_goal', idx);
-          resArr.push(<Marble marbleColor='/resources/marble_r_light.png' coordsLeft={coords.left} coordsTop={coords.top} />)
-          break;
-
-        case "YELLOW":
-          coords = getMarbleLocation('tr_goal', idx);
-          resArr.push(<Marble marbleColor='/resources/marble_y_light.png' coordsLeft={coords.left} coordsTop={coords.top} />)
-          break;
-
-        case "GREEN":
-         coords = getMarbleLocation('tl_goal', idx);
-         resArr.push(<Marble marbleColor='/resources/marble_g_light.png' coordsLeft={coords.left} coordsTop={coords.top} />)
-         break;
+      if(marbleColor != "NONE"){
+          coords = getMarbleLocation(col[0], idx);
+          resArr.push(<Marble marbleColor={col[1]} coordsLeft={coords.left} coordsTop={coords.top} />);
       }
   }
   return (<div>{resArr.map(marble=>marble)}</div>);
@@ -167,15 +170,16 @@ const createGoalMarbles = (arr) => {
 
   if(data != null)
   {
-    blueBaseMarbles = (createBaseMarbles(data.blueBase, "BLUE-BASE"));
-    redBaseMarbles = (createBaseMarbles(data.redBase, "RED-BASE"));
-    yellowBaseMarbles = (createBaseMarbles(data.yellowBase, "YELLOW-BASE"));
-    greenBaseMarbles = (createBaseMarbles(data.greenBase, "GREEN-BASE"));
+    console.log(data.blueGoal);
+    blueBaseMarbles = (createBaseMarbles(data.blueBase, blueB));
+    redBaseMarbles = (createBaseMarbles(data.redBase, redB));
+    yellowBaseMarbles = (createBaseMarbles(data.yellowBase, yellowB));
+    greenBaseMarbles = (createBaseMarbles(data.greenBase, greenB));
     boardMarbles = (createBoardMarbles(data.board));
-    blueGoalMarbles = (createGoalMarbles(data.blueGoal));
-    redGoalMarbles = (createGoalMarbles(data.redGoal));
-    yellowGoalMarbles = (createGoalMarbles(data.yellowGoal));
-    greenGoalMarbles = (createGoalMarbles(data.greenGoal));
+    blueGoalMarbles = (createGoalMarbles(data.blueGoal, blueG));
+    redGoalMarbles = (createGoalMarbles(data.redGoal, redG));
+    yellowGoalMarbles = (createGoalMarbles(data.yellowGoal, yellowG));
+    greenGoalMarbles = (createGoalMarbles(data.greenGoal, greenG));
   }
 
 

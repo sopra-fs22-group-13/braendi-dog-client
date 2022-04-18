@@ -52,7 +52,7 @@ useEffect(() => {
 
 
   let background = <Spinner/>;
-  let userColor = "BLUE";
+  let userColor = "RED";
 
   switch(userColor){
     case "BLUE":

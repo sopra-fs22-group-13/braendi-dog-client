@@ -1,4 +1,5 @@
 import React from "react";
+import {useState} from 'react';
 import PropTypes from "prop-types";
 import 'styles/ui/Card.scss';
 
@@ -138,7 +139,13 @@ function getCard(props) {
  * takes cardValue as a prop and renders the card based on the cardValue
  * and the cardHeight
  */
+let inFocus = false;
+
+
 const Card = props => {
+    const [inFocus, setFocus] = useState(null);
+
+
     let cardValue = getCard(props);
     if(props.faceDown) {
         return (
@@ -147,11 +154,25 @@ const Card = props => {
             </div>
         );
     }else {
-        return (
-            <div className="card">
-                <img src={cardValue} alt="card front" style={{top: Math.random() * 0 + "%"}} />
+        if(inFocus){
+            return(
+                <div className="card selected">
+                <img src={cardValue} alt="card front" style={{top: Math.random() * 0 + "%"}}
+                    onClick={() => setFocus(!inFocus)}
+                />
             </div>
-        );
+            )
+            
+        }else{
+            return (
+            
+                <div className="card">
+                    <img src={cardValue} alt="card front" style={{top: Math.random() * 0 + "%"}}
+                        onClick={() => setFocus(!inFocus)}
+                    />
+                </div>
+            );
+        }
     }
 }
 

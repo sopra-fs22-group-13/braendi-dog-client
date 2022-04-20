@@ -55,7 +55,7 @@ const RegistrationLogin = props => {
           password= loginPassword;
           username = loginUsername;
           const requestBody = JSON.stringify({username, password});
-          const response = await api.post('/login/users', requestBody);
+          const response = await api.post('/login', requestBody);
 
           // Get the returned user and update a new object.
           const user = new User(response.data);
@@ -76,11 +76,12 @@ const RegistrationLogin = props => {
 
   const doRegister = async () => {
       try {
+
           password= registerPassword;
           username = registerUsername;
           const requestBody = JSON.stringify({username, password});
-          const response = await api.post('/login', requestBody);
-
+          const response = await api.post('/users', requestBody);
+          alert("hello1")
           // Get the returned user and update a new object.
           const user = new User(response.data);
 

@@ -9,8 +9,9 @@
     font-weight: 400;
     color: $textDark;
     text-align: center;
-    padding-bottom: 10px;
-    border-bottom: 2px solid $buttonColorDark ;
-    width: 6.5em;
+    padding-bottom: 1vh;
+    border-bottom: 0.1vw solid $buttonColorDark ;
+    font-size: 3vw;
+    width: 20%;
   }
 }

@@ -19,10 +19,10 @@ specific components that belong to the main one in the same file.
 
 const Invite = ({invite}) => (
     <div className="invites singleInvites">
-        <div>
+        <div className='invites inviteText'>
             {invite}
         </div>
-        <div> {invite.name} </div>
+        <div className='invites inviteText'> {invite.name} </div>
         <div className="invites inviteButton" > Join </div>
     </div>
 );
@@ -86,7 +86,6 @@ const Menu = props => {
                   <div className="line lineverticalleft"> </div>
 
                   <div className="invites container">
-
                       <div className="invites titleInvites">Invites</div>
                       <ul className="invites inviteslist">
                           {invites.map(invite => (

@@ -12,6 +12,9 @@
 .menuContainer{
   margin-left: auto;
   margin-right: auto;
+  width: 60%;
+  min-width: 600px;
+  min-height: 400px;
   max-width: $DESKTOP_WIDTH;
   color: $buttonColorDark;
   display: flex;
@@ -21,12 +24,11 @@
 .info{
   &.userInfo {
     align-items: center;
-    width: 17em;
-    padding-top: 1em;
-    padding-bottom: 1em;
+    width: 30%;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
     border-radius: $borderRadius;
     border: 5px solid $buttonColorLight;
-    transition: opacity 0.5s ease, transform 0.5s ease;
   }
 
 
@@ -35,32 +37,32 @@
     margin: auto;
     background-color: $buttonColorLight;
     border-radius: 50%;
-    width: 4em;
-    height: 4em;
+    width: 4vw;
+    height: 4vw;
+    margin: 1vw auto 1vw auto;
 
   }
 
   &.infoContainer {
-    font-size: 16px;
+    font-size: 2vh;
     text-align: center;
   }
   &.nickName{
-    padding-top: 1em;
-    font-size: 24px;
+    padding-top: 2vh;
+    font-size: 4vh;
   }
 
   &.singleInfo{
-    padding: 1em;
+    padding: 1vw;
   }
 
   &.button-container {
-    margin-top: 2em;
+    margin-top: 2vh;
     text-align: center;
   }
   &.spaceUp{
-    padding-bottom: 10px;
+    padding-bottom: 1vh;
   }
-
 
 }
 
@@ -78,46 +80,60 @@
 }
 
 .invites{
-
   &.container {
     align-items: center;
-    width: 17em;
+    width: 35%;
     position: relative;
     height: 100%;
-
+    overflow: hidden;
   }
+
   &.titleInvites{
     text-align: center;
-    font-size: 24px;
-    padding-bottom: 1em;
+    font-size: 3vh;
+    padding-bottom: 1vh;
   }
 
   &.inviteslist {
     list-style: none;
     padding-left: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: 80%;
   }
-  &.singleInvites{
 
+  &.singleInvites{
     background-color: $buttonColorDark;
     color: $textClear;
     border-radius: 7px;
-    font-size: 24px;
+    font-size: 3vh;
+    height: fit-content;
     display: flex;
-    padding: 0.7em 20px 0.7em 10px;
+    justify-content: center;
+    align-items: center;
+    padding: 0.7vh 1vw 0.7vh 1vw;
     margin-bottom: 0.7em;
   }
 
+  &.inviteText {
+    max-width: 80%;
+    overflow: hidden;
+  }
+
   &.inviteButton {
-    font-size: 18px;
+    font-size: 3vh;
     margin-left: auto;
-    width: 3.5em;
-    height: 30px;
+    width: fit-content;
+    height: 5vh;
     text-align: center;
     border-radius: 2px;
     color: $textDark;
     background-color: $buttonColorLight;
-    padding-top: 0.2em;
-    padding-bottom: 0.2em;
+    padding-top: 0.5vh;
+    padding-bottom: 0.2vh;
+    padding-left: 1vw;
+    padding-right: 1vw;
+
   }
 
   &.createGame {
@@ -128,7 +144,7 @@
     margin-right: auto;
     margin-left: auto;
     border-top: 2px solid $darkLine  ;
-    padding-top: 1em;
+    padding-top: 1vh;
 
   }
 

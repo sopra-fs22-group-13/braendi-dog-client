@@ -1,3 +1,5 @@
+import { api } from "./api";
+
 export class moveManager {
 
     static #selected_card = undefined;
@@ -16,6 +18,7 @@ export class moveManager {
         moveManager.#selected_card = card;
         moveManager.#selected_ends = [];
         moveManager.#selected_starts = [];
+        moveManager.#sendCallback("NEW_CARD");
     }
 
     static getSelectedCard()
@@ -72,17 +75,60 @@ export class moveManager {
      * Resets the whole move.
      * 
      * ERROR:
+     * 0: success
      * 1: Empty move, request not sent.
+     * 2: Request failed, (no response)
+     * 3: invalid move
+     * 4: unspecified
      */
-    static makeMoveRequest()
+    static async makeMoveRequest()
     {
         let errorcode = undefined;
 
-        if (!moveManager.#color || !moveManager.selectCard || moveManager.#selected_ends.length == 0 || moveManager.#selected_starts.length == 0) errorcode = 1;
+        if (!moveManager.#color || !moveManager.#selected_card || moveManager.#selected_ends.length == 0 || moveManager.#selected_starts.length == 0) errorcode = 1;
         
         //make request
+        try{
+
+            let gametoken = localStorage.getItem("gametoken");
+            let usertoken = localStorage.getItem("token");
+            let fromPos = [];
+            let toPos = [];
+            let fromPosInGoal = [];
+            let toPosInGoal = [];
+
+            moveManager.#selected_starts.forEach(block => {
+                fromPos.push(block[0]);
+                fromPosInGoal.push(block[1]);
+            });
+
+            moveManager.#selected_ends.forEach(block => {
+                toPos.push(block[0]);
+                toPosInGoal.push(block[1]);
+            });
+
+            let jsonDict = {_fromPos: fromPos, _toPos: toPos, _fromPosInGoal: fromPosInGoal, _toPosInGoal: toPosInGoal, card: moveManager.#selected_card, color: moveManager.#color, token: usertoken}
+            let response = await api.put(String.format("/game/%s/board", gametoken), JSON.stringify(jsonDict), {
+                    headers: {
+                        'Authorization': "Basic " + usertoken //the authorization token required
+                    }
+                });
+            
+            if(response.status == 409)
+            {
+                errorcode = 3;
+            }
+            else if(response.status != 204)
+            {
+                errorcode = 4;
+            }
+
+        }catch{
+            errorcode = 2;
+        }
         
         moveManager.#reset();
+        moveManager.#sendCallback("SEND_AND_RESET");
         return errorcode? errorcode : 0;
     }
 

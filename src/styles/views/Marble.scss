@@ -1,0 +1,15 @@
+@import 'styles/theme';
+
+.marble{
+    /* the marble is now absolute TO THE PARENT ELEMENT, so calcualte top and left accordingly */
+    position: absolute;
+    height: 4%;
+    width: 3%;
+
+    &.selected{
+        border-radius: 50%;
+        border-color: tomato;
+        border-width: 3%;
+        border-style: solid;
+    }
+}

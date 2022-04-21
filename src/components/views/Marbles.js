@@ -4,25 +4,11 @@ import {Spinner} from 'components/ui/Spinner';
 import {Button} from 'components/ui/Button';
 import {useHistory} from 'react-router-dom';
 import BaseContainer from "components/ui/BaseContainer";
+import Marble from "components/ui/Marble";
 import PropTypes from "prop-types";
 import "styles/views/Marbles.scss";
 
 import { getMarbleLocation } from 'helpers/getMarbleLocation';
-
-/* Marble component
-    * @param {'img_path'} marbleColor
-    * @param {number} coordsLeft, coordsTop
-*/
-const Marble = props => (
-    <img src={process.env.PUBLIC_URL + props.marbleColor}
-    style={{left: props.coordsLeft - 1.5 + '%', top: props.coordsTop - 2 + '%'}}
-    className="marbles marble"/>
-);
-
-Marble.propTypes = {
-  coordsLeft: PropTypes.number,
-  coordsTop: PropTypes.number
-};
 
 //Marbles component (layer of all marbles)
 const Marbles = props => {

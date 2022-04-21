@@ -17,22 +17,38 @@ const Marble = props => {
     const [selection, setSelection] = useState(false);
 
     if(selection){
-        return(
-            <img src={process.env.PUBLIC_URL + props.marbleColor}
+        if(props.marbleColor == 'none'){
+            return(<div className="marble selected"
             style={{left: props.coordsLeft - 1.5 + '%', top: props.coordsTop - 2 + '%'}}
-            className="marble selected"
-            onClick={() => setSelection(!selection)}
-            />
-        );
+            onClick={() => setSelection(!selection)}>
+            </div>);
+            }
+        else{
+            return(
+                <img src={process.env.PUBLIC_URL + props.marbleColor}
+                style={{left: props.coordsLeft - 1.5 + '%', top: props.coordsTop - 2 + '%'}}
+                className="marble selected"
+                onClick={() => setSelection(!selection)}
+                />
+            );
+        }
     }
     else{
-        return(
-            <img src={process.env.PUBLIC_URL + props.marbleColor}
-            style={{left: props.coordsLeft - 1.5 + '%', top: props.coordsTop - 2 + '%'}}
-            className="marble"
-            onClick={() => setSelection(!selection)}
-            />
-        );
+        if(props.marbleColor == 'none'){
+                return(<div className="marble"
+                style={{left: props.coordsLeft - 1.5 + '%', top: props.coordsTop - 2 + '%'}}
+                onClick={() => setSelection(!selection)}>
+                </div>);
+                }
+        else{
+            return(
+                <img src={process.env.PUBLIC_URL + props.marbleColor}
+                style={{left: props.coordsLeft - 1.5 + '%', top: props.coordsTop - 2 + '%'}}
+                className="marble"
+                onClick={() => setSelection(!selection)}
+                />
+            );
+        }
     }
 
 

@@ -137,6 +137,8 @@ switch(userColor){
       let coords;
       switch(marbleColor){
         case "NONE":
+          coords = getMarbleLocation('main_circle', counter);
+          resArr.push(<Marble marbleColor='none' coordsLeft={coords.left} coordsTop={coords.top} />)
           break;
         case "BLUE":
           coords = getMarbleLocation('main_circle', counter);
@@ -177,6 +179,10 @@ switch(userColor){
       if(marbleColor != "NONE"){
           coords = getMarbleLocation(marbleData[0], idx);
           resArr.push(<Marble marbleColor={marbleData[1]} coordsLeft={coords.left} coordsTop={coords.top} />);
+      }
+      else{
+      coords = getMarbleLocation(marbleData[0], idx);
+      resArr.push(<Marble marbleColor='none' coordsLeft={coords.left} coordsTop={coords.top} />);
       }
   }
   return (<div>{resArr.map(marble=>marble)}</div>);

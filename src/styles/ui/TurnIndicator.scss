@@ -1,0 +1,16 @@
+.turn-indicator{
+    position:absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    top: 0px;
+    left: 0px;
+
+    &> svg{
+        width: 15%;
+        height: auto;
+        color: white;
+    }
+}

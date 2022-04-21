@@ -9,6 +9,7 @@ import PropTypes from "prop-types";
 import "styles/views/Game.scss";
 import HandsWrapper from 'components/ui/HandsWrapper';
 import Marbles from 'components/views/Marbles';
+import TurnIndicator from 'components/ui/TurnIndicator';
 
 
 const Game = () => {
@@ -52,6 +53,7 @@ let lobbyId;
     <div className="board flex">
         <div className="board container">
             <Board/>
+            <TurnIndicator></TurnIndicator>
             <HandsWrapper></HandsWrapper>
             <Marbles/>
         </div>

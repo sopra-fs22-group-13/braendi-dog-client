@@ -11,6 +11,7 @@ import "styles/views/Marbles.scss";
 import { getMarbleLocation } from 'helpers/getMarbleLocation';
 import { moveManager } from 'helpers/moveManager';
 import { SecurityUpdate } from '@mui/icons-material';
+import ErrorDisplay, { addError } from './ErrorDisplay';
 
 //button to press when finishing a 7 turn
 const SevenOkButton = props => {
@@ -194,7 +195,7 @@ switch(userColor){
     {
       moveManager.addMove(fromPos[0], toPos[0], fromPos[1], toPos[1]);
       moveManager.setColor(fromPos[2]);
-      moveManager.makeMoveRequest().then((errorcode) => alert("error: " + errorcode));
+      moveManager.makeMoveRequest().then((errorcode) => addError("Failed Move: Code " + errorcode, 3000));
 
       setFromPos(undefined);
       setToPos(undefined);
@@ -205,7 +206,7 @@ switch(userColor){
       moveManager.addMove(fromPos[0], toPos[0], fromPos[1], toPos[1]);
       moveManager.setColor(fromPos[2]);
 
-      moveManager.makeMoveRequest().then((errorcode) => alert("error: " + errorcode));
+      moveManager.makeMoveRequest().then((errorcode) => addError("Failed Move: Code " + errorcode, 3000));
       setFromPos(undefined);
       setToPos(undefined);
     }

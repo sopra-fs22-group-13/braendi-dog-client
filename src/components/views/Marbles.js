@@ -366,8 +366,8 @@ switch(userColor){
         {redGoalMarbles}
         {yellowGoalMarbles}
         {greenGoalMarbles}
-        {toPos && fromPos? <Button onClick={handleMoveDone}>End Turn</Button> : null}
-        {toPos && fromPos && isSeven? <Button onClick={handleSevenNext}>Next</Button> : null}
+        {toPos && fromPos? <Button className={"turn-button"} onClick={handleMoveDone}>End Turn</Button> : null}
+        {toPos && fromPos && isSeven? <Button className={"turn-button"} onClick={handleSevenNext}>Next</Button> : null}
 
     </BaseContainer>
   );

@@ -192,7 +192,6 @@ switch(userColor){
     //not seven
     if(!isSeven)
     {
-      alert("not seven");
       moveManager.addMove(fromPos[0], toPos[0], fromPos[1], toPos[1]);
       moveManager.setColor(fromPos[2]);
       moveManager.makeMoveRequest().then((errorcode) => alert("error: " + errorcode));
@@ -202,8 +201,6 @@ switch(userColor){
     }
     else //7, I cannot be bothered
     {
-      alert("seven");
-
       //add the last move
       moveManager.addMove(fromPos[0], toPos[0], fromPos[1], toPos[1]);
       moveManager.setColor(fromPos[2]);

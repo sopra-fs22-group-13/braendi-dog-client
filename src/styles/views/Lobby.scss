@@ -64,10 +64,21 @@
         height: 70px;
         width: 280px;
         background-image: url('/LobbyButton.svg');
-        background-size: contain;
+        background-size:auto;
         margin-top: 20px;
         align-items: center;
         font-size: 24px;
+        &.active{
+            color: greenyellow;
+            font-weight: bolder;
+            transition: all 0.1s ease;
+            position: relative;
+            top: 0px;
+            &:hover{
+                top: -5px;
+                border: 5px solid greenyellow;
+            }
+        }
     }
     &.start{
         height: 70px;

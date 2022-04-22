@@ -15,6 +15,8 @@ import { startListening } from 'components/voice/voiceChat';
 import { connectToPersonalUpdate } from 'helpers/updateManager';
 
 import { getMarbleLocation } from 'helpers/getMarbleLocation';
+import { addError } from './ErrorDisplay';
+import { CribSharp } from '@mui/icons-material';
 
 /*
 It is possible to add multiple components inside a single file,
@@ -58,24 +60,47 @@ const Lobby = props => {
   const history = useHistory();
   const [users, setUsers] = useState(null);
   const [members, setMembers] = useState(null);
-/*
-// fetches all members in the lobby
+
+
 useEffect(() => {
+    //fetches all members in the lobby
     async function fetchDataLobby() {
       try {
         const response = await api.get('/menu/lobby/');
         setMembers(response.data);
 
       } catch (error) {
-        console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
+        addError("Could not fetch lobby members", 5000);
         console.error("Details:", error);
-        alert("Something went wrong while fetching the lobby members! See the console for details.");
       }
     }
 
+      //only add the listener on initial render, otherwise we have multiple
+      //check if the game gets started
+      document.addEventListener("startUpdate", event => {
+        let gametoken = event.detail.gameToken;
+        if(gametoken)
+        {
+          localStorage.setItem("gametoken", gametoken);
+          history.push("/game");
+        }
+    });
+
     fetchDataLobby();
+
+    //fakedata
+    let fakeData = [];
+    for (let index = 0; index < 4; index++) {
+      
+      let entry = {id: 13, username: "Dogerino"}
+      fakeData.push(entry)
+    }
+    setMembers(fakeData);
+
+    //start lobby
+
   }, []);
-*/
+
 
 // fetches all currently logged in users
 async function fetchDataSearch() {
@@ -92,8 +117,8 @@ async function fetchDataSearch() {
         console.log(response);
       } catch (error) {
         console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
+        addError("Could not fetch users", 5000);
         console.error("Details:", error);
-        alert("Something went wrong while fetching the users! See the console for details.");
       }
     }
 
@@ -103,8 +128,29 @@ const logout = () => {
 }
 
 const startGame= async () => {
-    await api.post('/game', 'insertCorrectLobbyID');
-    history.push('/game');
+  try{
+    let response = await api.post('/game', localStorage.getItem("lobbyId"));
+    if(response.status == 201)
+    {
+      //success, do nothing ,as the update will follow by event.
+      return 0;
+    }
+    if(response.status == 400)
+    {
+      return 1;
+    }
+    if(response.status == 401)
+    {
+      return 2;
+    }
+    if(response.status == 404)
+    {
+      return 3;
+    }
+    return 4;
+  }catch{
+    return 5;
+  }
 }
 
 let contentSearch = <text className="search placeholder"> No users found </text>;
@@ -131,9 +177,26 @@ if(members){
 }
 
 
+async function tryStartGame(e)
+{
+  console.log("trying to start game...");
+  if(members && members.length == 4)
+  {
+    //full
+    let errorcode = await startGame();
+    if(errorcode == 1) addError("Not enough Players to start", 5000);
+    if(errorcode == 2) addError("Only the Owner can start the game", 5000);
+    if(errorcode == 3) addError("This lobby does not exist", 5000);
+    if(errorcode == 4) addError("Could not send start request: response unknown", 5000);
+    if(errorcode == 5) addError("Could not send start request: unknown error", 5000);
+    //e.target.disabled = false;
+  }
+}
+
+
 let lobbyButton =
-    <div className="lobby button">
-         2/4
+    <div className={"lobby button" + (members && members.length == 4? " active": "")} onClick={(e) => tryStartGame(e) }>
+         {members? members.length : 0}/4
     </div>
 /*
 if(members.length === 4){
@@ -194,25 +257,25 @@ if(members.length === 4){
               <div className="lobby circle">
                 <PetsIcon />
               </div>
-              <div className="lobby member">Dog1</div>
+              <div className="lobby member">{members && members[0]? members[0].username : "EMPTY"}</div>
           </div>
           <div className="lobby member-container">
               <div className="lobby circle">
                 <PetsIcon />
               </div>
-              <div className="lobby member">Dog2</div>
+              <div className="lobby member">{members && members[1]? members[1].username : "EMPTY"}</div>
           </div>
           <div className="lobby member-container">
               <div className="lobby circle">
                 <PetsIcon />
               </div>
-              <div className="lobby member">Dog3</div>
+              <div className="lobby member">{members && members[2]? members[2].username : "EMPTY"}</div>
           </div>
           <div className="lobby member-container">
               <div className="lobby circle">
                 <PetsIcon />
               </div>
-              <div className="lobby member">Dog4</div>
+              <div className="lobby member">{members && members[3]? members[3].username : "EMPTY"}</div>
           </div>
           <div>
           {lobbyButton}

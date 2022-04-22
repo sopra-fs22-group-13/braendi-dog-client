@@ -14,13 +14,18 @@ import "styles/views/Marble.scss";
 */
 
 const Marble = props => {
-    const [selection, setSelection] = useState(false);
 
-    if(selection){
+    function onClickMarble(evt)
+    {
+        //go upwards, try to select me
+        props.handleMarbleClick(props.index, props.inGoal? true : false, props.colorValue, props.goalColor);
+    }
+
+    if(props.selected){
         if(props.marbleColor == 'none'){
             return(<div className="marble selected"
             style={{left: props.coordsLeft - 1.5 + '%', top: props.coordsTop - 2 + '%'}}
-            onClick={() => setSelection(!selection)}>
+            onClick={(e) => onClickMarble(e)}>
             </div>);
             }
         else{
@@ -28,7 +33,7 @@ const Marble = props => {
                 <img src={process.env.PUBLIC_URL + props.marbleColor}
                 style={{left: props.coordsLeft - 1.5 + '%', top: props.coordsTop - 2 + '%'}}
                 className="marble selected"
-                onClick={() => setSelection(!selection)}
+                onClick={(e) => onClickMarble(e)}
                 />
             );
         }
@@ -37,7 +42,7 @@ const Marble = props => {
         if(props.marbleColor == 'none'){
                 return(<div className="marble"
                 style={{left: props.coordsLeft - 1.5 + '%', top: props.coordsTop - 2 + '%'}}
-                onClick={() => setSelection(!selection)}>
+                onClick={(e) => onClickMarble(e)}>
                 </div>);
                 }
         else{
@@ -45,7 +50,7 @@ const Marble = props => {
                 <img src={process.env.PUBLIC_URL + props.marbleColor}
                 style={{left: props.coordsLeft - 1.5 + '%', top: props.coordsTop - 2 + '%'}}
                 className="marble"
-                onClick={() => setSelection(!selection)}
+                onClick={(e) => onClickMarble(e)}
                 />
             );
         }

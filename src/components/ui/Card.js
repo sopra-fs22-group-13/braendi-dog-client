@@ -71,6 +71,7 @@ import SJ from './images/JS.svg';
 import SQ from './images/QS.svg';
 import SK from './images/KS.svg';
 import SA from './images/AS.svg';
+import { moveManager } from "helpers/moveManager";
 
 
 // get card from cardValue
@@ -168,7 +169,12 @@ const Card = props => {
             
                 <div className="card">
                     <img src={cardValue} alt="card front" style={{top: Math.random() * 0 + "%"}}
-                        onClick={() => setFocus(!inFocus)}
+                        onClick={() => {
+                            setFocus(!inFocus);
+                            //LUCA ZWAHLEN: For testing only, the card should actually set the correct value... not this shit
+                            moveManager.selectCard("4S");
+                        }
+                        }
                     />
                 </div>
             );

@@ -9,13 +9,31 @@ import PropTypes from "prop-types";
 import "styles/views/Marbles.scss";
 
 import { getMarbleLocation } from 'helpers/getMarbleLocation';
+import { moveManager } from 'helpers/moveManager';
+import { SecurityUpdate } from '@mui/icons-material';
+
+//button to press when finishing a 7 turn
+const SevenOkButton = props => {
+  const [enabled, setEnabled] = useState(false);
+  function toggleSevenButton()
+  {
+    setEnabled(!enabled);
+  }
+  useEffect(() => {
+    props.registerEnableSevenButton(toggleSevenButton)
+  }, []);
+
+  return(
+    <Button>Ok</Button>
+  )
+
+}
 
 //Marbles component (layer of all marbles)
 const Marbles = props => {
   const [data, setData] = useState(null);
 
 useEffect(() => {
-
     //get the data for marble layout
     //initial request
     const response = api.get(`/game/board/${localStorage.getItem("gametoken")}`, {
@@ -110,6 +128,101 @@ switch(userColor){
         break;
 }
 
+  //onClick handles
+  //normal values are fine because if we rerender Marbles, the turn gets cancelled anyway
+
+  const [fromPos, setFromPos] = useState(undefined);
+  const [toPos, setToPos] = useState(undefined);
+  const [isSeven, setIsSeven] = useState(false);
+  const [sevenList, setSevenList] = useState(undefined);
+
+  useEffect(() => {
+    moveManager.registerCallback(moveReset, true, false, false);
+  }, []);
+
+  function moveReset(type)
+  {
+    console.log(fromPos, toPos);
+
+    setFromPos(undefined);
+    setToPos(undefined);
+    setSevenList(undefined);
+    setIsSeven(moveManager.getSelectedCard().includes("7"));
+  }
+
+    /**
+   * @returns {boolean} if the clicked marble should be selected
+   */
+  function handleMarbleClick(index, inGoal, color, goalColor)
+  {
+    if(!fromPos && color != userColor) return;
+    if(fromPos && !toPos && index == -1) return;
+    if(!moveManager.isMarbleTurn()) return;
+    if(goalColor != userColor && goalColor != undefined) return;
+
+    //deselect
+    if(fromPos && index == fromPos[0] && inGoal == fromPos[1] && color == fromPos[2])
+    {
+      //deselecting from pos
+      setFromPos(undefined);
+      return;
+    }
+    if(toPos && index == toPos[0] && inGoal == toPos[1] && color == toPos[2])
+    {
+      //deselecting from pos
+      setToPos(undefined);
+      return;
+    }
+
+    if(!fromPos)
+    {
+      setFromPos([index, inGoal, color, goalColor]);
+      return;
+    }
+
+    if(!toPos)
+    {
+      setToPos([index, inGoal, color, goalColor]);
+      return;
+    }
+  }
+
+  function handleMoveDone()
+  {
+    //not seven
+    if(!isSeven)
+    {
+      alert("not seven");
+      moveManager.addMove(fromPos[0], toPos[0], fromPos[1], toPos[1]);
+      moveManager.setColor(fromPos[2]);
+      moveManager.makeMoveRequest().then((errorcode) => alert("error: " + errorcode));
+
+      setFromPos(undefined);
+      setToPos(undefined);
+    }
+    else //7, I cannot be bothered
+    {
+      alert("seven");
+
+      //add the last move
+      moveManager.addMove(fromPos[0], toPos[0], fromPos[1], toPos[1]);
+      moveManager.setColor(fromPos[2]);
+
+      moveManager.makeMoveRequest().then((errorcode) => alert("error: " + errorcode));
+      setFromPos(undefined);
+      setToPos(undefined);
+    }
+  }
+
+  function handleSevenNext()
+  {
+    moveManager.addMove(fromPos[0], toPos[0], fromPos[1], toPos[1]);
+    moveManager.setColor(fromPos[2]);
+
+    setFromPos(undefined);
+    setToPos(undefined);
+  }
+
 /*
     * Creates all Base Marbles
     * @param {int} counts -> nr of marbles in base
@@ -119,7 +232,24 @@ switch(userColor){
       let arr=[];
       for(let idx = 0; idx < counts; idx++){
             let coords = getMarbleLocation(marbleData[0], idx);
-            arr.push(<Marble marbleColor={marbleData[1]} coordsLeft={coords.left} coordsTop={coords.top} />)
+            let colorValue;
+            switch(marbleData[1])
+            {
+              case "/resources/marble_b_light.png":
+                colorValue = "BLUE";
+                break;
+              case "/resources/marble_r_light.png":
+                colorValue = "RED";
+                break;
+              case "/resources/marble_y_light.png":
+                colorValue = "YELLOW";
+                break;
+              case "/resources/marble_g_light.png":
+                colorValue = "GREEN";
+                break;
+            }
+            let shoudBeSelected = arr.length == counts - 1 && (fromPos && -1 == fromPos[0] && false == fromPos[1] && colorValue == fromPos[2]);
+            arr.push(<Marble marbleColor={marbleData[1]} index={-1} inGoal={false} colorValue={colorValue} selected={shoudBeSelected} handleMarbleClick={handleMarbleClick} coordsLeft={coords.left} coordsTop={coords.top} />)
       }
       return (<div>{arr.map(marble=>marble)}</div>);
 }
@@ -135,29 +265,30 @@ switch(userColor){
       if (boardIdx == 64){boardIdx = 0;}
       let marbleColor = arr[boardIdx]; //get arr at idx 16
       let coords;
+      let shoudBeSelected = (fromPos && counter == fromPos[0] && false == fromPos[1] && marbleColor == fromPos[2]) || (toPos && counter == toPos[0] && false == toPos[1] && marbleColor == toPos[2]);
       switch(marbleColor){
         case "NONE":
           coords = getMarbleLocation('main_circle', counter);
-          resArr.push(<Marble marbleColor='none' coordsLeft={coords.left} coordsTop={coords.top} />)
+          resArr.push(<Marble marbleColor='none' colorValue={marbleColor} index={counter} inGoal={false} selected={shoudBeSelected} handleMarbleClick={handleMarbleClick} coordsLeft={coords.left} coordsTop={coords.top} />)
           break;
         case "BLUE":
           coords = getMarbleLocation('main_circle', counter);
-          resArr.push(<Marble marbleColor='/resources/marble_b_light.png' coordsLeft={coords.left} coordsTop={coords.top} />)
+          resArr.push(<Marble marbleColor='/resources/marble_b_light.png' colorValue={marbleColor} index={counter} inGoal={false} selected={shoudBeSelected} handleMarbleClick={handleMarbleClick} coordsLeft={coords.left} coordsTop={coords.top} />)
           break;
 
         case "RED":
           coords = getMarbleLocation('main_circle', counter);
-          resArr.push(<Marble marbleColor='/resources/marble_r_light.png' coordsLeft={coords.left} coordsTop={coords.top} />)
+          resArr.push(<Marble marbleColor='/resources/marble_r_light.png' colorValue={marbleColor} index={counter} inGoal={false} selected={shoudBeSelected} handleMarbleClick={handleMarbleClick} coordsLeft={coords.left} coordsTop={coords.top} />)
           break;
 
         case "YELLOW":
           coords = getMarbleLocation('main_circle', counter);
-          resArr.push(<Marble marbleColor='/resources/marble_y_light.png' coordsLeft={coords.left} coordsTop={coords.top} />)
+          resArr.push(<Marble marbleColor='/resources/marble_y_light.png' colorValue={marbleColor} index={counter} inGoal={false} selected={shoudBeSelected} handleMarbleClick={handleMarbleClick} coordsLeft={coords.left} coordsTop={coords.top} />)
           break;
 
         case "GREEN":
          coords = getMarbleLocation('main_circle', counter);
-         resArr.push(<Marble marbleColor='/resources/marble_g_light.png' coordsLeft={coords.left} coordsTop={coords.top} />)
+         resArr.push(<Marble marbleColor='/resources/marble_g_light.png' colorValue={marbleColor} index={counter} inGoal={false} selected={shoudBeSelected} handleMarbleClick={handleMarbleClick} coordsLeft={coords.left} coordsTop={coords.top} />)
          break;
       }
       boardIdx++;
@@ -176,13 +307,32 @@ switch(userColor){
   for(let idx = 0; idx < 4; idx++){
       let marbleColor = arr[idx];
       let coords;
+      let colorValue;
+      switch(marbleData[1])
+      {
+        case "/resources/marble_b_light.png":
+          colorValue = "BLUE";
+          break;
+        case "/resources/marble_r_light.png":
+          colorValue = "RED";
+          break;
+        case "/resources/marble_y_light.png":
+          colorValue = "YELLOW";
+          break;
+        case "/resources/marble_g_light.png":
+          colorValue = "GREEN";
+          break;
+      }
+
+      let shoudBeSelected = (fromPos && idx == fromPos[0] && true == fromPos[1] && marbleColor == fromPos[2]) || (toPos && idx == toPos[0] && true == toPos[1] && colorValue == toPos[3]);
+
       if(marbleColor != "NONE"){
           coords = getMarbleLocation(marbleData[0], idx);
-          resArr.push(<Marble marbleColor={marbleData[1]} coordsLeft={coords.left} coordsTop={coords.top} />);
+          resArr.push(<Marble marbleColor={marbleData[1]} colorValue={marbleColor} index={idx} inGoal={true} goalColor={colorValue} selected={shoudBeSelected} handleMarbleClick={handleMarbleClick} coordsLeft={coords.left} coordsTop={coords.top} />);
       }
       else{
       coords = getMarbleLocation(marbleData[0], idx);
-      resArr.push(<Marble marbleColor='none' coordsLeft={coords.left} coordsTop={coords.top} />);
+      resArr.push(<Marble marbleColor='none' colorValue={marbleColor} index={idx} inGoal={true} goalColor={colorValue} selected={shoudBeSelected} handleMarbleClick={handleMarbleClick} coordsLeft={coords.left} coordsTop={coords.top} />);
       }
   }
   return (<div>{resArr.map(marble=>marble)}</div>);
@@ -218,6 +368,9 @@ switch(userColor){
         {redGoalMarbles}
         {yellowGoalMarbles}
         {greenGoalMarbles}
+        {toPos && fromPos? <Button onClick={handleMoveDone}>End Turn</Button> : null}
+        {toPos && fromPos && isSeven? <Button onClick={handleSevenNext}>Next</Button> : null}
+
     </BaseContainer>
   );
 }

@@ -1,18 +1,21 @@
 @import 'styles/theme';
 
 .notification{
+    position: absolute;
     display: flex;
     justify-content: center;
-    height: 100px;
-    width: 300px;
+    height: 20%;
+    width: 40%;
     align-items: center;
     background-color: #ECF4FE;
+    top: 40%;
+    left: 30%;
+    border-radius: $borderRadius;
+    border-style: solid;
+    border-color: $buttonColorDark;
 
     &.label{
-        font-size: 20px;
+        font-size: 40px;
         color: black;
-        border-radius: $borderRadius;
-        border-style: solid;
-        border-color: $buttonColorDark;
     }
 }

@@ -2,6 +2,7 @@ import {useEffect, useState} from 'react';
 import {api, handleError} from 'helpers/api';
 import {Spinner} from 'components/ui/Spinner';
 import {Button} from 'components/ui/Button';
+import PromptNotification from 'components/ui/PromptNotification';
 import Board from 'components/views/Board';
 import {useHistory} from 'react-router-dom';
 import BaseContainer from 'components/ui/BaseContainer';
@@ -23,27 +24,16 @@ const Game = () => {
     history.push('/login');
   }
 
-/*
-let lobbyId;
+const [winner, setWinner] = useState("Red");
+let winnerPrompt;
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await api.get('/lobby/' + lobbyId);
-
-        setUsers(response.data);
-
-        console.log(response);
-      } catch (error) {
-        console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
-        console.error("Details:", error);
-        alert("Something went wrong while fetching the users! See the console for details.");
-      }
-    }
-
-    fetchData();
+    document.addEventListener("winUpdate", event => {
+            //setWinner = event.detail.keyToBeSet; gibt color?
+            winnerPrompt = (
+                <PromptNotification label ={winner + " won! Congrats!"}/>
+            );
+        });
   }, []);
-*/
-
 
   let background = <Spinner/>;
   let userColor = "RED";
@@ -56,6 +46,7 @@ let lobbyId;
             <TurnIndicator></TurnIndicator>
             <HandsWrapper></HandsWrapper>
             <Marbles/>
+            {winnerPrompt}
         </div>
     </div>
     </BaseContainer>

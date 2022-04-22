@@ -2,8 +2,8 @@ import 'styles/ui/PromptNotification.scss';
 import PropTypes from "prop-types";
 
 const PromptNotification = props => (
-  <div {...props} className={`notification ${props.className ?? ''}`}>
-    <label className={`notification label ${props.className ?? ''}`}>{props.label}</label>
+  <div {...props}>
+    <label className={`notification label`}>{props.label}</label>
   </div>
 );
 

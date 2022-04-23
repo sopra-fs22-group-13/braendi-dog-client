@@ -80,7 +80,7 @@ function updateLobby(extrainfo)
     document.dispatchEvent(event);
 }
 
-function updateLobby(extrainfo)
+function updateInvite(extrainfo)
 {
     console.log("inviteUpdate", extrainfo);
     const event = new CustomEvent('inviteUpdate', { detail: JSON.parse(extrainfo)});

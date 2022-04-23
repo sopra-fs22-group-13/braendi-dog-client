@@ -52,6 +52,29 @@ const Menu = props => {
         history.push('/login');
     }
 
+    async function createNewLobby() {
+        try {
+            const response = await api.post("/lobby", null, {
+                headers: {
+                    'Authorization': "Basic " + localStorage.getItem("token")
+                }
+            });
+            localStorage.setItem("lobbyId", response.data.lobbyID);
+            console.log("worked fine");
+            console.log(response.data.lobbyID);
+            history.push('/lobby');
+        } catch (error) {
+            switch (error.response.status) {
+                case 401:
+                    console.error("Authentification failed.");
+                case 409:
+                    console.error("You are already in a lobby.");
+                default:
+                    console.error("Something went wrong.");
+            }
+        }
+    }
+
     useEffect(() => {
 
         updateManager.connectToPersonalUpdate();
@@ -135,7 +158,7 @@ const Menu = props => {
 
                       <div className="invites createGame">
 
-                          <Button width="60%">
+                          <Button width="60%" onClick={() => createNewLobby()}>
                               Create Game
                           </Button>
 

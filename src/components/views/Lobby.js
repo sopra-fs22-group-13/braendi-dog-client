@@ -66,7 +66,7 @@ useEffect(() => {
     //fetches all members in the lobby
     async function fetchDataLobby() {
       try {
-        const response = await api.get('/menu/lobby/');
+        const response = await api.get('/lobby/' + localStorage.getItem("lobbyId"));
         setMembers(response.data);
 
       } catch (error) {
@@ -105,7 +105,7 @@ useEffect(() => {
 // fetches all currently logged in users
 async function fetchDataSearch() {
       try {
-        const response = await api.get('/menu/users');
+        const response = await api.get('/users');
 
         setUsers(response.data);
 
@@ -129,26 +129,26 @@ const logout = () => {
 
 const startGame= async () => {
   try{
-    let response = await api.post('/game', localStorage.getItem("lobbyId"));
-    if(response.status == 201)
+    let response = await api.post('/game', {lobbyID: localStorage.getItem("lobbyId")});
+  }catch(error){
+
+    if(!error.response)
     {
-      //success, do nothing ,as the update will follow by event.
-      return 0;
+      return 5;
     }
-    if(response.status == 400)
+
+    if(error.response.status == 400)
     {
       return 1;
     }
-    if(response.status == 401)
+    if(error.response.status == 401)
     {
       return 2;
     }
-    if(response.status == 404)
+    if(error.response.status == 404)
     {
       return 3;
     }
-    return 4;
-  }catch{
     return 5;
   }
 }

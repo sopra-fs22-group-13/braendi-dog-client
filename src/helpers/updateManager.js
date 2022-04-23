@@ -35,13 +35,7 @@ export function connectToPersonalUpdate()
 
     console.log("connecting WebSocket...");
 
-    if(localStorage.getItem("token1") == null)
-    {
-        localStorage.setItem("token1", "123");
-        return;
-    }
-
-    let subscribeDomain = `/user/${localStorage.getItem("token1")}/queue/specific-user`;
+    let subscribeDomain = `/user/${localStorage.getItem("token")}/queue/specific-user`;
     let domain =  getDomain() + "/gameupdates";
     console.log(domain);
     const client = new StompJs.Client({

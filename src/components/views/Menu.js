@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {api, handleError} from 'helpers/api';
 import User from 'models/User';
 import {useHistory} from 'react-router-dom';
@@ -7,6 +7,7 @@ import 'styles/views/Menu.scss';
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
 import Header from "components/views/Header";
+import { connectToPersonalUpdate } from 'helpers/updateManager';
 
 
 /*
@@ -17,32 +18,64 @@ specific components that belong to the main one in the same file.
  */
 
 
-const Invite = ({invite}) => (
-    <div className="invites singleInvites">
-        <div className='invites inviteText'>
-            {invite}
-        </div>
-        <div className='invites inviteText'> {invite.name} </div>
-        <div className="invites inviteButton" > Join </div>
-    </div>
-);
-
-Invite.propTypes = {
-    invite: PropTypes.object
-};
 
 
 
 const Menu = props => {
     const history = useHistory();
-    const invites = ["dog1", "dog2"];
+    const [invites, setInvites] = useState([]);
+    const [update, setUpdate] = useState(false);
+
+    const Invite = ({invite}) => (
+        <div className="invites singleInvites">
+            <div className='invites inviteText'>
+                {invite.name}
+            </div>
+            {/* <div className='invites inviteText'> {invite.name} </div> */}
+            <div className="invites inviteButton" onClick={() => acceptInvite(invite.lobbyId)} > Join </div>
+        </div>
+    );
+
+    Invite.propTypes = {
+        invite: PropTypes.object
+    };
 
     //needs to recive all invites with token
+
+    function acceptInvite (lobbyId){
+        //accept invite
+        alert(lobbyId);
+    }
 
     const logout = () => {
         localStorage.removeItem('token');
         history.push('/login');
     }
+
+    useEffect(() => {
+
+        connectToPersonalUpdate();
+
+        document.addEventListener("inviteUpdate", (e) => {
+            const id = e.detail.lobbyId;
+            const name = e.detail.ownerName;
+
+            //handle new invite
+            let invite = new Object();
+            invite.name = name;
+            invite.lobbyId = id;
+
+            invites.push(invite);
+            setUpdate(!update);
+        })
+
+        let invite = new Object();
+        invite.name = "HELLO";
+        invite.lobbyId = 14;
+
+        invites.push(invite);
+        setUpdate(!update);
+    }, []);
 
   return (
       <div>

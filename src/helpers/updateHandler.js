@@ -5,29 +5,29 @@ Parses and evaluates the WebSocket updates. Handle updates by listening to the r
 export function parseUpdate(rawUpdate)
 {
     let updateObject = JSON.parse(rawUpdate);
-
+    let message = updateObject.message? updateObject.message : "{}";
     switch(updateObject.type)
     {
         case "BOARD":
-            updateBoard(updateObject.message);
+            updateBoard(message);
             break;
         case "CARD":
-            updateCard(updateObject.message);
+            updateCard(message);
             break;
         case "TURN":
-            updateTurn(updateObject.message);
+            updateTurn(message);
             break;
         case "START":
-            updateStart(updateObject.message);
+            updateStart(message);
             break;
         case "WIN":
-            updateWin(updateObject.message);
+            updateWin(message);
             break;
         case "LOBBY":
-            updateLobby(updateObject.message);
+            updateLobby(message);
             break;
         case "INVITE":
-            updateInvite(updateObject.message);
+            updateInvite(message);
             break;
         default:
             break;
@@ -40,7 +40,6 @@ export function parseUpdate(rawUpdate)
 
 function updateBoard(extrainfo)
 {
-    alert("update!");
     const event = new CustomEvent('boardUpdate', { detail: JSON.parse(extrainfo)});
     document.dispatchEvent(event);
 }

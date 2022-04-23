@@ -11,6 +11,7 @@ import "styles/views/Game.scss";
 import HandsWrapper from 'components/ui/HandsWrapper';
 import Marbles from 'components/views/Marbles';
 import TurnIndicator from 'components/ui/TurnIndicator';
+import { InfoBlockLeft, InfoBlockRight } from 'components/ui/InfoBlock';
 
 
 const Game = () => {
@@ -41,6 +42,7 @@ let winnerPrompt;
   return (
     <BaseContainer className="game">
     <div className="board flex">
+        <InfoBlockLeft/>
         <div className="board container">
             <Board/>
             <TurnIndicator></TurnIndicator>
@@ -48,6 +50,8 @@ let winnerPrompt;
             <Marbles/>
             {winnerPrompt}
         </div>
+        <InfoBlockRight/>
+
     </div>
     </BaseContainer>
   );

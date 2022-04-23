@@ -7,6 +7,7 @@ import 'styles/views/RegistrationLogin.scss';
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
 import Header from "components/views/Header";
+
 import {red} from "@mui/material/colors";
 
 /*
@@ -57,14 +58,14 @@ const RegistrationLogin = props => {
           const requestBody = JSON.stringify({username, password});
           const response = await api.post('/login', requestBody);
 
+          const auth= response.headers.authorization;
+          localStorage.setItem('token', auth.substring(5));
+          localStorage.setItem('userID', username);
+
           // Get the returned user and update a new object.
-          const user = new User(response.data);
 
-          // Store the token into the local storage.
-          localStorage.setItem('token', user.token);
-
-          // RegistrationLogin successfully worked --> navigate to the route /game in the GameRouter
           history.push(`/menu`);
+ 
       } catch (error) {
           setErrorLogin(
               <div className="errors">
@@ -81,15 +82,14 @@ const RegistrationLogin = props => {
           username = registerUsername;
           const requestBody = JSON.stringify({username, password});
           const response = await api.post('/users', requestBody);
-          alert("hello1")
-          // Get the returned user and update a new object.
-          const user = new User(response.data);
 
-          // Store the token into the local storage.
-          localStorage.setItem('token', user.token);
+          const auth= response.headers.authorization;
+          localStorage.setItem('token', auth.substring(5));
+          localStorage.setItem('userID', username);
 
           // RegistrationLogin successfully worked --> navigate to the route /game in the GameRouter
           history.push(`/menu`);
+
       } catch (error) {
           setErrorRegister(
               <div className="errors">

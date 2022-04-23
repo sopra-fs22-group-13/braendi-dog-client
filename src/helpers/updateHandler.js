@@ -26,6 +26,9 @@ export function parseUpdate(rawUpdate)
         case "LOBBY":
             updateLobby(updateObject.message);
             break;
+        case "INVITE":
+            updateInvite(updateObject.message);
+            break;
         default:
             break;
     }
@@ -74,5 +77,12 @@ function updateLobby(extrainfo)
 {
     console.log("lobbyUpdate", extrainfo);
     const event = new CustomEvent('lobbyUpdate', { detail: JSON.parse(extrainfo)});
+    document.dispatchEvent(event);
+}
+
+function updateInvite(extrainfo)
+{
+    console.log("inviteUpdate", extrainfo);
+    const event = new CustomEvent('inviteUpdate', { detail: JSON.parse(extrainfo)});
     document.dispatchEvent(event);
 }

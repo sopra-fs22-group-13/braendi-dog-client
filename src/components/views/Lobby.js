@@ -12,11 +12,12 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import PropTypes from "prop-types";
 
 import { startListening } from 'components/voice/voiceChat';
-import { connectToPersonalUpdate } from 'helpers/updateManager';
+import updateManager from 'helpers/updateManager';
 
 import { getMarbleLocation } from 'helpers/getMarbleLocation';
 import { addError } from './ErrorDisplay';
 import { CribSharp } from '@mui/icons-material';
+import { moveManager } from 'helpers/moveManager';
 
 /*
 It is possible to add multiple components inside a single file,
@@ -211,7 +212,7 @@ if(members.length === 4){
 
   //test voiceChat here, as there is not game yet.
   useEffect(() => {
-    connectToPersonalUpdate();
+    updateManager.connectToPersonalUpdate();
     startListening();
   }, []);
 

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {api, handleError} from 'helpers/api';
 import User from 'models/User';
 import {useHistory} from 'react-router-dom';
@@ -7,8 +7,7 @@ import 'styles/views/Menu.scss';
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
 import Header from "components/views/Header";
-import { connectToPersonalUpdate } from 'helpers/updateManager';
-
+import updateManager from 'helpers/updateManager';
 
 /*
 It is possible to add multiple components inside a single file,
@@ -25,7 +24,7 @@ const Menu = props => {
     const history = useHistory();
     const [invites, setInvites] = useState([]);
     const [update, setUpdate] = useState(false);
-
+    const componentMounted = useRef(true); // (3) component is mounted
     const Invite = ({invite}) => (
         <div className="invites singleInvites">
             <div className='invites inviteText'>
@@ -44,7 +43,8 @@ const Menu = props => {
 
     function acceptInvite (lobbyId){
         //accept invite
-        alert(lobbyId);
+        history.push("/lobby");
+        //alert(lobbyId);
     }
 
     const logout = () => {
@@ -54,7 +54,7 @@ const Menu = props => {
 
     useEffect(() => {
 
-        connectToPersonalUpdate();
+        updateManager.connectToPersonalUpdate();
 
         document.addEventListener("inviteUpdate", (e) => {
             const id = e.detail.lobbyId;
@@ -65,8 +65,11 @@ const Menu = props => {
             invite.name = name;
             invite.lobbyId = id;
 
-            invites.push(invite);
-            setUpdate(!update);
+            if(componentMounted.current){
+                invites.push(invite);
+                setUpdate(!update);
+            }
+
         })
 
         let invite = new Object();
@@ -75,6 +78,10 @@ const Menu = props => {
 
         invites.push(invite);
         setUpdate(!update);
+
+        return () => { // This code runs when component is unmounted
+            componentMounted.current = false; // (4) set it to false when we leave the page
+        }
     }, []);
 
   return (

@@ -7,63 +7,72 @@ import { parseUpdate } from './updateHandler';
 import * as StompJs from '@stomp/stompjs';
 import * as SockJS from 'sockjs-client';
 
-let socket = null;
-let onMessage = function (message)
-{
-    if(message.body)
+class updateManager{
+
+    static #socket = null;
+
+    static #onMessage(message){
+        if(message.body)
+        {
+            parseUpdate(message.body);
+        }else
+        {
+            alert("empty message received!");
+        }
+    }
+
+    static connectToPersonalUpdate()
     {
-        parseUpdate(message.body);
-    }else
-    {
-        alert("empty message received!");
+        if(updateManager.#socket != null)
+        {
+            console.log("already connected to a websocket. call disconnect() first.");
+            return;
+        }
+    
+        console.log("connecting WebSocket...");
+    
+        let subscribeDomain = `/user/${localStorage.getItem("token")}/queue/specific-user`;
+        let domain =  getDomain() + "/gameupdates";
+        updateManager.#socket = new StompJs.Client({
+            connectHeaders: {
+                login: 'user',
+                passcode: 'password',
+            },
+            debug: function (str) {
+                console.log(str);
+            },
+            reconnectDelay: 5000,
+            heartbeatIncoming: 4000,
+            heartbeatOutgoing: 4000,
+        });
+    
+        updateManager.#socket.webSocketFactory = function () 
+        {
+            return new SockJS(domain);
+        };
+    
+        updateManager.#socket.onConnect = function (frame) {
+            const subscription = updateManager.#socket.subscribe(subscribeDomain, (message) => {updateManager.#onMessage(message)});
+        };
+    
+        updateManager.#socket.onStompError = function (frame)
+        {
+            console.log(frame);
+        }
+    
+        updateManager.#socket.activate();
+    }
+
+    static disconnectFromPersonalUpdate(){
+
+        if(updateManager.#socket == null){
+            console.log("Nothing to disconnect from...");
+            return;
+        }
+
+        updateManager.#socket.disconnect();
+        updateManager.#socket = null;
     }
 }
 
-export function disconnect()
-{
-    socket.disconnect();
-    socket = null;
-}
-
-export function connectToPersonalUpdate()
-{
-    if(socket != null)
-    {
-        console.log("already connected to a websocket. call disconnect() first.");
-        return;
-    }
-
-    console.log("connecting WebSocket...");
-
-    let subscribeDomain = `/user/${localStorage.getItem("token")}/queue/specific-user`;
-    let domain =  getDomain() + "/gameupdates";
-    console.log(domain);
-    const client = new StompJs.Client({
-        connectHeaders: {
-            login: 'user',
-            passcode: 'password',
-        },
-        debug: function (str) {
-            console.log(str);
-        },
-        reconnectDelay: 5000,
-        heartbeatIncoming: 4000,
-        heartbeatOutgoing: 4000,
-    });
-
-    client.webSocketFactory = function () 
-    {
-        return new SockJS(domain);
-    };
-
-    client.onConnect = function (frame) {
-        const subscription = client.subscribe(subscribeDomain, (message) => {onMessage(message)});
-    };
-
-    client.onStompError = function (frame)
-    {
-        console.log(frame);
-    }
-
-    client.activate();
-}
+export default updateManager;

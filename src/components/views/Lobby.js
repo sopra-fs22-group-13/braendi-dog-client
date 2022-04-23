@@ -67,7 +67,11 @@ useEffect(() => {
     //fetches all members in the lobby
     async function fetchDataLobby() {
       try {
-        const response = await api.get('/lobby/' + localStorage.getItem("lobbyId"));
+        const response = await api.get('/lobby/' + localStorage.getItem("lobbyId"), {
+          headers: {
+              'Authorization': "Basic " + localStorage.getItem("token")
+          }
+      });
         setMembers(response.data);
 
       } catch (error) {
@@ -106,7 +110,11 @@ useEffect(() => {
 // fetches all currently logged in users
 async function fetchDataSearch() {
       try {
-        const response = await api.get('/users');
+        const response = await api.get('/users', {
+          headers: {
+              'Authorization': "Basic " + localStorage.getItem("token")
+          }
+      });
 
         setUsers(response.data);
 
@@ -130,7 +138,11 @@ const logout = () => {
 
 const startGame= async () => {
   try{
-    let response = await api.post('/game', {lobbyID: localStorage.getItem("lobbyId")});
+    let response = await api.post('/game', {lobbyID: localStorage.getItem("lobbyId")}, {
+      headers: {
+          'Authorization': "Basic " + localStorage.getItem("token")
+      }
+  });
   }catch(error){
 
     if(!error.response)

@@ -90,6 +90,7 @@ const Menu = props => {
             if(componentMounted.current){
                 invites.push(invite);
                 setUpdate(!update);
+                setInvites(invites.slice());
             }
 
         })
@@ -151,7 +152,7 @@ const Menu = props => {
                       <div className="invites titleInvites">Invites</div>
                       <ul className="invites inviteslist">
                           {invites.map(invite => (
-                              <Invite invite={invite} />
+                              <Invite invite={invite} key={invite.lobbyId} />
                           ))}
                       </ul>
 

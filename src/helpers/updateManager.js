@@ -70,7 +70,7 @@ class updateManager{
             return;
         }
 
-        updateManager.#socket.disconnect();
+        updateManager.#socket.deactivate();
         updateManager.#socket = null;
     }
 }

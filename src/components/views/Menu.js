@@ -8,6 +8,7 @@ import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
 import Header from "components/views/Header";
 import updateManager from 'helpers/updateManager';
+import { DiscountRounded } from '@mui/icons-material';
 
 /*
 It is possible to add multiple components inside a single file,
@@ -53,7 +54,8 @@ const Menu = props => {
     }
 
     const logout = () => {
-        localStorage.removeItem('token');
+        updateManager.disconnectFromPersonalUpdate();
+        localStorage.clear();
         history.push('/login');
     }
 
@@ -65,8 +67,6 @@ const Menu = props => {
                 }
             });
             localStorage.setItem("lobbyId", response.data.lobbyID);
-            console.log("worked fine");
-            console.log(response.data.lobbyID);
             history.push('/lobby');
         } catch (error) {
             switch (error.response.status) {
@@ -100,13 +100,6 @@ const Menu = props => {
 
         })
 
-        // let invite = new Object();
-        // invite.name = "HELLO";
-        // invite.lobbyId = 14;
-
-        // invites.push(invite);
-        // setUpdate(!update);
-
         return () => { // This code runs when component is unmounted
             componentMounted.current = false; // (4) set it to false when we leave the page
         }
@@ -114,7 +107,7 @@ const Menu = props => {
 
   return (
       <div>
-          <Header height="100"/>
+          <Header height="15vh"/>
           <BaseContainer>
               <div className="menuContainer">
                   <div className="info userInfo">
@@ -159,6 +152,8 @@ const Menu = props => {
                           {invites.map(invite => (
                               <Invite invite={invite} key={invite.lobbyId} />
                           ))}
+                          {
+                              invites && invites.length == 0? <div className='invites singleInvites'>Invites from other players show up here.</div>: null}
                       </ul>
 
                       <div className="invites createGame">

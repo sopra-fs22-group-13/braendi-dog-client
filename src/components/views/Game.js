@@ -12,7 +12,7 @@ import HandsWrapper from 'components/ui/HandsWrapper';
 import Marbles from 'components/views/Marbles';
 import TurnIndicator from 'components/ui/TurnIndicator';
 import { InfoBlockLeft, InfoBlockRight } from 'components/ui/InfoBlock';
-
+import updateManager from 'helpers/updateManager';
 
 const Game = () => {
   const history = useHistory();
@@ -21,7 +21,8 @@ const Game = () => {
 
 
   const logout = () => {
-    localStorage.removeItem('token');
+    updateManager.disconnectFromPersonalUpdate();
+    localStorage.clear();
     history.push('/login');
   }
 

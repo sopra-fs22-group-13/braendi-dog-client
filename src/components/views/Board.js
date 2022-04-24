@@ -18,22 +18,26 @@ useEffect(() => {
 
     //get the data
     //initial request
-    const response = api.get(`/game/board/${localStorage.getItem("gametoken")}`, {
+    const response = api.get(`/game/${localStorage.getItem("gametoken")}/board`, {
         headers: {
             'Authorization': "Basic " + localStorage.getItem("token")
             }
         });
-        setData(response.data);
+
+        response.then((result) => {
+            let newData = JSON.parse(JSON.stringify(result.data));
+            setData(newData);
+        });
 
     //only add the listener on initial render, otherwise we have multiple
-    document.addEventListener("boardUpdate", event => {
-        const response = api.get(`/game/board/${localStorage.getItem("gametoken")}`, {
-            headers: {
-                'Authorization': "Basic " + localStorage.getItem("token")
-            }
-        });
-        setData(response.data);
-    });
+    // document.addEventListener("boardUpdate", event => {
+    //     const response = api.get(`/game/${localStorage.getItem("gametoken")}/board`, {
+    //         headers: {
+    //             'Authorization': "Basic " + localStorage.getItem("token")
+    //         }
+    //     });
+    //     setData(response.data);
+    // });
 
     let fakeData = new Object();
     fakeData.colorMapping = {128: "RED", 12: "BLUE", 124: "YELLOW", 38: "GREEN"};
@@ -44,7 +48,7 @@ useEffect(() => {
   let background = <Spinner/>;
   let userColor;
   //implementation for when localStorage has playerColor stored: userColor = data.colorMapping[localStorage.getItem('playerColor')]} -> TODO registration/ login
-  if (data != null){userColor = data.colorMapping[12];}
+  if (data != null){userColor = data.colorMapping[localStorage.getItem("userID")];}
 
 
 // sets background based on playerColor

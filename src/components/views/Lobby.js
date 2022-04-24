@@ -130,15 +130,22 @@ useEffect(() => {
 
 
 // fetches all currently logged in users
-async function fetchDataSearch() {
+async function fetchDataSearch(filter = "") {
       try {
         const response = await api.get('/users', {
           headers: {
               'Authorization': "Basic " + localStorage.getItem("token")
           }
-      });
+        });
 
-        setUsers(response.data);
+        const data = response.data.slice();
+        response.data.forEach(user => {
+            if (!user.username.includes(filter)) {
+                const index = data.indexOf(user);
+                data.splice(index, 1);
+            }
+        });
+        setUsers(data);
 
         console.log('request to:', response.request.responseURL);
         console.log('status code:', response.status);
@@ -200,6 +207,13 @@ if(users){
     );
 }
 let contentLobby;
+
+function onEnterKey(key, input) {
+    if (key === 'Enter') {
+        fetchDataSearch(input);
+    }  
+}
+
 
 if(members){
     contentLobby = (
@@ -323,7 +337,7 @@ if(members.length === 4){
                     <input
                         className="search input"
                         placeholder="Enter search here"
-                        //onChange={e => props.onChange(e.target.value)}
+                        onKeyDown={e => onEnterKey(e.key, e.target.value)}
                     />
                 </div>
                 <div className="search user-list">

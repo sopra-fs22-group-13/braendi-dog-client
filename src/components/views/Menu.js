@@ -66,7 +66,7 @@ const Menu = props => {
         } catch (error) {
             switch (error.response.status) {
                 case 401:
-                    console.error("Authentification failed.");
+                    console.error("Authentication failed.");
                 case 409:
                     console.error("You are already in a lobby.");
                 default:

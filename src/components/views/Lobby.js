@@ -72,7 +72,12 @@ useEffect(() => {
               'Authorization': "Basic " + localStorage.getItem("token")
           }
       });
-        setMembers(response.data);
+        var memberList = [];
+        for (let i=0; i<response.data.usernames.length; i++) {
+            memberList.push({username: response.data.usernames[i],
+                            id: response.data.userIDs[i]});
+        }
+        setMembers(memberList);
 
       } catch (error) {
         addError("Could not fetch lobby members", 5000);
@@ -100,7 +105,7 @@ useEffect(() => {
       let entry = {id: 13, username: "Dogerino"}
       fakeData.push(entry)
     }
-    setMembers(fakeData);
+    //setMembers(fakeData);
 
     //start lobby
 

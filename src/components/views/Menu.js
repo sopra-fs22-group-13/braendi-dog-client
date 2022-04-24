@@ -9,6 +9,7 @@ import PropTypes from "prop-types";
 import Header from "components/views/Header";
 import updateManager from 'helpers/updateManager';
 import { DiscountRounded } from '@mui/icons-material';
+import { addError } from './ErrorDisplay';
 
 /*
 It is possible to add multiple components inside a single file,
@@ -43,6 +44,22 @@ const Menu = props => {
     //needs to recive all invites with token
 
     async function acceptInvite (lobbyId){
+        try {
+
+        } catch (error) {
+            switch (error.response.status) {
+                case 401:
+                    console.error("Unauthorized", error);
+                    addError("Unauthorized");
+                case 404:
+                    console.error("Lobby not found.", error);
+                    addError("We couldn't find that lobby. Maybe it doesn't exist anymore.");
+                default:
+                    console.error("Something went wrong.", error);
+                    addError("Something unexpected went wrong.");
+            }
+        }
+
         const serverResponse = await api.put("/invitations", {lobbyID: lobbyId, response: true}, {
             headers: {
               'Authorization': "Basic " + localStorage.getItem("token")
@@ -71,11 +88,14 @@ const Menu = props => {
         } catch (error) {
             switch (error.response.status) {
                 case 401:
-                    console.error("Authentication failed.");
+                    console.error("Unauthorized", error);
+                    addError("Unauthorized");
                 case 409:
-                    console.error("You are already in a lobby.");
+                    console.error("You are already in a lobby.", error);
+                    addError("You are already in a lobby.");
                 default:
-                    console.error("Something went wrong.");
+                    console.error("Something went wrong.", error);
+                    addError("Something unexpected went wrong.");
             }
         }
     }

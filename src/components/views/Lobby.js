@@ -28,13 +28,27 @@ specific components that belong to the main one in the same file.
  
 
 async function invitePlayer(inviteeId) {
-    console.log(localStorage.getItem("token"));
-    console.log(localStorage.getItem("lobbyId"));
-    await api.put("/lobby/" + localStorage.getItem("lobbyId") + "/invitations", {inviteeID: inviteeId}, {
-      headers: {
-          'Authorization': "Basic " + localStorage.getItem("token")
-      }
-    });
+    try {
+        console.log(localStorage.getItem("token"));
+        console.log(localStorage.getItem("lobbyId"));
+        await api.put("/lobby/" + localStorage.getItem("lobbyId") + "/invitations", {inviteeID: inviteeId}, {
+            headers: {
+                'Authorization': "Basic " + localStorage.getItem("token")
+            }
+        });
+    } catch (error) {
+        switch (error.response.status) {
+            case 401:
+                console.error("Unauthorized", error);
+                addError("Unauthorized");
+            case 404:
+                console.error("Either the requested player or lobby were not found.", error);
+                addError("Either the requested player or lobby were not found.");
+            default:
+                console.error("Something unexpected went wrong.", error);
+                addError("Something unexpected went wrong.");
+        }
+    }
 }
 
 

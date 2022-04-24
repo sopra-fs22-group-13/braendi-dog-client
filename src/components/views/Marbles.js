@@ -176,6 +176,9 @@ switch(userColor){
    */
   function handleMarbleClick(index, inGoal, color, goalColor)
   {
+
+    if(!userColor) userColor = "BLUE";
+
     if(!fromPos && color != userColor) return;
     if(fromPos && !toPos && index == -1) return;
     if(!moveManager.isMarbleTurn()) return;
@@ -362,7 +365,6 @@ switch(userColor){
   //calls all creation methods and stores marbles
   if(data != null)
   {
-    console.log(data.blueGoal);
     blueBaseMarbles = (createBaseMarbles(data.blueBase, blueB));
     redBaseMarbles = (createBaseMarbles(data.redBase, redB));
     yellowBaseMarbles = (createBaseMarbles(data.yellowBase, yellowB));

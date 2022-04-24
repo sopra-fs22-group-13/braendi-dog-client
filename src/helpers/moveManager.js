@@ -108,7 +108,7 @@ export class moveManager {
             });
 
             let jsonDict = {_fromPos: fromPos, _toPos: toPos, _fromPosInGoal: fromPosInGoal, _toPosInGoal: toPosInGoal, card: moveManager.#selected_card, color: moveManager.#color, token: usertoken}
-            let response = await api.put(String.format("/game/%s/board", gametoken), JSON.stringify(jsonDict), {
+            let response = await api.put(`/game/${gametoken}/board`, JSON.stringify(jsonDict), {
                     headers: {
                         'Authorization': "Basic " + usertoken //the authorization token required
                     }
@@ -123,7 +123,8 @@ export class moveManager {
                 errorcode = 4;
             }
 
-        }catch{
+        }catch (e) {
+            console.log(e)
             errorcode = 2;
         }
         

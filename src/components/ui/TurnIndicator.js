@@ -2,13 +2,15 @@ import Down from '@mui/icons-material/ArrowCircleDownOutlined';
 import Up from '@mui/icons-material/ArrowCircleUpOutlined';
 import Left from '@mui/icons-material/ArrowCircleLeftOutlined';
 import Right from '@mui/icons-material/ArrowCircleRightOutlined';
+import {api, handleError} from 'helpers/api';
 import { useEffect, useState } from 'react';
 import { HelpOutline } from '@mui/icons-material';
 import 'styles/ui/TurnIndicator.scss';
 
 
 const TurnIndicator = (props) => {
-    const [state, setState] = useState(0);
+    const [state, setState] = useState("GREEN");
+    const [data, setData] = useState(null);
     useEffect(() => {
 
         function turnUpdateListener(event)
@@ -18,18 +20,60 @@ const TurnIndicator = (props) => {
         //only add the listener on initial render, otherwise we have multiple
         document.addEventListener("turnUpdate", turnUpdateListener);
 
+        function boardUpdateListener()
+        {
+          const response = api.get(`/game/${localStorage.getItem("gametoken")}/board`, {
+          headers: {
+              'Authorization': "Basic " + localStorage.getItem("token")
+              }
+          });
+
+          response.then((result) => {
+            let newData = JSON.parse(JSON.stringify(result.data));
+            setData(newData);
+          });
+        }
+
+        //initial request
+        boardUpdateListener();
+
+        //only add the listener on initial render, otherwise we have multiple
+        document.addEventListener("boardUpdate", boardUpdateListener);
+
         return () => { // This code runs when component is unmounted
             document.removeEventListener("turnUpdate", turnUpdateListener);
+            document.removeEventListener("boardUpdate", boardUpdateListener);
         }
 
     }, []);
 
+        let userColor;
+        let dict = new Object();
+        if (data != null){userColor = data.colorMapping[localStorage.getItem("userID")];}
+
+        switch(userColor){
+            case "BLUE":
+                dict = {"BLUE": <Down/>, "GREEN": <Left/>, "YELLOW": <Up/>, "RED": <Right/>};
+                break;
+           case "GREEN":
+                dict = {"GREEN": <Down/>, "YELLOW": <Left/>, "RED": <Up/>, "BLUE": <Right/>};
+                break;
+           case "YELLOW":
+                dict = {"YELLOW": <Down/>, "RED": <Left/>, "BLUE": <Up/>, "GREEN": <Right/>};
+                break;
+           case "RED":
+                dict = {"RED": <Down/>, "BLUE": <Left/>, "GREEN": <Up/>, "YELLOW": <Right/>};
+                break;
+           default:
+                dict = {"BLUE": <Down/>, "GREEN": <Left/>, "YELLOW": <Up/>, "RED": <Right/>};
+                break;
+        }
+
+       let icon = dict[state];
+
     return (
         <div className='turn-indicator'>
-            {state == 0? <Down/> : null}
-            {state == 1? <Left/> : null}
-            {state == 2? <Up/> : null}
-            {state == 3? <Right/> : null}
+            {icon}
         </div>
     )
 }

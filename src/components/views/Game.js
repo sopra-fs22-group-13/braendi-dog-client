@@ -32,7 +32,7 @@ let winnerPrompt;
 
     function winUpdateListener(event)
     {
-      //setWinner = event.detail.keyToBeSet; gibt color?
+      setWinner = event.detail.win;
         winnerPrompt = (
           <PromptNotification label ={winner + " won! Congrats!"}/>
       );
@@ -46,7 +46,6 @@ let winnerPrompt;
   }, []);
 
   let background = <Spinner/>;
-  let userColor = "RED";
 
   return (
     <BaseContainer className="game">

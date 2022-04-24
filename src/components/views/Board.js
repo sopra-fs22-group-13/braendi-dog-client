@@ -73,6 +73,12 @@ useEffect(() => {
            <img src={process.env.PUBLIC_URL + '/resources/blue_4k_y_compressed_wide.jpg'} className="board bg-img"/>
         );
         break;
+
+    default:
+        background =(
+            <img src={process.env.PUBLIC_URL + '/resources/blue_4k_b_compressed_wide.jpg'} className="board bg-img"/>
+        );
+        break;
   }
 
 

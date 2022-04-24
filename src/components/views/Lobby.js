@@ -268,7 +268,7 @@ async function tryStartGame(e)
 
 
 let lobbyButton =
-    <div className={"lobby button" + (members && members.length == 4? " active": "")} onClick={(e) => tryStartGame(e) }>
+    <div className={(members && members.length == 4? "lobby start": "lobby button")} onClick={(e) => tryStartGame(e) }>
          {members? members.length : 0}/4
     </div>
 /*

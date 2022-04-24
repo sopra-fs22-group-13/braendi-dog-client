@@ -154,7 +154,8 @@ async function fetchDataSearch() {
     }
 
 const logout = () => {
-    localStorage.removeItem('token');
+    updateManager.disconnectFromPersonalUpdate();
+    localStorage.clear();
     history.push('/login');
 }
 

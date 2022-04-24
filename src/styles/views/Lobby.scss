@@ -68,10 +68,6 @@
         margin-top: 20px;
         align-items: center;
         font-size: 24px;
-        &:hover{
-            top: -5px;
-            border: 5px solid greenyellow;
-        }
     }
     &.start{
         height: 70px;
@@ -82,6 +78,10 @@
         align-items: center;
         cursor: pointer;
         font-size: 24px;
+        &:hover{
+            top: -5px;
+            border: 5px solid greenyellow;
+        }
     }
     display: flex;
     justify-content: center;

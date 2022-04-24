@@ -1,0 +1,23 @@
+.info-block {
+    flex-shrink: 0;
+    flex-grow: 1;
+    flex-basis: 100px;
+    min-width: 100px;
+    width: 100%;
+    text-align: center;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    font-size: 0.8vw;
+
+    > h1{
+        font-size: 1.5vw;
+        text-decoration: underline;
+    }
+
+    > h2{
+        font-size: 1vw;
+        text-decoration: underline;
+        font-style: italic;
+    }
+}

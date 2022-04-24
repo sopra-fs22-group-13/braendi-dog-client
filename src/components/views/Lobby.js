@@ -25,9 +25,21 @@ however be sure not to clutter your files with an endless amount!
 As a rule of thumb, use one file per component and only add small,
 specific components that belong to the main one in the same file.
  */
+ 
+
+async function invitePlayer(inviteeId) {
+    console.log(localStorage.getItem("token"));
+    console.log(localStorage.getItem("lobbyId"));
+    await api.put("/lobby/" + localStorage.getItem("lobbyId") + "/invitations", {inviteeID: inviteeId}, {
+      headers: {
+          'Authorization': "Basic " + localStorage.getItem("token")
+      }
+    });
+}
+
 
 const Player = ({user}) => (
-  <div className="player container">
+  <div className="player container" onClick={() => invitePlayer(user.id)}>
     <div className="player username">{user.username}</div>
   </div>
 );
@@ -97,6 +109,7 @@ useEffect(() => {
     });
 
     fetchDataLobby();
+    fetchDataSearch();
 
     //fakedata
     let fakeData = [];

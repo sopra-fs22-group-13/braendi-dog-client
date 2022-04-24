@@ -84,9 +84,10 @@ const Menu = props => {
 
         updateManager.connectToPersonalUpdate();
 
-        document.addEventListener("inviteUpdate", (e) => {
-            const id = e.detail.lobbyId;
-            const name = e.detail.ownerName;
+        function inviteUpdateListener(event)
+        {
+            const id = event.detail.lobbyId;
+            const name = event.detail.ownerName;
             //handle new invite
             let invite = new Object();
             invite.name = name;
@@ -97,11 +98,13 @@ const Menu = props => {
                 setUpdate(!update);
                 setInvites(invites.slice());
             }
+        }
 
-        })
+        document.addEventListener("inviteUpdate", inviteUpdateListener);
 
         return () => { // This code runs when component is unmounted
             componentMounted.current = false; // (4) set it to false when we leave the page
+            document.removeEventListener("inviteUpdate", inviteUpdateListener);
         }
     }, []);
 

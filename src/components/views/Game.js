@@ -29,12 +29,20 @@ const Game = () => {
 const [winner, setWinner] = useState("Red");
 let winnerPrompt;
   useEffect(() => {
-    document.addEventListener("winUpdate", event => {
-            //setWinner = event.detail.keyToBeSet; gibt color?
-            winnerPrompt = (
-                <PromptNotification label ={winner + " won! Congrats!"}/>
-            );
-        });
+
+    function winUpdateListener(event)
+    {
+      //setWinner = event.detail.keyToBeSet; gibt color?
+        winnerPrompt = (
+          <PromptNotification label ={winner + " won! Congrats!"}/>
+      );
+    }
+
+    document.addEventListener("winUpdate", winUpdateListener);
+
+    return () => { // This code runs when component is unmounted
+      document.removeEventListener("winUpdate", winUpdateListener);
+    }
   }, []);
 
   let background = <Spinner/>;

@@ -41,10 +41,15 @@ const Menu = props => {
 
     //needs to recive all invites with token
 
-    function acceptInvite (lobbyId){
-        //accept invite
+    async function acceptInvite (lobbyId){
+        const serverResponse = await api.put("/invitations", {lobbyID: lobbyId, response: true}, {
+            headers: {
+              'Authorization': "Basic " + localStorage.getItem("token")
+            }
+        });
+        localStorage.setItem("lobbyId", lobbyId);
+
         history.push("/lobby");
-        //alert(lobbyId);
     }
 
     const logout = () => {

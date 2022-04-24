@@ -13,6 +13,7 @@
   margin-left: auto;
   margin-right: auto;
   width: 60%;
+  height: 80vh;
   min-width: 600px;
   min-height: 400px;
   max-width: $DESKTOP_WIDTH;
@@ -100,6 +101,7 @@
     overflow-x: hidden;
     overflow-y: auto;
     max-height: 80%;
+    height: 80%;
   }
 
   &.singleInvites{

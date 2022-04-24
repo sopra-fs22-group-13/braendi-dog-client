@@ -36,47 +36,44 @@ const Marbles = props => {
 
 useEffect(() => {
     //get the data for marble layout
+    function boardUpdateListener()
+    {
+      const response = api.get(`/game/${localStorage.getItem("gametoken")}/board`, {
+      headers: {
+          'Authorization': "Basic " + localStorage.getItem("token")
+          }
+      });
+
+      response.then((result) => {
+        let newData = JSON.parse(JSON.stringify(result.data));
+        setData(newData);
+      });
+    }
+
     //initial request
-    const response = api.get(`/game/${localStorage.getItem("gametoken")}/board`, {
-        headers: {
-            'Authorization': "Basic " + localStorage.getItem("token")
-            }
-        });
-
-        response.then((result) => {
-          let newData = JSON.parse(JSON.stringify(result.data));
-          setData(newData);
-        });
-
+    boardUpdateListener();
 
     //only add the listener on initial render, otherwise we have multiple
-    document.addEventListener("boardUpdate", event => {
-        const response = api.get(`/game/${localStorage.getItem("gametoken")}/board`, {
-            headers: {
-                'Authorization': "Basic " + localStorage.getItem("token")
-            }
-        });
+    document.addEventListener("boardUpdate", boardUpdateListener);
 
-        response.then((result) => {
-          let newData = JSON.parse(JSON.stringify(result.data));
-          setData(newData);
-        });
-    });
+    //mock data
+    let fakeData = new Object();
+    fakeData.board = ["RED", "NONE", "NONE", "NONE", "NONE", "NONE", "RED", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "BLUE", "NONE", "NONE", "BLUE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "YELLOW", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "YELLOW", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE"];
+    fakeData.redGoal = ["NONE", "NONE", "NONE", "RED"];
+    fakeData.greenGoal = ["NONE", "NONE", "GREEN", "GREEN"];
+    fakeData.blueGoal = ["NONE", "NONE", "NONE", "BLUE"];
+    fakeData.yellowGoal = ["NONE", "YELLOW", "NONE", "NONE"];
+    fakeData.redBase = 2;
+    fakeData.greenBase = 1;
+    fakeData.blueBase = 3;
+    fakeData.yellowBase = 3;
+    fakeData.lastPlayedCard = "2S";
+    fakeData.colorMapping = {128: "RED", 12: "BLUE", 124: "YELLOW", 38: "GREEN"};
+    setData(fakeData);
 
-        //mock data
-        let fakeData = new Object();
-        fakeData.board = ["RED", "NONE", "NONE", "NONE", "NONE", "NONE", "RED", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "BLUE", "NONE", "NONE", "BLUE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "YELLOW", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "YELLOW", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE"];
-        fakeData.redGoal = ["NONE", "NONE", "NONE", "RED"];
-        fakeData.greenGoal = ["NONE", "NONE", "GREEN", "GREEN"];
-        fakeData.blueGoal = ["NONE", "NONE", "NONE", "BLUE"];
-        fakeData.yellowGoal = ["NONE", "YELLOW", "NONE", "NONE"];
-        fakeData.redBase = 2;
-        fakeData.greenBase = 1;
-        fakeData.blueBase = 3;
-        fakeData.yellowBase = 3;
-        fakeData.lastPlayedCard = "2S";
-        fakeData.colorMapping = {128: "RED", 12: "BLUE", 124: "YELLOW", 38: "GREEN"};
-        setData(fakeData);
+    return () => { // This code runs when component is unmounted
+      document.removeEventListener("boardUpdate", boardUpdateListener);
+    }
 
 }, []);
 

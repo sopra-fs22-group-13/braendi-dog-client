@@ -22,29 +22,32 @@ const HandsWrapper = props =>
 
     //hand update listener
     useEffect(() => {
-        //initial request
-        const response = api.get(`/game/${localStorage.getItem("gametoken")}/players`, {
-            headers: {
-                'Authorization': "Basic " + localStorage.getItem("token")
-                }
-            });
-        setHandInfo(response.data);
-
-        //only add the listener on initial render, otherwise we have multiple
-        document.addEventListener("cardUpdate", event => {
-            const response = api.get(`/game/${localStorage.getItem("gametoken")}/players`, {
-                headers: {
-                    'Authorization': "Basic " + localStorage.getItem("token")
-                }
-            });
-            setHandInfo(response.data);
-        });
 
         //fakeInfo
         let info = new Object();
         info.visibleCards = ["2S", "4S", "5S", "4D" ,"JD", "AD"];
         info.hiddenCardCount = [6,3,4];
-        setHandInfo(info)
+        setHandInfo(info);
+
+        async function cardUpdateListener()
+        {
+            const response = await api.get(`/game/${localStorage.getItem("gametoken")}/players`, {
+                headers: {
+                    'Authorization': "Basic " + localStorage.getItem("token")
+                }
+            });
+            setHandInfo(response.data);
+        }
+
+        //initial request
+        cardUpdateListener();
+
+        //only add the listener on initial render, otherwise we have multiple
+        document.addEventListener("cardUpdate", cardUpdateListener);
+
+        return () => { // This code runs when component is unmounted
+            document.removeEventListener("cardUpdate", cardUpdateListener);
+        }
 
     }, []);
 

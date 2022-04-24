@@ -10,10 +10,18 @@ import 'styles/ui/TurnIndicator.scss';
 const TurnIndicator = (props) => {
     const [state, setState] = useState(0);
     useEffect(() => {
-        //only add the listener on initial render, otherwise we have multiple
-        document.addEventListener("turnUpdate", event => {
+
+        function turnUpdateListener(event)
+        {
             setState(event.detail.turn);
-        });
+        }
+        //only add the listener on initial render, otherwise we have multiple
+        document.addEventListener("turnUpdate", turnUpdateListener);
+
+        return () => { // This code runs when component is unmounted
+            document.removeEventListener("turnUpdate", turnUpdateListener);
+        }
+
     }, []);
 
     return (

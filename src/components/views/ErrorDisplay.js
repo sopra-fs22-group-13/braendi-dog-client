@@ -63,6 +63,10 @@ const ErrorDisplay = props => {
 
     useEffect(() => {
         document.addEventListener("errorUpdate", update);
+
+        return () => { // This code runs when component is unmounted
+            document.removeEventListener("errorUpdate", update);
+        }
     }, []);
 
     return (    

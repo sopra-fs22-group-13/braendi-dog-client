@@ -111,20 +111,25 @@ useEffect(() => {
       }
     }
 
-      //only add the listener on initial render, otherwise we have multiple
-      //check if the game gets started
-      document.addEventListener("startUpdate", event => {
-        let gametoken = event.detail.gameToken;
-        if(gametoken)
-        {
-          localStorage.setItem("gametoken", gametoken);
-          history.push("/game");
-        }
-    });
+    function startUpdateListener(event)
+    {
+      let gametoken = event.detail.gameToken;
+      if(gametoken)
+      {
+        localStorage.setItem("gametoken", gametoken);
+        history.push("/game");
+      }
+    }
+    //only add the listener on initial render, otherwise we have multiple
+    //check if the game gets started
+    document.addEventListener("startUpdate", startUpdateListener);
 
-    document.addEventListener("lobbyUpdate", (e) => {
+    function lobbyUpdateListener(e)
+    {
       fetchDataLobby();
-    });
+    }
+
+    document.addEventListener("lobbyUpdate", lobbyUpdateListener);
 
     fetchDataLobby();
     fetchDataSearch();
@@ -138,7 +143,11 @@ useEffect(() => {
     }
     //setMembers(fakeData);
 
-    //start lobby
+    return () => { // This code runs when component is unmounted
+      document.removeEventListener("lobbyUpdate", lobbyUpdateListener);
+      document.removeEventListener("startUpdate", startUpdateListener); // (4) set it to false when we leave the page
+
+    }
 
   }, []);
 

@@ -60,7 +60,7 @@ const RegistrationLogin = props => {
 
           const auth= response.headers.authorization;
           localStorage.setItem('token', auth.substring(6));
-          localStorage.setItem('userID', username);
+          localStorage.setItem('userID', response.data.id);
 
           // Get the returned user and update a new object.
 
@@ -85,8 +85,7 @@ const RegistrationLogin = props => {
 
           const auth= response.headers.authorization;
           localStorage.setItem('token', auth.substring(6));
-          localStorage.setItem('userID', username);
-
+          localStorage.setItem('userID', response.data.id);
           // RegistrationLogin successfully worked --> navigate to the route /game in the GameRouter
           history.push(`/menu`);
 

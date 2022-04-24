@@ -37,37 +37,47 @@ const Marbles = props => {
 useEffect(() => {
     //get the data for marble layout
     //initial request
-    const response = api.get(`/game/board/${localStorage.getItem("gametoken")}`, {
+    const response = api.get(`/game/${localStorage.getItem("gametoken")}/board`, {
         headers: {
             'Authorization': "Basic " + localStorage.getItem("token")
             }
         });
-        setData(response.data);
+
+        response.then((result) => {
+          let newData = JSON.parse(JSON.stringify(result.data));
+          setData(newData);
+        });
+
 
     //only add the listener on initial render, otherwise we have multiple
     document.addEventListener("boardUpdate", event => {
-        const response = api.get(`/game/board/${localStorage.getItem("gametoken")}`, {
+        const response = api.get(`/game/${localStorage.getItem("gametoken")}/board`, {
             headers: {
                 'Authorization': "Basic " + localStorage.getItem("token")
             }
         });
-        setData(response.data);
+
+        response.then((result) => {
+          let newData = JSON.parse(JSON.stringify(result.data));
+          setData(newData);
+        });
     });
 
-    //mock data
-    let fakeData = new Object();
-    fakeData.board = ["RED", "NONE", "NONE", "NONE", "NONE", "NONE", "RED", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "BLUE", "NONE", "NONE", "BLUE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "YELLOW", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "YELLOW", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE"];
-    fakeData.redGoal = ["NONE", "NONE", "NONE", "RED"];
-    fakeData.greenGoal = ["NONE", "NONE", "GREEN", "GREEN"];
-    fakeData.blueGoal = ["NONE", "NONE", "NONE", "BLUE"];
-    fakeData.yellowGoal = ["NONE", "YELLOW", "NONE", "NONE"];
-    fakeData.redBase = 2;
-    fakeData.greenBase = 1;
-    fakeData.blueBase = 3;
-    fakeData.yellowBase = 3;
-    fakeData.lastPlayedCard = "2S";
-    fakeData.colorMapping = {128: "RED", 12: "BLUE", 124: "YELLOW", 38: "GREEN"};
-    setData(fakeData);
+        //mock data
+        let fakeData = new Object();
+        fakeData.board = ["RED", "NONE", "NONE", "NONE", "NONE", "NONE", "RED", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "BLUE", "NONE", "NONE", "BLUE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "YELLOW", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "YELLOW", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE"];
+        fakeData.redGoal = ["NONE", "NONE", "NONE", "RED"];
+        fakeData.greenGoal = ["NONE", "NONE", "GREEN", "GREEN"];
+        fakeData.blueGoal = ["NONE", "NONE", "NONE", "BLUE"];
+        fakeData.yellowGoal = ["NONE", "YELLOW", "NONE", "NONE"];
+        fakeData.redBase = 2;
+        fakeData.greenBase = 1;
+        fakeData.blueBase = 3;
+        fakeData.yellowBase = 3;
+        fakeData.lastPlayedCard = "2S";
+        fakeData.colorMapping = {128: "RED", 12: "BLUE", 124: "YELLOW", 38: "GREEN"};
+        setData(fakeData);
+
 }, []);
 
 //variables to adapt to player (color) perspective
@@ -75,8 +85,7 @@ let boardIdx, blueB, blueG, redB, redG, yellowB, yellowG, greenB, greenG;
 let userColor;
 
 //implementation for when localStorage has userColor stored: userColor = data.colorMapping[localStorage.getItem('userColor')]} -> TODO registration/ login
-  if (data != null){userColor = data.colorMapping[12];}
-
+  if (data != null){userColor = data.colorMapping[localStorage.getItem("userID")];}
 
 //set perspective variables, ['where', 'img_path'] and the {int} board offset
 switch(userColor){
@@ -126,6 +135,17 @@ switch(userColor){
         greenB = ['bl_base', '/resources/marble_g_light.png'];
         greenG = ['bl_goal', '/resources/marble_g_light.png'];
         boardIdx = 32;
+        break;
+      default:
+        blueB = ['bl_base', '/resources/marble_b_light.png'];
+        blueG = ['bl_goal', '/resources/marble_b_light.png'];
+        redB = ['br_base', '/resources/marble_r_light.png'];
+        redG = ['br_goal', '/resources/marble_r_light.png'];
+        yellowB = ['tr_base', '/resources/marble_y_light.png'];
+        yellowG = ['tr_goal', '/resources/marble_y_light.png'];
+        greenB = ['tl_base', '/resources/marble_g_light.png'];
+        greenG = ['tl_goal', '/resources/marble_g_light.png'];
+        boardIdx = 16;
         break;
 }
 

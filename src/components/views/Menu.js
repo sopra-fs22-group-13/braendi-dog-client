@@ -68,6 +68,31 @@ const Menu = props => {
         }
     }
 
+    async function denyInvite (lobbyId){
+        try {
+            const serverResponse = await api.put("/invitations", {lobbyID: lobbyId, response: false}, {
+                headers: {
+                    'Authorization': "Basic " + localStorage.getItem("token")
+                }
+            });
+            const lobbyToRemove = invites.find(lobby => lobby.lobbyId == lobbyId);
+            const index = invites.indexOf(lobbyToRemove);
+            invites.splice(index, 1);
+        } catch (error) {
+            switch (error.response.status) {
+                case 401:
+                    console.error("Unauthorized", error);
+                    addError("Unauthorized");
+                case 404:
+                    console.error("Lobby not found.", error);
+                    addError("We couldn't find that lobby. Maybe it doesn't exist anymore.");
+                default:
+                    console.error("Something went wrong.", error);
+                    addError("Something unexpected went wrong.");
+            }
+        }
+    }
+
     const logout = () => {
         updateManager.disconnectFromPersonalUpdate();
         localStorage.clear();

@@ -108,6 +108,10 @@ useEffect(() => {
         }
     });
 
+    document.addEventListener("lobbyUpdate", (e) => {
+      fetchDataLobby();
+    });
+
     fetchDataLobby();
     fetchDataSearch();
 

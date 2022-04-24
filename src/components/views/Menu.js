@@ -82,7 +82,6 @@ const Menu = props => {
         document.addEventListener("inviteUpdate", (e) => {
             const id = e.detail.lobbyId;
             const name = e.detail.ownerName;
-
             //handle new invite
             let invite = new Object();
             invite.name = name;
@@ -95,12 +94,12 @@ const Menu = props => {
 
         })
 
-        let invite = new Object();
-        invite.name = "HELLO";
-        invite.lobbyId = 14;
+        // let invite = new Object();
+        // invite.name = "HELLO";
+        // invite.lobbyId = 14;
 
-        invites.push(invite);
-        setUpdate(!update);
+        // invites.push(invite);
+        // setUpdate(!update);
 
         return () => { // This code runs when component is unmounted
             componentMounted.current = false; // (4) set it to false when we leave the page

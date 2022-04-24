@@ -45,7 +45,14 @@ const Menu = props => {
 
     async function acceptInvite (lobbyId){
         try {
+            const serverResponse = await api.put("/invitations", {lobbyID: lobbyId, response: true}, {
+                headers: {
+                    'Authorization': "Basic " + localStorage.getItem("token")
+                }
+            });
+            localStorage.setItem("lobbyId", lobbyId);
 
+            history.push("/lobby");
         } catch (error) {
             switch (error.response.status) {
                 case 401:
@@ -59,15 +66,6 @@ const Menu = props => {
                     addError("Something unexpected went wrong.");
             }
         }
-
-        const serverResponse = await api.put("/invitations", {lobbyID: lobbyId, response: true}, {
-            headers: {
-              'Authorization': "Basic " + localStorage.getItem("token")
-            }
-        });
-        localStorage.setItem("lobbyId", lobbyId);
-
-        history.push("/lobby");
     }
 
     const logout = () => {

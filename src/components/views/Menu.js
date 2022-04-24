@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
 import Header from "components/views/Header";
 import updateManager from 'helpers/updateManager';
 import { DiscountRounded } from '@mui/icons-material';
-import { addError } from './ErrorDisplay';
+import { addError, addInfo } from './ErrorDisplay';
 
 /*
 It is possible to add multiple components inside a single file,
@@ -113,9 +113,11 @@ const Menu = props => {
                 case 401:
                     console.error("Unauthorized", error);
                     addError("Unauthorized");
+                    break;
                 case 409:
                     console.error("You are already in a lobby.", error);
                     addError("You are already in a lobby.");
+                    break;
                 default:
                     console.error("Something went wrong.", error);
                     addError("Something unexpected went wrong.");

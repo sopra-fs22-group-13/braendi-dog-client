@@ -15,7 +15,7 @@ import { startListening } from 'components/voice/voiceChat';
 import updateManager from 'helpers/updateManager';
 
 import { getMarbleLocation } from 'helpers/getMarbleLocation';
-import { addError } from './ErrorDisplay';
+import { addError, addInfo, addSuccess } from './ErrorDisplay';
 import { CribSharp } from '@mui/icons-material';
 import { moveManager } from 'helpers/moveManager';
 
@@ -36,14 +36,17 @@ async function invitePlayer(inviteeId) {
                 'Authorization': "Basic " + localStorage.getItem("token")
             }
         });
+        addSuccess("Invited player with id: " + inviteeId);
     } catch (error) {
         switch (error.response.status) {
             case 401:
                 console.error("Unauthorized", error);
                 addError("Unauthorized");
+                break;
             case 404:
                 console.error("Either the requested player or lobby were not found.", error);
                 addError("Either the requested player or lobby were not found.");
+                break;
             default:
                 console.error("Something unexpected went wrong.", error);
                 addError("Something unexpected went wrong.");
@@ -258,7 +261,7 @@ async function tryStartGame(e)
     //full
     let errorcode = await startGame();
     if(errorcode == 1) addError("Not enough Players to start", 5000);
-    if(errorcode == 2) addError("Only the Owner can start the game", 5000);
+    if(errorcode == 2) addInfo("Only the Owner can start the game", 5000);
     if(errorcode == 3) addError("This lobby does not exist", 5000);
     if(errorcode == 4) addError("Could not send start request: response unknown", 5000);
     if(errorcode == 5) addError("Could not send start request: unknown error", 5000);

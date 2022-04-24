@@ -4,7 +4,7 @@ import "styles/views/ErrorDisplay.scss";
 import PetsIcon from '@mui/icons-material/Pets';
 import random from "sockjs-client/lib/utils/random";
 
-const Error = props => {
+const Message = props => {
 
     const [active, setActive] = useState(false);
 
@@ -20,10 +20,10 @@ const Error = props => {
     }, []);
 
     let content = (
-        <div style={styles}>
-            <div className="error-indicator">
+        <div style={styles} className={props.type}>
+            <div className="message-indicator">
                 <PetsIcon/>
-                ERROR:
+                {props.type}:
                 <PetsIcon/>
             </div>
             <div>{props.text}</div>
@@ -33,29 +33,28 @@ const Error = props => {
     return active? content : "";
 }
 
-Error.propTypes = {
+Message.propTypes = {
     text: PropTypes.string,
     time: PropTypes.number
 };
 
 const ErrorDisplay = props => {
 
-    //const [errors, setErrors] = useState([{text: "errortext", time: 10000}]);
 
-    const [errors, setErrors] = useState([]);
+    const [messages, setErrors] = useState([]);
     const [rdm, setRdm] = useState(null);
 
     const update = (event) => {        
-        errors.push({text: event.detail.text, time: event.detail.time});
+        messages.push({text: event.detail.text, time: event.detail.time, type: event.detail.type});
         setRdm(Math.random());
-        let obj = errors[errors.length-1];
+        let obj = messages[messages.length-1];
         const interval = setInterval(function () {
-            let idx = errors.indexOf(obj);
-            errors[idx].time = errors[idx].time - 300;
+            let idx = messages.indexOf(obj);
+            messages[idx].time = messages[idx].time - 300;
         }, 300);
         setTimeout(() => {
-            let idx = errors.indexOf(obj);
-            errors.splice(idx, 1);
+            let idx = messages.indexOf(obj);
+            messages.splice(idx, 1);
             clearInterval(interval);
         }, event.detail.time); //disable after time is up
 
@@ -71,18 +70,47 @@ const ErrorDisplay = props => {
 
     return (    
         <div className="error-display" id="error-display">
-            {errors.map(error => (
-                <Error text={error.text} time={error.time} key={Math.random()}/>
-                ))
+            {messages.map(message => {
+                switch(message.type){
+                    case "ERROR":
+                        return (
+                            <Message text={message.text} time={message.time} type={message.type} key={Math.random()}/>
+                        );
+                    case "INFO":
+                        return (
+                            <Message text={message.text} time={message.time} type={message.type} key={Math.random()}/>
+                        );
+                    case "SUCCESS":
+                        return (
+                            <Message text={message.text} time={message.time} type={message.type} key={Math.random()}/>
+                        );
+                    default:
+                        return (
+                            <Message text={message.text} time={message.time} type={"ERROR"} key={Math.random()}/>
+                        );
+                }
+            })
             }
         </div>
     );
 
 }
 
-export function addError(text, time = 10000)
+export function addError(text, time = 5000)
 {
-    const event = new CustomEvent('errorUpdate', { detail: {text: text, time: time}});
+    const event = new CustomEvent('errorUpdate', { detail: {text: text, time: time, type: "ERROR"}});
+    document.dispatchEvent(event);
+}
+
+export function addInfo(text, time = 5000)
+{
+    const event = new CustomEvent('errorUpdate', { detail: {text: text, time: time, type: "INFO"}});
+    document.dispatchEvent(event);
+}
+
+export function addSuccess(text, time = 5000)
+{
+    const event = new CustomEvent('errorUpdate', { detail: {text: text, time: time, type: "SUCCESS"}});
     document.dispatchEvent(event);
 }
 

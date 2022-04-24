@@ -159,6 +159,15 @@
         color: black;
         background-color: $background;
     }
+    &.user-list{
+        overflow-x: hidden;
+        overflow-y: auto;
+        height: calc(80%);
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
+    }
     &.placeholder{
         display: flex;
         justify-content: center;
@@ -173,7 +182,13 @@
     border-radius: $borderRadius;
     display: flex;
     align-items: center;
-    background: lighten($background, 5);
+    background: $background;
+    transition: background 0.2s ease;
+    
+    &:hover{
+        background: $buttonColorDark;
+        color: $textClear;
+    }
   }
   &.name {
     font-weight: 300;

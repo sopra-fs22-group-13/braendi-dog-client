@@ -226,11 +226,11 @@ let contentSearch = <text className="search placeholder"> No users found </text>
 
 if(users){
     contentSearch =(
-        <ul className="game user-list">
+        <React.Fragment>
           {users.map(user => (
             <Player user={user} key={user.id}/>
           ))}
-        </ul>
+        </React.Fragment>
     );
 }
 let contentLobby;

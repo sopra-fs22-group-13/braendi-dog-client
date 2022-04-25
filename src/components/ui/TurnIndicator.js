@@ -6,6 +6,7 @@ import {api, handleError} from 'helpers/api';
 import { useEffect, useState } from 'react';
 import { HelpOutline } from '@mui/icons-material';
 import 'styles/ui/TurnIndicator.scss';
+import { addInfo } from 'components/views/ErrorDisplay';
 
 
 const TurnIndicator = (props) => {
@@ -67,6 +68,12 @@ const TurnIndicator = (props) => {
            default:
                 dict = {"BLUE": <Down/>, "GREEN": <Left/>, "YELLOW": <Up/>, "RED": <Right/>};
                 break;
+        }
+
+        if(state === userColor)
+        {
+            //notification
+            addInfo("Your Turn!");
         }
 
        let icon = dict[state];

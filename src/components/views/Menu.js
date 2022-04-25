@@ -174,7 +174,7 @@ const Menu = props => {
                               NickName
                           </div>
                           <div className="info singleInfo">
-                              Name:
+                              Name: <>{localStorage.getItem('userName')}</>
                           </div>
                           <div className="info singleInfo">
                               Birthday:

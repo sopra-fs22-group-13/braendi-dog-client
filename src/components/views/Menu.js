@@ -58,12 +58,15 @@ const Menu = props => {
                 case 401:
                     console.error("Unauthorized", error);
                     addError("Unauthorized");
+                    break;
                 case 404:
                     console.error("Lobby not found.", error);
                     addError("We couldn't find that lobby. Maybe it doesn't exist anymore.");
+                    break;
                 default:
                     console.error("Something went wrong.", error);
                     addError("Something unexpected went wrong.");
+                    break;
             }
         }
     }
@@ -83,12 +86,15 @@ const Menu = props => {
                 case 401:
                     console.error("Unauthorized", error);
                     addError("Unauthorized");
+                    break;
                 case 404:
                     console.error("Lobby not found.", error);
                     addError("We couldn't find that lobby. Maybe it doesn't exist anymore.");
+                    break;
                 default:
                     console.error("Something went wrong.", error);
                     addError("Something unexpected went wrong.");
+                    break;
             }
         }
     }
@@ -121,6 +127,7 @@ const Menu = props => {
                 default:
                     console.error("Something went wrong.", error);
                     addError("Something unexpected went wrong.");
+                    break;
             }
         }
     }

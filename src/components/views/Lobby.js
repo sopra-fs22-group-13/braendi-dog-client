@@ -29,8 +29,6 @@ specific components that belong to the main one in the same file.
 
 async function invitePlayer(inviteeId) {
     try {
-        console.log(localStorage.getItem("token"));
-        console.log(localStorage.getItem("lobbyId"));
         await api.put("/lobby/" + localStorage.getItem("lobbyId") + "/invitations", {inviteeID: inviteeId}, {
             headers: {
                 'Authorization': "Basic " + localStorage.getItem("token")
@@ -50,6 +48,7 @@ async function invitePlayer(inviteeId) {
             default:
                 console.error("Something unexpected went wrong.", error);
                 addError("Something unexpected went wrong.");
+                break;
         }
     }
 }
@@ -136,15 +135,6 @@ useEffect(() => {
 
     fetchDataLobby();
     fetchDataSearch();
-
-    //fakedata
-    let fakeData = [];
-    for (let index = 0; index < 4; index++) {
-      
-      let entry = {id: 13, username: "Dogerino"}
-      fakeData.push(entry)
-    }
-    //setMembers(fakeData);
 
     return () => { // This code runs when component is unmounted
       document.removeEventListener("lobbyUpdate", lobbyUpdateListener);

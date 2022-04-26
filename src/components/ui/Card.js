@@ -76,8 +76,8 @@ import { moveManager } from "helpers/moveManager";
 
 // get card from cardValue
 function getCard(props) {
-    let cardValue = props.cardValue;
-    switch(cardValue) {
+    let cardPath = props.cardValue;
+    switch(cardPath) {
         case "Joker": return JOKER;
         case "2C": return C2;
         case "3C": return C3;
@@ -145,14 +145,20 @@ let inFocus = false;
 
 const Card = props => {
     const [inFocus, setFocus] = useState(null);
+    let cardValue = props.cardValue;
     let k;
-    function f(type){
+    function unFocus(type){
         alert("reset here");
         setFocus(false);
         moveManager.unregisterCallback(k);
     }
+    function inFocus(type){
+        alert("set here");
+        setFocus(true);
+        moveManager.selectCard({cardValue});
+    }
 
-    let cardValue = getCard(props);
+    let cardPath = getCard(props);
     if(props.faceDown) {
         return (
             <div className="card">
@@ -163,10 +169,9 @@ const Card = props => {
         if(inFocus){
             return(
                 <div className="card selected">
-                <img src={cardValue} alt="card front" style={{top: Math.random() * 0 + "%"}}
+                <img src={cardPath} alt="card front" style={{top: Math.random() * 0 + "%"}}
                     onClick={() => {
-                        setFocus(!inFocus)
-                        k = moveManager.registerCallback(f, true, false, false);
+                        k = moveManager.registerCallback(unFocus, false, false, false);
                     }}
                 />
             </div>
@@ -176,11 +181,9 @@ const Card = props => {
             return (
             
                 <div className="card">
-                    <img src={cardValue} alt="card front" style={{top: Math.random() * 0 + "%"}}
+                    <img src={cardPath} alt="card front" style={{top: Math.random() * 0 + "%"}}
                         onClick={() => {
-                            setFocus(!inFocus);
-                            //LUCA ZWAHLEN: For testing only, the card should actually set the correct value... not this shit
-                            moveManager.selectCard({cardValue});
+                            moveManager.registerCallback(inFocus, true, false, false);
                         }
                         }
                     />

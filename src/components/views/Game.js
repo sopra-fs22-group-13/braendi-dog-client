@@ -26,6 +26,12 @@ const Game = () => {
     history.push('/login');
   }
 
+  const leave = () => {
+    localStorage.removeItem('lobbyId');
+    localStorage.removeItem('gametoken');
+    history.push('/menu');
+  }
+
 const [winner, setWinner] = useState("Red");
 let winnerPrompt;
   useEffect(() => {
@@ -36,6 +42,7 @@ let winnerPrompt;
         winnerPrompt = (
           <PromptNotification label ={winner + " won! Congrats!"}/>
       );
+      setTimeout(leave(), 5000);
     }
 
     document.addEventListener("winUpdate", winUpdateListener);

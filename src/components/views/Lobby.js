@@ -11,7 +11,7 @@ import PetsIcon from '@mui/icons-material/Pets';
 import LogoutIcon from '@mui/icons-material/Logout';
 import PropTypes from "prop-types";
 
-import { startListening } from 'components/voice/voiceChat';
+import { VoiceChatManager } from 'components/voice/voiceChat';
 import updateManager from 'helpers/updateManager';
 
 import { getMarbleLocation } from 'helpers/getMarbleLocation';
@@ -261,7 +261,7 @@ let lobbyButton =
   //test voiceChat here, as there is not game yet.
   useEffect(() => {
     updateManager.connectToPersonalUpdate();
-    startListening();
+    VoiceChatManager.startListening();
   }, []);
 
 

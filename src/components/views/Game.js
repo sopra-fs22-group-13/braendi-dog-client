@@ -13,6 +13,7 @@ import Marbles from 'components/views/Marbles';
 import TurnIndicator from 'components/ui/TurnIndicator';
 import { InfoBlockLeft, InfoBlockRight } from 'components/ui/InfoBlock';
 import updateManager from 'helpers/updateManager';
+import { VoiceChatManager } from 'components/voice/voiceChat';
 
 const Game = () => {
   const history = useHistory();
@@ -29,6 +30,7 @@ const Game = () => {
   const leave = () => {
     localStorage.removeItem('lobbyId');
     localStorage.removeItem('gametoken');
+    VoiceChatManager.disconnectFromVc();
     history.push('/menu');
   }
 

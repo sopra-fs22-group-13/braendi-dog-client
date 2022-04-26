@@ -29,6 +29,9 @@ export function parseUpdate(rawUpdate)
         case "INVITE":
             updateInvite(message);
             break;
+        case "VOICE":
+            updateVoice(message);
+            break;
         default:
             break;
     }
@@ -83,5 +86,12 @@ function updateInvite(extrainfo)
 {
     console.log("inviteUpdate", extrainfo);
     const event = new CustomEvent('inviteUpdate', { detail: JSON.parse(extrainfo)});
+    document.dispatchEvent(event);
+}
+
+function updateVoice(extrainfo)
+{
+    console.log("voiceUpdate", extrainfo);
+    const event = new CustomEvent('voiceUpdate', { detail: JSON.parse(extrainfo)});
     document.dispatchEvent(event);
 }

@@ -63,7 +63,34 @@ export class moveManager {
 
         if(startInGoal === true && start > 3) return false;
         if(endInGoal === true && end > 3) return false;
-        
+
+        switch(moveManager.#color){
+        case "RED":
+            break;
+        case "BLUE":
+            if(!startInGoal && start!= -1){
+                start = (start + 16) % 64;
+                console.log("start:" + start);
+            }
+            if(!endInGoal){
+                end = (end + 16 ) % 64;
+                console.log("end: "+ end)
+            }
+        case "YELLOW":
+            if(!startInGoal && start!= -1){
+                start = (start + 48) % 64;
+            }
+            if(!endInGoal){
+                end = (end + 48) % 64;
+            }
+        case "GREEN":
+            if(!startInGoal && start!= -1){
+                start = (start + 32) % 64;
+            }
+            if(!endInGoal){
+                end = (end + 32) % 64;
+            }
+        }
         //add
         moveManager.#selected_starts.push([start, startInGoal]);
         moveManager.#selected_ends.push([end, endInGoal]);

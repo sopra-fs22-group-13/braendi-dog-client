@@ -76,6 +76,7 @@ export class moveManager {
                 end = (end + 16 ) % 64;
                 console.log("end: "+ end)
             }
+            break;
         case "YELLOW":
             if(!startInGoal && start!= -1){
                 start = (start + 48) % 64;
@@ -83,6 +84,7 @@ export class moveManager {
             if(!endInGoal){
                 end = (end + 48) % 64;
             }
+            break;
         case "GREEN":
             if(!startInGoal && start!= -1){
                 start = (start + 32) % 64;
@@ -90,6 +92,7 @@ export class moveManager {
             if(!endInGoal){
                 end = (end + 32) % 64;
             }
+            break;
         }
         //add
         moveManager.#selected_starts.push([start, startInGoal]);

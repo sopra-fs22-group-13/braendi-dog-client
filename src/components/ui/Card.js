@@ -147,12 +147,12 @@ const Card = props => {
     const [inFocus, setFocus] = useState(null);
     let cardValue = props.cardValue;
     let k;
-    function unFocus(type){
+    function endFocus(type){
         alert("reset here");
         setFocus(false);
         moveManager.unregisterCallback(k);
     }
-    function inFocus(type){
+    function startFocus(type){
         alert("set here");
         setFocus(true);
         moveManager.selectCard({cardValue});
@@ -171,7 +171,7 @@ const Card = props => {
                 <div className="card selected">
                 <img src={cardPath} alt="card front" style={{top: Math.random() * 0 + "%"}}
                     onClick={() => {
-                        k = moveManager.registerCallback(unFocus, false, false, false);
+                        k = moveManager.registerCallback(endFocus, false, false, false);
                     }}
                 />
             </div>
@@ -183,7 +183,7 @@ const Card = props => {
                 <div className="card">
                     <img src={cardPath} alt="card front" style={{top: Math.random() * 0 + "%"}}
                         onClick={() => {
-                            moveManager.registerCallback(inFocus, true, false, false);
+                            moveManager.registerCallback(startFocus, true, false, false);
                         }
                         }
                     />

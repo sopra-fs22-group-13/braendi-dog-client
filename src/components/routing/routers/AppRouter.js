@@ -43,7 +43,4 @@ const AppRouter = () => {
   );
 };
 
-/*
-* Don't forget to export your component!
- */
 export default AppRouter;

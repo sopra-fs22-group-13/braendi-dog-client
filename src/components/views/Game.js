@@ -35,7 +35,7 @@ const Game = () => {
 const [winner, setWinner] = useState("Red");
 let winnerPrompt;
   useEffect(() => {
-
+    //if somebody wins, display and end game
     function winUpdateListener(event)
     {
       setWinner = event.detail.win;

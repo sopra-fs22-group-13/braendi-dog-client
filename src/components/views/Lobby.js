@@ -19,13 +19,6 @@ import { addError, addInfo, addSuccess } from './ErrorDisplay';
 import { CribSharp } from '@mui/icons-material';
 import { moveManager } from 'helpers/moveManager';
 
-/*
-It is possible to add multiple components inside a single file,
-however be sure not to clutter your files with an endless amount!
-As a rule of thumb, use one file per component and only add small,
-specific components that belong to the main one in the same file.
- */
- 
 
 async function invitePlayer(inviteeId) {
     try {
@@ -264,16 +257,6 @@ let lobbyButton =
     <div className={(members && members.length == 4? "lobby start": "lobby button")} onClick={(e) => tryStartGame(e) }>
          {members? members.length : 0}/4
     </div>
-/*
-if(members.length === 4){
-    lobbyButton = (
-        <div className="lobby start"
-             onClick={() => startGame()}>
-             Start
-        </div>
-    );
-}
-*/
 
   //test voiceChat here, as there is not game yet.
   useEffect(() => {

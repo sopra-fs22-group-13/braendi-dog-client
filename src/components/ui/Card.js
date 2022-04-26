@@ -145,7 +145,12 @@ let inFocus = false;
 
 const Card = props => {
     const [inFocus, setFocus] = useState(null);
-
+    let k;
+    function f(type){
+        alert("reset here");
+        setFocus(false);
+        moveManager.unregisterCallback(k);
+    }
 
     let cardValue = getCard(props);
     if(props.faceDown) {
@@ -159,7 +164,10 @@ const Card = props => {
             return(
                 <div className="card selected">
                 <img src={cardValue} alt="card front" style={{top: Math.random() * 0 + "%"}}
-                    onClick={() => setFocus(!inFocus)}
+                    onClick={() => {
+                        setFocus(!inFocus)
+                        k = moveManager.registerCallback(f, true, false, false);
+                    }}
                 />
             </div>
             )
@@ -172,7 +180,7 @@ const Card = props => {
                         onClick={() => {
                             setFocus(!inFocus);
                             //LUCA ZWAHLEN: For testing only, the card should actually set the correct value... not this shit
-                            moveManager.selectCard("4S");
+                            moveManager.selectCard({cardValue});
                         }
                         }
                     />

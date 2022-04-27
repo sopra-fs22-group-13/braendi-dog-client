@@ -56,21 +56,6 @@ useEffect(() => {
     //only add the listener on initial render, otherwise we have multiple
     document.addEventListener("boardUpdate", boardUpdateListener);
 
-    //mock data
-    let fakeData = new Object();
-    fakeData.board = ["RED", "NONE", "NONE", "NONE", "NONE", "NONE", "RED", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "BLUE", "NONE", "NONE", "BLUE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "GREEN", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "YELLOW", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "YELLOW", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE"];
-    fakeData.redGoal = ["NONE", "NONE", "NONE", "RED"];
-    fakeData.greenGoal = ["NONE", "NONE", "GREEN", "GREEN"];
-    fakeData.blueGoal = ["NONE", "NONE", "NONE", "BLUE"];
-    fakeData.yellowGoal = ["NONE", "YELLOW", "NONE", "NONE"];
-    fakeData.redBase = 2;
-    fakeData.greenBase = 1;
-    fakeData.blueBase = 3;
-    fakeData.yellowBase = 3;
-    fakeData.lastPlayedCard = "2S";
-    fakeData.colorMapping = {128: "RED", 12: "BLUE", 124: "YELLOW", 38: "GREEN"};
-    setData(fakeData);
-
     return () => { // This code runs when component is unmounted
       document.removeEventListener("boardUpdate", boardUpdateListener);
     }

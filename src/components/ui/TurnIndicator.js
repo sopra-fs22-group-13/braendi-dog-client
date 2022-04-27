@@ -65,7 +65,7 @@ const TurnIndicator = (props) => {
         if(state === userColor)
         {
             //notification
-            addInfo("Your Turn!");
+            setTimeout(() => {addInfo("Your Turn!");}, 10);
         }
 
        let icon = dict[state];

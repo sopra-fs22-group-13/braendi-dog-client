@@ -113,9 +113,9 @@ export class moveManager {
      */
     static async makeMoveRequest()
     {
-        let errorcode = undefined;
+        let errormessage = undefined;
 
-        if (!moveManager.#color || !moveManager.#selected_card || moveManager.#selected_ends.length == 0 || moveManager.#selected_starts.length == 0) errorcode = 1;
+        if (!moveManager.#color || !moveManager.#selected_card || moveManager.#selected_ends.length == 0 || moveManager.#selected_starts.length == 0) errormessage = "The move is not complete. Please try again.";
         
         //make request
         try{
@@ -143,24 +143,21 @@ export class moveManager {
                         'Authorization': "Basic " + usertoken //the authorization token required
                     }
                 });
-            
-            if(response.status == 409)
-            {
-                errorcode = 3;
-            }
-            else if(response.status != 204)
-            {
-                errorcode = 4;
-            }
 
         }catch (e) {
-            console.log(e)
-            errorcode = 2;
+            if(e.response)
+            {
+                console.log(e.response);
+                errormessage = e.response.status + ": " + e.response.data.message;
+            }else
+            {
+                errormessage = "Unexpected Error, please try again.";
+            }
         }
         
         moveManager.#reset();
         moveManager.#sendCallback("SEND_AND_RESET");
-        return errorcode? errorcode : 0;
+        return errormessage;
     }
 
     /**

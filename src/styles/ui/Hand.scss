@@ -7,14 +7,5 @@
  */
 .hand{
     display: flex;
-    position: relative;
     justify-content: center;
 }
-
-//old:
-// .hand{
-//     display: flex;
-//     flex: 1; (this does nothing)
-//     flex-direction: row;
-//     justify-content: space-evenly;
-// }

@@ -31,16 +31,8 @@
         & > img{
             border-radius: 5%;
             border-color: tomato;
-            border-width: 3%;
+            border-width: 0.25em;
             border-style: solid;
         }
     }
 }
-
-
-//old:
-// .card{
-//     display: flex; (this does nothing)
-//     flex:1 ;
-//     justify-content: space-evenly; (this does nothing)
-// }

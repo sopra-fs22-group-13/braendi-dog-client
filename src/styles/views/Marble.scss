@@ -7,9 +7,10 @@
     width: 3%;
 
     &.selected{
+        outline-width: 0.25em;
+        outline-style: solid;
+        outline-color: tomato;
+        outline-offset: -0.125em;
         border-radius: 50%;
-        border-color: tomato;
-        border-width: 3%;
-        border-style: solid;
     }
 }

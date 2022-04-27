@@ -210,26 +210,13 @@ switch(userColor){
 
   function handleMoveDone()
   {
-    //not seven
-    if(!isSeven)
-    {
+    //add the last move
       moveManager.setColor(fromPos[2]);
       moveManager.addMove(fromPos[0], toPos[0], fromPos[1], toPos[1]);
-      moveManager.makeMoveRequest().then((errorcode) => addError("Failed Move: Code " + errorcode, 3000));
+      moveManager.makeMoveRequest().then((errormessage) => errormessage? addError(errormessage, 3000): null);
 
       setFromPos(undefined);
       setToPos(undefined);
-    }
-    else //7, I cannot be bothered
-    {
-      //add the last move
-      moveManager.setColor(fromPos[2]);
-      moveManager.addMove(fromPos[0], toPos[0], fromPos[1], toPos[1]);
-
-      moveManager.makeMoveRequest().then((errorcode) => addError("Failed Move: Code " + errorcode, 3000));
-      setFromPos(undefined);
-      setToPos(undefined);
-    }
   }
 
   function handleSevenNext()

@@ -21,29 +21,21 @@ const TurnIndicator = (props) => {
         //only add the listener on initial render, otherwise we have multiple
         document.addEventListener("turnUpdate", turnUpdateListener);
 
-        function boardUpdateListener()
-        {
-          const response = api.get(`/game/${localStorage.getItem("gametoken")}/board`, {
-          headers: {
-              'Authorization': "Basic " + localStorage.getItem("token")
-              }
-          });
 
-          response.then((result) => {
-            let newData = JSON.parse(JSON.stringify(result.data));
-            setData(newData);
-          });
-        }
+        const response = api.get(`/game/${localStorage.getItem("gametoken")}/board`, {
+        headers: {
+            'Authorization': "Basic " + localStorage.getItem("token")
+            }
+        });
 
-        //initial request
-        boardUpdateListener();
+        response.then((result) => {
+          let newData = JSON.parse(JSON.stringify(result.data));
+          setData(newData);
+        });
 
-        //only add the listener on initial render, otherwise we have multiple
-        document.addEventListener("boardUpdate", boardUpdateListener);
 
         return () => { // This code runs when component is unmounted
             document.removeEventListener("turnUpdate", turnUpdateListener);
-            document.removeEventListener("boardUpdate", boardUpdateListener);
         }
 
     }, []);
@@ -66,7 +58,7 @@ const TurnIndicator = (props) => {
                 dict = {"RED": <Down/>, "BLUE": <Left/>, "GREEN": <Up/>, "YELLOW": <Right/>};
                 break;
            default:
-                dict = {"BLUE": <Down/>, "GREEN": <Left/>, "YELLOW": <Up/>, "RED": <Right/>};
+                dict = {"GREEN": <Down/>, "YELLOW": <Left/>, "RED": <Up/>, "BLUE": <Right/>};
                 break;
         }
 

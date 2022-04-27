@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react';
 import {api, handleError} from 'helpers/api';
 import {Spinner} from 'components/ui/Spinner';
 import {Button} from 'components/ui/Button';
-import PromptNotification from 'components/ui/PromptNotification';
+import WinningDisplay from 'components/ui/WinningDisplay';
 import Board from 'components/views/Board';
 import {useHistory} from 'react-router-dom';
 import BaseContainer from 'components/ui/BaseContainer';
@@ -16,46 +16,8 @@ import updateManager from 'helpers/updateManager';
 import { VoiceChatManager } from 'components/voice/voiceChat';
 
 const Game = () => {
-  const history = useHistory();
-  const [data, setData] = useState(null);
-  const [users, setUsers] = useState(null);
 
-
-  const logout = () => {
-    updateManager.disconnectFromPersonalUpdate();
-    localStorage.clear();
-    history.push('/login');
-  }
-
-  const leave = () => {
-    localStorage.removeItem('lobbyId');
-    localStorage.removeItem('gametoken');
-    VoiceChatManager.disconnectFromVc();
-    history.push('/menu');
-  }
-
-const [winner, setWinner] = useState("Red");
-let winnerPrompt;
-  useEffect(() => {
-    //if somebody wins, display and end game
-    function winUpdateListener(event)
-    {
-      setWinner = event.detail.win;
-        winnerPrompt = (
-          <PromptNotification label ={winner + " won! Congrats!"}/>
-      );
-      setTimeout(leave(), 5000);
-    }
-
-    document.addEventListener("winUpdate", winUpdateListener);
-
-    return () => { // This code runs when component is unmounted
-      document.removeEventListener("winUpdate", winUpdateListener);
-    }
-  }, []);
-
-  let background = <Spinner/>;
-
+ let background = <Spinner/>;
   return (
     <BaseContainer className="game">
     <div className="board flex">
@@ -65,10 +27,9 @@ let winnerPrompt;
             <TurnIndicator></TurnIndicator>
             <HandsWrapper></HandsWrapper>
             <Marbles/>
-            {winnerPrompt}
         </div>
         <InfoBlockRight/>
-
+        <WinningDisplay/>
     </div>
     </BaseContainer>
   );

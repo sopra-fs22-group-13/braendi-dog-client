@@ -30,7 +30,7 @@ const WinningDisplay = () => {
         winnerPrompt = (
              <Display label ={winner + " won! Congrats!"}/>
          );
-        //setTimeout(leave(), 5000);
+        setTimeout(() => leave(), 5000);
      }
       useEffect(() => {
         //if somebody wins, display and end game

@@ -56,11 +56,6 @@ Player.propTypes = {
   user: PropTypes.object
 };
 
-const LobbyButton = (props) => (
-    <div className="lobby button">
-            <text> members.length/4 </text>
-    </div>
-);
 
 const Member = ({member}) => {
     return(

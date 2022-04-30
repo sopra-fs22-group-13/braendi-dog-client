@@ -103,9 +103,9 @@ const RegistrationLogin = props => {
   return (
       <div>
           <Header height="100"/>
-          <BaseContainer>
-              <div className="registrationLogin containerRegistrationLogin">
-                  <div className="login formLogin">
+          <BaseContainer className="base-container-ReLo">
+              <div className="containerRegistrationLogin">
+                  <div className="login">
                       <div className="content title">
                           Login
                       </div>
@@ -135,7 +135,7 @@ const RegistrationLogin = props => {
                   </div>
                   <div className="content lineverticalright"> </div>
                   <div className="content lineverticalleft"> </div>
-                  <div className="registration formRegister">
+                  <div className="registration">
                       <div className="content title">
                           Register
                       </div>

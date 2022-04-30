@@ -6,7 +6,6 @@ import {useHistory} from 'react-router-dom';
 import {Button} from 'components/ui/Button';
 import 'styles/views/Lobby.scss';
 import BaseContainer from "components/ui/BaseContainer";
-import SideBarContainer from "components/ui/SideBarContainer";
 import PetsIcon from '@mui/icons-material/Pets';
 import LogoutIcon from '@mui/icons-material/Logout';
 import PropTypes from "prop-types";
@@ -267,38 +266,33 @@ let lobbyButton =
 
   return (
     <BaseContainer>
-        <SideBarContainer className="side-bar-container">
-          <div className="side-bar container">
-            <div>
-              <h1> Dog </h1>
-              <Button
-                className="side-bar button"
-                width="100%"
-                onClick={() =>history.push(`/menu`)}
-              >
-                Start
-              </Button>
-              <Button
-                className="side-bar button active"
-                width="100%"
-              >
-                Create Game
-              </Button>
-            </div>
-            <div>
-              <Button
-                className="side-bar button"
-                width="100%"
-              >
-                Profile
-              </Button>
-              <div className="side-bar logout"
-                onClick={() => logout()}>
-                <LogoutIcon />
-              </div>
-            </div>
+      <div className="side-bar container">
+        <div>
+          <h1> Dog </h1>
+          <Button
+            className="side-bar button"
+            onClick={() =>history.push(`/menu`)}
+          >
+            Start
+          </Button>
+          <Button
+            className="side-bar button active"
+          >
+            Create Game
+          </Button>
+        </div>
+        <div>
+          <Button
+            className="side-bar button"
+          >
+            Profile
+          </Button>
+          <div className="side-bar logout"
+            onClick={() => logout()}>
+            <LogoutIcon />
           </div>
-        </SideBarContainer>
+        </div>
+      </div>
 
         <div className="lobby container">
           <h1 className="lobby"> LOBBY </h1>

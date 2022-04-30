@@ -1,14 +1,5 @@
 @import 'styles/theme';
 
-.base-container{
-    margin-left: 0;
-    padding-left: 0px;
-    margin-right: 0;
-    padding-right: 0px;
-    max-width: 100vw;
-    display: flex;
-    justify-content: space-between;
-}
 .lobby{
     & h1{
         color: black;
@@ -22,18 +13,15 @@
         justify-content: center;
         flex-wrap: wrap;
         flex-direction: row;
-        margin-top: auto;
-        margin-bottom: auto;
         min-width: 510px;
-        min-height: 600px;
+        margin: auto 10% auto 10%;
     }
     &.member-container{
         display: flex;
         justify-content: center;
         flex-direction: column;
         flex-basis: 50%;
-        height: 33vh;
-        min-height: 210px;
+        height: Max(33vh, 250px);
         align-items: center;
     }
     &.circle-container{
@@ -97,11 +85,13 @@
         border-right: 3px solid black;
     }
     &.button{
-        height: 60px;
+        height: fit-content;
+        width: 100%;
+        min-width: 197px;
         color: black;
         text-align: left;
         font-size: 28px;
-        padding-left: 40px;
+        padding: 12px 0 12px 40px;
         background-color: #ECF4FE;
         border-radius: 0;
         &.active {background-color: #8DA9C4;}
@@ -128,16 +118,21 @@
         font-size: 48px;
     }
     flex-direction: column;
-    height: 100vh;
+    width: 15%;
+    min-width: 200px;
 }
 .search{
     &.container{
         width: 25%;
+        min-width: 300px;
         display: flex;
         flex-direction: column;
         padding-right: 60px;
     }
     &.searchbox{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
         height: 85%;
         background-color: $buttonColorLight;
         margin-top: auto;
@@ -146,6 +141,7 @@
     &.searchbar{
         display: flex;
         justify-content: center;
+        width: 100%;
         margin-top: 40px;
     }
     &.input {
@@ -162,10 +158,10 @@
     &.user-list{
         overflow-x: hidden;
         overflow-y: auto;
-        height: calc(80%);
+        height: 80%;
+        width: 85%;
         display: flex;
         flex-direction: column;
-        justify-content: start;
         align-items: center;
     }
     &.placeholder{
@@ -176,8 +172,8 @@
 }
 .player {
   &.container {
-    margin: 0.5em 0;
-    width: 20em;
+    margin: 8px 0;
+    width: 100%;
     padding: 10px;
     border-radius: $borderRadius;
     display: flex;

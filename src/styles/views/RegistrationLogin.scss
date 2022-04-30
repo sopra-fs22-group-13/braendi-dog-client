@@ -1,21 +1,21 @@
 @import 'styles/theme';
 
-
-.registrationLogin{
-  &.containerRegistrationLogin{
+.base-container-ReLo{
+    height: calc(100vh - 130px);
+}
+.containerRegistrationLogin{
     margin-left: auto;
     margin-right: auto;
     width: 60%;
+    height: 100%;
     min-width: 600px;
     min-height: 400px;
     color: $buttonColorDark;
     display: flex;
     @include center;
-  }
 }
 
 .registration{
-  &.formRegister {
     float: right;
     font-size: 1vw;
     width: 45%;
@@ -27,13 +27,10 @@
     border-radius: $borderRadius;
     border: 5px solid $buttonColorLight;
     transition: opacity 0.5s ease, transform 0.5s ease;
-  }
-
 }
 
 
 .login{
-  &.formLogin {
     float: left;
     font-size: 1vw;
     width: 45%;
@@ -45,7 +42,6 @@
     border-radius: $borderRadius;
     border: 5px solid $buttonColorLight;
     transition: opacity 0.5s ease, transform 0.5s ease;
-  }
 }
 
 .content{

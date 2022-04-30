@@ -1,12 +1,7 @@
 @import 'styles/theme';
-.base-container{
-  margin-left: 0;
-  padding-left: 0px;
-  margin-right: 0;
-  padding-right: 0px;
-  max-width: 100vw;
-  display: flex;
-  justify-content: space-between;
+
+.base-container-menu{
+    height: calc(100vh - 130px);
 }
 
 .menuContainer{
@@ -14,8 +9,8 @@
   margin-right: auto;
   width: 60%;
   height: 80vh;
-  min-width: 600px;
-  min-height: 400px;
+  min-width: 800px;
+  //min-height: 600px;
   max-width: $DESKTOP_WIDTH;
   color: $buttonColorDark;
   display: flex;
@@ -23,46 +18,56 @@
 }
 
 .info{
+  flex-direction: column;
   &.userInfo {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    width: 30%;
-    padding-top: 1vh;
-    padding-bottom: 1vh;
+    width: 40%;
+    height: 85%;
+    min-height: 500px;
+    min-width: 250px;
+    padding-top: 1%;
+    padding-bottom: 1%;
     border-radius: $borderRadius;
     border: 5px solid $buttonColorLight;
   }
 
-
-
   &.foto{
-    margin: auto;
     background-color: $buttonColorLight;
     border-radius: 50%;
-    width: 4vw;
-    height: 4vw;
-    margin: 1vw auto 1vw auto;
-
+    width: 5vw;
+    height: 5vw;
+    min-width: 70px;
+    min-height: 70px;
+    margin: 5% auto 0 auto;
   }
 
   &.infoContainer {
-    font-size: 2vh;
-    text-align: center;
+    font-size: 18px;
+    width: 60%;
+    text-align: left;
   }
   &.nickName{
-    padding-top: 2vh;
-    font-size: 4vh;
-  }
-
-  &.singleInfo{
-    padding: 1vw;
-  }
-
-  &.button-container {
-    margin-top: 2vh;
+    padding-top: 2%;
+    font-size: 32px;
     text-align: center;
   }
-  &.spaceUp{
-    padding-bottom: 1vh;
+  &.singleInfo{
+    padding: 8%;
+  }
+  &.button-container {
+    display: flex;
+    margin-bottom: 5%;
+    width: 100%;
+    align-items: center;
+  }
+  &.button{
+    flex-direction: initial;
+    font-size: 22px;
+    width: 60%;
+    min-height: 40px;
+    margin: 1%;
   }
 
 }
@@ -82,8 +87,7 @@
 
 .invites{
   &.container {
-    align-items: center;
-    width: 35%;
+    width: 40%;
     position: relative;
     height: 100%;
     overflow: hidden;
@@ -91,8 +95,9 @@
 
   &.titleInvites{
     text-align: center;
-    font-size: 3vh;
-    padding-bottom: 1vh;
+    font-size: 32px;
+    margin-bottom: 3%;
+    margin-top: 3%;
   }
 
   &.inviteslist {
@@ -105,16 +110,17 @@
   }
 
   &.singleInvites{
+    display: flex;
     background-color: $buttonColorDark;
     color: $textClear;
     border-radius: 7px;
-    font-size: 3vh;
+    font-size: 22px;
     height: fit-content;
-    display: flex;
+    min-height: 46px;
     justify-content: center;
     align-items: center;
-    padding: 0.7vh 1vw 0.7vh 1vw;
-    margin-bottom: 0.7em;
+    padding: 12px 15px 12px 15px;
+    margin-bottom: 10px;
   }
 
   &.inviteText {
@@ -123,18 +129,14 @@
   }
 
   &.inviteButton {
-    font-size: 3vh;
     margin-left: auto;
     width: fit-content;
-    height: 5vh;
+    height: 80%;
     text-align: center;
     border-radius: 2px;
     color: $textDark;
     background-color: $buttonColorLight;
-    padding-top: 0.5vh;
-    padding-bottom: 0.2vh;
-    padding-left: 1vw;
-    padding-right: 1vw;
+    padding: 9px 15px 9px 15px;
 
   }
 
@@ -146,8 +148,14 @@
     margin-right: auto;
     margin-left: auto;
     border-top: 2px solid $darkLine  ;
-    padding-top: 1vh;
-
+    padding-top: 5%;
   }
+
+  &.button{
+      font-size: 22px;
+      width: 60%;
+      min-height: 40px;
+      margin: 1%;
+    }
 
 }

@@ -163,16 +163,16 @@ const Menu = props => {
   return (
       <div>
           <Header height="15vh"/>
-          <BaseContainer>
+          <BaseContainer className="base-container-menu">
               <div className="menuContainer">
                   <div className="info userInfo">
 
                           <div className="info foto">
                           </div>
-                      <div className="info infoContainer">
                           <div className="info nickName">
-                              NickName
+                            NickName
                           </div>
+                      <div className="info infoContainer">
                           <div className="info singleInfo">
                               Name: <>{localStorage.getItem('userName')}</>
                           </div>
@@ -188,11 +188,10 @@ const Menu = props => {
                       </div>
 
                       <div className="info button-container">
-                          <Button width="60%" >
+                          <Button className="info button" >
                               Edit
                           </Button>
-                          <div className="info spaceUp"> </div>
-                          <Button width="60%"  onClick={() => logout()}
+                          <Button className="info button"  onClick={() => logout()}
                           >
                               Logout
                           </Button>
@@ -213,7 +212,7 @@ const Menu = props => {
 
                       <div className="invites createGame">
 
-                          <Button width="60%" onClick={() => createNewLobby()}>
+                          <Button className="invites button" onClick={() => createNewLobby()}>
                               Create Game
                           </Button>
 

@@ -6,7 +6,6 @@ import {useHistory} from 'react-router-dom';
 import {Button} from 'components/ui/Button';
 import 'styles/ui/HandsWrapper.scss';
 import BaseContainer from "components/ui/BaseContainer";
-import SideBarContainer from "components/ui/SideBarContainer";
 import PetsIcon from '@mui/icons-material/Pets';
 import LogoutIcon from '@mui/icons-material/Logout';
 import PropTypes from "prop-types";

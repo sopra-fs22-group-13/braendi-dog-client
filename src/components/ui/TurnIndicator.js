@@ -46,19 +46,19 @@ const TurnIndicator = (props) => {
 
         switch(userColor){
             case "BLUE":
-                dict = {"BLUE": <Down/>, "GREEN": <Left/>, "YELLOW": <Up/>, "RED": <Right/>};
+                dict = {"BLUE": <Down style = {{color: "LightSkyBlue"}}/>, "GREEN": <Left style = {{color: "#81EE81"}}/>, "YELLOW": <Up style = {{color: "#F8EC79"}}/>, "RED": <Right style = {{color: "#E96464"}}/>};
                 break;
            case "GREEN":
-                dict = {"GREEN": <Down/>, "YELLOW": <Left/>, "RED": <Up/>, "BLUE": <Right/>};
+                dict = {"GREEN": <Down style = {{color: "#81EE81"}}/>, "YELLOW": <Left style = {{color: "#F8EC79"}}/>, "RED": <Up style = {{color: "#E96464"}}/>, "BLUE": <Right style = {{color: "LightSkyBlue"}}/>};
                 break;
            case "YELLOW":
-                dict = {"YELLOW": <Down/>, "RED": <Left/>, "BLUE": <Up/>, "GREEN": <Right/>};
+                dict = {"YELLOW": <Down style = {{color: "#F8EC79"}}/>, "RED": <Left style = {{color: "#E96464"}}/>, "BLUE": <Up style = {{color: "LightSkyBlue"}}/>, "GREEN": <Right style = {{color: "#81EE81"}}/>};
                 break;
            case "RED":
-                dict = {"RED": <Down/>, "BLUE": <Left/>, "GREEN": <Up/>, "YELLOW": <Right/>};
+                dict = {"RED": <Down style = {{color: "#E96464"}}/>, "BLUE": <Left style = {{color: "LightSkyBlue"}}/>, "GREEN": <Up style = {{color: "#81EE81"}}/>, "YELLOW": <Right style = {{color: "#F8EC79"}}/>};
                 break;
            default:
-                dict = {"GREEN": <Down/>, "YELLOW": <Left/>, "RED": <Up/>, "BLUE": <Right/>};
+                dict = {"GREEN": <Down style = {{color: "#81EE81"}}/>, "#F8EC79": <Left style = {{color: "#F8EC79"}}/>, "RED": <Up style = {{color: "#E96464"}}/>, "BLUE": <Right style = {{color: "LightSkyBlue"}}/>};
                 break;
         }
 

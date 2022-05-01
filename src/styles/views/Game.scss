@@ -1,12 +1,5 @@
 @import 'styles/theme';
 
-/* The '&' is a shorthand for the containing element,
-  so for example a '&.user-list' inside .game will compile to
-  .game.user-list
-
-  for more information visit https://sass-lang.com/guide
- */
-
 .game {
   &.container {
     background: $background;
@@ -17,16 +10,6 @@
     align-items: center;
 
   }
-  &.user-list {
-    list-style: none;
-    padding-left: 0;
-  }
-  &.user-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
   & p,h2 {
     margin: 0.5em 0;
   }
@@ -35,28 +18,19 @@
 .board{
     overflow: hidden;
 
-&.flex{
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-}
-&.container{
-    position: relative;
-    height: 100%;
-}
-&.bg-img{
-    /* Make sure the bg comes first and is relative, so the container knows its size */
-    position:relative;
-    height: 100vh;
-    width: auto
-}
-&.marble{
-    /* the marble is now absolute TO THE PARENT ELEMENT, so calcualte top and left accordingly */
-    position: absolute;
-    left: calc(34.73858833% - 1.5%);
-    top: calc(74.06699317% - 1.5%);
-    height: 3%;
-    width: 3%;
-}
+   &.flex{
+       width: 100vw;
+       height: 100vh;
+       display: flex;
+       justify-content: center;
+       min-height: 600px;
+       min-width: 800px;
+       aspect-ratio: 4/3;
+
+   }
+    &.container{
+        position: relative;
+        height: 100%;
+        min-width: 800px;
+    }
 }

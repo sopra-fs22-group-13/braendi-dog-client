@@ -265,12 +265,6 @@ let lobbyButton =
         <div>
           <h1> Dog </h1>
           <Button
-            className="side-bar button"
-            onClick={() =>history.push(`/menu`)}
-          >
-            Start
-          </Button>
-          <Button
             className="side-bar button active"
           >
             Create Game

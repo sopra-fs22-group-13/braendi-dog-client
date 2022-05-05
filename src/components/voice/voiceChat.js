@@ -1,3 +1,4 @@
+import { addError } from "components/views/ErrorDisplay";
 import SendBirdCall from "sendbird-calls" 
 
 export class VoiceChatManager{
@@ -7,6 +8,9 @@ export class VoiceChatManager{
     static #ROOM_ID = "none";
     static #currentRoom = null;
     static #listening = false;
+    static #unsubscribe = null;
+    static #selfMuted = false;
+    static #othersMuted = false;
 
     /**
      * starts listening to the startUpdate event that should be triggered when a game starts.
@@ -55,7 +59,7 @@ export class VoiceChatManager{
 
         let room = await SendBirdCall.fetchRoomById(VoiceChatManager.#ROOM_ID).catch(e => {
             console.log(e.message);
-            alert("room does not exist!");
+            addError("VC: room does not exist so we cannot enter.");
         });  
 
         console.log(room);
@@ -77,9 +81,16 @@ export class VoiceChatManager{
 
         room.enter(enterParams).then(() => {
             room.setAudioForLargeRoom(document.getElementById("audio-speaker")); //reference the audio DOMobject
-            room.localParticipant.unmuteMicrophone()
-            room.localParticipant.startVideo()//not necessary (?i think?)
+            room.localParticipant.unmuteMicrophone();
             });
+
+        VoiceChatManager.#unsubscribe = room.on("deleted", () => {
+            VoiceChatManager.#currentRoom = null;
+            if(VoiceChatManager.#unsubscribe != null) {
+                VoiceChatManager.#unsubscribe();
+                VoiceChatManager.#unsubscribe = null;
+            }
+        });
 
         VoiceChatManager.#currentRoom = room;
         console.log(room);
@@ -91,11 +102,66 @@ export class VoiceChatManager{
      */
     static disconnectFromVc()
     {
+        if(VoiceChatManager.#currentRoom == null) return
         try {
-            VoiceChatManager.#currentRoom.exit() // Participant has exited the room successfully.
+            VoiceChatManager.#currentRoom.exit(); // Participant has exited the room successfully.
+            if(VoiceChatManager.#unsubscribe != null) {
+                VoiceChatManager.#unsubscribe();
+                VoiceChatManager.#unsubscribe = null;
+            }
         } catch (error) {
-            alert("could not exit the room:" + error.message.toString());
+            addError("could not exit the room:" + error.message.toString());
         }
+    }
+
+    /**
+     * Toggles the microphone mute state of self
+     * @returns Now muted? bool
+     */
+    static toggleMuteSelf()
+    {
+        if(VoiceChatManager.#currentRoom == null)
+        {
+            addError("could not toggle mute of others");
+            return VoiceChatManager.#selfMuted;
+        }
+
+        if(VoiceChatManager.#selfMuted)
+        {
+            VoiceChatManager.#currentRoom.localParticipant.unmuteMicrophone();
+            VoiceChatManager.#selfMuted = false;
+        }else
+        {
+            VoiceChatManager.#currentRoom.localParticipant.muteMicrophone();
+            VoiceChatManager.#selfMuted = true;
+        }
+
+        return VoiceChatManager.#selfMuted;
+    }
+
+    /**
+     * Toggles the microphone mute state of all other participants simoultaniously
+     * @returns Now muted? bool
+     */
+    static toggleMuteOthers()
+    {
+        try{
+            let audioObj = document.getElementById("audio-speaker");
+            
+            if(VoiceChatManager.#othersMuted)
+            {
+                audioObj.muted = false;
+                VoiceChatManager.#othersMuted = false;
+
+            }else
+            {
+                audioObj.muted = true;
+                VoiceChatManager.#othersMuted = true;
+            }
+        }catch{
+            addError("could not toggle mute of others");
+        }
+        return VoiceChatManager.#othersMuted;
     }
 
 }

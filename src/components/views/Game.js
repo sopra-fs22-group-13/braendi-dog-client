@@ -9,6 +9,7 @@ import BaseContainer from 'components/ui/BaseContainer';
 import PropTypes from "prop-types";
 import "styles/views/Game.scss";
 import HandsWrapper from 'components/ui/HandsWrapper';
+import CardStack from 'components/ui/CardStack';
 import Marbles from 'components/views/Marbles';
 import TurnIndicator from 'components/ui/TurnIndicator';
 import { InfoBlockLeft, InfoBlockRight } from 'components/ui/InfoBlock';
@@ -25,6 +26,7 @@ const Game = () => {
         <div className="board container">
             <Board/>
             <TurnIndicator></TurnIndicator>
+            <CardStack stackCard="KD"/>
             <HandsWrapper></HandsWrapper>
             <Marbles/>
         </div>

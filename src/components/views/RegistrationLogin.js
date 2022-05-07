@@ -61,6 +61,7 @@ const RegistrationLogin = props => {
           const auth= response.headers.authorization;
           localStorage.setItem('token', auth.substring(6));
           localStorage.setItem('userID', response.data.id);
+          localStorage.setItem('userName',response.data.username);
 
           // Get the returned user and update a new object.
 

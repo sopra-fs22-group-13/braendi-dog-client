@@ -10,6 +10,7 @@ import Header from "components/views/Header";
 import updateManager from 'helpers/updateManager';
 import { DiscountRounded } from '@mui/icons-material';
 import { addError, addInfo } from './ErrorDisplay';
+import Popup from "./PopUpEditProfile";
 
 /*
 It is possible to add multiple components inside a single file,
@@ -20,13 +21,39 @@ specific components that belong to the main one in the same file.
 
 
 
-
+const FormField = props => {
+    return (
+        <div className="content field">
+            <label className="content label">
+                {props.label}
+            </label>
+            <input
+                className="content input"
+                placeholder= {props.text}
+                value={props.value}
+                onChange={e => props.onChange(e.target.value)}
+            />
+        </div>
+    );
+};
+FormField.propTypes = {
+    label: PropTypes.string,
+    value: PropTypes.string,
+    onChange: PropTypes.func
+};
 
 const Menu = props => {
     const history = useHistory();
     const [invites, setInvites] = useState([]);
     const [update, setUpdate] = useState(false);
     const componentMounted = useRef(true); // (3) component is mounted
+    const [isOpen, setIsOpen] = useState(false);
+    const [editPassword, setEditPassword] = useState(null);
+    const [editName, setEditName] = useState(null);
+    const [errorEdit, setErrorEdit] = useState(null);
+    const togglePopup = () => {
+        setIsOpen(!isOpen);
+    }
     const Invite = ({invite}) => (
         <div className="invites singleInvites">
             <div className='invites inviteText'>
@@ -105,6 +132,22 @@ const Menu = props => {
         history.push('/login');
     }
 
+    const doEdit = async () =>{
+        try {
+            const requestBody = JSON.stringify({editName, editPassword});
+            const response = await api.post('/edit', requestBody);
+
+            localStorage.setItem('userName', response.data.username);
+            setIsOpen(!isOpen);
+        } catch (error) {
+            setErrorEdit(
+                <div className="errors">
+                    Sorry your registration didn't work
+                </div>
+            )
+        }
+    }
+
     async function createNewLobby() {
         try {
             const response = await api.post("/lobby", null, {
@@ -164,6 +207,32 @@ const Menu = props => {
       <div>
           <Header height="15vh"/>
           <BaseContainer className="base-container-menu">
+
+              {isOpen && <Popup
+                  content={<>
+                      <b>Edit Your Profile</b>
+
+                      <FormField
+                          label= {"Name: " +localStorage.getItem('userName')}
+                          text = "New Name"
+                          value={editName}
+                          width="50%"
+                          onChange={n => setEditName(n)}
+                      />
+
+                      <FormField
+                          label="Edit Password:"
+                          text = "New Password"
+                          value={editPassword}
+                          width="50%"
+                          onChange={n => setEditPassword(n)}
+                      />
+                      {errorEdit}
+                      <Button className={"info button"} onClick={() => doEdit()} > Safe</Button>
+                  </>}
+                  handleClose={togglePopup}
+              />}
+
               <div className="menuContainer">
                   <div className="info userInfo">
 
@@ -188,9 +257,10 @@ const Menu = props => {
                       </div>
 
                       <div className="info button-container">
-                          <Button className="info button" >
+                          <Button className={"info button"}  onClick={togglePopup} >
                               Edit
                           </Button>
+
                           <Button className="info button"  onClick={() => logout()}
                           >
                               Logout

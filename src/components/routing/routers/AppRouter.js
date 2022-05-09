@@ -31,6 +31,11 @@ const AppRouter = () => {
             <Menu/>
           </MenuGuard>
         </Route>
+        <Route exact path="/profilePage">
+          <MenuGuard>
+            <ProfilePage/>
+          </MenuGuard>
+        </Route>
         <Route exact path="/lobby">
           <LobbyGuard>
             <Lobby/>

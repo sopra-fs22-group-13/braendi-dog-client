@@ -6,6 +6,7 @@ import {Button} from 'components/ui/Button';
 import 'styles/views/RegistrationLogin.scss';
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
+import user from "models/User";
 
 /*
 It is possible to add multiple components inside a single file,
@@ -35,50 +36,82 @@ FormField.propTypes = {
   onChange: PropTypes.func
 };
 
-const Login = props => {
+const ProfilePage = props => {
   const history = useHistory();
-  const [name, setName] = useState(null);
+  const [user, setUser]= useState(null);
+  const [password, setPassword] = useState(null);
   const [username, setUsername] = useState(null);
+  const [status, setStatus] = useState(null);
+  const [avatar, setAvatar] = useState(null);
+  const [description, setDescription] = useState(null);
+  const [wins, setWins] = useState(null);
+  const [gotInGoals, setGotInGoals] = useState(null);
 
-  const doLogin = async () => {
-    try {
-      const requestBody = JSON.stringify({username, name});
-      const response = await api.post('/users', requestBody);
 
-      // Get the returned user and update a new object.
-      const user = new User(response.data);
-
-      // Store the token into the local storage.
-      localStorage.setItem('token', user.token);
-
+  const doMenu = async () => {
       // RegistrationLogin successfully worked --> navigate to the route /game in the GameRouter
       history.push(`/game`);
-    } catch (error) {
-      alert(`Something went wrong during the login: \n${handleError(error)}`);
-    }
   };
+
+  const getData = async ()=>{
+    try {
+      const requestBody = JSON.stringify(localStorage.getItem('userID'));
+      const response = await api.post('/users', requestBody);
+      setUser( new User(response.data));
+
+    }catch (error){
+      addError("Error by fatching data")
+    }
+
+  }
 
   return (
     <BaseContainer>
       <div className="login container">
         <div className="login form">
+          {getData()}
           <FormField
-            label="Username"
-            value={username}
+            label={"Username" + user.username}
+            value={name}
             onChange={un => setUsername(un)}
           />
           <FormField
-            label="Name"
-            value={name}
-            onChange={n => setName(n)}
+            label={"Password" + user.password}
+            value={password}
+            onChange={n => setPassword(n)}
+          />
+          <FormField
+              label={"Status" + user.status}
+              value={status}
+              onChange={un => setStatus(un)}
+          />
+          <FormField
+              label={"Avatar" + user.avatar}
+              value={avatar}
+              onChange={n => setAvatar(n)}
+          />
+          <FormField
+              label={"Description" + user.description}
+              value={description}
+              onChange={un => setUsername(un)}
+          />
+          <FormField
+              label={"Wins" + user.wins}
+              value={wins}
+              onChange={n => setPassword(n)}
+          />
+          <FormField
+              label={"gotInGoals"+ user.gotInGoals}
+              value={gotInGoals}
+              onChange={n => setPassword(n)}
           />
           <div className="login button-container">
             <Button
-              disabled={!username || !name}
+              disabled={!username || !Password}
               width="100%"
-              onClick={() => doLogin()}
+              onClick={() => doMenu()}
             >
-              Login
+              Back
             </Button>
           </div>
         </div>
@@ -91,4 +124,4 @@ const Login = props => {
  * You can get access to the history object's properties via the withRouter.
  * withRouter will pass updated match, location, and history props to the wrapped component whenever it renders.
  */
-export default Login;
+export default ProfilePage;

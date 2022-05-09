@@ -26,7 +26,7 @@ const Game = () => {
         <div className="board container">
             <Board/>
             <TurnIndicator></TurnIndicator>
-            <CardStack stackCard="KD"/>
+            <CardStack/>
             <HandsWrapper></HandsWrapper>
             <Marbles/>
         </div>

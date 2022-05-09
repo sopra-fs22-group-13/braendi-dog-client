@@ -97,9 +97,13 @@ useEffect(() => {
       } catch (error) {
         if(error.response.status == 404){
           history.push("/menu");
+          addInfo("Lobby closed", 5000);
+        }else
+        {
+          addError("Could not fetch lobby members", 5000);
+          console.error("Details:", error);
         }
-        addError("Could not fetch lobby members", 5000);
-        console.error("Details:", error);
+
       }
     }
 

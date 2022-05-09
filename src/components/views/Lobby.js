@@ -95,6 +95,9 @@ useEffect(() => {
         setMembers(memberList);
 
       } catch (error) {
+        if(error.respone.status = 404){
+          history.push("/menu");
+        }
         addError("Could not fetch lobby members", 5000);
         console.error("Details:", error);
       }

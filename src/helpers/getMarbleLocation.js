@@ -110,7 +110,7 @@ export function getMarbleLocation(where, idx)
     {
         if(idx >= 0 && idx < 64)
         {
-            return dataList[idx];
+            return dataList[(64 - idx) % 64];
         }else
         {
             return null;

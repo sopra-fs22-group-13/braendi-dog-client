@@ -7,6 +7,7 @@ import 'styles/views/RegistrationLogin.scss';
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
 import user from "models/User";
+import { addError } from './ErrorDisplay';
 
 /*
 It is possible to add multiple components inside a single file,
@@ -72,7 +73,7 @@ const ProfilePage = props => {
           {getData()}
           <FormField
             label={"Username" + user.username}
-            value={name}
+            value={username}
             onChange={un => setUsername(un)}
           />
           <FormField
@@ -107,7 +108,7 @@ const ProfilePage = props => {
           />
           <div className="login button-container">
             <Button
-              disabled={!username || !Password}
+              disabled={!username || !password}
               width="100%"
               onClick={() => doMenu()}
             >

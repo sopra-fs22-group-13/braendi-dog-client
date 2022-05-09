@@ -80,7 +80,7 @@ switch(userColor){
         yellowG = ['tr_goal', '/resources/marble_y_light.png'];
         greenB = ['tl_base', '/resources/marble_g_light.png'];
         greenG = ['tl_goal', '/resources/marble_g_light.png'];
-        boardIdx = 16;
+        boardIdx = 48;
         break;
 
     case "RED":
@@ -104,7 +104,7 @@ switch(userColor){
         yellowG = ['bl_goal', '/resources/marble_y_light.png'];
         greenB = ['br_base', '/resources/marble_g_light.png'];
         greenG = ['br_goal', '/resources/marble_g_light.png'];
-        boardIdx = 48;
+        boardIdx = 16;
         break;
 
     case "GREEN":
@@ -127,7 +127,7 @@ switch(userColor){
         yellowG = ['tr_goal', '/resources/marble_y_light.png'];
         greenB = ['tl_base', '/resources/marble_g_light.png'];
         greenG = ['tl_goal', '/resources/marble_g_light.png'];
-        boardIdx = 16;
+        boardIdx = 48;
         break;
 }
 

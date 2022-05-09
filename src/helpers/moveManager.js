@@ -69,20 +69,20 @@ export class moveManager {
             break;
         case "BLUE":
             if(!startInGoal && start!= -1){
-                start = (start + 16) % 64;
+                start = (start + 48) % 64;
                 console.log("start:" + start);
             }
             if(!endInGoal){
-                end = (end + 16 ) % 64;
+                end = (end + 48 ) % 64;
                 console.log("end: "+ end)
             }
             break;
         case "YELLOW":
             if(!startInGoal && start!= -1){
-                start = (start + 48) % 64;
+                start = (start + 16) % 64;
             }
             if(!endInGoal){
-                end = (end + 48) % 64;
+                end = (end + 16) % 64;
             }
             break;
         case "GREEN":

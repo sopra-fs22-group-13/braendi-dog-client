@@ -10,7 +10,7 @@ import PetsIcon from '@mui/icons-material/Pets';
 import LogoutIcon from '@mui/icons-material/Logout';
 import PropTypes from "prop-types";
 
-import { startListening } from 'components/voice/voiceChat';
+import { startListening, VoiceChatManager } from 'components/voice/voiceChat';
 import { connectToPersonalUpdate } from 'helpers/updateManager';
 import Hand from "components/ui/Hand";
 
@@ -73,6 +73,9 @@ const HandsWrapper = props =>
                 <Hand playerCards={formattedRest[0]} ></Hand>
                 <Hand playerCards={formattedRest[1]} ></Hand>
                 <Hand playerCards={formattedRest[2]} ></Hand>
+                <Button onClick={VoiceChatManager.toggleMuteSelf} >MuteMe</Button>
+                <Button onClick={VoiceChatManager.toggleMuteOthers} >MuteOthers</Button>
+
             </div>
         );
     }

@@ -18,25 +18,21 @@ const AppRouter = () => {
       <Switch>
         <Route exact path="/game">
           <GameGuard>
-            {heartBeatCreator.setType("GAME")}
             <Game/>
           </GameGuard>
         </Route>
         <Route exact path="/login">
           <LoginGuard>
-          {heartBeatCreator.killHeartBeat()}
             <RegistrationLogin/>
           </LoginGuard>
         </Route>
         <Route exact path="/menu">
           <MenuGuard>
-          {heartBeatCreator.setType("MENU")}
             <Menu/>
           </MenuGuard>
         </Route>
         <Route exact path="/lobby">
           <LobbyGuard>
-            {heartBeatCreator.setType("LOBBY")}
             <Lobby/>
           </LobbyGuard>
         </Route>

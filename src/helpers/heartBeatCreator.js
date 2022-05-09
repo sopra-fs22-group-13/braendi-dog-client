@@ -18,7 +18,7 @@ export class heartBeatCreator{
     {
         if(heartBeatCreator.#running) return;
         
-        heartBeatCreator.#interval_id = setInterval(this.#intervalCallback, 5000);
+        heartBeatCreator.#interval_id = setInterval(this.#intervalCallback, 2000);
         heartBeatCreator.#running = true;
     }
 

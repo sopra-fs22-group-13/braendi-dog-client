@@ -11,6 +11,7 @@ import Board from "components/views/Board";
 import RegistrationLogin from "components/views/RegistrationLogin";
 import Menu from "../../views/Menu";
 import { heartBeatCreator } from "helpers/heartBeatCreator";
+import ProfilePage from "../../views/ProfilePage";
 
 const AppRouter = () => {
   return (

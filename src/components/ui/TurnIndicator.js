@@ -1,7 +1,7 @@
-import Down from '@mui/icons-material/ArrowCircleDownOutlined';
-import Up from '@mui/icons-material/ArrowCircleUpOutlined';
-import Left from '@mui/icons-material/ArrowCircleLeftOutlined';
-import Right from '@mui/icons-material/ArrowCircleRightOutlined';
+import Down from '@mui/icons-material/ArrowDropDown';
+import Up from '@mui/icons-material/ArrowDropUp';
+import Left from '@mui/icons-material/ArrowLeft';
+import Right from '@mui/icons-material/ArrowRight';
 import {api, handleError} from 'helpers/api';
 import { useEffect, useState } from 'react';
 import { HelpOutline } from '@mui/icons-material';

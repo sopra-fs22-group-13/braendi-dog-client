@@ -9,8 +9,24 @@
     left: 0px;
 
     &> svg{
-        width: 15%;
+        width: 10%;
         height: auto;
-        color: white;
+        position: relative;
+    }
+    [data-testid="ArrowDropDownIcon"]{
+        top: 14%;
+        left: 0%;
+    }
+    [data-testid="ArrowDropUpIcon"]{
+        top: -14%;
+        left: 0%;
+    }
+    [data-testid="ArrowLeftIcon"]{
+        top: 0;
+        left: -10%;
+    }
+    [data-testid="ArrowRightIcon"]{
+        top: 0;
+        left: 10%;
     }
 }

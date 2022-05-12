@@ -17,8 +17,8 @@
         //place left
         position: absolute;
         top: calc(50% - 5%);
-        left: calc(0% - 25% + 5%);
-        width: 50%;
+        left: calc(0% - 20% + 5%);
+        width: 40%;
         height: 10%;
         transform: rotate(90deg);
     }
@@ -26,8 +26,8 @@
         //place at top
         position: absolute;
         top: calc(0%);
-        left: calc(50% - 25%);
-        width: 50%;
+        left: calc(50% - 20%);
+        width: 40%;
         height: 10%;
         transform: rotate(180deg);
     }
@@ -35,8 +35,8 @@
         //place right
         position: absolute;
         top: calc(50% - 5%);
-        left: calc(100% - 25% - 5%);
-        width: 50%;
+        left: calc(100% - 20% - 5%);
+        width: 40%;
         height: 10%;
         transform: rotate(270deg);
     }

@@ -1,0 +1,58 @@
+.playerinfo-container{
+    position:absolute;
+    height: 100%;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+
+    &> div:first-of-type{
+        //place at the bottom
+        position: absolute;
+        top: 90%;
+        left: calc(50% - 30% - 7vh);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: fit-content;
+    }
+    &> div:nth-of-type(2){
+        //place left
+        position: absolute;
+        top: 10%;
+        left: 2%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: fit-content;
+    }
+    &> div:nth-of-type(3){
+        //place at top
+        position: absolute;
+        top: calc(10% - 7vh);
+        left: calc(50% + 30%);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: fit-content;
+    }
+    &> div:nth-of-type(4){
+        //place right
+        position: absolute;
+        top: calc(100% - 10% - 7vh);
+        left: calc(100% - 5% - 7vh);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: fit-content;
+    }
+    [data-testid="VolumeUpIcon"]{
+            color: white;
+            margin-left: 5px;
+            height: 3vh;
+            width: 3vh;
+       }
+    [data-testid="VolumeOffIcon"]{
+            color: white;
+            margin-left: 5px;
+       }
+}

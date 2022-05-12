@@ -3,6 +3,7 @@ import {api, handleError} from 'helpers/api';
 import {Spinner} from 'components/ui/Spinner';
 import {Button} from 'components/ui/Button';
 import WinningDisplay from 'components/ui/WinningDisplay';
+import PlayerInfo from 'components/ui/PlayerInfo';
 import Board from 'components/views/Board';
 import {useHistory} from 'react-router-dom';
 import BaseContainer from 'components/ui/BaseContainer';
@@ -28,6 +29,7 @@ const Game = () => {
             <TurnIndicator></TurnIndicator>
             <CardStack/>
             <HandsWrapper></HandsWrapper>
+            <PlayerInfo/>
             <Marbles/>
         </div>
         <InfoBlockRight/>

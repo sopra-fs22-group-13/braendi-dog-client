@@ -79,6 +79,10 @@ const Lobby = props => {
 
 
 useEffect(() => {
+
+    updateManager.connectToPersonalUpdate();
+
+
     //fetches all members in the lobby
     async function fetchDataLobby() {
       try {

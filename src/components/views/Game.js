@@ -19,7 +19,8 @@ import { VoiceChatManager } from 'components/voice/voiceChat';
 
 const Game = () => {
 
- let background = <Spinner/>;
+  updateManager.connectToPersonalUpdate();
+
   return (
     <BaseContainer className="game">
     <div className="board flex">

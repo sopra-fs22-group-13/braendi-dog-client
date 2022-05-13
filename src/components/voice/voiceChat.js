@@ -122,7 +122,7 @@ export class VoiceChatManager{
     {
         if(VoiceChatManager.#currentRoom == null)
         {
-            addError("could not toggle mute of others");
+            addError("could not toggle mute of self");
             return VoiceChatManager.#selfMuted;
         }
 

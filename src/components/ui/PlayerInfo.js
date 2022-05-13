@@ -32,12 +32,10 @@ const PlayerInfo = props => {
     const [muteStateOthers, setMuteStateOthers] = useState(false);
 
     function muteMe() {
-        VoiceChatManager.toggleMuteSelf();
-        setMuteStateMe(!muteStateMe);
+        setMuteStateMe(VoiceChatManager.toggleMuteSelf());
     }
     function muteOthers() {
-        VoiceChatManager.toggleMuteOthers();
-        setMuteStateOthers(!muteStateOthers);
+        setMuteStateOthers(VoiceChatManager.toggleMuteOthers());
     }
 
     let myPlayer;

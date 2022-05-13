@@ -42,57 +42,43 @@ const PlayerInfo = props => {
     let otherPlayers;
 
 
-    if(muteStateMe){
-        myPlayer = (
-            <div onClick={() => muteMe()}>
-                <Avatar src="/resources/avatar/1.png" sx={{height: "7vh", width: "7vh"}}/>
-                <VolumeOffIcon/>
-            </div>
-        )
-    } else {
-        myPlayer = (
-            <div onClick={() => muteMe()}>
-                <Avatar src="/resources/avatar/1.png" sx={{height: "7vh", width: "7vh"}}/>
-                <VolumeUpIcon/>
-            </div>
-        )
-    }
 
-    if(muteStateOthers){
-        otherPlayers = (
-            <>
-            <div onClick={() => muteOthers()}>
-                <Avatar src="/resources/avatar/2.png" sx={{height: "7vh", width: "7vh"}}/>
-                <VolumeOffIcon/>
+    myPlayer = (
+        <div onClick={() => muteMe()}>
+            <Avatar src="/resources/avatar/1.png" sx={{height: "7vh", width: "7vh"}}/>
+            <div className= "playerinfo-container indicators">
+                {muteStateMe ? <VolumeOffIcon/> : <VolumeUpIcon/> }
+                <label> username </label>
             </div>
-            <div onClick={() => muteOthers()}>
-                <Avatar src="/resources/avatar/3.png" sx={{height: "7vh", width: "7vh"}}/>
-                <VolumeOffIcon/>
-            </div>
-            <div onClick={() => muteOthers()}>
-                <Avatar src="/resources/avatar/4.png" sx={{height: "7vh", width: "7vh"}}/>
-                <VolumeOffIcon/>
-            </div>
-            </>
-        )
-    } else {
-        otherPlayers = (
-            <>
-            <div onClick={() => muteOthers()}>
-                <Avatar src="/resources/avatar/2.png" sx={{height: "7vh", width: "7vh"}}/>
-                <VolumeUpIcon/>
-            </div>
-            <div onClick={() => muteOthers()}>
-                <Avatar src="/resources/avatar/3.png" sx={{height: "7vh", width: "7vh"}}/>
-                <VolumeUpIcon/>
-            </div>
-            <div onClick={() => muteOthers()}>
-                <Avatar src="/resources/avatar/4.png" sx={{height: "7vh", width: "7vh"}}/>
-                <VolumeUpIcon/>
-            </div>
-            </>
-        )
-    }
+        </div>
+    )
+
+
+    otherPlayers = (
+        <>
+        <div onClick={() => muteOthers()}>
+             <Avatar src="/resources/avatar/2.png" sx={{height: "7vh", width: "7vh"}}/>
+             <div className= "playerinfo-container indicators">
+                 {muteStateOthers ? <VolumeOffIcon/> : <VolumeUpIcon/> }
+                 <label> username </label>
+             </div>
+         </div>
+        <div onClick={() => muteOthers()}>
+             <Avatar src="/resources/avatar/3.png" sx={{height: "7vh", width: "7vh"}}/>
+             <div className= "playerinfo-container indicators">
+                 {muteStateOthers ? <VolumeOffIcon/> : <VolumeUpIcon/> }
+                 <label> username </label>
+             </div>
+         </div>
+        <div onClick={() => muteOthers()}>
+             <Avatar src="/resources/avatar/4.png" sx={{height: "7vh", width: "7vh"}}/>
+             <div className= "playerinfo-container indicators">
+                 {muteStateOthers ? <VolumeOffIcon/> : <VolumeUpIcon/> }
+                 <label> username </label>
+             </div>
+         </div>
+        </>
+    )
 
     return(
         <div className="playerinfo-container">

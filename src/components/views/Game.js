@@ -29,9 +29,11 @@ const Game = () => {
             <Board/>
             <TurnIndicator></TurnIndicator>
             <CardStack/>
-            <PlayerInfo/>
-            <HandsWrapper></HandsWrapper>
-            <Marbles/>
+            <div className="play-container">
+                <PlayerInfo/>
+                <HandsWrapper></HandsWrapper>
+                <Marbles/>
+            </div>
         </div>
         <InfoBlockRight/>
         <WinningDisplay/>

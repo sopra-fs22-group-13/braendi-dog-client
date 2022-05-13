@@ -164,7 +164,7 @@ const Card = props => {
         if(inFocus){
             return(
                 <div className="card selected">
-                <img src={cardPath} alt="card front" style={{top: Math.random() * 0 + "%"}}
+                <img src={cardPath} alt="card front"
                 />
             </div>
             )
@@ -172,7 +172,7 @@ const Card = props => {
         }else{
             return (
                 <div className="card">
-                    <img src={cardPath} alt="card front" style={{top: Math.random() * 0 + "%"}}
+                    <img src={cardPath} alt="card front"
                         onClick={() => {
                             moveManager.selectCard(cardValue);
                             setFocus(true);

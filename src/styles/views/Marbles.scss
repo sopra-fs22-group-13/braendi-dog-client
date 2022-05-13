@@ -3,16 +3,16 @@
 .marbles{
     overflow: hidden;
 
-&.flex{
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-}
-&.container{
-    position: relative;
-    height: 100%;
-}
+    &.flex{
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+    }
+    &.container{
+        position: relative;
+        height: 100%;
+    }
 }
 
 button.turn-button:nth-of-type(2){

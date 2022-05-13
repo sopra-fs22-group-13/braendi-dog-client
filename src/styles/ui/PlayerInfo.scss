@@ -1,9 +1,5 @@
 .playerinfo-container{
-    position:absolute;
-    height: 100%;
-    width: 100%;
-    top: 0px;
-    left: 0px;
+
 
     &> div:first-of-type{
         //place at the bottom
@@ -45,14 +41,20 @@
         align-items: center;
         height: fit-content;
     }
+    .css-10yu22f-MuiAvatar-root{
+        height: Max(40px, 7vh);
+        width: Max(40px, 7vh);
+    }
     [data-testid="VolumeUpIcon"]{
             color: white;
             margin-left: 5px;
-            height: 3vh;
-            width: 3vh;
+            height: Max(30px, 3vh);
+            width: Max(30px, 3vh);
        }
     [data-testid="VolumeOffIcon"]{
             color: white;
             margin-left: 5px;
+            height: Max(30px, 3vh);
+            width: Max(30px, 3vh);
        }
 }

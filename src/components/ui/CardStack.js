@@ -40,19 +40,18 @@ const CardStack = props => {
 
     }, []);
 
-    let stackCard = "KD";
-    let faceDown = true;
+    let stackCard;
+
 
     if(data && data.lastPlayedCard != null){
-        stackCard = data.lastPlayedCard;
-        faceDown = false;
+        stackCard = (<Card cardValue={data.lastPlayedCard} faceDown={false}/>)
     }
-    //default card for testing, delete later
+
     if(stackCard){
         return(
             <div className='stack'>
                 <div className="stack stack-card">
-                    <Card cardValue={stackCard} faceDown={faceDown}/>
+                    {stackCard}
                 </div>
             </div>
         );

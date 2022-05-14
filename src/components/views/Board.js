@@ -41,28 +41,28 @@ useEffect(() => {
   switch(userColor){
     case "BLUE":
         background =(
-            <img src={process.env.PUBLIC_URL + '/resources/blue_4k_b_compressed_wide.jpg'} className="board bg-img"/>
+            <img src={process.env.PUBLIC_URL + '/resources/green_4k_b.jpg'} className="board bg-img"/>
         );
         break;
     case "GREEN":
         background =(
-            <img src={process.env.PUBLIC_URL + '/resources/blue_4k_g_compressed_wide.jpg'} className="board bg-img"/>
+            <img src={process.env.PUBLIC_URL + '/resources/green_4k_g.jpg'} className="board bg-img"/>
         );
         break;
     case "RED":
         background =(
-            <img src={process.env.PUBLIC_URL + '/resources/blue_4k_r_compressed_wide.jpg'} className="board bg-img"/>
+            <img src={process.env.PUBLIC_URL + '/resources/green_4k_r.jpg'} className="board bg-img"/>
         );
         break;
     case "YELLOW":
         background =(
-           <img src={process.env.PUBLIC_URL + '/resources/blue_4k_y_compressed_wide.jpg'} className="board bg-img"/>
+           <img src={process.env.PUBLIC_URL + '/resources/green_4k_y.jpg'} className="board bg-img"/>
         );
         break;
 
     default:
         background =(
-            <img src={process.env.PUBLIC_URL + '/resources/blue_4k_b_compressed_wide.jpg'} className="board bg-img"/>
+            <img src={process.env.PUBLIC_URL + '/resources/green_4k_b.jpg'} className="board bg-img"/>
         );
         break;
   }

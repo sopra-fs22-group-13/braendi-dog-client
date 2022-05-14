@@ -117,7 +117,12 @@ useEffect(() => {
       if(gametoken)
       {
         localStorage.setItem("gametoken", gametoken);
-        history.push("/game");
+
+        //ugly fix, but necessary because localStorage, despite being a synchronious call, is not synchronious...
+        //100ms should be enough
+        setTimeout(() => {
+          history.push("/game");
+        }, 100);
       }
     }
     //only add the listener on initial render, otherwise we have multiple

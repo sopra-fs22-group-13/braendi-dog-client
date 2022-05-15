@@ -1,0 +1,19 @@
+@import 'styles/theme';
+
+
+
+.aspectratio-container{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: $buttonColorDark;
+    color: $textClear;
+    font-size: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 999999;
+}

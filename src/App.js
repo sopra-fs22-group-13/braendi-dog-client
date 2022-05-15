@@ -1,6 +1,7 @@
 import Header from "components/views/Header";
 import AppRouter from "components/routing/routers/AppRouter";
 import ErrorDisplay from "components/views/ErrorDisplay";
+import AspectRatioChecker from "components/ui/AspectRatioChecker";
 
 /**
  * Happy coding!
@@ -12,6 +13,7 @@ const App = () => {
     <div>
       <AppRouter/>
       <ErrorDisplay/>
+      <AspectRatioChecker/>
     </div>
   );
 };

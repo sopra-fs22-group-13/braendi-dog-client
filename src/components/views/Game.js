@@ -33,8 +33,8 @@ const Game = () => {
             <div className="play-container">
                 <PlayerInfo/>
                 <HandsWrapper></HandsWrapper>
-                <JokerSelectWrapper></JokerSelectWrapper>
                 <Marbles/>
+                <JokerSelectWrapper></JokerSelectWrapper>
             </div>
         </div>
         <InfoBlockRight/>

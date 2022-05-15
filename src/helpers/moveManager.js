@@ -254,6 +254,8 @@ export class moveManager {
     static #reset()
     {
         moveManager.#selected_card = undefined;
+        moveManager.#jokerCallbackFunction = undefined;
+        moveManager.#selected_card_is_part_of_joker = false;
         moveManager.#selected_ends = [];
         moveManager.#selected_starts = [];
         moveManager.#color = undefined;

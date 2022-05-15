@@ -156,7 +156,7 @@ const Card = props => {
     function selectThisCardFunction()
     {
         setFocus(true);
-        setCallbackId(moveManager.registerCallback(endFocus, true, false, false, true));
+        setCallbackId(moveManager.registerCallback(endFocus, true, false, true, true));
     }
 
     let cardPath = getCard(props);
@@ -183,7 +183,7 @@ const Card = props => {
                             if(props.selectable){
                                 props.selectFunction(cardValue, selectThisCardFunction);
                                 setFocus(true);
-                                setCallbackId(moveManager.registerCallback(endFocus, true, false, false, true));
+                                setCallbackId(moveManager.registerCallback(endFocus, true, false, true, true));
                             }
                         }
                         }

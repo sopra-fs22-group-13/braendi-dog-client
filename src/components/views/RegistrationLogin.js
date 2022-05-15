@@ -26,6 +26,7 @@ const FormField = props => {
         className="content input"
         placeholder= {props.text}
         value={props.value}
+        type={props.type}
         onChange={e => props.onChange(e.target.value)}
       />
     </div>
@@ -114,13 +115,13 @@ const RegistrationLogin = props => {
                           label="Name:"
                           value={loginUsername}
                           onChange={un => setLoginUsername(un)}
-                          text = "Login Name"
+                          text = "Enter username"
                       />
                       <FormField
                           label="Password:"
-                          text = "Login Password"
+                          text = "Enter password"
                           value={loginPassword}
-                          width="50%"
+                          type= "password"
                           onChange={n => setLoginPassword(n)}
                           />
                       <div className="content button-container">
@@ -142,14 +143,15 @@ const RegistrationLogin = props => {
                       </div>
                       <FormField
                           label="Name:"
-                          text = "Register Password"
+                          text = "New username"
                           value={registerUsername}
                           onChange={un => setRegisterUsername(un)}
                       />
                       <FormField
                           label="Password:"
-                          text = "Register Password"
+                          text = "New password"
                           value={registerPassword}
+                          type= "password"
                           onChange={n => setRegisterPassword(n)}
                       />
                       <div className="content button-container">

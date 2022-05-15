@@ -2,7 +2,7 @@
 
 .lobby{
     & h1{
-        color: black;
+        color: $textDark;
         font-size: 48px;
         flex-basis: 100%;
         margin-top: 15px;
@@ -35,12 +35,12 @@
       align-items: center;
       min-width: 175px;
       min-height: 175px;
-      background-color: #A4CDFD;
+      background-color: $buttonColorLight;
       border-radius: 50%;
     }
     &.circle svg{
         font-size: 70px;
-        color: black;
+        color: $textDark;
     }
     &.member{
         display: flex;
@@ -78,49 +78,7 @@
     justify-content: center;
     width: 40%;
 }
-.side-bar {
-    &.container{
-        display: flex;
-        justify-content: space-between;
-        border-right: 3px solid black;
-    }
-    &.button{
-        height: fit-content;
-        width: 100%;
-        min-width: 197px;
-        color: black;
-        text-align: left;
-        font-size: 28px;
-        padding: 12px 0 12px 40px;
-        background-color: #ECF4FE;
-        border-radius: 0;
-        &.active {background-color: #8DA9C4;}
-        &:hover {
-        background-color: $buttonColorLight;
-      }
-    }
-    &.logout{
-        height: 60px;
-        width: 60px;
-        padding-bottom: 20px;
-        padding-left: 40px;
-        &:hover {
-                transform: translateY(-2px);
-              }
-    }
-    &.logout svg{
-        font-size: 38px;
-        color: black;
-    }
-    & h1{
-        margin-left: 40px;
-        color: black;
-        font-size: 48px;
-    }
-    flex-direction: column;
-    width: 15%;
-    min-width: 200px;
-}
+
 .search{
     &.container{
         width: 25%;
@@ -134,7 +92,7 @@
         align-items: center;
         flex-direction: column;
         height: 85%;
-        background-color: $buttonColorLight;
+        background-color: $buttonColorDark;
         margin-top: auto;
         margin-bottom: auto;
     }
@@ -150,7 +108,6 @@
         padding-left: 15px;
         margin-left: -4px;
         border: none;
-        border-radius: $borderRadius;
         margin-bottom: 20px;
         color: black;
         background-color: $background;
@@ -175,19 +132,25 @@
     margin: 8px 0;
     width: 100%;
     padding: 10px;
-    border-radius: $borderRadius;
     display: flex;
+    justify-content: space-between;
+    flex-direction: row;
     align-items: center;
     background: $background;
     transition: background 0.2s ease;
     
     &:hover{
-        background: $buttonColorDark;
-        color: $textClear;
+        background: $highlight;
+        color: $textDark;
     }
   }
   &.name {
     font-weight: 300;
     margin-left: 5px;
   }
+  [data-testid="AddIcon"]{
+      color: $buttonColorDark;
+      height: Max(30px, 3vh);
+      width: Max(30px, 3vh);
+ }
 }

@@ -12,15 +12,14 @@
     }
   }
   padding: 0.5vh;
-  font-weight: 700;
+  font-weight: normal;
   font-size: 2.5vh;
   text-align: center;
   height: 5vh;
   border: none;
-  border-radius: $borderRadius;
   cursor: pointer;
   opacity: 1;
-  color: $textClear;
-  background-color: $buttonColorDark;
+  color: $textDark;
+  background-color: $buttonColorLight;
   transition: transform 0.3s ease;
 }

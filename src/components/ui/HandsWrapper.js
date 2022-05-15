@@ -11,6 +11,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import PropTypes from "prop-types";
 import { connectToPersonalUpdate } from 'helpers/updateManager';
 import Hand from "components/ui/Hand";
+import { moveManager } from 'helpers/moveManager';
 
 
 const HandsWrapper = props =>
@@ -48,12 +49,17 @@ const HandsWrapper = props =>
 
     }, []);
 
+    function cardSelectFunction(cardValue)
+    {
+        moveManager.selectCard(cardValue);
+    }
+
     if(handInfo != null)
     {
         //format info
         let formattedMe = [];
         handInfo.visibleCards.forEach(cardstring => {
-            formattedMe.push({cardValue: cardstring, faceDown: false});
+            formattedMe.push({cardValue: cardstring, faceDown: false, selectable: true, selectFunction: cardSelectFunction});
         });
         //other
         let formattedRest = [];

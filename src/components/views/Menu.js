@@ -284,7 +284,6 @@ const Menu = props => {
                     <h1> Dog </h1>
                     <Button
                       className="side-bar button active"
-                      onClick={() => profilePage()}
                     >
                       Menu
                     </Button>
@@ -296,6 +295,7 @@ const Menu = props => {
                     </Button>
                     <Button
                       className="side-bar button"
+                      onClick={() => profilePage()}
                     >
                       Profile
                     </Button>

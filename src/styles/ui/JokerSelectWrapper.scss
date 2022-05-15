@@ -1,0 +1,11 @@
+.jokerselectwrapper-container{
+
+    &> div{
+        //place at the bottom
+        position: absolute;
+        top: calc(100% - 30%);
+        left: calc(50% - 35%);
+        width: 70%;
+        height: 10%;
+    }
+}

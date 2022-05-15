@@ -23,7 +23,7 @@ const HandsWrapper = props =>
 
         //fakeInfo
         let info = new Object();
-        info.visibleCards = ["2S", "4S", "5S", "4D" ,"JD", "AD"];
+        info.visibleCards = ["2S", "4S", "Joker", "4D" ,"JD", "AD"];
         info.hiddenCardCount = [6,3,4];
         setHandInfo(info);
 
@@ -49,9 +49,14 @@ const HandsWrapper = props =>
 
     }, []);
 
-    function cardSelectFunction(cardValue)
+    function cardSelectFunction(cardValue, selectThisCardFunction)
     {
         moveManager.selectCard(cardValue);
+    }
+    function jokerSelectFunction(cardValue, selectThisCardFunction)
+    {
+        moveManager.selectCard("");
+        moveManager.selectJoker(selectThisCardFunction);
     }
 
     if(handInfo != null)
@@ -59,7 +64,13 @@ const HandsWrapper = props =>
         //format info
         let formattedMe = [];
         handInfo.visibleCards.forEach(cardstring => {
-            formattedMe.push({cardValue: cardstring, faceDown: false, selectable: true, selectFunction: cardSelectFunction});
+            if(cardstring == "Joker")
+            {
+                formattedMe.push({cardValue: cardstring, faceDown: false, selectable: true, selectFunction: jokerSelectFunction});
+
+            }else{
+                formattedMe.push({cardValue: cardstring, faceDown: false, selectable: true, selectFunction: cardSelectFunction});
+            }
         });
         //other
         let formattedRest = [];

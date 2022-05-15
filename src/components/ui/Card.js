@@ -153,6 +153,12 @@ const Card = props => {
         moveManager.unregisterCallback(callbackId);
     }
 
+    function selectThisCardFunction()
+    {
+        setFocus(true);
+        setCallbackId(moveManager.registerCallback(endFocus, true, false, false, true));
+    }
+
     let cardPath = getCard(props);
     if(props.faceDown) {
         return (
@@ -175,10 +181,9 @@ const Card = props => {
                     <img src={cardPath} alt="card front"
                         onClick={() => {
                             if(props.selectable){
-                                props.selectFunction(cardValue);
-
+                                props.selectFunction(cardValue, selectThisCardFunction);
                                 setFocus(true);
-                                setCallbackId(moveManager.registerCallback(endFocus, true, false, true));
+                                setCallbackId(moveManager.registerCallback(endFocus, true, false, false, true));
                             }
                         }
                         }

@@ -16,6 +16,7 @@ import TurnIndicator from 'components/ui/TurnIndicator';
 import { InfoBlockLeft, InfoBlockRight } from 'components/ui/InfoBlock';
 import updateManager from 'helpers/updateManager';
 import { VoiceChatManager } from 'components/voice/voiceChat';
+import JokerSelectWrapper from 'components/ui/JokerSelectWrapper';
 
 const Game = () => {
 
@@ -32,6 +33,7 @@ const Game = () => {
             <div className="play-container">
                 <PlayerInfo/>
                 <HandsWrapper></HandsWrapper>
+                <JokerSelectWrapper></JokerSelectWrapper>
                 <Marbles/>
             </div>
         </div>

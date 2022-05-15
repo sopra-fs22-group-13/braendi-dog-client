@@ -25,11 +25,17 @@ export class heartBeatCreator{
     static async #intervalCallback()
     {
         //make the heartbeat with a type
-        const response = await api.post("/heartbeat", {type: heartBeatCreator.#type}, {
-            headers: {
-                'Authorization': "Basic " + localStorage.getItem("token")
-            }
-        });
+        try{
+            const response = await api.post("/heartbeat", {type: heartBeatCreator.#type}, {
+                headers: {
+                    'Authorization': "Basic " + localStorage.getItem("token")
+                }
+            });
+        }catch(exception)
+        {
+            
+        }
+
     }
 
     static killHeartBeat()

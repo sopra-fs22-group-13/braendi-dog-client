@@ -3,27 +3,41 @@ import { api } from "./api";
 export class moveManager {
 
     static #selected_card = undefined;
+    static #selected_card_is_part_of_joker = false;
+    static #jokerCallbackFunction = null;
     static #selected_starts = [];
     static #selected_ends = [];
     static #color = undefined;
-    static #update_callbacks = {"NEW_CARD": [], "ADD_MOVE": [], "SEND_AND_RESET": []};
+    static #update_callbacks = {"NEW_CARD": [], "ADD_MOVE": [], "SEND_AND_RESET": [], "NEW_JOKER": []};
     static #callback_counter = 0;
 
     /**
      * sets a card to be selected for a move. resets everything but the color.
      * @param {string} card 
      */
-    static selectCard(card)
+    static selectCard(card, isJoker=false)
     {
         moveManager.#selected_card = card;
+        moveManager.#selected_card_is_part_of_joker = isJoker;
         moveManager.#selected_ends = [];
         moveManager.#selected_starts = [];
         moveManager.#sendCallback("NEW_CARD");
     }
 
+    static selectJoker(callback)
+    {
+        moveManager.#jokerCallbackFunction = callback;
+        moveManager.#sendCallback("NEW_JOKER");
+    }
+
     static getSelectedCard()
     {
         return moveManager.#selected_card;
+    }
+
+    static getJokerCallback()
+    {
+        return moveManager.#jokerCallbackFunction;
     }
 
     /**
@@ -137,7 +151,7 @@ export class moveManager {
                 toPosInGoal.push(block[1]);
             });
 
-            let jsonDict = {_fromPos: fromPos, _toPos: toPos, _fromPosInGoal: fromPosInGoal, _toPosInGoal: toPosInGoal, card: moveManager.#selected_card, color: moveManager.#color, token: usertoken}
+            let jsonDict = {_fromPos: fromPos, _toPos: toPos, _fromPosInGoal: fromPosInGoal, _toPosInGoal: toPosInGoal, card: moveManager.#selected_card, cardIsPartOfJoker: moveManager.#selected_card_is_part_of_joker, color: moveManager.#color, token: usertoken}
             let response = await api.put(`/game/${gametoken}/board`, JSON.stringify(jsonDict), {
                     headers: {
                         'Authorization': "Basic " + usertoken //the authorization token required
@@ -164,7 +178,7 @@ export class moveManager {
      * This callback type is called `updateCallback` and is triggered when something meaningful changes.
      *
      * @callback updateCallback
-     * @param {"NEW_CARD" | "ADD_MOVE" | "SEND_AND_RESET"} updateType
+     * @param {"NEW_CARD" | "ADD_MOVE" | "SEND_AND_RESET", "NEW_JOKER"} updateType
      */
 
 
@@ -176,7 +190,7 @@ export class moveManager {
      * @param {boolean} SEND_AND_RESET 
      * @returns {int} an Id to delete with later
      */
-    static registerCallback(callback_function, NEW_CARD = false, ADD_MOVE = false, SEND_AND_RESET = false)
+    static registerCallback(callback_function, NEW_CARD = false, ADD_MOVE = false, SEND_AND_RESET = false, NEW_JOKER = false)
     {
         //unique id
         let id = moveManager.#callback_counter;
@@ -192,13 +206,16 @@ export class moveManager {
         if(SEND_AND_RESET){
             moveManager.#update_callbacks["SEND_AND_RESET"].push([callback_function, id])
         }
+        if(NEW_JOKER){
+            moveManager.#update_callbacks["NEW_JOKER"].push([callback_function, id])
+        }
 
         return id;
     }
 
     /**
      * Sends a callback to the registered functions
-     * @param {"NEW_CARD" | "ADD_MOVE" | "SEND_AND_RESET"} updateType 
+     * @param {"NEW_CARD" | "ADD_MOVE" | "SEND_AND_RESET", "NEW_JOKER"} updateType 
      */
     static #sendCallback(updateType)
     {
@@ -211,6 +228,9 @@ export class moveManager {
         }
         if(updateType == "SEND_AND_RESET"){
             callbacks = moveManager.#update_callbacks["SEND_AND_RESET"];
+        }
+        if(updateType == "NEW_JOKER"){
+            callbacks = moveManager.#update_callbacks["NEW_JOKER"];
         }
 
         callbacks.forEach(callback => {

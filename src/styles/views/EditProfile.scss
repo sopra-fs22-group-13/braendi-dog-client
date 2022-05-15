@@ -1,0 +1,93 @@
+@import 'styles/theme';
+
+
+.side-bar {
+  &.container{
+    display: flex;
+    justify-content: space-between;
+    border-right: 3px solid black;
+    max-height: 100vh;
+  }
+
+  &.h1{
+    margin-left: 40px;
+    color: black;
+    font-size: 48px;
+  }
+
+  &.button{
+    height: fit-content;
+    width: 100%;
+    min-width: 197px;
+    color: black;
+    text-align: left;
+    font-size: 28px;
+    padding: 12px 0 12px 40px;
+    background-color: #ECF4FE;
+    border-radius: 0;
+    &.active {background-color: #8DA9C4;}
+    &:hover {
+      background-color: $buttonColorLight;
+    }
+  }
+
+  width: 15%;
+  min-width: 200px;
+
+}
+
+
+.editProfile{
+  &.container{
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    height: 80%;
+    min-width: 800px;
+    margin-top: 5%;
+    color: $buttonColorDark;
+    display: flex;
+    @include center;
+  }
+
+  &.board{
+    width: 85%;
+    border-block-start-width: 5vh;
+    flex-direction: column;
+    padding: 2vh 2.5vw;
+    border-radius: $borderRadius;
+    border: 5px solid $buttonColorLight;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    @include center;
+  }
+  &.containerUserInfo{
+
+    width: auto;
+    flex-direction: column;
+    @include center;
+
+  }
+
+  &.title{
+    padding: 2%;
+    font-size: 20px;
+  }
+
+  &.userInfo{
+    width: 100%;
+    text-align: left;
+
+    height: 2vw;
+    padding: 5px;
+    font-size: 20px;
+  }
+  &.button{
+    height: 2vw;
+    padding: 5%;
+
+  }
+}
+
+
+
+

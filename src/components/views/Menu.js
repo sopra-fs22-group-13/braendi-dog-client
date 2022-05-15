@@ -157,6 +157,9 @@ const Menu = props => {
         localStorage.clear();
         history.push('/login');
     }
+    const profilePage = () => {
+        history.push('/profilepage');
+    }
 
     const doEdit = async () =>{
         try {
@@ -281,6 +284,7 @@ const Menu = props => {
                     <h1> Dog </h1>
                     <Button
                       className="side-bar button active"
+                      onClick={() => profilePage()}
                     >
                       Menu
                     </Button>

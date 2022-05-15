@@ -64,8 +64,6 @@ const RegistrationLogin = props => {
           localStorage.setItem('userID', response.data.id);
           localStorage.setItem('userName',response.data.username);
 
-          // Get the returned user and update a new object.
-
           history.push(`/menu`);
 
       } catch (error) {
@@ -146,6 +144,7 @@ const RegistrationLogin = props => {
                           text = "New username"
                           value={registerUsername}
                           onChange={un => setRegisterUsername(un)}
+                          
                       />
                       <FormField
                           label="Password:"
@@ -153,6 +152,7 @@ const RegistrationLogin = props => {
                           value={registerPassword}
                           type= "password"
                           onChange={n => setRegisterPassword(n)}
+                          inputProps={{ maxLength: 10 }}
                       />
                       <div className="content button-container">
                           <Button

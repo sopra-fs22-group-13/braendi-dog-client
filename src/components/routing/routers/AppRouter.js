@@ -12,6 +12,7 @@ import RegistrationLogin from "components/views/RegistrationLogin";
 import Menu from "../../views/Menu";
 import { heartBeatCreator } from "helpers/heartBeatCreator";
 import ProfilePage from "../../views/ProfilePage";
+import EditProfile from "../../views/EditProfile";
 
 const AppRouter = () => {
   return (
@@ -35,6 +36,11 @@ const AppRouter = () => {
         <Route exact path="/profilePage">
           <MenuGuard>
             <ProfilePage/>
+          </MenuGuard>
+        </Route>
+        <Route exact path="/editProfile">
+          <MenuGuard>
+            <EditProfile/>
           </MenuGuard>
         </Route>
         <Route exact path="/lobby">

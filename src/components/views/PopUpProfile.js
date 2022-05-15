@@ -1,45 +1,39 @@
-
-import {useHistory} from 'react-router-dom';
-import BaseContainer from "components/ui/BaseContainer";
-
-import Header from "./Header";
-import 'styles/views/ProfilePage.scss';
-
-import * as React from 'react';
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
-
-import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-
-import TextField from '@mui/material/TextField';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import Avatar from '@mui/material/Avatar';
-
-import LogoutIcon from "@mui/icons-material/Logout";
-import Grid from '@mui/material/Grid';
-import TextareaAutosize from '@mui/material/TextareaAutosize';
-
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
+import 'styles/views/PopUpProfile.scss';
+import PropTypes from "prop-types";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
 import {api, handleError} from "../../helpers/api";
-import {addError} from "./ErrorDisplay";
+import user from "../../models/User";
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+import Typography from '@mui/material/Typography';
+import Grid from "@mui/material/Grid";
+import TableContainer from "@mui/material/TableContainer";
+import Paper from "@mui/material/Paper";
+import Table from "@mui/material/Table";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import TableCell from "@mui/material/TableCell";
+import TableBody from "@mui/material/TableBody";
 
 
-/*
-It is possible to add multiple components inside a single file,
-however be sure not to clutter your files with an endless amount!
-As a rule of thumb, use one file per component and only add small,
-specific components that belong to the main one in the same file.
- */
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: '50%',
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+    borderRadius: 2,
+};
+
+function getStripedStyle (wins) {
+    return { background: wins === 0 ? '#ff3636' : '#4af53b' };
+}
 
 function createData(date, wins, inGoal) {
     return { date, wins, inGoal };
@@ -56,32 +50,17 @@ const rows = [
 
 ];
 
-function getStripedStyle (wins) {
-    return { background: wins === 0 ? '#ff3636' : '#4af53b' };
-}
-const ProfilePage = props => {
-    const history = useHistory();
-
-    const doMenu = async () => {
-      history.push(`/game`);
-    };
-    const doEdit = async () => {
-        history.push(`/editprofile`);
-    };
+const PopUpProfile = props => {
+    let userid = props.userId;
+    const [user,setUser]= useState('');
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
     const [avatar, setAvatar] = React.useState('');
-    const [user, setUser]= React.useState('');
-
-
-
-
-
-
 
     useEffect(() => {
         // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
-
         async function fetchData() {
-
             try {
                 let userId =localStorage.getItem("userID")
                 const response = await api.get("/user/"+userId, {
@@ -91,38 +70,27 @@ const ProfilePage = props => {
                 });
 
                 setUser(response.data);
-
                 setAvatar('resources/avatar/'+response.data.avatar+'.png');
-
             } catch (error) {
                 console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
                 console.error("Details:", error);
-                alert("Something went wrong while fetching the users! See the console for details.");
+                alert("Something went wrong while fetching the users! See the console for details in the POP UP. ");
             }
         }
-
         fetchData();
     }, []);
 
     return (
-        <BaseContainer>
-            <div className="side-bar container">
-                <div>
-                    <h1> Dog </h1>
-                    <Button className="side-bar button" variant="text" >Start</Button>
-                    <div></div>
-                    <Button variant="text">Create Game</Button>
-                </div>
-                <div>
-                    <Button variant="text" >Profile</Button>
-                    <div></div>
-                    <Button variant="text" onClick={() => doMenu()}>
-                        <LogoutIcon /></Button>
-                </div>
-            </div>
-
-            <div className="profilePage container">
-                <div className="profilePage board">
+        <div>
+            <Button onClick={handleOpen}>Open modal</Button>
+            <Modal
+                keepMounted
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="keep-mounted-modal-title"
+                aria-describedby="keep-mounted-modal-description"
+            >
+                <Box sx={style}>
                     <Grid container spacing={2} sx={{textAlign: 'center', justifyContent: 'center'}} >
                         <Grid item xs={6} sx={{justifyContent: 'center'}}>
                             <div className="profilePage containerTitle">
@@ -141,9 +109,7 @@ const ProfilePage = props => {
                                 <div className="profilePage userInfo">
                                     Total goals: {user.gotInGoals}
                                 </div>
-                                <div  className="profilePage button">
-                                    <Button variant="contained" onClick={() => doEdit()}>Edit</Button>
-                                </div>
+
                             </div>
                         </Grid>
                         <Grid item xs={6} sx={{textAlign: 'center'}}>
@@ -182,15 +148,15 @@ const ProfilePage = props => {
                             </div>
                         </Grid>
                     </Grid>
-                </div>
-            </div>
-        </BaseContainer>
-
+                </Box>
+            </Modal>
+        </div>
     );
-}
+};
 
-/**
- * You can get access to the history object's properties via the withRouter.
- * withRouter will pass updated match, location, and history props to the wrapped component whenever it renders.
- */
-export default ProfilePage;
+PopUpProfile.propTypes = {
+    userId: PropTypes.number,
+};
+
+export default PopUpProfile;
+

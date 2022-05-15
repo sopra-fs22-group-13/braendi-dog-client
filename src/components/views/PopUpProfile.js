@@ -63,7 +63,7 @@ const PopUpProfile = props => {
         async function fetchData() {
             try {
                 let userId =localStorage.getItem("userID")
-                const response = await api.get("/user/"+userId, {
+                const response = await api.get("/users/"+userId, {
                     headers: {
                         'Authorization': "Basic " + localStorage.getItem("token")
                     }

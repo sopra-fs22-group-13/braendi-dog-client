@@ -1,7 +1,9 @@
+@import 'styles/theme';
+
 .playerinfo-container{
 
     & label{
-        color: white;
+        color: $textClear;
         margin-left: 5px;
         margin-top: 5px;
     }
@@ -26,7 +28,7 @@
     &> div:nth-of-type(2){
         //place left
         position: absolute;
-        top: 10%;
+        top: 13%;
         left: 3%;
         display: flex;
         flex-direction: row;
@@ -37,7 +39,7 @@
         //place at top
         position: absolute;
         top: 3%;
-        left: 80%;
+        left: 75%;
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -46,7 +48,7 @@
     &> div:nth-of-type(4){
         //place right
         position: absolute;
-        top: 83%;
+        top: 80%;
         left: 85%;
         display: flex;
         flex-direction: row;

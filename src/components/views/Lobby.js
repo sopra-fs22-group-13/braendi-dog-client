@@ -8,6 +8,7 @@ import 'styles/views/Lobby.scss';
 import BaseContainer from "components/ui/BaseContainer";
 import PetsIcon from '@mui/icons-material/Pets';
 import LogoutIcon from '@mui/icons-material/Logout';
+import AddIcon from '@mui/icons-material/Add';
 import PropTypes from "prop-types";
 
 import { VoiceChatManager } from 'components/voice/voiceChat';
@@ -49,6 +50,7 @@ async function invitePlayer(inviteeId) {
 const Player = ({user}) => (
   <div className="player container" onClick={() => invitePlayer(user.id)}>
     <div className="player username">{user.username}</div>
+    <AddIcon/>
   </div>
 );
 
@@ -166,12 +168,6 @@ async function fetchDataSearch(filter = "") {
         });
         setUsers(data);
 
-        console.log('request to:', response.request.responseURL);
-        console.log('status code:', response.status);
-        console.log('status text:', response.statusText);
-        console.log('requested data:', response.data);
-
-        console.log(response);
       } catch (error) {
         console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
         addError("Could not fetch users", 5000);
@@ -281,16 +277,27 @@ let lobbyButton =
         <div>
           <h1> Dog </h1>
           <Button
+            className="side-bar button"
+            onClick={() => history.push("/menu")}
+          >
+            Menu
+          </Button>
+          <Button
             className="side-bar button active"
           >
-            Create Game
+            Lobby
           </Button>
+          <Button
+              className="side-bar button"
+            >
+              Profile
+            </Button>
         </div>
         <div>
           <Button
             className="side-bar button"
           >
-            Profile
+            Rules
           </Button>
           <div className="side-bar logout"
             onClick={() => logout()}>

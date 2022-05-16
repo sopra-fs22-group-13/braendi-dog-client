@@ -17,6 +17,7 @@ import {TextField} from "@mui/material";
 import {api, handleError} from "../../helpers/api";
 import PopUpProfile from "./PopUpProfile";
 import updateManager from "../../helpers/updateManager";
+import MenuSideBar from "components/ui/MenuSideBar";
 
 
 /*
@@ -125,20 +126,7 @@ const EditProfile = props => {
 
     return (
         <BaseContainer>
-            <div className="side-bar container">
-                <div>
-                    <h1> Dog </h1>
-                    <Button className="side-bar button" variant="text" >Start</Button>
-                    <div></div>
-                    <Button variant="text">Create Game</Button>
-                </div>
-                <div>
-                    <Button variant="text" >Profile</Button>
-                    <div></div>
-                    <Button variant="text" onClick={() => logout()}>
-                        <LogoutIcon /></Button>
-                </div>
-            </div>
+        <MenuSideBar active="PROFILE"></MenuSideBar>
 
             <div className="editProfile container">
                 <div className="editProfile board">

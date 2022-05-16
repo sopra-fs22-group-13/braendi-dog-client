@@ -27,6 +27,7 @@ import TextareaAutosize from '@mui/material/TextareaAutosize';
 import {useEffect, useState} from "react";
 import {api, handleError} from "../../helpers/api";
 import {addError} from "./ErrorDisplay";
+import MenuSideBar from 'components/ui/MenuSideBar';
 
 
 /*
@@ -100,20 +101,7 @@ const ProfilePage = props => {
 
     return (
         <BaseContainer>
-            <div className="side-bar container">
-                <div>
-                    <h1> Dog </h1>
-                    <Button className="side-bar button" variant="text" >Start</Button>
-                    <div></div>
-                    <Button variant="text">Create Game</Button>
-                </div>
-                <div>
-                    <Button variant="text" >Profile</Button>
-                    <div></div>
-                    <Button variant="text" onClick={() => doMenu()}>
-                        <LogoutIcon /></Button>
-                </div>
-            </div>
+        <MenuSideBar active="PROFILE"></MenuSideBar>
 
             <div className="profilePage container">
                 <div className="profilePage board">

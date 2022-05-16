@@ -18,6 +18,7 @@ import { getMarbleLocation } from 'helpers/getMarbleLocation';
 import { addError, addInfo, addSuccess } from './ErrorDisplay';
 import { CribSharp } from '@mui/icons-material';
 import { moveManager } from 'helpers/moveManager';
+import MenuSideBar from 'components/ui/MenuSideBar';
 
 
 async function invitePlayer(inviteeId) {
@@ -273,39 +274,7 @@ let lobbyButton =
 
   return (
     <BaseContainer>
-      <div className="side-bar container">
-        <div>
-          <h1> Dog </h1>
-          <Button
-            className="side-bar button"
-            onClick={() => history.push("/menu")}
-          >
-            Menu
-          </Button>
-          <Button
-            className="side-bar button active"
-          >
-            Lobby
-          </Button>
-          <Button
-              className="side-bar button"
-            >
-              Profile
-            </Button>
-        </div>
-        <div>
-          <Button
-            className="side-bar button"
-          >
-            Rules
-          </Button>
-          <div className="side-bar logout"
-            onClick={() => logout()}>
-            <LogoutIcon />
-          </div>
-        </div>
-      </div>
-
+        <MenuSideBar active="LOBBY"></MenuSideBar>
         <div className="lobby container">
           <h1 className="lobby"> LOBBY </h1>
           <div className="lobby member-container">

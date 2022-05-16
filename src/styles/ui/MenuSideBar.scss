@@ -1,0 +1,144 @@
+@import 'styles/theme';
+
+
+.info-block {
+    font-size: 1.5vh;
+    padding-top: 0;
+    padding-bottom: 2%;
+
+    > h1{
+        font-size: 4vh;
+        padding-bottom: 10px;
+        border-bottom: solid 1px;
+        text-align: center;
+    }
+
+    > h2{
+        margin-top: 18px;
+        margin-bottom: 3px;
+        font-size: 2vh;
+    }
+}
+
+.popup {
+    &.popup-box {
+      z-index: 99999;
+      position: absolute;
+      background: #00000050;
+      width: 100vw;
+      height: 100vh;
+      top: 0;
+      left: 0;
+    }
+  
+    &.box {
+      text-align: center;
+      position: relative;
+      width: 70%;
+      margin: 0 auto;
+      height: fit-content;
+      max-height: 75vh;
+      margin-top: calc(100vh - 85vh - 20px);
+      background: $background;
+      padding: 0 4%;
+      border: 1px solid #999;
+      overflow: auto;
+    }
+  
+    &.close-icon {
+      content: 'x';
+      cursor: pointer;
+      position: fixed;
+      right: calc(15% - 30px);
+      top: calc(100vh - 85vh - 33px);
+      background: $buttonColorLight;
+      width: 25px;
+      height: 25px;
+      line-height: 20px;
+      text-align: center;
+      border: 1px solid #999;
+      font-size: 20px;
+    }
+  
+    &.singleInfo {
+      padding: 5%;
+    }
+  }
+  .info-block {
+      font-size: 1.5vh;
+      padding-top: 0;
+      padding-bottom: 2%;
+  
+      > h1{
+          font-size: 4vh;
+          padding-bottom: 10px;
+          border-bottom: solid 1px;
+          text-align: center;
+      }
+  
+      > h2{
+          margin-top: 18px;
+          margin-bottom: 3px;
+          font-size: 2vh;
+      }
+  }
+  
+
+
+.side-bar {
+    flex-direction: column;
+    width: 15%;
+    min-width: 200px;
+  
+    &.container {
+      display: flex;
+      justify-content: space-between;
+      border-right: 2px solid $textDark;
+    }
+  
+    &.button {
+      height: fit-content;
+      width: 100%;
+      min-width: 197px;
+      color: $textDark;
+      text-align: left;
+      font-size: 28px;
+      margin-bottom: 5px;
+      padding: 12px 0 12px 40px;
+      background-color: $background;
+  
+      &.active {
+        background-color: $buttonColorDark;
+        box-shadow: 0 4px 4px DarkGray;
+        color: $background;
+      }
+  
+      &:hover {
+        background-color: $highlight;
+      }
+    }
+  
+    &.logout {
+      height: 60px;
+      width: 60px;
+      padding-bottom: 20px;
+      padding-left: 40px;
+  
+      &:hover {
+        transform: translateY(-2px);
+      }
+    }
+  
+    &.logout svg {
+      font-size: 38px;
+      color: $textDark;
+    }
+  
+    & h1 {
+      margin-left: 40px;
+      margin-bottom: 30%;
+      font-weight: normal;
+      color: $textDark;
+      font-size: 48px;
+    }
+  }

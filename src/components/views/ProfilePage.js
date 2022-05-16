@@ -9,11 +9,6 @@ import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 
-import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
 
 import TextField from '@mui/material/TextField';
 import Table from '@mui/material/Table';
@@ -70,7 +65,7 @@ const ProfilePage = props => {
     };
     const [avatar, setAvatar] = React.useState('');
     const [user, setUser]= React.useState('');
-    const [errorFatchData,setErrorFatchData] = useState(null)
+    const [errorFetchData,setErrorFetchData] = useState(null)
 
 
 
@@ -92,9 +87,9 @@ const ProfilePage = props => {
                 setAvatar('resources/avatar/'+response.data.avatar+'.png');
 
             } catch (error) {
-                setErrorFatchData(
+                setErrorFetchData(
                     <div className="errors">
-                        Sorry something went wrong during the fatching the data
+                        Sorry something went wrong during the fetching the data
                     </div>
                 )
             }
@@ -144,8 +139,8 @@ const ProfilePage = props => {
                                     <Button variant="contained" onClick={() => doEdit()}>Edit</Button>
                                 </div>
                             </div>
+                            {errorFetchData}
                         </Grid>
-                        {errorFatchData}
                         <Grid item xs={6} sx={{textAlign: 'center'}}>
                             <div className="table">
                                 <div className="table tableName">

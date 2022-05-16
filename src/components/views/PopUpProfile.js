@@ -57,7 +57,7 @@ const PopUpProfile = props => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const [avatar, setAvatar] = React.useState('');
-    const [errorFatchData,setErrorFatchData] = useState(null)
+    const [errorFetchData,setErrorFetchData] = useState(null)
 
     useEffect(() => {
         // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
@@ -73,9 +73,9 @@ const PopUpProfile = props => {
                 setUser(response.data);
                 setAvatar('resources/avatar/'+response.data.avatar+'.png');
             } catch (error) {
-                setErrorFatchData(
+                setErrorFetchData(
                     <div className="errors">
-                        Sorry something went wrong during the fatching the data
+                        Sorry something went wrong during the fetching the data
                     </div>
                 )
             }
@@ -114,8 +114,8 @@ const PopUpProfile = props => {
                                 </div>
 
                             </div>
+                            {errorFetchData}
                         </Grid>
-                        {errorFatchData}
                         <Grid item xs={6} sx={{textAlign: 'center'}}>
                             <div className="table">
                                 <div className="table tableName">

@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import 'styles/views/Menu.scss';
+import 'styles/views/EditProfile.scss';
 import {useHistory} from 'react-router-dom';
 import BaseContainer from "components/ui/BaseContainer";
 
@@ -42,7 +42,7 @@ const EditProfile = props => {
     const [username,editName]= React.useState('');
     const [password,editPassword]= React.useState('');
     const [description,editDescription]= React.useState('');
-    const [errorFatchData,setErrorFatchData] = useState(null)
+    const [errorFetchData,setErrorFetchData] = useState(null)
 
     const doEdit = async () => {
         try {
@@ -66,7 +66,7 @@ const EditProfile = props => {
 
 
         } catch (error) {
-            setErrorFatchData(
+            setErrorFetchData(
                 <div className="errors">
                     Sorry something went wrong during the editing the data
                 </div>
@@ -111,9 +111,9 @@ const EditProfile = props => {
                 setAvatar('resources/avatar/'+response.data.avatar+'.png');
 
             } catch (error) {
-                setErrorFatchData(
+                setErrorFetchData(
                     <div className="errors">
-                        Sorry something went wrong during the fatching the data
+                        Sorry something went wrong during the fetching the data
                     </div>
                 )
             }
@@ -163,7 +163,7 @@ const EditProfile = props => {
                     <div  className="editProfile button">
                         <Button variant="contained" disabled={!username && !password && !description} onClick={() => doEdit()}>Edit</Button>
                     </div>
-                    {errorFatchData}
+                    {errorFetchData}
                 </div>
             </div>
         </BaseContainer>

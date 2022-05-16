@@ -32,6 +32,9 @@ export function parseUpdate(rawUpdate)
         case "VOICE":
             updateVoice(message);
             break;
+        case "GAME_CLOSED":
+            updateGame(message);
+            break;
         default:
             break;
     }
@@ -93,5 +96,13 @@ function updateVoice(extrainfo)
 {
     console.log("voiceUpdate", extrainfo);
     const event = new CustomEvent('voiceUpdate', { detail: JSON.parse(extrainfo)});
+    document.dispatchEvent(event);
+}
+
+//TODO update game from websocket, not implemented correctly yet
+function updateGame(extrainfo)
+{
+    console.log("gameUpdate", extrainfo);
+    const event = new CustomEvent('gameUpdate', { detail: JSON.parse(extrainfo)});
     document.dispatchEvent(event);
 }

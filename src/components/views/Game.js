@@ -17,6 +17,7 @@ import { InfoBlockLeft, InfoBlockRight } from 'components/ui/InfoBlock';
 import updateManager from 'helpers/updateManager';
 import { VoiceChatManager } from 'components/voice/voiceChat';
 import JokerSelectWrapper from 'components/ui/JokerSelectWrapper';
+import LoadingScreen from 'components/ui/LoadingScreen';
 
 const Game = () => {
   const history = useHistory();
@@ -25,6 +26,32 @@ const Game = () => {
       history.push("/menu");
   }
   document.addEventListener("gameUpdate", gameUpdateListener);
+  const [loading, setLoading] = useState(true);
+
+  
+  useEffect(() => {
+
+    updateManager.connectToPersonalUpdate();
+
+    let inter = setInterval(() => {
+      let images = document.querySelectorAll('img');
+      let isLoaded = true;
+      images.forEach(image => {
+        isLoaded = isLoaded && image.complete && image.naturalHeight !== 0;
+      });
+
+      if(isLoaded)
+      {
+        clearInterval(inter);
+        setLoading(false);
+      }
+
+    }, 1000);
+
+    return () => { // This code runs when component is unmounted
+    }
+}, []);
+
 
   return (
     <BaseContainer className="game">
@@ -43,6 +70,7 @@ const Game = () => {
         </div>
         <InfoBlockRight/>
         <WinningDisplay/>
+        {loading ? <LoadingScreen/> : null}
     </div>
     </BaseContainer>
   );

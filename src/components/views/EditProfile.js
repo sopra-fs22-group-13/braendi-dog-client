@@ -42,6 +42,7 @@ const EditProfile = props => {
     const [username,editName]= React.useState('');
     const [password,editPassword]= React.useState('');
     const [description,editDescription]= React.useState('');
+    const [errorFatchData,setErrorFatchData] = useState(null)
 
     const doEdit = async () => {
         try {
@@ -66,7 +67,11 @@ const EditProfile = props => {
             history.push(`/profilepage`);
 
         } catch (error) {
-            alert(`Something went wrong during the edit: \n${handleError(error)}`);
+            setErrorFatchData(
+                <div className="errors">
+                    Sorry something went wrong during the editing the data
+                </div>
+            )
         }
 
         history.push(`/menu`);
@@ -107,11 +112,11 @@ const EditProfile = props => {
                 setAvatar('resources/avatar/'+response.data.avatar+'.png');
 
             } catch (error) {
-                console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
-                console.error("Details:", error);
-                alert("ciao")
-                alert("Something went wrong while fetching the users! See the console for details.");
-
+                setErrorFatchData(
+                    <div className="errors">
+                        Sorry something went wrong during the fatching the data
+                    </div>
+                )
             }
         }
 
@@ -159,6 +164,7 @@ const EditProfile = props => {
                     <div  className="editProfile button">
                         <Button variant="contained" disabled={!username && !password && !description} onClick={() => doEdit()}>Edit</Button>
                     </div>
+                    {errorFatchData}
                 </div>
             </div>
         </BaseContainer>

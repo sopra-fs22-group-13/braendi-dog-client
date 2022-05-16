@@ -32,7 +32,7 @@ const style = {
 };
 
 function getStripedStyle (wins) {
-    return { background: wins === 0 ? '#cb9595' : '#c7da95' };
+    return { background: wins === 0 ? '#ffcb95' : '#c7ff95' };
 }
 
 function createData(date, wins, inGoal) {

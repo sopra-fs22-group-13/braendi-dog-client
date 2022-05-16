@@ -19,8 +19,12 @@ import { VoiceChatManager } from 'components/voice/voiceChat';
 import JokerSelectWrapper from 'components/ui/JokerSelectWrapper';
 
 const Game = () => {
-
+  const history = useHistory();
   updateManager.connectToPersonalUpdate();
+  function gameUpdateListener(event){
+      history.push("/menu");
+  }
+  document.addEventListener("gameUpdate", gameUpdateListener);
 
   return (
     <BaseContainer className="game">
@@ -42,6 +46,10 @@ const Game = () => {
     </div>
     </BaseContainer>
   );
+
+  return () =>{
+    document.removeEventListener("gameUpdate", gameUpdateListener);
+  }
 }
 
 export default Game;

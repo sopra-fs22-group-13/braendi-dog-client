@@ -63,7 +63,7 @@ const EditProfile = props => {
                     'Authorization': "Basic " + localStorage.getItem("token")
                 }
             });
-
+            history.push(`/profilepage`);
 
         } catch (error) {
             setErrorFetchData(
@@ -73,7 +73,7 @@ const EditProfile = props => {
             )
         }
 
-        history.push(`/menu`);
+
 
     };
 

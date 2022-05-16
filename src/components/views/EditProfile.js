@@ -64,7 +64,6 @@ const EditProfile = props => {
                 }
             });
 
-            history.push(`/profilepage`);
 
         } catch (error) {
             setErrorFatchData(

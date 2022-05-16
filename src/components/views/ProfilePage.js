@@ -70,10 +70,7 @@ const ProfilePage = props => {
     };
     const [avatar, setAvatar] = React.useState('');
     const [user, setUser]= React.useState('');
-
-
-
-
+    const [errorFatchData,setErrorFatchData] = useState(null)
 
 
 
@@ -95,9 +92,11 @@ const ProfilePage = props => {
                 setAvatar('resources/avatar/'+response.data.avatar+'.png');
 
             } catch (error) {
-                console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
-                console.error("Details:", error);
-                alert("Something went wrong while fetching the users! See the console for details.");
+                setErrorFatchData(
+                    <div className="errors">
+                        Sorry something went wrong during the fatching the data
+                    </div>
+                )
             }
         }
 
@@ -146,6 +145,7 @@ const ProfilePage = props => {
                                 </div>
                             </div>
                         </Grid>
+                        {errorFatchData}
                         <Grid item xs={6} sx={{textAlign: 'center'}}>
                             <div className="table">
                                 <div className="table tableName">

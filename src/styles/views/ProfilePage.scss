@@ -46,6 +46,8 @@
     height: auto;
     padding: 5px;
     font-size: 20px;
+    inline-size: 100%;
+    overflow-wrap: break-word;
   }
   &.button{
     height: 2vw;

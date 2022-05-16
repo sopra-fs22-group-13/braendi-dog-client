@@ -24,15 +24,15 @@ const style = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: '50%',
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
+    bgcolor: '#F7F8F1',
+    border: '2px solid #C7CB95',
     boxShadow: 24,
     p: 4,
     borderRadius: 2,
 };
 
 function getStripedStyle (wins) {
-    return { background: wins === 0 ? '#ff3636' : '#4af53b' };
+    return { background: wins === 0 ? '#cb9595' : '#c7da95' };
 }
 
 function createData(date, wins, inGoal) {

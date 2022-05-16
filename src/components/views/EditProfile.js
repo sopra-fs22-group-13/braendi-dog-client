@@ -19,6 +19,12 @@ import PopUpProfile from "./PopUpProfile";
 import updateManager from "../../helpers/updateManager";
 import MenuSideBar from "components/ui/MenuSideBar";
 
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
 
 /*
 It is possible to add multiple components inside a single file,
@@ -43,19 +49,24 @@ const EditProfile = props => {
     const [username,editName]= React.useState('');
     const [password,editPassword]= React.useState('');
     const [description,editDescription]= React.useState('');
+    const [newAvatar,editAvatar]= React.useState('');
     const [errorFetchData,setErrorFetchData] = useState(null)
+
 
     const doEdit = async () => {
         try {
             const requestBody={}
-            if (username !== null){
+            if (username!== null && username!==""){
                 requestBody["username"]=username;
             }
-            if (password !== null){
+            if (password!== null && password!=="" ){
                 requestBody["password"]=password;
             }
-            if (description!== null){
+            if (description!== null && description!==""){
                 requestBody["description"]=description;
+            }
+            if (newAvatar!== null && newAvatar!==""){
+                requestBody["avatar"]=newAvatar;
             }
             const requestBody1 = JSON.stringify(requestBody);
             let id =localStorage.getItem("userID")
@@ -64,6 +75,8 @@ const EditProfile = props => {
                     'Authorization': "Basic " + localStorage.getItem("token")
                 }
             });
+
+
             history.push(`/profilepage`);
 
         } catch (error) {
@@ -94,6 +107,11 @@ const EditProfile = props => {
     };
     const handleChangeStatus = (event) => {
         editDescription(event.target.value);
+    };
+
+    const handleChangeAvatar = (event) => {
+        editAvatar(event.target.value);
+        console.log(event)
     };
 
     useEffect(() => {
@@ -133,23 +151,51 @@ const EditProfile = props => {
                     <div className="editProfile title">
                         Edit Your profile  {popup }
                     </div>
-                    <Avatar  alt="Remy Sharp" src={avatar} sx={{width:90, height:90}} />
+
+                    <FormControl sx={{  border: 0,  minWidth: 90 }}>
+                        <Avatar  alt="Remy Sharp" src={avatar} sx={{width:90, height:90, margin:2}} />
+                        <InputLabel id="demo-dialog-native" > </InputLabel>
+                        <Select
+                            labelId="demo-simple-select-autowidth-label"
+                            id="demo-simple-select-autowidth"
+                            value={newAvatar}
+                            onChange={handleChangeAvatar}
+                            autoWidth
+                            label="avatar"
+                        >
+                            <MenuItem value={1}><Avatar  alt="Remy Sharp" src={'resources/avatar/1.png'} sx={{width:60, height:60}} /> </MenuItem>
+                            <MenuItem value={2}><Avatar  alt="Remy Sharp" src={'resources/avatar/2.png'} sx={{width:60, height:60}} /> </MenuItem>
+                            <MenuItem value={3}><Avatar  alt="Remy Sharp" src={'resources/avatar/3.png'} sx={{width:60, height:60}} /> </MenuItem>
+                            <MenuItem value={4}><Avatar  alt="Remy Sharp" src={'resources/avatar/4.png'} sx={{width:60, height:60}} /> </MenuItem>
+                            <MenuItem value={5}><Avatar  alt="Remy Sharp" src={'resources/avatar/5.png'} sx={{width:60, height:60}} /> </MenuItem>
+                            <MenuItem value={6}><Avatar  alt="Remy Sharp" src={'resources/avatar/6.png'} sx={{width:60, height:60}} /> </MenuItem>
+                            <MenuItem value={7}><Avatar  alt="Remy Sharp" src={'resources/avatar/7.png'} sx={{width:60, height:60}} /> </MenuItem>
+                            <MenuItem value={8}><Avatar  alt="Remy Sharp" src={'resources/avatar/8.png'} sx={{width:60, height:60}} /> </MenuItem>
+                            <MenuItem value={9}><Avatar  alt="Remy Sharp" src={'resources/avatar/9.png'} sx={{width:60, height:60}} /> </MenuItem>
+                            <MenuItem value={10}><Avatar  alt="Remy Sharp" src={'resources/avatar/10.png'} sx={{width:60, height:60}} /> </MenuItem>
+                            <MenuItem value={11}><Avatar  alt="Remy Sharp" src={'resources/avatar/11.png'} sx={{width:60, height:60}} /> </MenuItem>
+                            <MenuItem value={12}><Avatar  alt="Remy Sharp" src={'resources/avatar/12.png'} sx={{width:60, height:60}} /> </MenuItem>
+                            <MenuItem value={13}><Avatar  alt="Remy Sharp" src={'resources/avatar/13.png'} sx={{width:60, height:60}} /> </MenuItem>
+                            <MenuItem value={14}><Avatar  alt="Remy Sharp" src={'resources/avatar/14.png'} sx={{width:60, height:60}} /> </MenuItem>
+                        </Select>
+                    </FormControl>
+
                     <div className="editProfile containerUserInfo">
                         <div className="editProfile userInfo">
-                            Name: {user.username}
+                            Name:
                         </div>
-                        <TextField id="filled-basic" label="New Username" size = "small" variant="filled" inputProps={{ maxLength: 10 }} margin="normal" value={username} onChange={handleChangeName}  />
+                        <TextField id="filled-basic"placeholder={user.username}  variant="filled" inputProps={{ maxLength: 10 }} margin="normal" value={username} onChange={handleChangeName} sx={{width:1}} />
                         <div className="editProfile userInfo">
                             Password
                         </div>
-                        <TextField id="filled-basic" label="New Password" size = "small" variant="filled"  inputProps={{ maxLength: 10 }} margin="normal" value={password} onChange={handleChangePassword} />
+                        <TextField id="filled-basic" placeholder="New Password" size = "small" variant="filled"  inputProps={{ maxLength: 10 }} margin="normal" value={password} onChange={handleChangePassword} sx={{width:1}} />
                         <div className="editProfile userInfo">
-                            Description: {user.description}
+                            Description:
                         </div>
-                        <TextField id="filled-basic" label="New Status" size = "small" variant="filled" inputProps={{ maxLength: 256 }} margin="normal" value={description}  onChange={handleChangeStatus} />
+                        <TextField id="filled-basic" placeholder={user.description} size = "small" variant="filled" inputProps={{ maxLength: 100 }} multiline="true" margin="normal" value={description}  onChange={handleChangeStatus} sx={{width:1}} />
                     </div>
                     <div  className="editProfile button">
-                        <Button variant="contained" disabled={!username && !password && !description} onClick={() => doEdit()}>Edit</Button>
+                        <Button variant="contained" disabled={!username && !password && !description && !newAvatar} onClick={() => doEdit()}>Edit</Button>
                     </div>
                     {errorFetchData}
                 </div>

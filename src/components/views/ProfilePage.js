@@ -53,7 +53,7 @@ const rows = [
 ];
 
 function getStripedStyle (wins) {
-    return { background: wins === 0 ? '#ff3636' : '#4af53b' };
+    return { background: wins === 0 ? '#ffcb95' : '#c7ff95' };
 }
 const ProfilePage = props => {
     const history = useHistory();

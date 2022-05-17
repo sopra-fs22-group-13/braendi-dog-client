@@ -2,18 +2,21 @@
 
 @keyframes grow {
     0% {
-        transform: scaleY(1);
+        transform: scaleX(1);
+    }
+    50% {
+        transform: scaleX(0.98);
     }
     100% {
-        transform: scaleY(1);
+        transform: scaleX(1);
     }
 }
 @keyframes shrink {
     0% {
-        transform: scaleY(1);
+        transform: scaleX(1);
     }
     100% {
-        transform: scaleY(0);
+        transform: scaleX(0);
     }
 }
 
@@ -21,49 +24,53 @@
     position: absolute;
     width: 95vw;
     height: auto;
+    max-height: 50vh;
+    overflow-y: visible;
     left: 2.5vw;
     top: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     
     & > div{
         //the actual error
-        animation: 0.3s ease-in 0s 1 grow, 0.3s ease-out 100s 1 shrink;
+        animation: 0.1s linear 100s 1 grow, 0.35s ease-out 100s 1 shrink;
         transform-origin: center;
-
         display: flex;
         justify-content: center;
         align-items: center;
 
-        border-radius: 5vw;
-        border-color: $darkLine;
-        border-width: 1%;
-        border-style: solid;
-
-
         margin-bottom: 1vh;
+
+        box-shadow: 0 4px 4px gray;
 
         width: 100%;
         overflow: hidden;
-        color: $textClear;
+        color: $textDark;
         text-align: center;
         font-size: 3vh;
         font-style: normal;
 
         &.ERROR{
-            background-color: tomato;
+            background: linear-gradient(0deg, rgba(231,111,109,1) 10%, rgba(199,203,149,1) 11%, rgba(199,203,149,1) 100%);
         }
         &.INFO{
-            background-color:cornflowerblue;
+            background: linear-gradient(0deg, rgba(100 ,149,224,1) 10%, rgba(199,203,149,1) 11%, rgba(199,203,149,1) 100%);
         }
         &.SUCCESS{
-            background-color:forestgreen;
+            background: linear-gradient(0deg, rgba(34 ,139,34,1) 10%, rgba(199,203,149,1) 11%, rgba(199,203,149,1) 100%);
         }
 
         & > .message-indicator{
             height: 3vh;
             margin-top: 1vh;
-            margin-bottom: 1vh;
+            margin-bottom: 2vh;
             margin-right: 2vw;
             font-style: italic;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
             & > svg{
                 height: 3vh;

@@ -3,6 +3,9 @@ import PropTypes from "prop-types";
 import "styles/views/ErrorDisplay.scss";
 import PetsIcon from '@mui/icons-material/Pets';
 import random from "sockjs-client/lib/utils/random";
+import InfoIcon from '@mui/icons-material/Info';
+import ErrorIcon from '@mui/icons-material/Error';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 const Message = props => {
 
@@ -19,12 +22,29 @@ const Message = props => {
         }, props.time); //disable after time is up
     }, []);
 
+    let icon = null;
+    let title = null;
+    switch(props.type)
+    {
+        case "ERROR":
+            icon = <ErrorIcon></ErrorIcon>;
+            title = "Error"
+            break;
+        case "INFO":
+            icon = <InfoIcon></InfoIcon>;
+            title = "Information"
+            break;
+        case "SUCCESS":
+            icon = <CheckCircleIcon></CheckCircleIcon>;
+            title = "Success"
+            break;
+    }
+
     let content = (
         <div style={styles} className={props.type}>
             <div className="message-indicator">
-                <PetsIcon/>
-                {props.type}:
-                <PetsIcon/>
+                {icon}
+                {title}:
             </div>
             <div>{props.text}</div>
         </div>

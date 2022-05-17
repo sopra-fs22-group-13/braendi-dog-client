@@ -1,4 +1,3 @@
-import Popup from 'components/views/PopUpEditProfile';
 import React, { useState } from 'react';
 import 'styles/ui/MenuSideBar.scss';
 import {api, handleError} from 'helpers/api';
@@ -7,6 +6,7 @@ import { addError } from 'components/views/ErrorDisplay';
 import updateManager from 'helpers/updateManager';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { Button } from './Button';
+import RulesPopup from './RulesPopup';
 
 const MenuSideBar = props =>
 {
@@ -61,36 +61,7 @@ const MenuSideBar = props =>
     return (
         <React.Fragment>
 
-        {rulesPopupOpen && <Popup
-            content={<div className="info-block">
-                                 <h1>Rules</h1>
-                                 <h2>Goal</h2>
-                                 To win you have to move all your marbles in the indicated goal room.
-                                 <h2>Process</h2>
-                                 Each round, one player after another plays a card and moves their marbles (see Possible Moves). If a player cannot move, all their cards get removed and they have to skip the rest of the round.
-                                 A player must always play a move if they are able to!
-                                 A round is over when no one has any cards left. <br/> Each round starts with a different amount of cards: The first round starts with 6 cards, then 5, 4, 3, 2 and then it starts over again with 6, 5, ...
-                                 <h2>Start</h2>
-                                 A starting move can be done with an Ace, a King or a Joker. With it, a marble can be moved on the marked starting position.
-                                 <br/>Important: A marble that lands on the starting position the first time cannot be sent home or overtaken!
-                                 <h2>Card Values</h2>
-                                 Two to Ten: according to their name<br/>
-                                 Four: backwards or forwards<br/>
-                                 Seven: can be split between marbles<br/>
-                                 Jack: switch your marble with another (can be one of your own)<br/>
-                                 Queen: 12 points<br/>
-                                 King: 13 Points or a starting move<br/>
-                                 Ace: 1 or 11 Points of a starting move<br/>
-                                 Joker: any of the mentioned card values
-                                 <h2>Sending Home</h2>
-                                 You can always overtake other marbles, but if you overtake them with a 7 or land ontop of them, the marble that was there before is sent back to the starting container. This is also the case if the marble is your own.
-                                 <h2>Goal Area</h2>
-                                 To join the goal area, a marble must move forwards over the starting position directly in the goal area. You cannot overtake (or move backwards) in the goal area.
-                                 <h2>Further Information</h2>
-                                 The rules are further explained <a href="http://www.dogspiel.info/images/pdfs/regeln/regeln.pdf" target="_blank">here</a>.
-                             </div>}
-            handleClose={togglePopup}
-        />}
+        {<RulesPopup open={rulesPopupOpen} onClose={togglePopup}/>}
 
         <div className="side-bar container">
                   <div>

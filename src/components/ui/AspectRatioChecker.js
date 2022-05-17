@@ -26,7 +26,7 @@ const AspectRatioChecker = props =>
 
         let aspect = w / h;
 
-        if(aspect < 1.25)
+        if(aspect < 1.6)
         {
             setOkay(false);
         }else{
@@ -52,7 +52,7 @@ const AspectRatioChecker = props =>
         return (
             <div className='aspectratio-container'>
                 <div>
-                    Please resize the window to at least 5:4 in landscape
+                    Please resize the window to a landscape format
                 </div>
             </div>
         );

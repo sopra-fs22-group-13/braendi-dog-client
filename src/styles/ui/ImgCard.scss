@@ -1,0 +1,23 @@
+@import 'styles/theme';
+
+
+.img-card{
+    background-color: $buttonColorLight;
+    border-radius: 5px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    margin: 5px;
+    color: $textDark;
+    width: min-content;
+    text-align: center;
+    & svg{
+
+    }
+
+    & div:first-of-type{
+        font-size: x-large;
+        font-weight: bolder;
+    }
+}

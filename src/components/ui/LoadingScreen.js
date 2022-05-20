@@ -23,7 +23,6 @@ const LoadingScreen = props =>
     const theme = createTheme({
         palette: {
           primary: {
-            // Purple and green play nicely together.
             main: '#C7CB95',
             dark: "#C7CB95",
             light: "#C7CB95",

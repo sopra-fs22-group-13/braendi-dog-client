@@ -7,6 +7,7 @@ import {Button} from 'components/ui/Button';
 import 'styles/views/Lobby.scss';
 import BaseContainer from "components/ui/BaseContainer";
 import PetsIcon from '@mui/icons-material/Pets';
+import CachedIcon from '@mui/icons-material/Cached';
 import LogoutIcon from '@mui/icons-material/Logout';
 import AddIcon from '@mui/icons-material/Add';
 import PropTypes from "prop-types";
@@ -19,6 +20,9 @@ import { addError, addInfo, addSuccess } from './ErrorDisplay';
 import { CribSharp } from '@mui/icons-material';
 import { moveManager } from 'helpers/moveManager';
 import MenuSideBar from 'components/ui/MenuSideBar';
+import { IconButton } from '@mui/material';
+import { createTheme } from '@mui/material/styles';
+import { ThemeProvider } from '@emotion/react';
 
 
 async function invitePlayer(inviteeId) {
@@ -78,6 +82,7 @@ Member.propTypes = {
 const Lobby = props => {
   const history = useHistory();
   const [users, setUsers] = useState(null);
+  const [allUsers, setAllUsers] = useState(null);
   const [members, setMembers] = useState(null);
 
 
@@ -150,7 +155,6 @@ useEffect(() => {
     }
 
   }, []);
-
 
 // fetches all currently logged in users
 async function fetchDataSearch(filter = "") {
@@ -274,6 +278,15 @@ let lobbyButton =
     VoiceChatManager.startListening();
   }, []);
 
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#F7F8F1',
+        dark: "#F7F8F1",
+        light: "#F7F8F1",
+      },
+    },
+  });
 
   return (
     <BaseContainer>
@@ -317,6 +330,14 @@ let lobbyButton =
                         placeholder="Enter search here"
                         onKeyDown={e => onEnterKey(e.key, e.target.value)}
                     />
+                    <ThemeProvider theme={theme}>
+                    <IconButton onClick={() => {fetchDataSearch();}}>
+                        <CachedIcon   sx={{
+                          color: 'primary.light',
+                        }}></CachedIcon>
+                      </IconButton>
+                    </ThemeProvider>
+
                 </div>
                 <div className="search user-list">
                     {contentSearch}

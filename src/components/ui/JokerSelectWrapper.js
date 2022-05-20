@@ -52,7 +52,7 @@ const JokerSelectWrapper = props =>
     //format info
     let formattedMe = [];
     handInfo.forEach(cardstring => {
-        formattedMe.push({cardValue: cardstring, faceDown: false, selectable: true, selectFunction: cardSelectFunction});
+        formattedMe.push({cardValue: cardstring, faceDown: false, selectable: true, selectFunction: cardSelectFunction, small: true});
     });
 
     return (

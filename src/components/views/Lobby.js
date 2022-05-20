@@ -1,29 +1,23 @@
-import React from 'react';
-import {useEffect, useState} from 'react';
-import {api, handleError} from 'helpers/api';
-import User from 'models/User';
-import {useHistory} from 'react-router-dom';
-import {Button} from 'components/ui/Button';
-import 'styles/views/Lobby.scss';
-import BaseContainer from "components/ui/BaseContainer";
-import PetsIcon from '@mui/icons-material/Pets';
-import CachedIcon from '@mui/icons-material/Cached';
-import LogoutIcon from '@mui/icons-material/Logout';
+import { ThemeProvider } from '@emotion/react';
 import AddIcon from '@mui/icons-material/Add';
-import PropTypes from "prop-types";
-
-import { VoiceChatManager } from 'components/voice/voiceChat';
-import updateManager from 'helpers/updateManager';
-
-import { getMarbleLocation } from 'helpers/getMarbleLocation';
-import { addError, addInfo, addSuccess } from './ErrorDisplay';
-import { CribSharp } from '@mui/icons-material';
-import { moveManager } from 'helpers/moveManager';
-import MenuSideBar from 'components/ui/MenuSideBar';
+import CachedIcon from '@mui/icons-material/Cached';
+import PetsIcon from '@mui/icons-material/Pets';
 import { IconButton } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
-import { ThemeProvider } from '@emotion/react';
+import BaseContainer from "components/ui/BaseContainer";
+import { Button } from 'components/ui/Button';
+import MenuSideBar from 'components/ui/MenuSideBar';
+import { VoiceChatManager } from 'components/voice/voiceChat';
+import { api, handleError } from 'helpers/api';
+import updateManager from 'helpers/updateManager';
+import PropTypes from "prop-types";
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import 'styles/views/Lobby.scss';
+import { addError, addInfo, addSuccess } from './ErrorDisplay';
 import PopUpProfile from "./PopUpProfile";
+
+
 
 
 async function invitePlayer(inviteeId) {

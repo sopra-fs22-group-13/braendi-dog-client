@@ -1,7 +1,6 @@
-import React from "react";
 import PropTypes from "prop-types";
+import React from "react";
 import "styles/views/Header.scss";
-import { DogPawLogo } from "components/ui/DogPawLogo";
 
 /**
  * This is an example of a Functional and stateless component (View) in React. Functional components are not classes and thus don't handle internal state changes.

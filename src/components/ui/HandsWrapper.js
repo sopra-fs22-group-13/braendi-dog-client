@@ -1,17 +1,8 @@
-import React from 'react';
-import {useEffect, useState} from 'react';
-import {api, handleError} from 'helpers/api';
-import User from 'models/User';
-import {useHistory} from 'react-router-dom';
-import {Button} from 'components/ui/Button';
-import 'styles/ui/HandsWrapper.scss';
-import BaseContainer from "components/ui/BaseContainer";
-import PetsIcon from '@mui/icons-material/Pets';
-import LogoutIcon from '@mui/icons-material/Logout';
-import PropTypes from "prop-types";
-import { connectToPersonalUpdate } from 'helpers/updateManager';
 import Hand from "components/ui/Hand";
+import { api } from 'helpers/api';
 import { moveManager } from 'helpers/moveManager';
+import React, { useEffect, useState } from 'react';
+import 'styles/ui/HandsWrapper.scss';
 
 
 const HandsWrapper = props =>

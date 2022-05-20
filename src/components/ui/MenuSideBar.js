@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import 'styles/ui/MenuSideBar.scss';
-import {api, handleError} from 'helpers/api';
-import {useHistory} from 'react-router-dom';
-import { addError } from 'components/views/ErrorDisplay';
-import updateManager from 'helpers/updateManager';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { addError } from 'components/views/ErrorDisplay';
+import { api } from 'helpers/api';
+import updateManager from 'helpers/updateManager';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import 'styles/ui/MenuSideBar.scss';
 import { Button } from './Button';
 import { RulesPopup } from './RulesPopup';
 

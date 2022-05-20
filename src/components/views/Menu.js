@@ -1,20 +1,14 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {api, handleError} from 'helpers/api';
-import User from 'models/User';
-import {useHistory} from 'react-router-dom';
-import {Button} from 'components/ui/Button';
-import 'styles/views/Menu.scss';
-import BaseContainer from "components/ui/BaseContainer";
-import PropTypes from "prop-types";
-import Header from "components/views/Header";
-import updateManager from 'helpers/updateManager';
-import { DiscountRounded } from '@mui/icons-material';
-import { addError, addInfo } from './ErrorDisplay';
-import Popup from "./PopUpEditProfile";
-import LogoutIcon from '@mui/icons-material/Logout';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
-import PersonIcon from '@mui/icons-material/Person';
+import BaseContainer from "components/ui/BaseContainer";
+import { Button } from 'components/ui/Button';
 import MenuSideBar from 'components/ui/MenuSideBar';
+import { api, handleError } from 'helpers/api';
+import updateManager from 'helpers/updateManager';
+import PropTypes from "prop-types";
+import React, { useEffect, useRef, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import 'styles/views/Menu.scss';
+import { addError } from './ErrorDisplay';
 
 
 const FormField = props => {

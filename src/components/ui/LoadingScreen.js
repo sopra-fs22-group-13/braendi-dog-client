@@ -1,21 +1,8 @@
-import React from 'react';
-import {useEffect, useState} from 'react';
-import {api, handleError} from 'helpers/api';
-import User from 'models/User';
-import {useHistory} from 'react-router-dom';
-import {Button} from 'components/ui/Button';
-import 'styles/ui/AspectRatioChecker.scss';
-import BaseContainer from "components/ui/BaseContainer";
-import PetsIcon from '@mui/icons-material/Pets';
-import LogoutIcon from '@mui/icons-material/Logout';
-import PropTypes from "prop-types";
-import { connectToPersonalUpdate } from 'helpers/updateManager';
-import Hand from "components/ui/Hand";
-import { moveManager } from 'helpers/moveManager';
-import { createTheme, width } from '@mui/system';
-import { Spinner } from './Spinner';
-import { LinearProgress } from '@mui/material';
 import { ThemeProvider } from '@emotion/react';
+import { LinearProgress } from '@mui/material';
+import { createTheme } from '@mui/system';
+import React from 'react';
+import 'styles/ui/AspectRatioChecker.scss';
 
 
 const LoadingScreen = props =>

@@ -1,13 +1,12 @@
-import React from 'react';
-import PropTypes from "prop-types";
-import 'styles/ui/PlayerInfo.scss';
-import {useEffect, useState} from 'react';
-import {api, handleError} from 'helpers/api';
-import { addError, addInfo, addSuccess } from 'components/views/ErrorDisplay';
-import Avatar from '@mui/material/Avatar';
-import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import VolumeOffIcon from '@mui/icons-material/VolumeOff';
-import { startListening, VoiceChatManager } from 'components/voice/voiceChat';
+import VolumeUpIcon from '@mui/icons-material/VolumeUp';
+import Avatar from '@mui/material/Avatar';
+import { addError } from 'components/views/ErrorDisplay';
+import { VoiceChatManager } from 'components/voice/voiceChat';
+import { api } from 'helpers/api';
+import PropTypes from "prop-types";
+import React, { useEffect, useState } from 'react';
+import 'styles/ui/PlayerInfo.scss';
 
 
 const Player = props => {

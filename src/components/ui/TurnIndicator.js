@@ -2,11 +2,10 @@ import Down from '@mui/icons-material/ArrowDropDown';
 import Up from '@mui/icons-material/ArrowDropUp';
 import Left from '@mui/icons-material/ArrowLeft';
 import Right from '@mui/icons-material/ArrowRight';
-import {api, handleError} from 'helpers/api';
-import { useEffect, useState } from 'react';
-import { HelpOutline } from '@mui/icons-material';
-import 'styles/ui/TurnIndicator.scss';
 import { addInfo } from 'components/views/ErrorDisplay';
+import { api } from 'helpers/api';
+import { useEffect, useState } from 'react';
+import 'styles/ui/TurnIndicator.scss';
 
 
 const TurnIndicator = (props) => {

@@ -1,25 +1,19 @@
-import { useEffect, useState } from "react";
-import { api, handleError } from "helpers/api";
-import { Spinner } from "components/ui/Spinner";
-import { Button } from "components/ui/Button";
-import WinningDisplay from "components/ui/WinningDisplay";
-import PlayerInfo from "components/ui/PlayerInfo";
-import Board from "components/views/Board";
-import { useHistory } from "react-router-dom";
 import BaseContainer from "components/ui/BaseContainer";
-import PropTypes from "prop-types";
-import "styles/views/Game.scss";
-import HandsWrapper from "components/ui/HandsWrapper";
 import CardStack from "components/ui/CardStack";
-import Marbles from "components/views/Marbles";
-import TurnIndicator from "components/ui/TurnIndicator";
-import InfoButtons, { InfoBlockLeft, InfoBlockRight } from "components/ui/InfoBlock";
-import updateManager from "helpers/updateManager";
-import { VoiceChatManager } from "components/voice/voiceChat";
+import HandsWrapper from "components/ui/HandsWrapper";
+import InfoButtons from "components/ui/InfoBlock";
 import JokerSelectWrapper from "components/ui/JokerSelectWrapper";
 import LoadingScreen from "components/ui/LoadingScreen";
+import PlayerInfo from "components/ui/PlayerInfo";
+import TurnIndicator from "components/ui/TurnIndicator";
+import WinningDisplay from "components/ui/WinningDisplay";
+import Board from "components/views/Board";
+import Marbles from "components/views/Marbles";
+import updateManager from "helpers/updateManager";
+import { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+import "styles/views/Game.scss";
 import { addInfo } from "./ErrorDisplay";
-import { timeout } from "sockjs-client/lib/info-receiver";
 
 const Game = () => {
   const history = useHistory();

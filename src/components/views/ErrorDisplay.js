@@ -1,11 +1,9 @@
-import React, {useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import "styles/views/ErrorDisplay.scss";
-import PetsIcon from '@mui/icons-material/Pets';
-import random from "sockjs-client/lib/utils/random";
-import InfoIcon from '@mui/icons-material/Info';
-import ErrorIcon from '@mui/icons-material/Error';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import ErrorIcon from '@mui/icons-material/Error';
+import InfoIcon from '@mui/icons-material/Info';
+import PropTypes from "prop-types";
+import React, { useEffect, useState } from "react";
+import "styles/views/ErrorDisplay.scss";
 
 const Message = props => {
 

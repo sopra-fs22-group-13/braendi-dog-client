@@ -1,14 +1,12 @@
-import React, {useState} from 'react';
-import {api, handleError} from 'helpers/api';
-import User from 'models/User';
-import {useHistory} from 'react-router-dom';
-import {Button} from 'components/ui/Button';
-import 'styles/views/RegistrationLogin.scss';
 import BaseContainer from "components/ui/BaseContainer";
-import PropTypes from "prop-types";
+import { Button } from 'components/ui/Button';
 import Header from "components/views/Header";
+import { api } from 'helpers/api';
+import PropTypes from "prop-types";
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import 'styles/views/RegistrationLogin.scss';
 
-import {red} from "@mui/material/colors";
 
 /*
 It is possible to add multiple components inside a single file,

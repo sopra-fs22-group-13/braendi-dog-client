@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import reactDom from "react-dom";
-import "styles/ui/InfoBlock.scss"
+import "styles/ui/InfoBlock.scss";
 import { Button } from "./Button";
 import { MovePopup, RulesPopup } from "./RulesPopup";
 

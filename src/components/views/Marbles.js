@@ -1,17 +1,13 @@
-import {useEffect, useState} from 'react';
-import {api, handleError} from 'helpers/api';
-import {Spinner} from 'components/ui/Spinner';
-import {Button} from 'components/ui/Button';
-import {useHistory} from 'react-router-dom';
 import BaseContainer from "components/ui/BaseContainer";
+import { Button } from 'components/ui/Button';
 import Marble from "components/ui/Marble";
-import PropTypes from "prop-types";
-import "styles/views/Marbles.scss";
-
+import { api } from 'helpers/api';
 import { getMarbleLocation } from 'helpers/getMarbleLocation';
 import { moveManager } from 'helpers/moveManager';
-import { SecurityUpdate } from '@mui/icons-material';
-import ErrorDisplay, { addError } from './ErrorDisplay';
+import { useEffect, useState } from 'react';
+import "styles/views/Marbles.scss";
+import { addError } from './ErrorDisplay';
+
 
 //button to press when finishing a 7 turn
 const SevenOkButton = props => {

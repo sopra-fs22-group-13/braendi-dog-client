@@ -1,33 +1,27 @@
 
-import {useHistory} from 'react-router-dom';
-import BaseContainer from "components/ui/BaseContainer";
-
-import Header from "./Header";
-import 'styles/views/ProfilePage.scss';
-
-import * as React from 'react';
-import Stack from '@mui/material/Stack';
+import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-
-
-import TextField from '@mui/material/TextField';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import Avatar from '@mui/material/Avatar';
-
-import LogoutIcon from "@mui/icons-material/Logout";
-import Grid from '@mui/material/Grid';
-import TextareaAutosize from '@mui/material/TextareaAutosize';
-
-import {useEffect, useState} from "react";
-import {api, handleError} from "../../helpers/api";
-import {addError} from "./ErrorDisplay";
+import BaseContainer from "components/ui/BaseContainer";
 import MenuSideBar from 'components/ui/MenuSideBar';
+import * as React from 'react';
+import { useEffect, useState } from "react";
+import { useHistory } from 'react-router-dom';
+import 'styles/views/ProfilePage.scss';
+import { api } from "../../helpers/api";
+
+
+
+
+
+
 
 
 /*

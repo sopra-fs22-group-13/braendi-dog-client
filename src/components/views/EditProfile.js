@@ -1,30 +1,24 @@
-import React, {useEffect} from "react";
-import 'styles/views/EditProfile.scss';
-import {useHistory} from 'react-router-dom';
-import BaseContainer from "components/ui/BaseContainer";
-
-import 'styles/views/EditProfile.scss';
-import Button from '@mui/material/Button';
-
+import { TextField } from "@mui/material";
 import Avatar from '@mui/material/Avatar';
-
-import LogoutIcon from "@mui/icons-material/Logout";
-
-import TextareaAutosize from '@mui/material/TextareaAutosize';
-
-import {useState} from "react";
-import {TextField} from "@mui/material";
-import {api, handleError} from "../../helpers/api";
-import PopUpProfile from "./PopUpProfile";
-import updateManager from "../../helpers/updateManager";
-import MenuSideBar from "components/ui/MenuSideBar";
-
+import Button from '@mui/material/Button';
+import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import ImageList from '@mui/material/ImageList';
-import ImageListItem from '@mui/material/ImageListItem';
+import BaseContainer from "components/ui/BaseContainer";
+import MenuSideBar from "components/ui/MenuSideBar";
+import React, { useEffect, useState } from "react";
+import { useHistory } from 'react-router-dom';
+import 'styles/views/EditProfile.scss';
+import { api } from "../../helpers/api";
+import updateManager from "../../helpers/updateManager";
+import PopUpProfile from "./PopUpProfile";
+
+
+
+
+
+
 
 /*
 It is possible to add multiple components inside a single file,

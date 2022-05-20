@@ -163,7 +163,7 @@ const Card = props => {
     if(props.faceDown) {
         return (
             <div className="card">
-                <img src={BACK} alt="card back" style={{top: Math.random() * 10 + "%"}}/>
+                <img src={BACK} alt="card back" style={{top: Math.random() * 10/2 + "%"}}/>
             </div>
         );
     }else {

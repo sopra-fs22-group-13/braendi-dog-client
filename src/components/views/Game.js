@@ -13,11 +13,12 @@ import HandsWrapper from "components/ui/HandsWrapper";
 import CardStack from "components/ui/CardStack";
 import Marbles from "components/views/Marbles";
 import TurnIndicator from "components/ui/TurnIndicator";
-import { InfoBlockLeft, InfoBlockRight } from "components/ui/InfoBlock";
+import InfoButtons, { InfoBlockLeft, InfoBlockRight } from "components/ui/InfoBlock";
 import updateManager from "helpers/updateManager";
 import { VoiceChatManager } from "components/voice/voiceChat";
 import JokerSelectWrapper from "components/ui/JokerSelectWrapper";
 import LoadingScreen from "components/ui/LoadingScreen";
+import { addInfo } from "./ErrorDisplay";
 
 const Game = () => {
   const history = useHistory();
@@ -27,6 +28,7 @@ const Game = () => {
   useEffect(() => {
     updateManager.connectToPersonalUpdate();
     function gameUpdateListener(event) {
+      addInfo("Game closed because a player left.", 5000);
       history.push("/menu");
     }
     document.addEventListener("gameUpdate", gameUpdateListener);
@@ -53,7 +55,7 @@ const Game = () => {
   return (
     <BaseContainer className="game">
       <div className="board flex">
-        <InfoBlockLeft />
+        {/* <InfoBlockLeft /> */}
         <div className="board container">
           <Board />
           <TurnIndicator></TurnIndicator>
@@ -63,9 +65,10 @@ const Game = () => {
             <HandsWrapper></HandsWrapper>
             <Marbles />
             <JokerSelectWrapper></JokerSelectWrapper>
+            <InfoButtons></InfoButtons>
           </div>
         </div>
-        <InfoBlockRight />
+        {/* <InfoBlockRight /> */}
         <WinningDisplay />
         {loading ? <LoadingScreen /> : null}
       </div>

@@ -67,11 +67,42 @@ const RegistrationLogin = props => {
           history.push(`/menu`);
 
       } catch (error) {
-          setErrorLogin(
+        if(error.response && error.response.status != null)
+        {
+          switch(error.response.status)
+          {
+              case 401:
+                  setErrorLogin(
+                      <div className="errors">
+                          Username and Password combination is wrong.
+                      </div>
+                  );
+              break;
+
+              case 404:
+                setErrorLogin(
+                    <div className="errors">
+                        This Username does not exist.
+                    </div>
+                );
+                break;
+
+              default:
+                setErrorLogin(
+                      <div className="errors">
+                          Unexpected server error. Try again.
+                      </div>
+                  );
+          }
+
+        }
+        else{
+            setErrorLogin(
               <div className="errors">
-                  Sorry your login didn't work
+                  Unknown error. Try again later.
               </div>
-          )
+          );
+        }
       }
   };
 
@@ -91,11 +122,35 @@ const RegistrationLogin = props => {
           history.push(`/menu`);
 
       } catch (error) {
-          setErrorRegister(
-              <div className="errors">
-                  Sorry your registration didn't work
-              </div>
-          )
+          if(error.response && error.response.status != null)
+          {
+            switch(error.response.status)
+            {
+                case 409:
+                    setErrorRegister(
+                        <div className="errors">
+                            A user with this username already exists.
+                        </div>
+                    );
+                break;
+
+                default:
+                    setErrorRegister(
+                        <div className="errors">
+                            Unexpected server error. Try again.
+                        </div>
+                    );
+            }
+
+          }
+          else{
+            setErrorRegister(
+                <div className="errors">
+                    Unknown error. Try again later.
+                </div>
+            );
+          }
+
       }
   };
 

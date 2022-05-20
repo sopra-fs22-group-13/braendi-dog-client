@@ -94,6 +94,7 @@ useEffect(() => {
               'Authorization': "Basic " + localStorage.getItem("token")
           }
       });
+      console.log(response.data)
         var memberList = [];
         for (let i=0; i<response.data.usernames.length; i++) {
             memberList.push({username: response.data.usernames[i],
@@ -261,8 +262,10 @@ async function tryStartGame(e)
 
 
 let lobbyButton =
-    <div className={(members && members.length == 4? "lobby start": "lobby button")} onClick={(e) => tryStartGame(e) }>
-         {members? members.length : 0}/4
+    <div className={members && members.length == 4? "lobby start": "lobby button"} onClick={(e) => tryStartGame(e) }>
+      {
+        members && localStorage.getItem("userID") == members[0].id && members.length == 4? "START" : ((members? members.length : "0") + "/4")  
+      }
     </div>
 
   //test voiceChat here, as there is not game yet.

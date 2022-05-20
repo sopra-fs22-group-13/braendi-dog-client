@@ -3,8 +3,7 @@ import { useEffect, useState } from 'react';
 import "styles/ui/RulesPopup.scss";
 import ImgCard from './ImgCard';
 
-const RulesPopup = props => {
-
+export const RulesPopup = props => {
     return(
         <Modal
         keepMounted
@@ -60,4 +59,33 @@ const RulesPopup = props => {
 
 }
 
-export default RulesPopup;
+export const MovePopup = props => {
+    return(
+        <Modal
+        keepMounted
+        open={props.open}
+        onClose={props.onClose}
+        aria-labelledby="keep-mounted-modal-title"
+        aria-describedby="keep-mounted-modal-description"
+        >
+            <div className='popup box'>
+                <div className="info-block">
+                <h1>Make A Move</h1>
+                Wait Until It's Your Turn (the indicator arrow will point to you).
+                <h2>1. Select A Card</h2>
+                Hover over your cards and select one with a left click. You can always select another card later.
+                <h2>2. Move</h2>
+                Select the marble you want to move, then select its destination.
+                If you are happy with your move, click on "End Turn". <br/>
+                If you would like to reselect the start and/or end positions, click on the selected position again to deselect it. Now you can click on your preferred start/end position.
+                <h2>2.1 The 7 Card</h2>
+                In order to split the card 7, do not click "End Turn". Click "Next" instead. Now, select your second move you want to do. If this is your last one, click "End Turn" otherwise click "Next" until your move is done.
+                <h2>Invalid Moves</h2>
+                The game will not warn you if you try to play an invalid move, but will deny you from doing so. You will have to try another move after playing an invalid move.
+                </div>
+            </div>
+
+        </Modal>
+    );
+
+}

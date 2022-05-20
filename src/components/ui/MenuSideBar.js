@@ -6,7 +6,7 @@ import { addError } from 'components/views/ErrorDisplay';
 import updateManager from 'helpers/updateManager';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { Button } from './Button';
-import RulesPopup from './RulesPopup';
+import { RulesPopup } from './RulesPopup';
 
 const MenuSideBar = props =>
 {

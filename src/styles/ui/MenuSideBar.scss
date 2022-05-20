@@ -111,6 +111,10 @@
         background-color: $buttonColorDark;
         box-shadow: 0 4px 4px DarkGray;
         color: $background;
+
+        &:hover {
+          background-color: $buttonColorDark !important;
+        }
       }
   
       &:hover {

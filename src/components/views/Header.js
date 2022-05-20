@@ -13,9 +13,7 @@ import { DogPawLogo } from "components/ui/DogPawLogo";
  */
 const Header = props => (
   <div className="header container" style={{height: "130px"}}>
-    <DogPawLogo width="auto" height="130px"/>
     <h1 className="header title" >Brändi Dog</h1>
-    <DogPawLogo width="auto" height="130px"/>
   </div>
 );
 

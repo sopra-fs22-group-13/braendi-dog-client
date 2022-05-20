@@ -45,8 +45,16 @@
     font-size: 20px;
   }
   &.button{
-    height: 2vw;
-    padding: 5%;
+    margin-top: 7%;
+    margin-bottom: 3%;
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 28px;
+    width: 20%;
+    height: auto;
+    text-align: center;
+    box-shadow: 0 4px 4px gray;
+    background: #C7CB95;
 
   }
 }

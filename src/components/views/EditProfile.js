@@ -1,11 +1,12 @@
 import { TextField } from "@mui/material";
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
+import { Button } from 'components/ui/Button';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import BaseContainer from "components/ui/BaseContainer";
+
 import MenuSideBar from "components/ui/MenuSideBar";
 import React, { useEffect, useState } from "react";
 import { useHistory } from 'react-router-dom';
@@ -13,6 +14,7 @@ import 'styles/views/EditProfile.scss';
 import { api } from "../../helpers/api";
 import updateManager from "../../helpers/updateManager";
 import PopUpProfile from "./PopUpProfile";
+
 
 
 
@@ -32,7 +34,6 @@ specific components that belong to the main one in the same file.
 
 const EditProfile = props => {
     const history = useHistory();
-    const popup= <PopUpProfile userId={1} />;
     const doMenu = async () => {
 
         history.push(`/menu`);
@@ -95,9 +96,11 @@ const EditProfile = props => {
 
     const handleChangeName = (event) => {
         editName(event.target.value);
+
     };
     const handleChangePassword = (event) => {
         editPassword(event.target.value);
+
     };
     const handleChangeStatus = (event) => {
         editDescription(event.target.value);
@@ -143,7 +146,7 @@ const EditProfile = props => {
             <div className="editProfile container">
                 <div className="editProfile board">
                     <div className="editProfile title">
-                        Edit Your profile  {popup }
+                        Edit Your profile
                     </div>
 
                     <FormControl sx={{  border: 0,  minWidth: 90 }}>
@@ -178,11 +181,13 @@ const EditProfile = props => {
                         <div className="editProfile userInfo">
                             Name:
                         </div>
-                        <TextField id="filled-basic"placeholder={user.username}  variant="filled" inputProps={{ maxLength: 10 }} margin="normal" value={username} onChange={handleChangeName} sx={{width:1}} />
+                        <TextField id="filled-basic"placeholder={user.username}  variant="filled" inputProps={{ maxLength: 10 }} margin="normal" value={username} onChange={handleChangeName } sx={{width:1}} select={false}  />
+
                         <div className="editProfile userInfo">
                             Password
                         </div>
                         <TextField id="filled-basic" placeholder="New Password" size = "small" variant="filled"  inputProps={{ maxLength: 10 }} margin="normal" value={password} onChange={handleChangePassword} sx={{width:1}} />
+
                         <div className="editProfile userInfo">
                             Description:
                         </div>

@@ -1,8 +1,10 @@
 
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
+
+import 'styles/views/ProfilePage.scss';
+import {Button} from 'components/ui/Button';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -117,8 +119,10 @@ const ProfilePage = props => {
                                 <div className="profilePage userInfo">
                                     Total goals: {user.gotInGoals}
                                 </div>
-                                <div  className="profilePage button">
-                                    <Button variant="contained" onClick={() => doEdit()}>Edit</Button>
+                                <div className="profilePage toEdit">
+                                    <Button className="profilePage buttonToEdit" onClick={() => doEdit()}>
+                                        Edit
+                                    </Button>
                                 </div>
                             </div>
                             {errorFetchData}

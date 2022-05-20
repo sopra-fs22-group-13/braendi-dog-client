@@ -30,10 +30,11 @@
 
     flex-direction: column;
     @include center;
+    padding-top: 7%;
   }
 
   &.userName{
-    padding: 2%;
+    padding: 7%;
     font-size: 50px;
   }
   &.containerUserInfo {
@@ -44,14 +45,32 @@
 
   &.userInfo{
     height: auto;
-    padding: 5px;
+    padding: 10px;
     font-size: 20px;
     inline-size: 100%;
     overflow-wrap: break-word;
+    background-color: $background;
   }
-  &.button{
-    height: 2vw;
-    padding: 20%;
+  &.toEdit {
+    text-align: center;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    border-top: 2px solid $darkLine  ;
+    padding-top: 10%;
+    margin-top: 20%;
+  }
+
+  &.buttonToEdit{
+
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 28px;
+    width: 60%;
+    height: auto;
+    text-align: center;
+    box-shadow: 0 4px 4px gray;
+    background: #C7CB95;
 
   }
 

@@ -1,6 +1,6 @@
 import Avatar from "@mui/material/Avatar";
 import Box from '@mui/material/Box';
-import Button from "@mui/material/Button";
+import { Button } from 'components/ui/Button';
 import Grid from "@mui/material/Grid";
 import Modal from '@mui/material/Modal';
 import Paper from "@mui/material/Paper";
@@ -82,7 +82,7 @@ const PopUpProfile = props => {
 
     return (
         <div>
-            <Button style={{textTransform: 'none', fontSize: '24px'}} onClick={handleOpen}>{user.username}</Button>
+            <div style={{fontSize: '24px'}} onClick={handleOpen}>{user.username}</div>
             <Modal
                 keepMounted
                 open={open}
@@ -100,13 +100,13 @@ const PopUpProfile = props => {
                                 </div>
                             </div>
                             <div className="profilePage containerUserInfo">
-                                <div className="profilePage userInfo">
+                                <div className="profilePage userInfoPopUp">
                                     Description: {user.description}
                                 </div>
-                                <div className="profilePage userInfo">
+                                <div className="profilePage userInfoPopUp">
                                     Total Wins: {user.wins}
                                 </div>
-                                <div className="profilePage userInfo">
+                                <div className="profilePage userInfoPopUp">
                                     Total goals: {user.gotInGoals}
                                 </div>
 
@@ -116,7 +116,7 @@ const PopUpProfile = props => {
                         <Grid item xs={6} sx={{textAlign: 'center'}}>
                             <div className="table">
                                 <div className="table tableName">
-                                    Your stats
+                                    Games played
                                 </div>
                                 <TableContainer  component={Paper} sx={{maxHeight: 500}}>
                                     <Table stickyHeader aria-label="simple table">

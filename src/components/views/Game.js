@@ -19,6 +19,7 @@ import { VoiceChatManager } from "components/voice/voiceChat";
 import JokerSelectWrapper from "components/ui/JokerSelectWrapper";
 import LoadingScreen from "components/ui/LoadingScreen";
 import { addInfo } from "./ErrorDisplay";
+import { timeout } from "sockjs-client/lib/info-receiver";
 
 const Game = () => {
   const history = useHistory();
@@ -45,6 +46,13 @@ const Game = () => {
         setLoading(false);
       }
     }, 1000);
+
+    setTimeout(() => {
+      //failsave when some images might fail to load
+      //show the screen anyway
+      clearInterval(inter);
+      setLoading(false);
+    }, 20000);
 
     return () => {
       // This code runs when component is unmounted

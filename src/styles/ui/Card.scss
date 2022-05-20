@@ -15,18 +15,33 @@
         
     }
 
-    &:hover{
+    &.normal:hover{
         width: 20%;
         margin-left: 5%;
         margin-right: 5%;
-        top: -30%;
+        top: -25%;
+    }
+
+    &.small > img{
+        width: 125%;
+        height: auto;
+        position: absolute;
+        left: -12.5%;
+        
+    }
+
+    &.small:hover{
+        width: 18%;
+        margin-left: 2%;
+        margin-right: 2%;
+        top: -15%;
     }
 
     &.selected{
         width: 20%;
         margin-left: 5%;
         margin-right: 5%;
-        top: -30%;
+        top: -45%;
 
         & > img{
             border-radius: 5%;

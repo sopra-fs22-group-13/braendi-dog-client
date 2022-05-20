@@ -169,7 +169,7 @@ const Card = props => {
     }else {
         if(inFocus){
             return(
-                <div className="card selected">
+                <div className={"card selected " + (props.small? "small" : "normal")}>
                 <img src={cardPath} alt="card front"
                 />
             </div>
@@ -177,7 +177,7 @@ const Card = props => {
             
         }else{
             return (
-                <div className="card">
+                <div className={"card " + (props.small? "small" : "normal")}>
                     <img src={cardPath} alt="card front"
                         onClick={() => {
                             if(props.selectable){

@@ -31,22 +31,53 @@ Player.propTypes = {
 
 const PlayerInfo = props => {
 
-    const [users, setUsers] = useState(null);
+    const [myUser, setMyUser] = useState(null);
+    const [otherUsers, setOtherUsers] = useState(null);
     useEffect(() => {
-        async function fetchDataLobby() {
+        async function fetchData() {
           try {
-            const response = await api.get('/lobby/' + localStorage.getItem("lobbyId"), {
+            const response = await api.get(`/game/${localStorage.getItem("gametoken")}/board`, {
               headers: {
                   'Authorization': "Basic " + localStorage.getItem("token")
               }
-          });
-          setUsers(response.data);
+            });
+            // gets coloMapping, sorts it and gets Users by ID
+            let data = response.data.colorMapping;
+            function getKeyByValue(value) {
+                return Object.keys(data).find(key => data[key] === value);
+            };
+            let sortedTempArr = [getKeyByValue("GREEN"), getKeyByValue("BLUE"), getKeyByValue("RED"), getKeyByValue("YELLOW")];
+            console.log(sortedTempArr);
+            let others = new Array(0);
+            let indexOffset = sortedTempArr.indexOf(localStorage.getItem("userID"))+1;
+            let counter = 0;
+            while (counter < 3){
+                if(indexOffset === 4) { indexOffset = 0; }
+                let otherUser = await api.get(`/users/${sortedTempArr[indexOffset]}`, {
+                          headers: {
+                              'Authorization': "Basic " + localStorage.getItem("token")
+                          }
+                        });
+                others.push(otherUser.data)
+                indexOffset++;
+                counter++;
+            }
+            setOtherUsers(others);
+            const me = await api.get(`/users/${localStorage.getItem("userID")}`, {
+              headers: {
+                  'Authorization': "Basic " + localStorage.getItem("token")
+              }
+            });
+            setMyUser(me.data);
+
           } catch (error) {
               addError("Could not fetch players", 5000);
               console.error("Details:", error);
             }
         }
+        fetchData();
       }, []);
+
     const [muteStateMe, setMuteStateMe] = useState(false);
     const [muteStateOthers, setMuteStateOthers] = useState(false);
 
@@ -59,23 +90,20 @@ const PlayerInfo = props => {
 
     let myPlayer;
     let otherPlayers;
+//offset doesn't match, somehow attach to colormapping
+    if (myUser !== null && otherUsers !== null){
+        myPlayer = (
+                <Player onClick={() => muteMe()} path={""+ myUser.avatar} volumeUp={muteStateMe} username={myUser.username}/>
+        )
 
-    //<Player onClick={() => muteMe()} path={""+ users[0].avatar} volumeUp={muteStateMe} username={users[0].username}/>
-    myPlayer = (
-            <Player onClick={() => muteMe()} path={""+1} volumeUp={muteStateMe} username="test"/>
-    )
-
-
-    /* {users.slice(1).map(user => (
-        <Player onClick={() => muteOthers()} path={""+ user.avatar} volumeUp={muteStateOthers} username= {user.username}/>
-     ))}*/ 
-    otherPlayers = (
-        <>
-        <Player onClick={() => muteOthers()} path={""+2} volumeUp={muteStateOthers} username="test"/>
-        <Player onClick={() => muteOthers()} path={""+3} volumeUp={muteStateOthers} username="test"/>
-        <Player onClick={() => muteOthers()} path={""+4} volumeUp={muteStateOthers} username="mesmmongna"/>
-        </>
-    )
+        otherPlayers = (
+            <>
+            {otherUsers.map(user => (
+                <Player onClick={() => muteOthers()} path={""+ user.avatar} volumeUp={muteStateOthers} username= {user.username}/>
+             ))}
+            </>
+        )
+    }
 
     return(
         <div className="playerinfo-container">

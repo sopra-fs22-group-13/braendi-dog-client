@@ -39,6 +39,9 @@ const AspectRatioChecker = props =>
         return (
             <div className='aspectratio-container'>
                 <div>
+                    <div className='img-div'>
+                        <img src="/resources/logo_bright.svg"></img>
+                    </div>
                     Please resize the window to a landscape format
                 </div>
             </div>

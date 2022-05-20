@@ -1,5 +1,6 @@
 import BaseContainer from "components/ui/BaseContainer";
 import CardStack from "components/ui/CardStack";
+import DummyCardLoader from "components/ui/DummyCardLoader";
 import HandsWrapper from "components/ui/HandsWrapper";
 import InfoButtons from "components/ui/InfoBlock";
 import JokerSelectWrapper from "components/ui/JokerSelectWrapper";
@@ -56,9 +57,10 @@ const Game = () => {
 
   return (
     <BaseContainer className="game">
+      {loading ? <LoadingScreen /> : null}
       <div className="board flex">
-        {/* <InfoBlockLeft /> */}
         <div className="board container">
+          <DummyCardLoader></DummyCardLoader>
           <Board />
           <TurnIndicator></TurnIndicator>
           <CardStack />
@@ -70,9 +72,7 @@ const Game = () => {
             <InfoButtons></InfoButtons>
           </div>
         </div>
-        {/* <InfoBlockRight /> */}
         <WinningDisplay />
-        {loading ? <LoadingScreen /> : null}
       </div>
     </BaseContainer>
   );

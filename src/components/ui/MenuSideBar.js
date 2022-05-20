@@ -65,7 +65,7 @@ const MenuSideBar = props =>
 
         <div className="side-bar container">
                   <div>
-                    <h1> Dog </h1>
+                    <img src="/resources/logo_dark.svg"></img>
                     <Button
                       className={props.active == "MENU" ? "side-bar button active" : "side-bar button"}
                       onClick={() => menuPage()}

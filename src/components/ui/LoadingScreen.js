@@ -19,9 +19,14 @@ const LoadingScreen = props =>
 
     return (
         <div className='aspectratio-container'>
-            <div>
+            <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+                <div className='img-div'>
+                    <img src="/resources/logo_bright.svg"></img><br></br>
+                </div>
                 <div>
                     Loading View
+                </div>
+                <div>
                 </div>
                 <ThemeProvider theme={theme}>
                     <LinearProgress color='primary' style={{width: "50vw", color: "red"}}></LinearProgress>

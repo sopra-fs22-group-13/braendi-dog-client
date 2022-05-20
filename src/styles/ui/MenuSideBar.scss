@@ -94,6 +94,7 @@
       display: flex;
       justify-content: space-between;
       border-right: 2px solid $textDark;
+
     }
   
     &.button {
@@ -138,11 +139,9 @@
       color: $textDark;
     }
   
-    & h1 {
-      margin-left: 40px;
+    & img {
+      width: 80%;
+      margin-left: 10%;
       margin-bottom: 30%;
-      font-weight: normal;
-      color: $textDark;
-      font-size: 48px;
     }
   }

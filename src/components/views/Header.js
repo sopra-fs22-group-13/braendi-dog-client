@@ -11,8 +11,8 @@ import "styles/views/Header.scss";
  * @FunctionalComponent
  */
 const Header = props => (
-  <div className="header container" style={{height: "130px"}}>
-    <h1 className="header title" >Brändi Dog</h1>
+  <div className="header container" style={{height: "200px"}}>
+    <img src="/resources/logo_dark.svg"></img>
   </div>
 );
 

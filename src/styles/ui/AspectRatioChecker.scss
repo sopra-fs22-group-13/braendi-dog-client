@@ -8,6 +8,8 @@
     left: 0;
     height: 100vh;
     width: 100vw;
+    min-height: 600px;
+    min-width: 100px;
     background-color: $buttonColorDark;
     color: $textClear;
     font-size: 48px;
@@ -16,4 +18,14 @@
     align-items: center;
     text-align: center;
     z-index: 999999;
+
+    & .img-div{
+        height: 25vh;
+        max-height: 25vh;
+        &> img {
+            height: 80%;
+        }
+    }
+
+
 }

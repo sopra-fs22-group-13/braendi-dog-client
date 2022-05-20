@@ -51,7 +51,7 @@ const rows = [
 ];
 
 const PopUpProfile = props => {
-    let userid = props.userId;
+    let userId = props.userId;
     const [user,setUser]= useState('');
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
@@ -63,7 +63,6 @@ const PopUpProfile = props => {
         // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
         async function fetchData() {
             try {
-                let userId =localStorage.getItem("userID")
                 const response = await api.get("/users/"+userId, {
                     headers: {
                         'Authorization': "Basic " + localStorage.getItem("token")
@@ -85,7 +84,7 @@ const PopUpProfile = props => {
 
     return (
         <div>
-            <Button onClick={handleOpen}>Open modal</Button>
+            <Button style={{textTransform: 'none', fontSize: '24px'}} onClick={handleOpen}>{user.username}</Button>
             <Modal
                 keepMounted
                 open={open}

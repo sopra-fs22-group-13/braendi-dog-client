@@ -23,6 +23,7 @@ import MenuSideBar from 'components/ui/MenuSideBar';
 import { IconButton } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
 import { ThemeProvider } from '@emotion/react';
+import PopUpProfile from "./PopUpProfile";
 
 
 async function invitePlayer(inviteeId) {
@@ -65,14 +66,15 @@ Player.propTypes = {
 
 
 const Member = ({member}) => {
-    return(
-    <div className="lobby member-container">
-      <div className="lobby circle">
-        <PetsIcon />
-      </div>
-      <label className="lobby member"> {member.username} </label>
-    </div>
-    );
+    if (member=="EMPTY"){
+
+        return   <label className="lobby member"><Button style={{textTransform: 'none', fontSize: '24px', backgroundColor:'#F7F8F1'}} >{member}</Button></label>
+    }
+    else {
+        return (
+            <label className="lobby member"><PopUpProfile userId={member.id}/> </label>
+        );
+    }
 };
 
 Member.propTypes = {
@@ -155,6 +157,7 @@ useEffect(() => {
     }
 
   }, []);
+
 
 // fetches all currently logged in users
 async function fetchDataSearch(filter = "") {
@@ -297,25 +300,25 @@ let lobbyButton =
               <div className="lobby circle">
                 <PetsIcon />
               </div>
-              <div className="lobby member">{members && members[0]? members[0].username : "EMPTY"}</div>
+              {members && members[0]? <Member member={members[0]}></Member> : <Member member={"EMPTY"}></Member>}
           </div>
           <div className="lobby member-container">
               <div className="lobby circle">
                 <PetsIcon />
               </div>
-              <div className="lobby member">{members && members[1]? members[1].username : "EMPTY"}</div>
+              {members && members[1]? <Member member={members[1]}></Member> : <Member member={"EMPTY"}></Member>}
           </div>
           <div className="lobby member-container">
               <div className="lobby circle">
                 <PetsIcon />
               </div>
-              <div className="lobby member">{members && members[2]? members[2].username : "EMPTY"}</div>
+              {members && members[2]? <Member member={members[2]}></Member> : <Member member={"EMPTY"}></Member>}
           </div>
           <div className="lobby member-container">
               <div className="lobby circle">
                 <PetsIcon />
               </div>
-              <div className="lobby member">{members && members[3]? members[3].username : "EMPTY"}</div>
+              {members && members[3]? <Member member={members[3]}></Member> : <Member member={"EMPTY"}></Member>}
           </div>
           <div>
           {lobbyButton}

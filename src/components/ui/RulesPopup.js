@@ -12,7 +12,7 @@ export const RulesPopup = props => {
         aria-labelledby="keep-mounted-modal-title"
         aria-describedby="keep-mounted-modal-description"
         >
-            <div className='popup box'>
+            <div className='rules-popup box'>
                 <div className="info-block">
                     <h1>Rules</h1>
                     <h2>Goal</h2>
@@ -20,7 +20,7 @@ export const RulesPopup = props => {
                     <h2>Process</h2>
                     Each round, one player after another plays a card and moves their marbles (see Possible Moves). If a player cannot move, all their cards get removed and they have to skip the rest of the round.
                     A player must always play a move if they are able to!
-                    A round is over when no one has any cards left. <br/> Each round starts with a different amount of cards: The first round starts with 6 cards, then 5, 4, 3, 2 and then it starts over again with 6, 5, ...
+                    A round is over when no one has any cards left. Each round starts with a different amount of cards: The first round starts with 6 cards, then 5, 4, 3, 2 and then it starts over again with 6, 5, ...
                     <h2>Start</h2>
                     A starting move can be done with an Ace, a King or a Joker. With it, a marble can be moved on the marked starting position.
                     <br/>Important: A marble that lands on the starting position the first time cannot be sent home or overtaken!

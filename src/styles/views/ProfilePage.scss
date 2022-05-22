@@ -15,11 +15,10 @@
   }
 
   &.board {
-    width: 85%;
+    width: 100%;
     border-block-start-width: 5vh;
     flex-direction: column;
-    padding: 2vh 2.5vw;
-    border-radius: $borderRadius;
+    padding: 5vh 2.5vw;
     border: 5px solid $buttonColorLight;
     transition: opacity 0.5s ease, transform 0.5s ease;
     @include center;
@@ -68,12 +67,20 @@
     font-size: 28px;
     width: 60%;
     height: auto;
+    padding: 8px;
     text-align: center;
     box-shadow: 0 4px 4px gray;
     background: #C7CB95;
 
   }
 
+}
+
+.css-v0rsyg-MuiGrid-root{
+    padding: 16px;
+}
+.css-1dsnw5r-MuiGrid-root{
+    padding: 16px;
 }
 
 .table{

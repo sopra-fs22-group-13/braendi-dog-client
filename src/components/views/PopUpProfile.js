@@ -93,20 +93,20 @@ const PopUpProfile = props => {
                 <Box sx={style}>
                     <Grid container spacing={2} sx={{textAlign: 'center', justifyContent: 'center'}} >
                         <Grid item xs={6} sx={{justifyContent: 'center'}}>
-                            <div className="profilePage containerTitle">
+                            <div className="popup-profilepage containerTitle">
                                 <Avatar  alt="Remy Sharp" src={avatar} sx={{width:90, height:90}} />
-                                <div className="profilePage userName">
+                                <div className="popup-profilepage userName">
                                     {user.username}
                                 </div>
                             </div>
-                            <div className="profilePage containerUserInfo">
-                                <div className="profilePage userInfoPopUp">
+                            <div className="popup-profilepage containerUserInfo">
+                                <div className="popup-profilepage userInfoPopUp">
                                     Description: {user.description}
                                 </div>
-                                <div className="profilePage userInfoPopUp">
+                                <div className="popup-profilepage userInfoPopUp">
                                     Total Wins: {user.wins}
                                 </div>
-                                <div className="profilePage userInfoPopUp">
+                                <div className="popup-profilepage userInfoPopUp">
                                     Total goals: {user.gotInGoals}
                                 </div>
 

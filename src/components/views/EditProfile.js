@@ -193,9 +193,9 @@ const EditProfile = props => {
                         </div>
                         <TextField id="filled-basic" placeholder={user.description} size = "small" variant="filled" inputProps={{ maxLength: 100 }} multiline="true" margin="normal" value={description}  onChange={handleChangeStatus} sx={{width:1}} />
                     </div>
-                    <div  className="editProfile button">
-                        <Button variant="contained" disabled={!username && !password && !description && !newAvatar} onClick={() => doEdit()}>Save</Button>
-                    </div>
+
+                        <Button className="editProfile button" variant="contained" disabled={!username && !password && !description && !newAvatar} onClick={() => doEdit()}>Save</Button>
+
                     {errorFetchData}
                 </div>
             </div>

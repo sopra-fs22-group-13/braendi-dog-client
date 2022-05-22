@@ -147,7 +147,7 @@ const ImgCard = props => {
         return (
             <div className="img-card">
                 <img src={BACK} alt="card back" style={{height: props.height}}></img>
-                <div>
+                <div className="img-card distance">
                     {props.cardDistance}
                 </div>
                 <div>
@@ -159,7 +159,7 @@ const ImgCard = props => {
         return(
             <div className="img-card">
                 <img src={cardPath} alt="card front" style={{height: props.height}}/>
-                <div>
+                <div className="img-card distance">
                     {props.cardDistance}
                 </div>
                 <div>

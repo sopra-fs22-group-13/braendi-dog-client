@@ -87,6 +87,18 @@
         padding: 22px 25px 22px 25px;
         margin-bottom: 10px;
     }
+    &.invite-placeholder{
+        display: flex;
+        background-color: $buttonColorLight;
+        color: $textDark;
+        font-size: 22px;
+        height: fit-content;
+        min-height: 46px;
+        justify-content: center;
+        align-items: center;
+        padding: 22px 25px 22px 25px;
+        margin-bottom: 10px;
+    }
 
     &.inviteText {
         font-size: 28px;
@@ -103,6 +115,7 @@
         color: $textDark;
         background-color: $background;
         padding: 9px 15px 9px 15px;
+        cursor: pointer;
     }
 
     &.createGame {
@@ -186,24 +199,5 @@
     font-weight: 300;
     margin-left: 5px;
   }
-}
-
-.info-block {
-    font-size: 1.5vh;
-    padding-top: 0;
-    padding-bottom: 2%;
-
-    > h1{
-        font-size: 4vh;
-        padding-bottom: 10px;
-        border-bottom: solid 1px;
-        text-align: center;
-    }
-
-    > h2{
-        margin-top: 18px;
-        margin-bottom: 3px;
-        font-size: 2vh;
-    }
 }
 

@@ -214,7 +214,7 @@ const startGame= async () => {
   }
 }
 
-let contentSearch = <text className="search placeholder"> No users found </text>;
+let contentSearch = <p className="search placeholder"> No users found </p>;
 
 if(users){
     contentSearch =(

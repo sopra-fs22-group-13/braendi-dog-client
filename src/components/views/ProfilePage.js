@@ -20,19 +20,6 @@ import 'styles/views/ProfilePage.scss';
 import { api } from "../../helpers/api";
 
 
-
-
-
-
-
-
-/*
-It is possible to add multiple components inside a single file,
-however be sure not to clutter your files with an endless amount!
-As a rule of thumb, use one file per component and only add small,
-specific components that belong to the main one in the same file.
- */
-
 function createData(date, wins, inGoal) {
     return { date, wins, inGoal };
 }
@@ -111,7 +98,7 @@ const ProfilePage = props => {
                             </div>
                             <div className="profilePage containerUserInfo">
                                 <div className="profilePage userInfo">
-                                    Description: {user.description}
+                                    Description: <br/> {user.description}
                                 </div>
                                 <div className="profilePage userInfo">
                                     Total Wins: {user.wins}

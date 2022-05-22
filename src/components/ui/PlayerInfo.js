@@ -46,7 +46,6 @@ const PlayerInfo = props => {
                 return Object.keys(data).find(key => data[key] === value);
             };
             let sortedTempArr = [getKeyByValue("GREEN"), getKeyByValue("BLUE"), getKeyByValue("RED"), getKeyByValue("YELLOW")];
-            console.log(sortedTempArr);
             let others = new Array(0);
             let indexOffset = sortedTempArr.indexOf(localStorage.getItem("userID"))+1;
             let counter = 0;

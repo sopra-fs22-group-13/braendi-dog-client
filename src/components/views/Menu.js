@@ -63,7 +63,6 @@ const Menu = props => {
             <div className='invites inviteText'>
                 {invite.name}
             </div>
-            {/* <div className='invites inviteText'> {invite.name} </div> */}
             <div className="invites inviteButton" onClick={() => acceptInvite(invite.lobbyId)} > Join </div>
         </div>
     );
@@ -227,7 +226,7 @@ const Menu = props => {
         }
     }, []);
 
-    let contentLeaderboard = <text className="menu info placeholder"> No users found </text>;
+    let contentLeaderboard = <p className="menu info placeholder"> No users found </p>;
 
     if(users){
         contentLeaderboard =(
@@ -252,8 +251,7 @@ const Menu = props => {
                       {invites.map(invite => (
                           <Invite invite={invite} key={invite.lobbyId} />
                       ))}
-                      {
-                          invites && invites.length == 0? <div className='invites singleInvites'>Invites from other players show up here.</div>: null}
+                      {invites && invites.length == 0? <div className='invites invite-placeholder'>Invites from other players show up here.</div>: null}
                   </ul>
 
                   <div className="invites createGame">

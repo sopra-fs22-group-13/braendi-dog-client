@@ -1,19 +1,18 @@
 @import 'styles/theme';
 
-.popup{
+.rules-popup{
     &.box {
         text-align: center;
         position: relative;
         width: 70%;
         margin: 0 auto;
         height: auto;
-        max-height: 70vh;
+        max-height: 75vh;
         margin-top: calc(100vh - 85vh - 20px);
         background: $background;
-        border-radius:$borderRadius;
-        padding: 5%;
+        padding: 2% 4%;
         border: 1px solid #999;
-        overflow-y:visible;
+        overflow: auto;
 
         /* Hide scrollbar for IE, Edge and Firefox */
         -ms-overflow-style: none;  /* IE and Edge */
@@ -22,5 +21,24 @@
         &::-webkit-scrollbar {
             display: none;
         }
+    }
+}
+.info-block {
+    font-size: 1.5vh;
+    padding-top: 0;
+    padding-bottom: 2%;
+    text-align: left;
+
+    > h1{
+        font-size: 4vh;
+        padding-bottom: 10px;
+        border-bottom: solid 1px;
+        text-align: center;
+    }
+
+    > h2{
+        margin-top: 18px;
+        margin-bottom: 3px;
+        font-size: 2vh;
     }
 }

@@ -32,6 +32,23 @@ const Marble = props => {
             );
         }
     }
+    else if (props.possibleMove){
+        if(props.marbleColor == 'none'){
+            return(<div className="marble possible-move"
+            style={{left: props.coordsLeft - 1.5 + '%', top: props.coordsTop - 2 + '%'}}
+            onClick={(e) => onClickMarble(e)}>
+            </div>);
+            }
+        else{
+            return(
+                <img src={process.env.PUBLIC_URL + props.marbleColor}
+                style={{left: props.coordsLeft - 1.5 + '%', top: props.coordsTop - 2 + '%'}}
+                className="marble possible-move"
+                onClick={(e) => onClickMarble(e)}
+                />
+            );
+        }
+    }
     else{
         if(props.marbleColor == 'none'){
                 return(<div className="marble"

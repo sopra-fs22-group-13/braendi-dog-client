@@ -13,4 +13,12 @@
         outline-offset: -0.125em;
         border-radius: 50%;
     }
+
+    &.possible-move{
+        outline-width: 0.25em;
+        outline-style: solid;
+        outline-color: $buttonColorLight;
+        outline-offset: -0.125em;
+        border-radius: 50%;
+    }
 }

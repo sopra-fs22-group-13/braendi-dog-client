@@ -30,23 +30,15 @@ const style = {
 };
 
 function getStripedStyle (wins) {
-    return { background: wins === 0 ? 'linear-gradient(90deg, rgba(231,111,109,1) 1%, rgba(247,248,241,1) 1%, rgba(247,248,241,1) 41%, rgba(225,203,192,1) 90%)' : 'linear-gradient(90deg, rgba(165,231,109,1) 1%, rgba(247,248,241,1) 1%, rgba(247,248,241,1) 41%, rgba(200,234,191,1) 90%)'};
+    return { background: wins === false ? 'linear-gradient(90deg, rgba(231,111,109,1) 1%, rgba(247,248,241,1) 1%, rgba(247,248,241,1) 41%, rgba(225,203,192,1) 90%)' : 'linear-gradient(90deg, rgba(165,231,109,1) 1%, rgba(247,248,241,1) 1%, rgba(247,248,241,1) 41%, rgba(200,234,191,1) 90%)'};
 }
 
-function createData(date, wins, inGoal) {
-    return { date, wins, inGoal };
+
+function transformDate(date){
+    return (new Date(date)).toLocaleDateString()
 }
 
-const rows = [
-    createData('10.05.2022', 1, 4),
-    createData('10.05.2022', 0, 3),
-    createData('10.05.2022', 1, 4),
-    createData('10.05.2022', 0, 2),
-    createData('10.05.2022', 0, 1),
-    createData('10.05.2022', 1, 4),
-    createData('10.05.2022', 0, 3),
 
-];
 
 const PopUpProfile = props => {
     let userId = props.userId;
@@ -56,6 +48,8 @@ const PopUpProfile = props => {
     const handleClose = () => setOpen(false);
     const [avatar, setAvatar] = React.useState('');
     const [errorFetchData,setErrorFetchData] = useState(null)
+    const [gameHistoryList, setGameHistoryList]= useState([]);
+
 
     useEffect(() => {
         // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
@@ -69,6 +63,14 @@ const PopUpProfile = props => {
 
                 setUser(response.data);
                 setAvatar('resources/avatar/'+response.data.avatar+'.png');
+
+                const responseGames = await api.get("/users/"+userId+"/history", {
+                    headers: {
+                        'Authorization': "Basic " + localStorage.getItem("token")
+                    }
+                });
+                setGameHistoryList(responseGames.data)
+
             } catch (error) {
                 setErrorFetchData(
                     <div className="errors">
@@ -79,6 +81,28 @@ const PopUpProfile = props => {
         }
         fetchData();
     }, []);
+
+    let contentStory = <TableBody> <TableRow> <TableCell > No recorded game</TableCell>  </TableRow> </TableBody>
+
+    if (gameHistoryList.length!==0){
+
+        contentStory = (
+            <TableBody>
+                {gameHistoryList.map((game) => (
+                    <TableRow
+                        key={game.id}
+                        sx={{ '&:last-child td, &:last-child th': { border: 0 }, ...getStripedStyle(game.won) }}
+                    >
+                        <TableCell component="th" scope="row">
+                            {transformDate(game.startDate)}
+                        </TableCell>
+                        <TableCell align="right">{game.goals}</TableCell>
+
+                    </TableRow>
+                ))}
+            </TableBody>
+        );
+    }
 
     return (
         <div>
@@ -93,20 +117,20 @@ const PopUpProfile = props => {
                 <Box sx={style}>
                     <Grid container spacing={2} sx={{textAlign: 'center', justifyContent: 'center'}} >
                         <Grid item xs={6} sx={{justifyContent: 'center'}}>
-                            <div className="popup-profilepage containerTitle">
+                            <div className="popup-profilePage containerTitle">
                                 <Avatar  alt="Remy Sharp" src={avatar} sx={{width:90, height:90}} />
-                                <div className="popup-profilepage userName">
+                                <div className="popup-profilePage userName">
                                     {user.username}
                                 </div>
                             </div>
-                            <div className="popup-profilepage containerUserInfo">
-                                <div className="popup-profilepage userInfoPopUp">
+                            <div className="popup-profilePage containerUserInfo">
+                                <div className="popup-profilePage userInfoPopUp">
                                     Description: {user.description}
                                 </div>
-                                <div className="popup-profilepage userInfoPopUp">
+                                <div className="popup-profilePage userInfoPopUp">
                                     Total Wins: {user.wins}
                                 </div>
-                                <div className="popup-profilepage userInfoPopUp">
+                                <div className="popup-profilePage userInfoPopUp">
                                     Total goals: {user.gotInGoals}
                                 </div>
 
@@ -123,27 +147,12 @@ const PopUpProfile = props => {
                                         <TableHead>
                                             <TableRow>
                                                 <TableCell>Date</TableCell>
-                                                <TableCell align="right">Wins</TableCell>
+
                                                 <TableCell align="right">InGoal</TableCell>
 
                                             </TableRow>
                                         </TableHead>
-
-                                        <TableBody>
-                                            {rows.map((row) => (
-                                                <TableRow
-                                                    key={row.date}
-                                                    sx={{ '&:last-child td, &:last-child th': { border: 0 }, ...getStripedStyle(row.wins) }}
-                                                >
-                                                    <TableCell component="th" scope="row">
-                                                        {row.date}
-                                                    </TableCell>
-                                                    <TableCell align="right">{row.wins}</TableCell>
-                                                    <TableCell align="right">{row.inGoal}</TableCell>
-
-                                                </TableRow>
-                                            ))}
-                                        </TableBody>
+                                        {contentStory}
                                     </Table>
                                 </TableContainer>
                             </div>

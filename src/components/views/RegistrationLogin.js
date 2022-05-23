@@ -167,6 +167,7 @@ const RegistrationLogin = props => {
                           value={loginUsername}
                           onChange={un => setLoginUsername(un)}
                           text = "Enter username"
+                          inputProps={{ maxLength: 10 }}
                       />
                       <FormField
                           label="Password:"
@@ -174,6 +175,7 @@ const RegistrationLogin = props => {
                           value={loginPassword}
                           type= "password"
                           onChange={n => setLoginPassword(n)}
+                          inputProps={{ maxLength: 10 }}
                           />
                       <div className="content button-container">
                           <Button
@@ -197,6 +199,7 @@ const RegistrationLogin = props => {
                           text = "New username"
                           value={registerUsername}
                           onChange={un => setRegisterUsername(un)}
+                          inputProps={{ maxLength: 10 }}
                           
                       />
                       <FormField

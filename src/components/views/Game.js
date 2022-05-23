@@ -15,6 +15,7 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import "styles/views/Game.scss";
 import { addInfo } from "./ErrorDisplay";
+import { VoiceChatManager } from "components/voice/voiceChat";
 
 const Game = () => {
   const history = useHistory();
@@ -23,9 +24,15 @@ const Game = () => {
 
   useEffect(() => {
     updateManager.connectToPersonalUpdate();
+    const leave = () =>{
+      localStorage.removeItem('lobbyId');
+      localStorage.removeItem('gametoken');
+      VoiceChatManager.disconnectFromVc();
+      history.push("/menu");
+    }
     function gameUpdateListener(event) {
       addInfo("Game closed because a player left.", 5000);
-      history.push("/menu");
+      setTimeout(() => leave(), 5000);
     }
     document.addEventListener("gameUpdate", gameUpdateListener);
 

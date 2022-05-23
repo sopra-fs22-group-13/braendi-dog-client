@@ -19,6 +19,13 @@ import PopUpProfile from "./PopUpProfile";
 
 
 
+function colorStatus(status){
+    if (status==='ONLINE')
+        return "rgba(165,231,109,1)"
+    else
+        return "rgba(231,111,109,1)"
+
+}
 
 async function invitePlayer(inviteeId) {
     try {
@@ -46,10 +53,12 @@ async function invitePlayer(inviteeId) {
     }
 }
 
-
+let background
 const Player = ({user}) => (
   <div className="player container" onClick={() => invitePlayer(user.id)}>
-    <div className="player username">{user.username}</div>
+    <div className="player status" style={{background:colorStatus(user.status)}}></div>
+    <div className="player username">
+        {user.username}</div>
     <AddIcon/>
   </div>
 );

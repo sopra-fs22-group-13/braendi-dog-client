@@ -1,9 +1,8 @@
 import React from 'react';
-import PropTypes from "prop-types";
 import 'styles/ui/CardStack.scss';
 import Card from './Card';
 import {useEffect, useState} from 'react';
-import {api, handleError} from 'helpers/api';
+import {api} from 'helpers/api';
 
 /**
  * CardStack component to contain the last played card

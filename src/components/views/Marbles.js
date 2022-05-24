@@ -1,7 +1,7 @@
 import BaseContainer from "components/ui/BaseContainer";
 import { Button } from 'components/ui/Button';
 import Marble from "components/ui/Marble";
-import { api, handleError } from 'helpers/api';
+import { api } from 'helpers/api';
 import { getMarbleLocation } from 'helpers/getMarbleLocation';
 import { moveManager } from 'helpers/moveManager';
 import { useEffect, useState } from 'react';
@@ -150,8 +150,6 @@ switch(userColor){
                   });
       setPossibleMoves(response.data);
     } catch (error) {
-      console.error(`Something went wrong while fetching the moves: \n${handleError(error)}`);
-      console.log(error.response.data);
       addError("Could not fetch moves", 5000);
       console.error("Details:", error);
     }

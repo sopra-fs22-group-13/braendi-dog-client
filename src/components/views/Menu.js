@@ -2,7 +2,7 @@ import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import BaseContainer from "components/ui/BaseContainer";
 import { Button } from 'components/ui/Button';
 import MenuSideBar from 'components/ui/MenuSideBar';
-import { api, handleError } from 'helpers/api';
+import { api } from 'helpers/api';
 import updateManager from 'helpers/updateManager';
 import PropTypes from "prop-types";
 import React, { useEffect, useRef, useState } from 'react';
@@ -140,7 +140,6 @@ const Menu = props => {
             setUsers(response.data);
 
           } catch (error) {
-            console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
             addError("Could not fetch users", 5000);
             console.error("Details:", error);
           }

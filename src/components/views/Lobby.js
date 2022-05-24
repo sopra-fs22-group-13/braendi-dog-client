@@ -8,7 +8,7 @@ import BaseContainer from "components/ui/BaseContainer";
 import { Button } from 'components/ui/Button';
 import MenuSideBar from 'components/ui/MenuSideBar';
 import { VoiceChatManager } from 'components/voice/voiceChat';
-import { api, handleError } from 'helpers/api';
+import { api } from 'helpers/api';
 import updateManager from 'helpers/updateManager';
 import PropTypes from "prop-types";
 import React, { useEffect, useState } from 'react';
@@ -181,7 +181,6 @@ async function fetchDataSearch(filter = "") {
         setUsers(data);
 
       } catch (error) {
-        console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
         addError("Could not fetch users", 5000);
         console.error("Details:", error);
       }

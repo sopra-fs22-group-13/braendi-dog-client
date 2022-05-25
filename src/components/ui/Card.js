@@ -171,6 +171,13 @@ const Card = props => {
             return(
                 <div className={"card selected " + (props.small? "small" : "normal")}>
                 <img src={cardPath} alt="card front"
+                    onClick={() => {
+                        if(props.selectable){
+                            props.selectFunction(cardValue, selectThisCardFunction);
+                            setFocus(true);
+                            setCallbackId(moveManager.registerCallback(endFocus, true, false, true, true));
+                        }
+                    }}
                 />
             </div>
             )

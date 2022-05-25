@@ -75,7 +75,7 @@ const Member = ({member}) => {
     }
     else {
         return (
-            <label className="lobby member"><PopUpProfile userId={member.id}/> </label>
+            <label className="lobby member"><PopUpProfile userId={member.id} fontSize='24px'/> </label>
         );
     }
 };

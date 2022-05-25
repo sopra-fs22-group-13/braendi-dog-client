@@ -42,6 +42,7 @@ function transformDate(date){
 
 const PopUpProfile = props => {
     let userId = props.userId;
+    let fontSize= props.fontSize;
     const [user,setUser]= useState('');
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
@@ -106,7 +107,7 @@ const PopUpProfile = props => {
 
     return (
         <div>
-            <div style={{fontSize: '24px'}} onClick={handleOpen}>{user.username}</div>
+            <div style={{fontSize: fontSize}} onClick={handleOpen}>{user.username}</div>
             <Modal
                 keepMounted
                 open={open}

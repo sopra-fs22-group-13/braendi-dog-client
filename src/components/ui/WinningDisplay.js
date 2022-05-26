@@ -25,13 +25,14 @@ const WinningDisplay = () => {
         history.push('/menu');
     }
 
-    const [winner, setWinner] = useState("GREEN");
+    const [winner, setWinner] = useState(null);
     let winnerPrompt;
     if(winner){
+        let winnerString = winner.slice(0,1) + winner.slice(1).toLowerCase();
         winnerPrompt = (
              <>
              <Confetti gravity={0.3} initialVelocityY={20}/>
-             <Display label ={winner + " won! Congrats!"}/>
+             <Display label ={winnerString + " won! Congrats!"}/>
              </>
          );
         setTimeout(() => leave(), 5000);

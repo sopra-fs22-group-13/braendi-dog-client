@@ -17,23 +17,6 @@
   @include center;
 }
 
-/*
-    &.user{
-        display: flex;
-        flex-direction: row;
-        justify-content: left;
-        align-items: center;
-        font-size: 28px;
-        padding: 0 0 12px 40px;
-    }
-    [data-testid="PersonIcon"]{
-        color: $textDark;
-        margin-right: 5px;
-        height: Max(30px, 3vh);
-        width: Max(30px, 3vh);
-   }
-*/
-
 .line{
   &.lineverticalleft  {
     padding-right: 10%;
@@ -159,7 +142,7 @@
     &.user-list{
         overflow-x: hidden;
         overflow-y: auto;
-        height: 80%;
+        height: 85%;
         width: 85%;
         display: flex;
         flex-direction: column;
@@ -182,7 +165,7 @@
   &.container {
     margin: 8px 0;
     width: 100%;
-    padding: 10px;
+    padding: 14px 10px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -200,7 +183,6 @@
     margin-right: auto;
   }
   &.status {
-
     border-radius: 50%;
     height:10px;
     width: 10px;
@@ -215,6 +197,7 @@
   &.rank{
     padding-right: 15px;
     padding-left: 5px;
+    font-size: 28px;
   }
 
 }

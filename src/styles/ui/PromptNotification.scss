@@ -10,8 +10,7 @@
     background-color: $background;
     top: 40%;
     left: 30%;
-    border-style: solid;
-    border-color: $buttonColorDark;
+    border: 5px solid $buttonColorDark;
 
     &.label{
         font-size: 40px;

@@ -44,7 +44,7 @@ FormField.propTypes = {
 const Player = ({user,position}) => (
   <div className="player container">
     <div className="player rank"> {position+1} </div>
-    <div className="player username"><PopUpProfile userId={user.id} /></div>
+    <div className="player username"><PopUpProfile userId={user.id} style={{'font-size': '22px'}}/></div>
     <div className="player status" style={{background:colorStatus(user.status)}}></div>
     <EmojiEventsIcon/>
     <div className="player wins">{user.wins}  </div>

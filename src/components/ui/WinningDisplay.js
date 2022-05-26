@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import {useEffect, useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import { VoiceChatManager } from 'components/voice/voiceChat';
+import Confetti from 'react-confetti';
 
 const Display = props => (
   <div {...props}>
@@ -24,11 +25,14 @@ const WinningDisplay = () => {
         history.push('/menu');
     }
 
-    const [winner, setWinner] = useState(null);
+    const [winner, setWinner] = useState("GREEN");
     let winnerPrompt;
     if(winner){
         winnerPrompt = (
+             <>
+             <Confetti gravity={0.3} initialVelocityY={20}/>
              <Display label ={winner + " won! Congrats!"}/>
+             </>
          );
         setTimeout(() => leave(), 5000);
      }

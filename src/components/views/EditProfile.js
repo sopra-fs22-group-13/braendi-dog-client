@@ -145,9 +145,6 @@ const EditProfile = props => {
 
             <div className="editProfile container">
                 <div className="editProfile board">
-                    <div className="editProfile title">
-                        Edit Your profile
-                    </div>
 
                     <FormControl sx={{  border: 0,  minWidth: 90 }}>
                         <Avatar  alt="Remy Sharp" src={avatar} sx={{width:90, height:90, margin:2}} />
@@ -181,10 +178,10 @@ const EditProfile = props => {
                         <div className="editProfile userInfo">
                             Name:
                         </div>
-                        <TextField id="filled-basic"placeholder={user.username}  variant="filled" inputProps={{ maxLength: 10 }} margin="normal" value={username} onChange={handleChangeName } sx={{width:1}} select={false}  />
+                        <TextField id="filled-basic" placeholder={user.username} size = "small" variant="filled" inputProps={{ maxLength: 10 }} margin="normal" value={username} onChange={handleChangeName } sx={{width:1}} select={false}  />
 
                         <div className="editProfile userInfo">
-                            Password
+                            Password:
                         </div>
                         <TextField id="filled-basic" placeholder="New Password" size = "small" variant="filled"  inputProps={{ maxLength: 10 }} margin="normal" value={password} onChange={handleChangePassword} sx={{width:1}} />
 

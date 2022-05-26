@@ -5,26 +5,38 @@
     margin-left: auto;
     margin-right: auto;
     width: 60%;
-    height: 80%;
+    height: 85%;
+    min-height: 600px;
     min-width: 800px;
-    margin-top: 5%;
+    margin-top: auto;
+    margin-bottom: auto;
     color: $buttonColorDark;
     display: flex;
     @include center;
   }
 
   &.board{
+    height: 100%;
     width: 85%;
-    border-block-start-width: 5vh;
     flex-direction: column;
     padding: 2vh 2.5vw;
-    border-radius: $borderRadius;
-    border: 5px solid $buttonColorLight;
+    border-radius: 0;
+    border: 5px solid $buttonColorDark;
     transition: opacity 0.5s ease, transform 0.5s ease;
     @include center;
   }
-  &.containerUserInfo{
+  .css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root.Mui-focused .MuiOutlinedInput-notchedOutline{
+    border-color: rgba(0, 0, 0, 0.23);
+  }
 
+  .css-19mk8g1-MuiInputBase-root-MuiFilledInput-root::after{
+    border-bottom: 2px solid rgba(0, 0, 0, 0.42);
+  }
+  .css-91zcx7-MuiInputBase-root-MuiFilledInput-root::after{
+    border-bottom: 2px solid rgba(0, 0, 0, 0.42);
+  }
+
+  &.containerUserInfo{
     width: 70%;
     flex-direction: column;
     @include center;
@@ -32,27 +44,27 @@
   }
 
   &.title{
-    padding: 2%;
+    padding: 2% 0 0 0;
     font-size: 20px;
   }
 
   &.userInfo{
     width: 100%;
     text-align: left;
-
     height: 2vw;
-    padding: 5px;
+    padding: 15px 0 0 0;
+    margin-bottom: -4px;
     font-size: 20px;
   }
   &.button{
-    margin-top: 7%;
+    margin-top: 5%;
     margin-bottom: 3%;
     margin-right: auto;
     margin-left: auto;
     font-size: 28px;
-    width: 20%;
+    width: 35%;
     height: auto;
-    padding: 8px;
+    padding: 10px;
     text-align: center;
     box-shadow: 0 4px 4px gray;
     background: #C7CB95;

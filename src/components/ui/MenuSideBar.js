@@ -1,4 +1,4 @@
-import LogoutIcon from '@mui/icons-material/Logout';
+import LogoutIcon from '@mui/icons-material/LogoutSharp';
 import { addError } from 'components/views/ErrorDisplay';
 import { api } from 'helpers/api';
 import updateManager from 'helpers/updateManager';

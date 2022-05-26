@@ -1,6 +1,6 @@
 import { ThemeProvider } from '@emotion/react';
 import AddIcon from '@mui/icons-material/Add';
-import CachedIcon from '@mui/icons-material/Cached';
+import RotateLeftSharpIcon from '@mui/icons-material/RotateLeftSharp';
 import PetsIcon from '@mui/icons-material/Pets';
 import { IconButton } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
@@ -69,13 +69,25 @@ Player.propTypes = {
 
 
 const Member = ({member}) => {
-    if (member=="EMPTY"){
+    if (member=="..."){
 
-        return   <label className="lobby member"><Button style={{textTransform: 'none', fontSize: '24px', backgroundColor:'#F7F8F1'}} >{member}</Button></label>
+        return(
+        <div className="lobby member-container">
+            <div className="lobby circle">
+              <PetsIcon />
+            </div>
+            <label className="lobby member">{member}</label>
+        </div>
+        );
     }
     else {
         return (
-            <label className="lobby member"><PopUpProfile userId={member.id}/> </label>
+            <div className="lobby member-container">
+                <div className="lobby circle">
+                  <img src={process.env.PUBLIC_URL + "/resources/avatar/" + member.avatar + ".png"}/>
+                </div>
+                <label className="lobby member"><PopUpProfile userId={member.id}/> </label>
+            </div>
         );
     }
 };
@@ -108,8 +120,9 @@ useEffect(() => {
         var memberList = [];
         for (let i=0; i<response.data.usernames.length; i++) {
             memberList.push({username: response.data.usernames[i],
-                            id: response.data.userIDs[i]});
-        }
+                            id: response.data.userIDs[i],
+                            avatar: response.data.avatars[i]});
+  }
         setMembers(memberList);
 
       } catch (error) {
@@ -233,23 +246,11 @@ if(users){
         </React.Fragment>
     );
 }
-let contentLobby;
 
 function onEnterKey(key, input) {
     if (key === 'Enter') {
         fetchDataSearch(input);
     }  
-}
-
-
-if(members){
-    contentLobby = (
-    <div>
-        {members.map(member => (
-        <Member member={member} key={member.id}/>
-        ))}
-    </div>
-    );
 }
 
 
@@ -298,30 +299,10 @@ let lobbyButton =
         <MenuSideBar active="LOBBY"></MenuSideBar>
         <div className="lobby container">
           <h1 className="lobby"> LOBBY </h1>
-          <div className="lobby member-container">
-              <div className="lobby circle">
-                <PetsIcon />
-              </div>
-              {members && members[0]? <Member member={members[0]}></Member> : <Member member={"EMPTY"}></Member>}
-          </div>
-          <div className="lobby member-container">
-              <div className="lobby circle">
-                <PetsIcon />
-              </div>
-              {members && members[1]? <Member member={members[1]}></Member> : <Member member={"EMPTY"}></Member>}
-          </div>
-          <div className="lobby member-container">
-              <div className="lobby circle">
-                <PetsIcon />
-              </div>
-              {members && members[2]? <Member member={members[2]}></Member> : <Member member={"EMPTY"}></Member>}
-          </div>
-          <div className="lobby member-container">
-              <div className="lobby circle">
-                <PetsIcon />
-              </div>
-              {members && members[3]? <Member member={members[3]}></Member> : <Member member={"EMPTY"}></Member>}
-          </div>
+          {members && members[0]? <Member member={members[0]}></Member> : <Member member={"..."}></Member>}
+          {members && members[1]? <Member member={members[1]}></Member> : <Member member={"..."}></Member>}
+          {members && members[2]? <Member member={members[2]}></Member> : <Member member={"..."}></Member>}
+          {members && members[3]? <Member member={members[3]}></Member> : <Member member={"..."}></Member>}
           <div>
           {lobbyButton}
           </div>
@@ -337,9 +318,9 @@ let lobbyButton =
                     />
                     <ThemeProvider theme={theme}>
                     <IconButton onClick={() => {fetchDataSearch();}}>
-                        <CachedIcon   sx={{
+                        <RotateLeftSharpIcon   sx={{
                           color: 'primary.light',
-                        }}></CachedIcon>
+                        }}></RotateLeftSharpIcon>
                       </IconButton>
                     </ThemeProvider>
 

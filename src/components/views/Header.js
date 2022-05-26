@@ -11,8 +11,8 @@ import "styles/views/Header.scss";
  * @FunctionalComponent
  */
 const Header = props => (
-  <div className="header container" style={{height: "200px"}}>
-    <img src="/resources/logo_dark.svg"></img>
+  <div className="header container">
+    <img src="/resources/logo_bright.svg"></img>
   </div>
 );
 

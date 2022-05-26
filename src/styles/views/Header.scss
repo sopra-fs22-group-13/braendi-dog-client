@@ -3,20 +3,12 @@
 .header {
   &.container {
     @include center;
+    height: Max(26vh, calc(150px + 6vh));
 
     &>img{
-      height: 180px;
-      margin: 10px;
+      height: Max(20vh, 150px);
+      margin: 6vh 10px 0 10px;
     }
   }
 
-  &.title {
-    font-weight: 400;
-    color: $textDark;
-    text-align: center;
-    padding-bottom: 1vh;
-    border-bottom: 0.1vw solid $buttonColorDark ;
-    font-size: 3vw;
-    width: 20%;
-  }
 }

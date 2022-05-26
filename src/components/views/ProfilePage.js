@@ -85,7 +85,7 @@ const ProfilePage = props => {
         fetchData();
     }, []);
 
-    let contentStory = <TableBody> <TableRow> <TableCell > You never played the game, shame on you</TableCell>  </TableRow> </TableBody>
+    let contentStory = <TableBody> <TableRow> <TableCell > You have never played the game, time to start your first game!</TableCell>  </TableRow> </TableBody>
 
 
 
@@ -111,21 +111,21 @@ const ProfilePage = props => {
     }
 
     return (
-        <BaseContainer>
+        <BaseContainer className="profile-basecontainer">
         <MenuSideBar active="PROFILE"></MenuSideBar>
             <div className="profilePage container">
-                <div className="profilePage board">
+                <div className="profilePage bill-board">
                     <Grid container spacing={2} sx={{textAlign: 'center', justifyContent: 'center'}} >
                         <Grid item xs={6} sx={{justifyContent: 'center'}}>
                             <div className="profilePage containerTitle">
-                                <Avatar  alt="Remy Sharp" src={avatar} sx={{width:90, height:90}} />
+                                <Avatar  alt="Remy Sharp" src={avatar} sx={{width:100, height:100}} />
                                 <div className="profilePage userName">
                                     {user.username}
                                 </div>
                             </div>
                             <div className="profilePage containerUserInfo">
                                 <div className="profilePage userInfo">
-                                    Description: <br/> {user.description}
+                                    <p>{user.description}</p>
                                 </div>
                                 <div className="profilePage userInfo">
                                     Total Wins: {user.wins}
@@ -144,14 +144,14 @@ const ProfilePage = props => {
                         <Grid item xs={6} sx={{textAlign: 'center'}}>
                             <div className="table">
                                 <div className="table tableName">
-                                    Games played
+                                    Game History
                                 </div>
                                 <TableContainer  component={Paper} sx={{maxHeight: 500}}>
                                     <Table stickyHeader aria-label="simple table">
                                         <TableHead>
                                             <TableRow>
                                                 <TableCell>Date</TableCell>
-                                                <TableCell align="right">InGoal</TableCell>
+                                                <TableCell align="right">Goals</TableCell>
                                             </TableRow>
                                         </TableHead>
                                         {contentStory}

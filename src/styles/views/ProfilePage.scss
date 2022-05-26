@@ -14,12 +14,11 @@
     @include center;
   }
 
-  &.board {
+  &.bill-board {
     width: 100%;
-    border-block-start-width: 5vh;
     flex-direction: column;
     padding: 5vh 2.5vw;
-    border: 5px solid $buttonColorLight;
+    border: 5px solid $buttonColorDark;
     transition: opacity 0.5s ease, transform 0.5s ease;
     @include center;
   }
@@ -89,7 +88,12 @@
     font-size: 40px;
     overflow: hidden;
   }
-
+  .css-nmrhyd-MuiTableRow-root{
+    background: linear-gradient(90deg, rgba(231,111,109,1) 2%, rgba(247,248,241,1) 1%, rgba(247,248,241,1) 41%, rgba(247,248,241,1) 90%);
+  }
+  .css-44gocc-MuiTableRow-root{
+    background: linear-gradient(90deg, rgba(165,231,109,1) 2%, rgba(247,248,241,1) 1%, rgba(247,248,241,1) 41%, rgba(247,248,241,1) 90%)
+  }
 }
 
 .errors{

@@ -71,7 +71,7 @@ const RegistrationLogin = props => {
           {
               case 401:
                   setErrorLogin(
-                      <div className="errors">
+                      <div className="relo-errors">
                           Username and Password combination is wrong.
                       </div>
                   );
@@ -79,7 +79,7 @@ const RegistrationLogin = props => {
 
               case 404:
                 setErrorLogin(
-                    <div className="errors">
+                    <div className="relo-errors">
                         This Username does not exist.
                     </div>
                 );
@@ -87,7 +87,7 @@ const RegistrationLogin = props => {
 
               default:
                 setErrorLogin(
-                      <div className="errors">
+                      <div className="relo-errors">
                           Unexpected server error. Try again.
                       </div>
                   );
@@ -96,7 +96,7 @@ const RegistrationLogin = props => {
         }
         else{
             setErrorLogin(
-              <div className="errors">
+              <div className="relo-errors">
                   Unknown error. Try again later.
               </div>
           );
@@ -126,7 +126,7 @@ const RegistrationLogin = props => {
             {
                 case 409:
                     setErrorRegister(
-                        <div className="errors">
+                        <div className="relo-errors">
                             A user with this username already exists.
                         </div>
                     );
@@ -134,7 +134,7 @@ const RegistrationLogin = props => {
 
                 default:
                     setErrorRegister(
-                        <div className="errors">
+                        <div className="relo-errors">
                             Unexpected server error. Try again.
                         </div>
                     );
@@ -143,7 +143,7 @@ const RegistrationLogin = props => {
           }
           else{
             setErrorRegister(
-                <div className="errors">
+                <div className="relo-errors">
                     Unknown error. Try again later.
                 </div>
             );
@@ -154,8 +154,8 @@ const RegistrationLogin = props => {
 
 
   return (
-      <div>
-          <Header height="100"/>
+      <div className="login-background">
+          <Header/>
           <BaseContainer className="base-container-ReLo">
               <div className="containerRegistrationLogin">
                   <div className="login">
@@ -177,19 +177,17 @@ const RegistrationLogin = props => {
                           onChange={n => setLoginPassword(n)}
                           inputProps={{ maxLength: 10 }}
                           />
-                      <div className="content button-container">
-                          <Button
-                              disabled={!loginUsername || !loginPassword}
-                              width="60%"
-                              onClick={() => doLogin()}
-                          >
-                              Login
-                          </Button>
-                      </div>
                       {errorLogin}
+                      <Button className="content button-container"
+                          disabled={!loginUsername || !loginPassword}
+                          width="60%"
+                          onClick={() => doLogin()}
+                      >
+                          Login
+                      </Button>
+
                   </div>
-                  <div className="content lineverticalright"> </div>
-                  <div className="content lineverticalleft"> </div>
+
                   <div className="registration">
                       <div className="content title">
                           Register
@@ -210,16 +208,14 @@ const RegistrationLogin = props => {
                           onChange={n => setRegisterPassword(n)}
                           inputProps={{ maxLength: 10 }}
                       />
-                      <div className="content button-container">
-                          <Button
-                              disabled={!registerUsername || !registerPassword}
-                              width="60%"
-                              onClick={() => doRegister()}
-                          >
-                              Register
-                          </Button>
-                      </div>
                       {errorRegister}
+                      <Button className="content button-container"
+                          disabled={!registerUsername || !registerPassword}
+                          width="60%"
+                          onClick={() => doRegister()}
+                      >
+                          Register
+                      </Button>
                   </div>
               </div>
           </BaseContainer>

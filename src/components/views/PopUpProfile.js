@@ -106,7 +106,7 @@ const PopUpProfile = props => {
 
     return (
         <div>
-            <div style={{fontSize: '24px'}} onClick={handleOpen}>{user.username}</div>
+            <div style={{fontSize: '24px', cursor: 'pointer'}} onClick={handleOpen}>{user.username}</div>
             <Modal
                 keepMounted
                 open={open}
@@ -118,14 +118,14 @@ const PopUpProfile = props => {
                     <Grid container spacing={2} sx={{textAlign: 'center', justifyContent: 'center'}} >
                         <Grid item xs={6} sx={{justifyContent: 'center'}}>
                             <div className="popup-profilePage containerTitle">
-                                <Avatar  alt="Remy Sharp" src={avatar} sx={{width:90, height:90}} />
+                                <Avatar  alt="Remy Sharp" src={avatar} sx={{width:100, height:100}} />
                                 <div className="popup-profilePage userName">
                                     {user.username}
                                 </div>
                             </div>
                             <div className="popup-profilePage containerUserInfo">
                                 <div className="popup-profilePage userInfoPopUp">
-                                    Description: {user.description}
+                                    Description: <br/>{user.description}
                                 </div>
                                 <div className="popup-profilePage userInfoPopUp">
                                     Total Wins: {user.wins}
@@ -140,7 +140,7 @@ const PopUpProfile = props => {
                         <Grid item xs={6} sx={{textAlign: 'center'}}>
                             <div className="table">
                                 <div className="table tableName">
-                                    Games played
+                                    Game History
                                 </div>
                                 <TableContainer  component={Paper} sx={{maxHeight: 500}}>
                                     <Table stickyHeader aria-label="simple table">

@@ -42,6 +42,7 @@ function transformDate(date){
 
 const PopUpProfile = props => {
     let userId = props.userId;
+    let fontSize= props.fontSize;
     const [user,setUser]= useState('');
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);

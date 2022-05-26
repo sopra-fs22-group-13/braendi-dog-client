@@ -9,7 +9,16 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import 'styles/views/Menu.scss';
 import { addError } from './ErrorDisplay';
+import PopUpProfile from "./PopUpProfile";
 
+
+function colorStatus(status){
+    if (status==='ONLINE')
+        return "rgba(165,231,109,1)"
+    else
+        return "rgba(231,111,109,1)"
+
+}
 
 const FormField = props => {
     return (
@@ -32,17 +41,19 @@ FormField.propTypes = {
     onChange: PropTypes.func
 };
 
-const Player = ({user}) => (
+const Player = ({user,position}) => (
   <div className="player container">
-    <div className="player rank"> 1 </div>
-    <div className="player username">{user.username}</div>
+    <div className="player rank"> {position+1} </div>
+    <div className="player username"><PopUpProfile userId={user.id} /></div>
+    <div className="player status" style={{background:colorStatus(user.status)}}></div>
     <EmojiEventsIcon/>
-    <div className="player wins"> {user.win}</div>
+    <div className="player wins">{user.wins}  </div>
   </div>
 );
 
 Player.propTypes = {
-  user: PropTypes.object
+  user: PropTypes.object,
+  position: PropTypes.number
 };
 
 const Menu = props => {
@@ -54,7 +65,7 @@ const Menu = props => {
     const [editPassword, setEditPassword] = useState(null);
     const [editName, setEditName] = useState(null);
     const [errorEdit, setErrorEdit] = useState(null);
-    const [users, setUsers] = useState(null);
+    const [usersTop, setUsersTop] = useState(null);
     const togglePopup = () => {
         setIsOpen(!isOpen);
     }
@@ -129,22 +140,6 @@ const Menu = props => {
         }
     }
 
-    async function fetchDataSearch() {
-          try {
-            const response = await api.get('/users', {
-              headers: {
-                  'Authorization': "Basic " + localStorage.getItem("token")
-              }
-            });
-
-            setUsers(response.data);
-
-          } catch (error) {
-            addError("Could not fetch users", 5000);
-            console.error("Details:", error);
-          }
-        }
-
     const logout = () => {
         updateManager.disconnectFromPersonalUpdate();
         localStorage.clear();
@@ -198,6 +193,22 @@ const Menu = props => {
     }
 
     useEffect(() => {
+        async function fetchDataSearch() {
+            try {
+                const response = await api.get('/users/leaderboard', {
+                    headers: {
+                        'Authorization': "Basic " + localStorage.getItem("token")
+                    }
+                });
+
+                setUsersTop(response.data);
+
+            } catch (error) {
+                addError("Could not fetch users", 5000);
+                console.error("Details:", error);
+            }
+        }
+        fetchDataSearch()
 
         updateManager.connectToPersonalUpdate();
 
@@ -223,15 +234,18 @@ const Menu = props => {
             componentMounted.current = false; // (4) set it to false when we leave the page
             document.removeEventListener("inviteUpdate", inviteUpdateListener);
         }
+
     }, []);
 
     let contentLeaderboard = <p className="menu info placeholder"> No users found </p>;
+    let position=0;
 
-    if(users){
+    if(usersTop){
         contentLeaderboard =(
             <React.Fragment>
-              {users.map(user => (
-                <Player user={user} key={user.id}/>
+              {usersTop.map(user => (
+                <Player user={user} position={usersTop.indexOf(user)}/>
+
               ))}
             </React.Fragment>
         );

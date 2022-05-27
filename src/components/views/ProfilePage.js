@@ -113,6 +113,7 @@ const ProfilePage = props => {
     return (
         <BaseContainer className="profile-basecontainer">
         <MenuSideBar active="PROFILE"></MenuSideBar>
+        <div className='profilePage outercontainer'>
             <div className="profilePage container">
                 <div className="profilePage bill-board">
                     <Grid container spacing={2} sx={{textAlign: 'center', justifyContent: 'center'}} >
@@ -162,6 +163,7 @@ const ProfilePage = props => {
                     </Grid>
                 </div>
             </div>
+        </div>
         </BaseContainer>
 
     );

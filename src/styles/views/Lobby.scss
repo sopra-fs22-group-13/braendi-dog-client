@@ -35,8 +35,8 @@
         align-items: center;
         min-width: 125px;
         min-height: 125px;
-        width: 60%;
-        height: auto;
+        width: calc(min(20vh, 20vw));
+        height: calc(min(20vh, 20vw));
         background-color: $buttonColorLight;
         border-radius: 50%;
     }

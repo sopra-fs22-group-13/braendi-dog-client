@@ -13,7 +13,7 @@ const AspectRatioChecker = props =>
 
         let aspect = w / h;
 
-        if(aspect < 1.3)
+        if(aspect < 1.3 || w < 1000 || h < 600)
         {
             setOkay(false);
         }else{
@@ -42,7 +42,7 @@ const AspectRatioChecker = props =>
                     <div className='img-div'>
                         <img src="/resources/logo_bright.svg"></img>
                     </div>
-                    Please resize the window to a landscape format
+                    Please resize the window to a landscape format of at least 1000x600
                 </div>
             </div>
         );

@@ -88,7 +88,7 @@ const PopUpProfile = props => {
     if (gameHistoryList.length!==0){
 
         contentStory = (
-            <TableBody>
+            <TableBody style={{overflow: "auto"}}>
                 {gameHistoryList.map((game) => (
                     <TableRow
                         key={game.id}
@@ -119,7 +119,7 @@ const PopUpProfile = props => {
                     <Grid container spacing={2} sx={{textAlign: 'center', justifyContent: 'center'}} >
                         <Grid item xs={6} sx={{justifyContent: 'center'}}>
                             <div className="popup-profilePage containerTitle">
-                                <Avatar  alt="Remy Sharp" src={avatar} sx={{width:100, height:100}} />
+                                <Avatar  alt="Remy Sharp" src={avatar} sx={{width:"40%", height:"auto"}} />
                                 <div className="popup-profilePage userName">
                                     {user.username}
                                 </div>
@@ -140,10 +140,10 @@ const PopUpProfile = props => {
                         </Grid>
                         <Grid item xs={6} sx={{textAlign: 'center'}}>
                             <div className="table">
-                                <div className="table tableName">
+                                <div className="popup-profilePage tableName">
                                     Game History
                                 </div>
-                                <TableContainer  component={Paper} sx={{maxHeight: 500}}>
+                                <TableContainer stickyHeader component={Paper} sx={{maxHeight: "40vh"}}>
                                     <Table stickyHeader aria-label="simple table">
                                         <TableHead>
                                             <TableRow>

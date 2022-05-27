@@ -118,7 +118,7 @@ const ProfilePage = props => {
                     <Grid container spacing={2} sx={{textAlign: 'center', justifyContent: 'center'}} >
                         <Grid item xs={6} sx={{justifyContent: 'center'}}>
                             <div className="profilePage containerTitle">
-                                <Avatar  alt="Remy Sharp" src={avatar} sx={{width:100, height:100}} />
+                                <Avatar  alt="Remy Sharp" src={avatar} sx={{width:"30%", height:"auto"}} />
                                 <div className="profilePage userName">
                                     {user.username}
                                 </div>
@@ -146,7 +146,7 @@ const ProfilePage = props => {
                                 <div className="table tableName">
                                     Game History
                                 </div>
-                                <TableContainer  component={Paper} sx={{maxHeight: 500}}>
+                                <TableContainer  component={Paper} sx={{maxHeight: "60vh"}}>
                                     <Table stickyHeader aria-label="simple table">
                                         <TableHead>
                                             <TableRow>

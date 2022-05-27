@@ -146,7 +146,7 @@ const ImgCard = props => {
     if(props.faceDown) {
         return (
             <div className="img-card">
-                <img src={BACK} alt="card back" style={{height: props.height}}></img>
+                <img src={BACK} alt="card back" style={{height: props.height, width: props.width}}></img>
                 <div className="img-card distance">
                     {props.cardDistance}
                 </div>
@@ -158,7 +158,7 @@ const ImgCard = props => {
     }else {
         return(
             <div className="img-card">
-                <img src={cardPath} alt="card front" style={{height: props.height}}/>
+                <img src={cardPath} alt="card front" style={{height: props.height, width: props.width}}/>
                 <div className="img-card distance">
                     {props.cardDistance}
                 </div>
@@ -175,7 +175,6 @@ const ImgCard = props => {
 
 ImgCard.propTypes = {
     cardValue: PropTypes.string,
-    cardHeight: PropTypes.number,
     faceDown: PropTypes.bool,
     cardText: PropTypes.string,
     cardDistance: PropTypes.string

@@ -186,7 +186,7 @@ async function fetchDataSearch(filter = "") {
 
         const data = response.data.slice();
         response.data.forEach(user => {
-            if (!user.username.includes(filter)) {
+            if (!user.username.toLowerCase().includes(filter.toLowerCase())) {
                 const index = data.indexOf(user);
                 data.splice(index, 1);
             }

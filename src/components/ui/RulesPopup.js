@@ -27,22 +27,22 @@ export const RulesPopup = props => {
                     <h2>Card Values</h2>
                     <div style={{display: "flex", flexDirection: "column", overflowX: "auto", width: "100%"}}>
                         <div  style={{display: "flex"}}>
-                            <ImgCard height="150px" cardValue="2C" cardDistance="2" cardText='forwards'/>
-                            <ImgCard height="150px" cardValue="3C" cardDistance="3" cardText='forwards'/>
-                            <ImgCard height="150px" cardValue="5C" cardDistance="5" cardText='forwards'/>
-                            <ImgCard height="150px" cardValue="6C" cardDistance="6" cardText='forwards'/>
-                            <ImgCard height="150px" cardValue="8C" cardDistance="8" cardText='forwards'/>
-                            <ImgCard height="150px" cardValue="9C" cardDistance="9" cardText='forwards'/>
-                            <ImgCard height="150px" cardValue="10C" cardDistance="10" cardText='forwards'/>
-                            <ImgCard height="150px" cardValue="QC" cardDistance="12" cardText='forwards'/>
+                            <ImgCard width="6vw" cardValue="2C" cardDistance="2" cardText='forwards'/>
+                            <ImgCard width="6vw" cardValue="3C" cardDistance="3" cardText='forwards'/>
+                            <ImgCard width="6vw" cardValue="5C" cardDistance="5" cardText='forwards'/>
+                            <ImgCard width="6vw" cardValue="6C" cardDistance="6" cardText='forwards'/>
+                            <ImgCard width="6vw" cardValue="8C" cardDistance="8" cardText='forwards'/>
+                            <ImgCard width="6vw" cardValue="9C" cardDistance="9" cardText='forwards'/>
+                            <ImgCard width="6vw" cardValue="10C" cardDistance="10" cardText='forwards'/>
+                            <ImgCard width="6vw" cardValue="QC" cardDistance="12" cardText='forwards'/>
                         </div>
                         <div  style={{display: "flex"}}>
-                            <ImgCard height="150px" cardValue="4C" cardDistance="4" cardText='forwards or backwards'/>
-                            <ImgCard height="150px" cardValue="7C" cardDistance="7" cardText='forwards, split between marbles'/>
-                            <ImgCard height="150px" cardValue="AC" cardDistance="11" cardText='forwards, or leave start'/>
-                            <ImgCard height="150px" cardValue="KC" cardDistance="13" cardText='forwards, or leave start'/>
-                            <ImgCard height="150px" cardValue="JC" cardDistance="Switch" cardText='your marble with an enemy one'/>
-                            <ImgCard height="150px" cardValue="Joker" cardDistance="Any" cardText='card can be emulated'/>
+                            <ImgCard width="6vw" cardValue="4C" cardDistance="4" cardText='forwards or backwards'/>
+                            <ImgCard width="6vw" cardValue="7C" cardDistance="7" cardText='forwards, split between marbles'/>
+                            <ImgCard width="6vw" cardValue="AC" cardDistance="11" cardText='forwards, or leave start'/>
+                            <ImgCard width="6vw" cardValue="KC" cardDistance="13" cardText='forwards, or leave start'/>
+                            <ImgCard width="6vw" cardValue="JC" cardDistance="Switch" cardText='your marble with an enemy one'/>
+                            <ImgCard width="6vw" cardValue="Joker" cardDistance="Any" cardText='card can be emulated'/>
                         </div>
                     </div>
                     <h2>Sending Home</h2>

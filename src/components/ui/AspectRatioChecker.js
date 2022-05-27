@@ -13,7 +13,7 @@ const AspectRatioChecker = props =>
 
         let aspect = w / h;
 
-        if(aspect < 1.6)
+        if(aspect < 1.3)
         {
             setOkay(false);
         }else{

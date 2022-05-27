@@ -32,7 +32,7 @@ const Game = () => {
     }
     function gameUpdateListener(event) {
       addInfo("Game closed because a player left.", 5000);
-      setTimeout(() => leave(), 5000);
+      setTimeout(() => leave(), 1000);
     }
     document.addEventListener("gameUpdate", gameUpdateListener);
 

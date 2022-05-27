@@ -1,25 +1,6 @@
 @import 'styles/theme';
 
 
-.info-block {
-    font-size: 1.5vh;
-    padding-top: 0;
-    padding-bottom: 2%;
-
-    > h1{
-        font-size: 4vh;
-        padding-bottom: 10px;
-        border-bottom: solid 1px;
-        text-align: center;
-    }
-
-    > h2{
-        margin-top: 18px;
-        margin-bottom: 3px;
-        font-size: 2vh;
-    }
-}
-
 .popup {
     &.popup-box {
       z-index: 99999;
@@ -63,24 +44,6 @@
     &.singleInfo {
       padding: 5%;
     }
-  }
-  .info-block {
-      font-size: 1.5vh;
-      padding-top: 0;
-      padding-bottom: 2%;
-  
-      > h1{
-          font-size: 4vh;
-          padding-bottom: 10px;
-          border-bottom: solid 1px;
-          text-align: center;
-      }
-  
-      > h2{
-          margin-top: 18px;
-          margin-bottom: 3px;
-          font-size: 2vh;
-      }
   }
   
 

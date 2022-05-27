@@ -5,6 +5,7 @@ import updateManager from 'helpers/updateManager';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import 'styles/ui/MenuSideBar.scss';
+
 import { Button } from './Button';
 import { RulesPopup } from './RulesPopup';
 

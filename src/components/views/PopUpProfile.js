@@ -107,7 +107,7 @@ const PopUpProfile = props => {
 
     return (
         <div>
-            <div style={{fontSize: '24px', cursor: 'pointer'}} onClick={handleOpen}>{user.username}</div>
+            <div style={{ cursor: 'pointer'}} onClick={handleOpen}>{user.username}</div>
             <Modal
                 keepMounted
                 open={open}

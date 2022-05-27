@@ -123,7 +123,7 @@
     flex-direction: column;
     & h1{
       color: white;
-      font-size: Min(48px, 3.5vw);
+      font-size: Max(36px, 3vw);
       font-weight: normal;
       margin-bottom: 5%;
       margin-top: 5%;
@@ -179,8 +179,11 @@
     }
   }
   &.username {
+    width: 60%;
+    overflow: hidden;
     font-weight: 300;
     margin-right: auto;
+    font-size: 18px;
   }
   &.status {
     border-radius: 50%;

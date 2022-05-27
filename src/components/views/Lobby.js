@@ -57,7 +57,7 @@ let background
 const Player = ({user}) => (
   <div className="player container" onClick={() => invitePlayer(user.id)}>
     <div className="player status" style={{background:colorStatus(user.status)}}></div>
-    <div className="player username">
+    <div className="player name">
         {user.username}</div>
     <AddIcon/>
   </div>

@@ -96,12 +96,12 @@
   &.userName{
     padding-top: 3%;
     padding-bottom: 10%;
-    font-size: calc(max(6vh, 16px));
+    font-size: calc(max(4vh, 16px));
   }
   &.tableName{
     padding-top: 3%;
     padding-bottom: 10%;
-    font-size: calc(max(6vh, 16px));
+    font-size: calc(max(4vh, 16px));
   }
   &.containerUserInfo {
     padding-left: 5vh;
@@ -112,7 +112,7 @@
   &.userInfoPopUp{
     padding-bottom: 15%;
     height: auto;
-    font-size: calc(max(3vh, 12px));
+    font-size: calc(max(2vh, 12px));
   }
   &.buttonToSafe{
     height: 2vw;

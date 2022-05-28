@@ -39,7 +39,7 @@ async function invitePlayer(inviteeId) {
         switch (error.response.status) {
             case 401:
                 console.error("Unauthorized", error);
-                addError("Unauthorized");
+                addError("Only the lobby owner can invite users");
                 break;
             case 404:
                 console.error("Either the requested player or lobby were not found.", error);

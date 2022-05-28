@@ -1,3 +1,21 @@
+/*
+    dog-client is the client component of an online web implementation of dog.
+    Copyright (C) 2022  Luca Zwahlen
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
+
 /**
  * Gets a marbles position in percentages based on where it should be
  * @param {('main_circle' | 'bl_goal' | 'ul_goal' | 'ur_goal' | 'br_goal' | 'bl_base' | 'ul_base' | 'ur_base' | 'br_base')} where - where should it be? b = bottom, u = upper, l = left, r = right

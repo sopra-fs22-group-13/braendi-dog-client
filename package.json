@@ -1,6 +1,7 @@
 {
-  "name": "sopra-fs22-client-template",
-  "version": "0.1.0",
+  "name": "dog-client",
+  "license": "GPL-3.0-or-later",
+  "version": "0.2.0",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.9.0",

@@ -32,7 +32,7 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-## Illustrations
+# Illustrations
 The user starts on the login page where they either log in to an existing account or register a new one. After that they get redirected to the menu page. <br>
 <p align="center">
     <img src="public/resources/illustrations/menu-page.png" width="50%"/>
@@ -55,7 +55,7 @@ Alternatively to starting a game, the user could also view or edit their profile
 
 
 
-## Roadmap
+# Roadmap
 There are many things that could be implemented to develop the project further. But we decided on these three
 
 In the front-end, the marble class would have to be reformatted as it has too many responsibilities and is too big.

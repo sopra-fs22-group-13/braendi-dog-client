@@ -1,4 +1,4 @@
-# SoPra FS22 - Client Template
+npm# SoPra FS22 - Client Template
 
 ## Getting started
 
@@ -35,7 +35,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 ## Illustrations
 The user starts on the login page where they either log in to an existing account or register a new one. After that they get redirected to the menu page. <br>
 <p align="center">
-    <img src="public/resources/illustrations/menupage.png" width="50%"/>
+    <img src="public/resources/illustrations/menu-page.png" width="50%"/>
 </p>
 From the menu page the user starts a new game by clicking on "Create Game" to get to the lobby page.<br>
 From the lobby page the user invites 3 other users over the searchbar component to join their lobby.

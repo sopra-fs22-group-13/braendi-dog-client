@@ -91,7 +91,7 @@ const ProfilePage = props => {
 
     if (gameHistoryList.length!==0){
         contentStory = (
-            <TableBody>
+            <TableBody style={{overflow: "auto"}}>
                 {gameHistoryList.map((game) => (
 
                     <TableRow

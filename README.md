@@ -39,15 +39,16 @@ The user starts on the login page where they either log in to an existing accoun
 </p>
 From the menu page the user starts a new game by clicking on "Create Game" to get to the lobby page.<br>
 From the lobby page the user invites 3 other users over the searchbar component to join their lobby.
+<br>
 <p align="center">
     <img src="public/resources/illustrations/lobby.png" width="50%"/>
 </p>
-Once the lobby is full, the lobby owner can start the game and everyone gets redirected to the game page.
+Once the lobby is full, the lobby owner can start the game and everyone gets redirected to the game page.<br>
 <p align="center">
     <img src="public/resources/illustrations/game.png" width="50%"/>
 </p>
 The game page is the main page of our web application. After the game of dog is completed, every user gets redirected to the menu page again. <br>
-Alternatively to starting a game, the user could also view or edit their profile.
+Alternatively to starting a game, the user could also view or edit their profile. <br>
 <p align="center">
     <img src="public/resources/illustrations/user-flowchart.svg" width="50%"/>
 </p>

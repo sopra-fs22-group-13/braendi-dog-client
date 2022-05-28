@@ -56,10 +56,9 @@ Alternatively to starting a game, the user could also view or edit their profile
 
 
 # Roadmap
-There are many things that could be implemented to develop the project further. But we decided on these three
+With a fully functioning base version of the game, the next steps to develop the application in the future would be:
 
-In the front-end, the marble class would have to be reformatted as it has too many responsibilities and is too big.
-The two other features that would change both the front-end and  back-end are the possibility of team play and an AI .
-For the former it would mean that there would be the possibility to swap cards with your teammate at the beginning of each round and the possibility to move the other player's marble. These rules already exist in the original board game.
-The second feature would allow the game to be played in the absence of other players. This design would be larger than the other two features, but would greatly help the playability of the game as it would allow even smaller groups of 4 people to play.
+- **Game mode 'Team play'** <br> In this game mode 2 players go up against another team. This enhances strategic gameplay and would include the swap of a card with your teammate at the beginning of each round and the possibility to move each others marbles under certain conditions (see original [instructions of Brändi Dog](https://www.braendi-dog.de/braendi-dog-spielregeln-anleitungen.html)).
+- **Implementation of an AI opponent** <br> In this game mode the AI compensates for any missing players, allowing for a game of dog with less than 4 users. This increase the user experience and advance the playability of the application.
+- **Refactoring the Marbles class** <br> This step only affects the Frontend. Currently the Marbles class has too many responsibilities and collected quite some technical debt. Refactoring it would increase the evolvability and maintainability of the application.
 

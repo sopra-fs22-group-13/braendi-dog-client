@@ -55,7 +55,7 @@ Alternatively to starting a game, the user could also view or edit their profile
 
 
 
-### Roadmap
+## Roadmap
 There are many things that could be implemented to develop the project further. But we decided on these three
 
 In the front-end, the marble class would have to be reformatted as it has too many responsibilities and is too big.

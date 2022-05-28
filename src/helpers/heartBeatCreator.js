@@ -1,4 +1,12 @@
 import { api } from "./api";
+import updateManager from "./updateManager";
+
+
+function logout () {
+    updateManager.disconnectFromPersonalUpdate();
+    localStorage.clear();
+    window.location.replace("./login")
+}
 
 export class heartBeatCreator{
     static #type = "NOT_SET";
@@ -33,7 +41,8 @@ export class heartBeatCreator{
             });
         }catch(exception)
         {
-            
+            //oh oh, we should probably log out...
+            logout();
         }
 
     }

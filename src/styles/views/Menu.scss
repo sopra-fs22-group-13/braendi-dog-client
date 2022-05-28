@@ -161,7 +161,7 @@
     }
 }
 
-.player {
+.menuplayer {
   &.container {
     margin: 8px 0;
     width: 100%;
@@ -172,11 +172,6 @@
     background: $background;
     transition: background 0.2s ease;
     box-shadow: 0 4px 4px gray;
-
-    &:hover{
-        background: $buttonColorLight;
-        color: $textDark;
-    }
   }
   &.username {
     width: 60%;

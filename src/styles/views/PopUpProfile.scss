@@ -61,6 +61,13 @@
   }
 }
 
+.popup-profileName{
+  transition: all 0.3s ease ;
+  &:hover{
+    font-weight: 900;
+    color: $buttonColorDark;
+  }
+}
 
 
 .popup-profilePage {

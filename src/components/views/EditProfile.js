@@ -6,6 +6,8 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import BaseContainer from "components/ui/BaseContainer";
+import { ThemeProvider } from '@emotion/react';
+import { createTheme } from '@mui/material/styles';
 
 import MenuSideBar from "components/ui/MenuSideBar";
 import React, { useEffect, useState } from "react";
@@ -138,6 +140,16 @@ const EditProfile = props => {
         fetchData();
     }, []);
 
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: 'rgba(0, 0, 0, 0.23)',
+        dark: "rgba(0, 0, 0, 0.23)",
+        light: "rgba(0, 0, 0, 0.23)",
+      },
+    },
+  });
+
 
     return (
         <BaseContainer>
@@ -145,7 +157,7 @@ const EditProfile = props => {
 
             <div className="editProfile container">
                 <div className="editProfile board">
-
+                    <ThemeProvider theme={theme}>
                     <FormControl sx={{  border: 0,  minWidth: 90 }}>
                         <Avatar  alt="Remy Sharp" src={avatar} sx={{width:90, height:90, margin:2}} />
                         <InputLabel id="demo-dialog-native" > </InputLabel>
@@ -156,6 +168,7 @@ const EditProfile = props => {
                             onChange={handleChangeAvatar}
                             autoWidth
                             label="avatar"
+                            sx={{color: 'primary.light'}}
                         >
                             <MenuItem value={1}><Avatar  alt="Remy Sharp" src={'resources/avatar/1.png'} sx={{width:60, height:60}} /> </MenuItem>
                             <MenuItem value={2}><Avatar  alt="Remy Sharp" src={'resources/avatar/2.png'} sx={{width:60, height:60}} /> </MenuItem>
@@ -178,19 +191,19 @@ const EditProfile = props => {
                         <div className="editProfile userInfo">
                             Name:
                         </div>
-                        <TextField id="filled-basic" placeholder={user.username} size = "small" variant="filled" inputProps={{ maxLength: 10 }} margin="normal" value={username} onChange={handleChangeName } sx={{width:1}} select={false}  />
+                        <TextField id="filled-basic" placeholder={user.username} size = "small" variant="filled" inputProps={{ maxLength: 10 }} margin="normal" value={username} onChange={handleChangeName } sx={{width:1, color: 'primary.light'}} select={false}  />
 
                         <div className="editProfile userInfo">
                             Password:
                         </div>
-                        <TextField id="filled-basic" placeholder="New Password" size = "small" variant="filled"  inputProps={{ maxLength: 10 }} margin="normal" value={password} onChange={handleChangePassword} sx={{width:1}} />
+                        <TextField id="filled-basic" placeholder="New Password" size = "small" variant="filled"  inputProps={{ maxLength: 10 }} margin="normal" value={password} onChange={handleChangePassword} sx={{width:1, color: 'primary.light'}} />
 
                         <div className="editProfile userInfo">
                             Description:
                         </div>
-                        <TextField id="filled-basic" placeholder={user.description} size = "small" variant="filled" inputProps={{ maxLength: 100 }} multiline="true" margin="normal" value={description}  onChange={handleChangeStatus} sx={{width:1}} />
+                        <TextField id="filled-basic" placeholder={user.description} size = "small" variant="filled" inputProps={{ maxLength: 100 }} multiline="true" margin="normal" value={description}  onChange={handleChangeStatus} sx={{width:1, color: 'primary.light'}} />
                     </div>
-
+                    </ThemeProvider>
                         <Button className="editProfile button" variant="contained" disabled={!username && !password && !description && !newAvatar} onClick={() => doEdit()}>Save</Button>
 
                     {errorFetchData}

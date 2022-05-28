@@ -25,16 +25,6 @@
     transition: opacity 0.5s ease, transform 0.5s ease;
     @include center;
   }
-  .css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root.Mui-focused .MuiOutlinedInput-notchedOutline{
-    border-color: rgba(0, 0, 0, 0.23);
-  }
-
-  .css-19mk8g1-MuiInputBase-root-MuiFilledInput-root::after{
-    border-bottom: 2px solid rgba(0, 0, 0, 0.42);
-  }
-  .css-91zcx7-MuiInputBase-root-MuiFilledInput-root::after{
-    border-bottom: 2px solid rgba(0, 0, 0, 0.42);
-  }
 
   &.containerUserInfo{
     width: 70%;

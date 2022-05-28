@@ -25,6 +25,7 @@ const FormField = props => {
         placeholder= {props.text}
         value={props.value}
         type={props.type}
+        maxLength={props.maxLength}
         onChange={e => props.onChange(e.target.value)}
       />
     </div>
@@ -34,7 +35,8 @@ const FormField = props => {
 FormField.propTypes = {
   label: PropTypes.string,
   value: PropTypes.string,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  maxLength: PropTypes.func
 };
 
 const RegistrationLogin = props => {
@@ -132,6 +134,14 @@ const RegistrationLogin = props => {
                     );
                 break;
 
+                case 405:
+                    setErrorRegister(
+                        <div className="relo-errors">
+                            User name to short or to long
+                        </div>
+                    );
+                break;
+
                 default:
                     setErrorRegister(
                         <div className="relo-errors">
@@ -165,17 +175,17 @@ const RegistrationLogin = props => {
                       <FormField
                           label="Name:"
                           value={loginUsername}
+                          maxLength={"10"}
                           onChange={un => setLoginUsername(un)}
                           text = "Enter username"
-                          inputProps={{ maxLength: 10 }}
                       />
                       <FormField
                           label="Password:"
                           text = "Enter password"
+                          maxLength={"20"}
                           value={loginPassword}
                           type= "password"
                           onChange={n => setLoginPassword(n)}
-                          inputProps={{ maxLength: 10 }}
                           />
                       {errorLogin}
                       <Button className="content button-container"
@@ -195,18 +205,19 @@ const RegistrationLogin = props => {
                       <FormField
                           label="Name:"
                           text = "New username"
+                          maxLength={"10"}
                           value={registerUsername}
                           onChange={un => setRegisterUsername(un)}
-                          inputProps={{ maxLength: 10 }}
+
                           
                       />
                       <FormField
                           label="Password:"
                           text = "New password"
+                          maxLength={"20"}
                           value={registerPassword}
                           type= "password"
                           onChange={n => setRegisterPassword(n)}
-                          inputProps={{ maxLength: 10 }}
                       />
                       {errorRegister}
                       <Button className="content button-container"

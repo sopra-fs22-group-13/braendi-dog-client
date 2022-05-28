@@ -77,11 +77,22 @@ const EditProfile = props => {
             history.push(`/profilepage`);
 
         } catch (error) {
-            setErrorFetchData(
-                <div className="errors">
-                    Sorry something went wrong during the editing the data
-                </div>
-            )
+            switch(error.response.status) {
+                case 405:
+                    setErrorFetchData(
+                        <div className="relo-errors-edit">
+                            User name to short or to long
+                        </div>
+                    );
+                    break;
+
+                default:
+                    setErrorFetchData(
+                        <div className="errors">
+                            Sorry something went wrong during the editing the data
+                        </div>
+                    )
+            }
         }
 
 
@@ -196,7 +207,7 @@ const EditProfile = props => {
                         <div className="editProfile userInfo">
                             Password:
                         </div>
-                        <TextField id="filled-basic" placeholder="New Password" size = "small" variant="filled"  inputProps={{ maxLength: 10 }} margin="normal" value={password} onChange={handleChangePassword} sx={{width:1, color: 'primary.light'}} />
+                        <TextField id="filled-basic" placeholder="New Password" size = "small" variant="filled"  inputProps={{ maxLength: 20 }} margin="normal" value={password} onChange={handleChangePassword} sx={{width:1, color: 'primary.light'}} />
 
                         <div className="editProfile userInfo">
                             Description:

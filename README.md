@@ -1,4 +1,4 @@
-npm# SoPra FS22 - Client Template
+# SoPra FS22 - Client Template
 
 ## Getting started
 
@@ -52,3 +52,14 @@ Alternatively to starting a game, the user could also view or edit their profile
 <p align="center">
     <img src="public/resources/illustrations/user-flowchart.svg" width="50%"/>
 </p>
+
+
+
+### Roadmap
+There are many things that could be implemented to develop the project further. But we decided on these three
+
+In the front-end, the marble class would have to be reformatted as it has too many responsibilities and is too big.
+The two other features that would change both the front-end and  back-end are the possibility of team play and an AI .
+For the former it would mean that there would be the possibility to swap cards with your teammate at the beginning of each round and the possibility to move the other player's marble. These rules already exist in the original board game.
+The second feature would allow the game to be played in the absence of other players. This design would be larger than the other two features, but would greatly help the playability of the game as it would allow even smaller groups of 4 people to play.
+

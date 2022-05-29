@@ -38,22 +38,22 @@ The Marbles component is essential for pretty much all interactions within a gam
 The centerpieces of the server-side application are the UserService, the Lobby and the Game and Board classes.
 These classes embrace the core functionalities of the application and changes in these classes are what is most easily visible on the client side.
 
-The main function is embedded within the [Application.java](src/main/java/ch/uzh/ifi/hase/soprafs22/Application.java) file.
+The main function is embedded within the [Application.java](https://github.com/sopra-fs22-group-13/braendi-dog-server/tree/main/src/main/java/ch/uzh/ifi/hase/soprafs22/Application.java) file.
 This method doesn't have notable responsibilities besides starting up the program.
 
-### [The UserService class](src/main/java/ch/uzh/ifi/hase/soprafs22/rest/service/UserService.java)
+### [The UserService class](https://github.com/sopra-fs22-group-13/braendi-dog-server/tree/main/src/main/java/ch/uzh/ifi/hase/soprafs22/rest/service/UserService.java)
 This class manages everything that interacts with the user repository.
 It is therefore responsible for registering, updating and retrieving users, as well as being responsible for the authentication.
 The UserService class is mostly operated by the UserController, which manages all requests from the client concerning the user repository,
 but it also communicates with other classes, which might need information about users.
 
-### [The LobbyManager class](src/main/java/ch/uzh/ifi/hase/soprafs22/lobby/LobbyManager.java)
+### [The LobbyManager class](https://github.com/sopra-fs22-group-13/braendi-dog-server/tree/main/src/main/java/ch/uzh/ifi/hase/soprafs22/lobby/LobbyManager.java)
 Before a game is created, there needs to be a lobby where 4 users gather. These lobbies exist in the backend as instances of the Lobby class.
 The managing of the lobby instances is done by the LobbyManager class, which itself is operated by the LobbyController.
 Similar to the UserController, the LobbyController catches all requests from the client concerning the lobby.
 The LobbyManager then processes all requests received by the controller after they have been interpreted and validated by the controller.
 
-### [The Game class](src/main/java/ch/uzh/ifi/hase/soprafs22/game/gameInstance/Game.java)
+### [The Game class](https://github.com/sopra-fs22-group-13/braendi-dog-server/tree/main/src/main/java/ch/uzh/ifi/hase/soprafs22/game/gameInstance/Game.java)
 After a lobby is filled and a game is started, this game exists as an instance of the Game class.
 Similar to the LobbyManager class, there also exists a GameManager class which keeps track of the existing game instances, as well as a GameController, which receives all requests concerning the game instance.
 However, the controller also performs some actions directly on the game instance, instead of exclusively communicating with the GameManager.

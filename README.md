@@ -1,16 +1,26 @@
-# SoPra FS22 Brändi Dog
+# SoPra FS22 Brändi Dog (Client)
 
 # Introduction
 The aim of our project was to develop an online version of the popular swiss board game "Brändi Dog". We wanted to make a more accessible version of the game that you can play from anywhere. Our version lets you play from anywhere if you have an internet connection and a modern browser (no guarantees for Internet Explorer). The game interface should be familiar to people who have already played the game and if needed be there is a small section with the rules. Our version provides some features that the physical version of the game doesn't have, most notably that it shows you where your marble can move based on the chosen card. Our external API enables the use of voice communication, so the players can talk to each other while playing (not moderated).
 
 # Technologies
-- **React / JavaScript/ Mui Framework** - Frontend Development
-- **Java** - Backend Development
-- **Gradle** - Build
-- **Spring Boot** - Testing
+Frontend
+
+- **React / JavaScript / Node.js / Mui Framework** - Frontend Development
+- **SockJS / STOMPJS** - Websocket (Frontend)
+
+Backend
+
+- **Java** - Backend Development Language
+- **Gradle** - Build-Automation
+- **Spring Boot Web** - RESTful service
+- **Spring Boot Websocket** - Websocket (Backend)
+- **JPA** - Database interface
+
+Various
+- **PostgreSQL** - Production Database
 - **GitHub** - Version control, Deployment
 - **Heroku** - Deployment
-- **JPA** - Database interface
 
 # High-level components
 TO BE DONE (not the same as in backend?)
